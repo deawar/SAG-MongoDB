@@ -1,0 +1,43 @@
+{
+  "name": "sag-mongodb",
+  "version": "1.0.0",
+  "description": "Silent Auction Gallery with a MongoDB back end.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deawar/SAG-MongoDB.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Mongoose",
+    "Express",
+    "Node",
+    "Express-Handlebars"
+  ],
+  "author": "Dean Warren",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deawar/SAG-MongoDB/issues"
+  },
+  "homepage": "https://github.com/deawar/SAG-MongoDB#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^5.2.0",
+    "nodemailer": "^6.4.17",
+    "os": "^0.1.1",
+    "randomstring": "^1.1.5",
+    "twilio": "^3.55.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  }
+}
