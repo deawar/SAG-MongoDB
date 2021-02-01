@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Import the model (index.js) to use its database functions.
 // eslint-disable-next-line no-unused-vars
-//const sag = require('../models/user');
+const sag = require('../models/user');
 
 // This is get route for login page
 router.get('/donate', checkAuthenticated, (req, res) => {

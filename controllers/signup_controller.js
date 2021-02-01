@@ -4,7 +4,7 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
-const db = require('../models');
+const db = require('../models/index.js');
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
 const smtpTransport = require('../config/verify'); // { sendMail }
@@ -91,7 +91,7 @@ router.post('/send', (req, res) => {
       })
       .then(() => {
         // eslint-disable-next-line no-cond-assign
-        if (process.env.NODE_ENV = 'development') {
+        if (process.env.NODE_ENV === 'development') {
           link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
         } else {
           // eslint-disable-next-line prefer-template

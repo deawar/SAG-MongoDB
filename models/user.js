@@ -1,7 +1,9 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
 /* Requiring bcrypt for password hashing */
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 // eslint-disable-next-line prefer-destructuring
 const Schema = mongoose.Schema;
@@ -16,11 +18,12 @@ const validateEmail = function (email) {
 };
 
 // secretToken Generator
-const secretTokenGen = function (secretToken) {
-  return randomstring.generate({ length: 64, charset: 'alphanumeric' }, this.secretToken);
+const secretTokenGen = function () {
+  const secretToken = randomstring.generate({ length: 64, charset: 'alphanumeric' }, this.secretToken);
+  return secretToken;
 };
 
-// Creating our User model
+// Creating our User Schema
 const userDataSchema = new Schema({
   updated: { type: Date, default: Date.now },
   unique_id: { type: Number, index: true },
@@ -92,6 +95,7 @@ const userDataSchema = new Schema({
   },
   password: {
     type: String,
+    required: true,
     min: 8,
   },
   passwordConf: String,
@@ -142,10 +146,6 @@ module.exports.getUserByUsername = function (username, callback) {
 };
 
 userDataSchema.plugin(passportLocalMongoose);
-// encrypted password checking
-// userDataSchema.methods.authenticate = function (password) {
-//   return this.password === this.hashPassword(password);
-// };
 
 // hash the password
 userDataSchema.methods.generateHash = function (password) {
@@ -157,9 +157,10 @@ userDataSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-// // Generate SecretToken for Email verification
-// userDataSchema.methods.secretToken = function (secretToken) {
-//   return randomstring.generate({ length: 64, charset: 'alphanumeric' }, this.secretToken);
-// };
+// Apply the uniqueValidator plugin to userDataSchema.
+userDataSchema.plugin(uniqueValidator, {
+  // eslint-disable-next-line comma-dangle
+  message: 'Sorry, {PATH} needs to be unique'
+});
 
 module.exports = (User, user, userDataSchema);

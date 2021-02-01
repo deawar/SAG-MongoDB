@@ -3,29 +3,29 @@
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-const { FieldTypeInstance } = require('twilio/lib/rest/autopilot/v1/assistant/fieldType');
-
-const { Schema } = mongoose;
+exports.User = require('./user');
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
 
+// eslint-disable-next-line prefer-destructuring
+const Schema = mongoose.Schema;
+
+const env = process.env.NODE_ENV || 'development';
+// eslint-disable-next-line import/no-dynamic-require
 const config = require(`${__dirname}/../config/config.js`)[env];
+
 const db = mongoose.connection;
 
-if (config.use_env_variable) {
-  fs.readdirSync(__dirname + '/models').forEach(function (filename) {
-    if (~filename.indexOf('.js')) import(path.join(__dirname, filename));
-  });
-}
+const modelsPath = path.resolve(__dirname);
+console.log('FilePath: ', modelsPath);
+fs.readdirSync(modelsPath).forEach((file) => {
+  require(`${modelsPath}/${file}`);
+});
 
 // Object.keys(db).forEach((modelName) => {
 //   if (db[modelName].associate) {
 //     db[modelName].associate(db);
 //   }
 // });
-
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
 
 module.exports = db;

@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const os = require('os');
-//const db = require('../models');
+const db = require('../models/index.js');
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER

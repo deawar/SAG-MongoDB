@@ -61,7 +61,6 @@ $(document).ready(() => {
     // $("#change-account-modal").modal("show");
     console.log(changeAccount);
 
-
     if (changeAccount.phone.length > 0
       && changeAccount.email.length > 0 && changeAccount.zip.length > 0
       && changeAccount.state.length > 0 && changeAccount.city.length > 0
@@ -89,7 +88,6 @@ $(document).ready(() => {
     event.preventDefault();
     const emailSearched = $('#searchforUser').val().trim();
     console.log(`emailSearched ~~~~~~~ ${emailSearched}`);
-
 
     if (emailSearched.match(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/i)) {
       try {

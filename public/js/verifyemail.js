@@ -16,7 +16,6 @@ $(document).ready(() => {
     }
   }
 
-
   // eslint-disable-next-line consistent-return
   async function sendAnEmail(data) {
     let result;
@@ -73,7 +72,6 @@ $(document).ready(() => {
       }
     });
   });
-
 
   $('#verifyTokenBtn').click((event) => {
     event.preventDefault();

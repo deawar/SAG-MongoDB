@@ -18,7 +18,7 @@ const { DB_USER } = process.env;
 const { DB_PASSWORD } = process.env;
 const { DB_HOST } = process.env;
 const { DB_NAME } = process.env;
-const models = require('./models');
+const models = require('./models/index.js');
 const User = require('./models/user');
 
 mongoose.set('useNewUrlParser', true);
@@ -28,7 +28,7 @@ mongoose.set('useUnifiedTopology', true);
 
 if (process.env.NODE_ENV === 'development') {
   const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}?retryWrites=true&w=majority`;
-  console.log ('MongoDB Access string: ', uri);
+  console.log('MongoDB Access string: ', uri);
   const client = new MongoClient(uri, { useNewUrlParser: true });
   mongoose.connect(uri, client);
   client.connect((err) => {
@@ -45,8 +45,8 @@ require('./config/passport')(passport);
 
 const { pid } = process;
 const PORT = process.env.PORT || 3000;
-const SESSION_SECRET = process.env.SESSION_SECRET;
-const db = require('./models');
+const { SESSION_SECRET } = process.env;
+const db = require('./models/index.js');
 
 db.on('error', console.error.bind(console, 'connectionerror:'));
 
@@ -171,7 +171,6 @@ app.post('/upload', (req, res) => {
 });
 
 const hostname = os.hostname();
-// Syncing our database and logging a message to the user upon success
 
 app.listen(PORT, () => {
   console.log(`PID: ${pid}\n`);
