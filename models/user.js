@@ -170,7 +170,7 @@ userDataSchema.statics.authenticate = function (email, password, callback) {
         return callback(err);
       // eslint-disable-next-line no-else-return
       } else if (!user) {
-        let err = new Error('User not found.');
+        const err = new Error('User not found.');
         err.status = 401;
         return callback(err);
       }
@@ -192,4 +192,4 @@ userDataSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique'
 });
 
-module.exports = (User, user, userDataSchema);
+module.exports = (User, userDataSchema);

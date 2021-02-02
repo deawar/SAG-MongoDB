@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const randomstring = require('randomstring');
 const db = require('../models/index.js');

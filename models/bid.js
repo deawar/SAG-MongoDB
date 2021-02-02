@@ -2,12 +2,9 @@
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+
 // Get the Schema constructor
 const { Schema } = mongoose;
-// eslint-disable-next-line prefer-destructuring
-// eslint-disable-next-line prefer-destructuring
 
 // Creating our School Schema
 const bidSchema = new Schema({
@@ -70,7 +67,7 @@ const bidSchema = new Schema({
   artwork_unique_id: {
     type: mongoose.ObjectId,
     ref: 'artwork',
-},
+  },
 });
 
 const Bid = mongoose.model('Bid', bidSchema);
