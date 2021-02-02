@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
 const randomstring = require('randomstring');
 const db = require('../models/index.js');
+const User = require('../models/user');
 
 module.exports = (passport) => {
   console.log('passport loading');
@@ -18,7 +18,7 @@ module.exports = (passport) => {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    db.User.findByPk(id).then((user) => {
+    db.User.findById(id).then((user) => {
       if (user) {
         done(null, user.get());
       } else {
@@ -35,7 +35,8 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true,
   }, ((req, email, password, done) => {
-    console.log('req.body.email: ', req.body.email);
+    const query = User.where({ email: req.body.email });
+    console.log('query :', query);
     process.nextTick(() => {
       db.User.findOne({
         email: req.body.email,

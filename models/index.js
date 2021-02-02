@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable-next-line import/no-dynamic-require */
 /* eslint-disable prefer-arrow-callback */
 const fs = require('fs');
@@ -21,11 +22,21 @@ console.log('FilePath: ', modelsPath);
 fs.readdirSync(modelsPath).forEach((file) => {
   require(`${modelsPath}/${file}`);
 });
-
+require('./user');
+require('./school');
+require('./role');
+require('./bid');
 // Object.keys(db).forEach((modelName) => {
 //   if (db[modelName].associate) {
 //     db[modelName].associate(db);
 //   }
 // });
 
+module.exports = {
+  user: require('./user'),
+  school: require('./school'),
+  role: require('./role'),
+  artwork: require('./artwork'),
+  bid: require('./bid'),
+};
 module.exports = db;

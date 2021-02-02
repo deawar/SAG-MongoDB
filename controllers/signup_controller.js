@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 const router = express.Router();
 
 // HTML ROUTE FOR SIGNUP SCREEN
-router.get('/signup', (req, res) => {
+router.get('/signup', async (req, res) => {
   req.headers.logged = 'false';
   res.render('signup', {
     title: 'Registration Page',

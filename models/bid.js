@@ -7,11 +7,25 @@ const uniqueValidator = require('mongoose-unique-validator');
 // Get the Schema constructor
 const { Schema } = mongoose;
 // eslint-disable-next-line prefer-destructuring
+// eslint-disable-next-line prefer-destructuring
 
 // Creating our School Schema
-const schoolSchema = new Schema({
+const bidSchema = new Schema({
   updated: { type: Date, default: Date.now },
-  unique_id: { type: Number, index: true },
+  unique_bid_id: {
+    type: Number,
+    index: true,
+  },
+  first_name: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    trim: true,
+    required: true,
+  },
   schoolName: {
     type: String,
     trim: true,
@@ -41,10 +55,6 @@ const schoolSchema = new Schema({
     trim: true,
     required: true,
   },
-  county: {
-    type: String,
-    trim: true,
-  },
   state: {
     type: String,
     trim: true,
@@ -57,8 +67,12 @@ const schoolSchema = new Schema({
     required: true,
     min: 5,
   },
+  artwork_unique_id: {
+    type: mongoose.ObjectId,
+    ref: 'artwork',
+},
 });
 
-const School = mongoose.model('School', schoolSchema);
+const Bid = mongoose.model('Bid', bidSchema);
 
-module.exports = (School, schoolSchema);
+module.exports = (Bid, bidSchema);

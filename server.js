@@ -46,7 +46,7 @@ require('./config/passport')(passport);
 const { pid } = process;
 const PORT = process.env.PORT || 3000;
 const { SESSION_SECRET } = process.env;
-const db = require('./models/index.js');
+const db = require('./models');
 
 db.on('error', console.error.bind(console, 'connectionerror:'));
 

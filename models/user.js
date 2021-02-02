@@ -1,14 +1,14 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
-/* Requiring bcrypt for password hashing */
+/* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-
+// Get the Schema constructor
+const { Schema } = mongoose;
 // eslint-disable-next-line prefer-destructuring
-const Schema = mongoose.Schema;
 const randomstring = require('randomstring');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10;
 // Email Validator fx
@@ -103,6 +103,10 @@ const userDataSchema = new Schema({
     type: String,
     validate: [secretTokenGen],
   },
+  role: {
+    type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
+    ref: 'role',
+  },
   active: Boolean,
 });
 
@@ -155,6 +159,31 @@ userDataSchema.methods.generateHash = function (password) {
 // checking if password is valid
 userDataSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
+};
+
+// authenticate input against database
+userDataSchema.statics.authenticate = function (email, password, callback) {
+  User.findOne({ email: email })
+    // eslint-disable-next-line prefer-arrow-callback
+    .exec(function (err, user) {
+      if (err) {
+        return callback(err);
+      // eslint-disable-next-line no-else-return
+      } else if (!user) {
+        let err = new Error('User not found.');
+        err.status = 401;
+        return callback(err);
+      }
+      // eslint-disable-next-line prefer-arrow-callback
+      bcrypt.compare(password, user.password, function (err, result) {
+        if (result === true) {
+          return callback(null, user);
+        // eslint-disable-next-line no-else-return
+        } else {
+          return callback();
+        }
+      });
+    });
 };
 
 // Apply the uniqueValidator plugin to userDataSchema.
