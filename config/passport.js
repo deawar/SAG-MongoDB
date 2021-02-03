@@ -40,7 +40,7 @@ module.exports = (app) => {
     passReqToCallback: true,
   }, ((req, email, password, done) => {
     process.nextTick(() => {
-      db.User
+      User
         .findOne({ email: req.body.email })
         .exec((err, user) => {
           if (err) {

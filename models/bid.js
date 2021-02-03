@@ -13,56 +13,19 @@ const bidSchema = new Schema({
     type: Number,
     index: true,
   },
-  first_name: {
-    type: String,
-    trim: true,
-    required: true,
+  startBid: {
+    type: Number,
   },
-  last_name: {
-    type: String,
-    trim: true,
-    required: true,
+  bids: {
+    type: Number,
   },
   schoolName: {
     type: String,
     trim: true,
     required: true,
   },
-  phone: {
+  status: {
     type: String,
-    trim: true,
-    validate: {
-      validator(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: '{VALUE} is not a valid phone number!',
-    },
-    required: [true, 'User phone number required'],
-  },
-  address: {
-    type: String,
-    trim: true,
-  },
-  address2: {
-    type: String,
-    trim: true,
-  },
-  city: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  state: {
-    type: String,
-    trim: true,
-    required: true,
-    min: 2,
-  },
-  zip: {
-    type: String,
-    trim: true,
-    required: true,
-    min: 5,
   },
   artwork_unique_id: {
     type: mongoose.ObjectId,
@@ -70,12 +33,13 @@ const bidSchema = new Schema({
   },
 });
 
-// https://stackoverflow.com/questions/13304129/how-should-i-store-a-price-in-mongoose to store price in Mongoose
-// Getter
-bidSchema.path('price').get((num) => (num / 100).toFixed(2));
+// Getter for Currency adjustment
+bidSchema.path('bids').get((num) => (num / 100).toFixed(2));
+bidSchema.path('startBid').get((num) => (num / 100).toFixed(2));
 
-// Setter
-bidSchema.path('price').set((num) => num * 100);
+// Setter for Currency adjustment
+bidSchema.path('bids').get((num) => (num * 100));
+bidSchema.path('startBid').get((num) => (num * 100));
 
 const Bid = mongoose.model('Bid', bidSchema);
 
