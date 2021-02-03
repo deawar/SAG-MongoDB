@@ -19,12 +19,11 @@ module.exports = (passport) => {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    db.User.findById(id).then((user) => {
-      if (user) {
-        done(null, user.get());
-      } else {
-        done(user.errors, null);
-      }
+    db.User.findOne({
+      _id: id
+    // eslint-disable-next-line prefer-arrow-callback
+    }, '-password -salt', function (err, user) {
+      done(err, user);
     });
   });
 
