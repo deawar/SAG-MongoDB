@@ -70,6 +70,13 @@ const bidSchema = new Schema({
   },
 });
 
+// https://stackoverflow.com/questions/13304129/how-should-i-store-a-price-in-mongoose to store price in Mongoose
+// Getter
+bidSchema.path('price').get((num) => (num / 100).toFixed(2));
+
+// Setter
+bidSchema.path('price').set((num) => num * 100);
+
 const Bid = mongoose.model('Bid', bidSchema);
 
 module.exports = (Bid, bidSchema);

@@ -1,12 +1,16 @@
 /* eslint-disable consistent-return */
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const randomstring = require('randomstring');
 const db = require('../models/index.js');
 const User = require('../models/user');
 
-module.exports = (passport) => {
+module.exports = (app) => {
   console.log('passport loading');
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // PASSPORT SESSION SETUP
   // required for persistent login sessions
@@ -19,8 +23,8 @@ module.exports = (passport) => {
 
   // used to deserialize the user
   passport.deserializeUser((id, done) => {
-    db.User.findOne({
-      _id: id
+    User.findOne({
+      _id: id,
     // eslint-disable-next-line prefer-arrow-callback
     }, '-password -salt', function (err, user) {
       done(err, user);
@@ -35,19 +39,16 @@ module.exports = (passport) => {
     passwordField: 'password',
     passReqToCallback: true,
   }, ((req, email, password, done) => {
-    const query = User.where({ email: req.body.email });
-    console.log('query :', query);
     process.nextTick(() => {
-      db.User.findOne({
-        email: req.body.email,
-      })
+      db.User
+        .findOne({ email: req.body.email })
         .exec((err, user) => {
           if (err) {
-            return done(err);
+            return done(null, err);
           } if (!user) {
-            const err = new Error('User not found.');
-            err.status = 401;
-            return done(err);
+            // const err = new Error('User not found.');
+            // err.status = 401;
+            return done(null, user);
           }
           // eslint-disable-next-line prefer-arrow-callback
           bcrypt.compare(password, user.password, function (err, result) {
@@ -68,7 +69,7 @@ module.exports = (passport) => {
           }
           // eslint-disable-next-line no-unused-vars
           const secretToken = randomstring.generate(64);
-          db.User.create({
+          db.User.insertOne({
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             address: req.body.address1,
@@ -88,47 +89,46 @@ module.exports = (passport) => {
         });
       return process.nextTick;
     });
+  }),
+  // LOCAL LOGIN
+  // we are using named strategies since we have one for login and one for signup
+  // by default, if there was no name, it would just be called 'local'
 
-    // LOCAL LOGIN
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
+  passport.use('local-login', new LocalStrategy({
+    // by default, local strategy uses username and password, we will override with email
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true, // allows us to pass back the entire request to the callback
+  },
+  ((req, email, password, done) => {
+    // checking to see if the user trying to login already exists
+    db.User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    }).then((user, err) => {
+      console.log('user', user);
+      console.log('&&&', err);
+      console.log('****', !user);
+      // console.log('^^^', (!user.validPassword(req.body.password)));
+      // (!user.validPassword(req.body.password));
 
-    passport.use('local-login', new LocalStrategy({
-      // by default, local strategy uses username and password, we will override with email
-      usernameField: 'email',
-      passwordField: 'password',
-      passReqToCallback: true, // allows us to pass back the entire request to the callback
-    },
-    ((req, email, password, done) => {
-      // checking to see if the user trying to login already exists
-      db.User.findOne({
-        where: {
-          email: req.body.email,
-        },
-      }).then((user, err) => {
-        console.log('user', user);
-        console.log('&&&', err);
-        console.log('****', !user);
-        // console.log('^^^', (!user.validPassword(req.body.password)));
-        // (!user.validPassword(req.body.password));
+      // if no user is found, return the message
+      if (!user) {
+        console.log('no user found');
+        return done(null, false, 'No user found.');
+      }
 
-        // if no user is found, return the message
-        if (!user) {
-          console.log('no user found');
-          return done(null, false, 'No user found.');
-        }
+      // if the user is found but the password is wrong
+      if (user && !user.validPassword(req.body.password)) {
+        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+      }
 
-        // if the user is found but the password is wrong
-        if (user && !user.validPassword(req.body.password)) {
-          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-        }
-
-        if (!user.active) {
-          return done(null, user);
-        }
-        // If everything good return successful user
+      if (!user.active) {
         return done(null, user);
-      });
-    })));
-  })));
+      }
+      // If everything good return successful user
+      return done(null, user);
+    });
+  })))));
 };
