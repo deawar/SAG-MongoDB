@@ -1,9 +1,11 @@
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const mongooseTypePhone = require('mongoose-type-phone');
 // Get the Schema constructor
 const { Schema } = mongoose;
 // eslint-disable-next-line prefer-destructuring
@@ -24,7 +26,7 @@ const secretTokenGen = function () {
 };
 
 // Creating our User Schema
-const userDataSchema = new Schema({
+const userSchema = new Schema({
   updated: { type: Date, default: Date.now },
   unique_id: { type: Number, index: true },
   first_name: {
@@ -39,14 +41,7 @@ const userDataSchema = new Schema({
   },
   phone: {
     type: String,
-    trim: true,
-    validate: {
-      validator(v) {
-        return /\d{3}-\d{3}-\d{4}/.test(v);
-      },
-      message: '{VALUE} is not a valid phone number!',
-    },
-    required: [true, 'User phone number required'],
+    required: true,
   },
   address: {
     type: String,
@@ -110,7 +105,7 @@ const userDataSchema = new Schema({
   active: Boolean,
 });
 
-userDataSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
   const user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -131,13 +126,35 @@ userDataSchema.pre('save', function (next) {
   });
 });
 
-userDataSchema.methods.comparePassword = function (candidatePassword, cb) {
+// eslint-disable-next-line consistent-return
+userSchema.pre('save', function (next) {
+  const user = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified('password')) return next();
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+    if (err) return next(err);
+
+    // hash the password using our new salt
+    // eslint-disable-next-line prefer-arrow-callback
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) return next(err);
+      // override the cleartext password with the hashed one
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+userSchema.methods.comparePassword = function (candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) return cb(err);
     cb(null, isMatch);
   });
 };
-const User = mongoose.model('User', userDataSchema);
+const User = mongoose.model('User', userSchema);
 const user = new User({ type: 'user' });
 
 module.exports.getUserById = function (id, callback) {
@@ -149,20 +166,20 @@ module.exports.getUserByUsername = function (username, callback) {
   User.findOne(query, callback);
 };
 
-userDataSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 
-// hash the password
-userDataSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
-};
+// // hash the password
+// userSchema.methods.generateHash = function (password) {
+//   return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
+// };
 
 // checking if password is valid
-userDataSchema.methods.validPassword = function (password) {
+userSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
 // authenticate input against database
-userDataSchema.statics.authenticate = function (email, password, callback) {
+userSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email: email })
     // eslint-disable-next-line prefer-arrow-callback
     .exec(function (err, user) {
@@ -187,9 +204,9 @@ userDataSchema.statics.authenticate = function (email, password, callback) {
 };
 
 // Apply the uniqueValidator plugin to userDataSchema.
-userDataSchema.plugin(uniqueValidator, {
+userSchema.plugin(uniqueValidator, {
   // eslint-disable-next-line comma-dangle
   message: 'Sorry, {PATH} needs to be unique'
 });
 
-module.exports = (User, userDataSchema);
+module.exports = mongoose.model('user', userSchema);

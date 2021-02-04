@@ -1,13 +1,15 @@
 /* eslint-disable consistent-return */
 const passport = require('passport');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
 const randomstring = require('randomstring');
-const db = require('../models/index.js');
 const User = require('../models/user');
 
+const db = mongoose.connection;
 module.exports = (app) => {
   console.log('passport loading');
+  console.log('In Passport db = ', db);
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -42,22 +44,22 @@ module.exports = (app) => {
     process.nextTick(() => {
       User
         .findOne({ email: req.body.email })
-        .exec((err, user) => {
-          if (err) {
-            return done(null, err);
-          } if (!user) {
-            // const err = new Error('User not found.');
-            // err.status = 401;
-            return done(null, user);
-          }
-          // eslint-disable-next-line prefer-arrow-callback
-          bcrypt.compare(password, user.password, function (err, result) {
-            if (result === true) {
-              return done(null, user);
-            }
-            return done();
-          });
-        })
+        // .exec((err, user) => {
+        //   if (err) {
+        //     return done(null, err);
+        //   } if (!user) {
+        //     // const err = new Error('User not found.');
+        //     // err.status = 401;
+        //     return done(null, user);
+        //   }
+        //   // eslint-disable-next-line prefer-arrow-callback
+        //   bcrypt.compare(password, user.password, function (err, result) {
+        //     if (result === true) {
+        //       return done(null, user);
+        //     }
+        //     return done();
+        //   });
+        // })
         .then((user, err) => {
           if (err) {
             console.log('err', err);
@@ -69,23 +71,33 @@ module.exports = (app) => {
           }
           // eslint-disable-next-line no-unused-vars
           const secretToken = randomstring.generate(64);
-          db.User.insertOne({
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            address: req.body.address1,
-            address2: req.body.address2,
-            city: req.body.city,
-            state: req.body.state,
-            zip: req.body.zip,
-            school: req.body.school,
-            email: req.body.email,
-            phone: req.body.phone,
-            password: db.User.generateHash(password),
-            secretToken: db.User.secretToken,
-            active: false,
-          }).then((dbUser) => done(null, dbUser)).catch((error) => {
-            console.log(error);
+          console.log('secretToken: ', secretToken);
+          console.log('req.body: ', req.body);
+          const newUser = new User(
+            {
+              first_name: req.body.first_name,
+              last_name: req.body.last_name,
+              address: req.body.address1,
+              address2: req.body.address2,
+              city: req.body.city,
+              state: req.body.state,
+              zip: req.body.zip,
+              school: req.body.school,
+              email: req.body.email,
+              phone: req.body.phone,
+              password: req.body.password,
+              secretToken,
+              active: false,
+            },
+          );
+          newUser.save((err, user) => {
+            if (err) return console.error(err);
+            console.log('Document saved!');
           });
+
+          // .then((dbUser) => done(null, dbUser)).catch((error) => {
+          //   console.log(error);
+          // });
         });
       return process.nextTick;
     });

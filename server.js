@@ -10,7 +10,7 @@ const os = require('os');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const morgan = require('morgan'); // logging middleware
 
@@ -68,7 +68,7 @@ app.engine(
 );
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
-app.use(require('morgan')('combined'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

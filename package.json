@@ -4,10 +4,9 @@
   "description": "Silent Auction Gallery with a MongoDB back end.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "start_local": "nodemon -r dotenv/config server.js",
+    "start": "npm run lint & nodemon -r dotenv/config server.js",
     "test": "npm run lint",
-    "lint": "eslint \"**/*.js\""
+    "lint": "./node_modules/.bin/eslint **/*.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,7 @@
     "express-session": "^1.17.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.14",
+    "mongoose-type-phone": "^1.0.1",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.4.17",
