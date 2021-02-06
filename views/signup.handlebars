@@ -18,7 +18,7 @@
                                                 <div class="input-field col s6">
                                                     <input placeholder="First Name" id="firstname-input" type="text"
                                                         class="validate" required="" aria-required="true">
-                                                    <label for="first_name">Full Name*</label>
+                                                    <label for="first_name">First Name</label>
                                                 </div>
                                                 <div class="input-field col s6">
                                                     <input id="lastname-input" type="text" class="validate" required=""
@@ -61,7 +61,7 @@
                                                 <div class="input-field col s6">
                                                     <input id="phone-input" type="text" class="validate" required=""
                                                         aria-required="true">
-                                                    <label for="phoneNumber">Tel Number</label>
+                                                    <label for="phoneNumber">Mobile Tel Number</label>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -72,32 +72,38 @@
                                                 </div>
 
                                                 <div class="input-field col s6">
-                                                    <input id="password-input" type="password" class="validate"
-                                                        required="" aria-required="true">
-                                                    <label for="password">Password</label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="input-field col s6">
                                                     <input id="school-input" type="text" class="validate" required=""
                                                         aria-required="true">
                                                     <label for="school">School</label>
                                                 </div>
+
+                                            <div class="row"></div>    
+                                                <div class="input-field col s6">
+                                                    <input id="password-input" type="password" class="validate"
+                                                        required="" aria-required="true">
+                                                    <label for="password">Password</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input id="confirm-password-input" type="password" class="validate"
+                                                        required="" aria-required="true">
+                                                    <label for="password">Confirm Password</label>
+                                                </div>
+                                            </div>
                                             </div>
                                             <div class="row">
-                                                <div class="input-field col s8 m8 l8">
-                                            <p>
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>Student</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" />
-        <span>Bidder</span>
-      </label>
-    </p>
+                                                <div class="input-field col s8 m8 l8"  id="userroles">
+                                                    <p>
+                                                    <label>
+                                                        <input name="roles" type="radio" checked value="student" />
+                                                        <span>Student</span>
+                                                    </label>
+                                                    </p>
+                                                    <p>
+                                                    <label>
+                                                        <input name="roles" type="radio" value="bidder"/>
+                                                        <span>Bidder</span>
+                                                    </label>
+                                                    </p>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-default red darken-4"
@@ -109,11 +115,36 @@
                                 </div>
                             </div>
                         </div>
+                        <h3 id="Footer-create-err-msg"></h3>
+
+                        <h3 id="Footer-err-msg"></h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+  <!-- Modal Structure -->
+  <div id="PwMatch-modal" class="modal">
+    <div class="modal-content">
+      <h4>Password Mismatch</h4>
+      <p></p><b>The Passwords entered DO NOT Match!</b></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  <div id="Form-modal" class="modal">
+    <div class="modal-content">
+      <h4>Incomplete Registration Form</h4>
+      <p></p><b>Please fill out the form completely!</b></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
 </body>
 
 

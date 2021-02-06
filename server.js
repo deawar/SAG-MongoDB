@@ -1,9 +1,9 @@
 const express = require('express');
+const flash = require('express-flash-notification');
 const session = require('express-session');
 const process = require('process');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const flash = require('express-flash');
 const bodyParser = require('body-parser');
 const fileupload = require('express-fileupload');
 const os = require('os');
@@ -13,6 +13,8 @@ const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose');
 const morgan = require('morgan'); // logging middleware
+
+const app = express();
 
 const { DB_USER } = process.env;
 const { DB_PASSWORD } = process.env;
@@ -33,7 +35,6 @@ if (process.env.NODE_ENV === 'development') {
   mongoose.connect(uri, client);
   client.connect((err) => {
     const collection = client.db('test').collection('devices');
-    console.log('Current Collection: ', collection);
     // perform actions on the collection object
     client.close();
   });
@@ -51,7 +52,6 @@ db.on('error', console.error.bind(console, 'connectionerror:'));
 
 console.log('Process PID: ', process.pid);
 
-const app = express();
 
 // Set Handlebars.
 app.engine(
@@ -132,7 +132,7 @@ require('./config/passport')(app);
 // });
 
 // Using flash for messages
-app.use(flash());
+app.use(flash(app));
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static('public'));

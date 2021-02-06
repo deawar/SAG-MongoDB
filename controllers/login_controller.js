@@ -19,6 +19,7 @@ router.get('/login', (req, res) => {
 router.post('/api/login', (req, res, next) => {
   passport.authenticate('local-login', (err, user, info) => {
     console.log('\n\n\n########userrrr info', info);
+    console.log('########user', user);
     if (err) {
       console.log('passport err', err);
       return next(err); // will generate a 500 error

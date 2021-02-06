@@ -36,7 +36,9 @@ router.get('/privacypolicy', (req, res) => {
 // ROUTE TO SIGNUP A NEW USER
 router.post('/api/signup', (req, res, next) => {
   passport.authenticate('local-signup', (err, user, info) => {
-    console.log('info', info);
+    console.log('Signup_controller-Route to Signup New User info', info); // undefined
+    console.log('Signup_controller-New User: ', user); // false
+    console.log('Signup_controller-New User err: ', err); // null
     if (err) {
       console.log('passport err', err);
       return next(err); // will generate a 500 error
