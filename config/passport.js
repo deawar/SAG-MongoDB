@@ -49,8 +49,8 @@ module.exports = (app) => {
           if (err) {
             return done(null, err);
           } if (!user) {
-            // const err = new Error('User not found.');
-            // err.status = 401;
+            const err = new Error('User not found.');
+            err.status = 401;
             return done(null, user);
           }
           // this may need to be moved.

@@ -62,8 +62,10 @@ $(document).ready(() => {
         type: 'post',
         url: '/api/signup',
         data: newAccount,
-      }).then((data) => {
-        console.log(data);
+      })
+      // .then()
+      .then((data) => {
+        console.log('status post ajax call to /api/signup :', data);
         window.location.replace('/dashboard');
       });
     } else {
