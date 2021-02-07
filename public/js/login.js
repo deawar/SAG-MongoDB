@@ -29,8 +29,8 @@ $(document).ready(() => {
           url: '/api/login',
           data: userData,
         }).then((res) => {
-          // console.log(res);
-          if (res.id !== undefined) {
+          console.log(res._id);
+          if (res.email !== undefined) {
             window.location.replace('/dashboard');
           } else {
             $('#err-msg').empty('').text('** INVALID Username and Password**');

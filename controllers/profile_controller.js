@@ -1,6 +1,8 @@
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-vars */
 const express = require('express');
+const passport = require('passport');
+const bodyParser = require('body-parser');
 const os = require('os');
 const db = require('../models/index.js');
 

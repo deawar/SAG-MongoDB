@@ -63,6 +63,7 @@ router.post('/api/signup', (req, res, next) => {
 });
 
 // Email verification
+console.log('In Email Verification');
 let mailOptions;
 let link;
 let secretToken;
