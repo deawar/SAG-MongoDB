@@ -4,31 +4,35 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
-const db = require('../models/index.js');
+const User = require('../models/index');
+const db = require('../models/index');
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
 router.get('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      await db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
-        replacements: { id: req.session.passport.user },
-        type: db.Sequelize.QueryTypes.SELECT,
-      })
-        .then((dbUser) => {
-          const user = {
-            userInfo: dbUser[0],
-            id: req.session.passport.user,
-            active: dbUser[0].active,
-            isloggedin: req.isAuthenticated(),
-          };
-          console.log('user.userInfo:', user);
-          if (dbUser[0].role_id > 1) {
-            res.render('userProfilepage', user);
-          } else {
-            res.render('adminProfilepage', user);
-          }
-        });
+      console.log('Profile_controller req: ', req.session.passport.user);
+      await db.User.findById({ id: req.session.passport.user }, 'name length').exec();
+      // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
+      //   replacements: { id: req.session.passport.user },
+      //   type: db.Sequelize.QueryTypes.SELECT,
+      // })
+      
+    //     .then((dbUser) => {
+    //       const user = {
+    //         userInfo: dbUser[0],
+    //         id: req.session.passport.user,
+    //         active: dbUser[0].active,
+    //         isloggedin: req.isAuthenticated(),
+    //       };
+    //       console.log('user.userInfo:', user);
+    //       if (dbUser[0].role_id > 1) {
+    //         res.render('userProfilepage', user);
+    //       } else {
+    //         res.render('adminProfilepage', user);
+    //       }
+    //     });
     } catch (error) {
       console.log(error);
     }

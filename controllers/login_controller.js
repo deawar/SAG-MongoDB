@@ -26,7 +26,7 @@ router.post('/api/login', (req, res, next) => {
     }
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      // req.flash('loginMessage', 'No user found.');
+      req.flash('loginMessage', 'No user found.');
       return res.render('login', { title: 'Login Page', success: false, info });
     }
     req.login(user, (loginErr) => {

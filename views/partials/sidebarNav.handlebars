@@ -1,8 +1,8 @@
-<ul id="slide-out" class="sidenav sidenav-fixed">
+<ul id="slide-out" class="sidenav">
     <li>
         <div class="user-view">
             <div class="background">
-
+                <img src="./resources/sunset_dense.jpg">
             </div>
             <img class="responsive-img circle" style="text-align: center; margin-left:35%" src="./resources/SAGL.png">
             {{!-- <img class="circle" style="text-align: center; margin-left:35%" src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"> --}}
@@ -28,17 +28,17 @@
 
     <li class="sidenavLinks"><a href="/logout"><i class="material-icons"
                 style="color:black">power_settings_new</i>Logout</a></li>
-
 </ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons" style="color:black">menu</i></a>
 
 
 <div class="w3-main">
 
     <div class="w3-teal" id="headerBg">
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons"
-                style="color:black">menu</i></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"></a>
         <div class="w3-container">
             <h1 class="headerText">Silent Auction Gallery</h1>
+            <h1 class="headerText">{{school}}</h1>
         </div>
 
 

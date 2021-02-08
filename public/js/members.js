@@ -122,4 +122,9 @@ $(document).ready(() => {
       $('#err-msg').empty('').text('**Email not found.. Please enter a valid Email**');
     }
   });
+
+  // SideNav initialization
+  $(() => {
+    $('.sidenav').sidenav();
+  });
 });

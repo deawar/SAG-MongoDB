@@ -29,7 +29,7 @@ $(document).ready(() => {
           url: '/api/login',
           data: userData,
         }).then((res) => {
-          console.log(res._id);
+          console.log(res.school);
           if (res.email !== undefined) {
             window.location.replace('/dashboard');
           } else {
