@@ -7,7 +7,7 @@ const router = express.Router();
 // Find school Fx
 function findSchoolName(res) {
   if (res.req.user.school === null) {
-    const school = { school: 'Make Art, Have Fun!' };
+    let school = { school: 'Make Art, Have Fun!' };
     return school;
   }
   // eslint-disable-next-line prefer-destructuring
@@ -25,15 +25,14 @@ router.get('/verify', (req, res) => {
 
 // This is get route for dashboard
 router.get('/dashboard', (req, res) => {
-  //const school = findSchoolName(req);
-  console.log('dashboard get with {{school}}: ', req.res.user);
+  console.log('Line 28 dashboard get with {{school}} res.req.user: ', res.req.user.school);
+  let school = findSchoolName(res);
   // console.log('res.req.user.school = school: ', school);
-  res.render('dashboard', { title: 'Dashboard', school: 'Make Art, Have Fun!' });
+  res.render('dashboard', { title: 'Dashboard', school }); //: 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });
 
-router.get('/gallery', checkAuthenticated, (req, res) => {
-  // eslint-disable-next-line prefer-destructuring
+router.get('/gallery', checkAuthenticated, (req, res) => {  // eslint-disable-next-line prefer-destructuring
   let school = findSchoolName(res); // res.req.user.school;
   console.log('res.req.user.school = school: ', school);
   res.render('artGallery', { title: 'Art Gallery', school });
@@ -47,8 +46,9 @@ router.get('/privacypolicy', checkAuthenticated, (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  let school = findSchoolName(res);
-  res.render('homePage', { title: 'Home', school });
+  console.log('Line 50 dashboard get with {{school}}: ', req.res.user);
+  //let school = findSchoolName(res);
+  res.render('homePage', { title: 'Home', school: 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });
 

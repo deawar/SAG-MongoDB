@@ -36,6 +36,10 @@ $(document).ready(() => {
             $('#err-msg').empty('').text('** INVALID Username and Password**');
             console.log(`Invalid Username and password ~~~~~~${res.info}`);
           }
+        }).then((res) => {
+          if (res.active === false) {
+            window.location.replace('/verify');
+          }
         });
       } catch (err) {
         console.log(`Invalid Username and password ~~~~~~${err}`);
