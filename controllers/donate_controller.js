@@ -1,4 +1,5 @@
 const express = require('express');
+const flash = require('express-flash-notification');
 
 const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 

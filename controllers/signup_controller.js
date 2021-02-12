@@ -18,9 +18,10 @@ const router = express.Router();
 // HTML ROUTE FOR SIGNUP SCREEN
 router.get('/signup', async (req, res) => {
   req.headers.logged = 'false';
+  console.log('Line 21 signup controller req.originalUrl: ', req.originalUrl);
   res.render('signup', {
     title: 'Registration Page',
-    school: 'North Oconee High School',
+    school: 'Make Art, Have Fun!',
     logged: req.isAuthenticated(),
   });
 });
@@ -29,7 +30,7 @@ router.get('/signup', async (req, res) => {
 router.get('/privacypolicy', (req, res) => {
   res.render('privacypolicy', {
     title: 'Privacy Policy Page',
-    school: 'North Oconee High School',
+    school: 'Make Art, Have Fun!',
   });
 });
 
@@ -56,7 +57,7 @@ router.post('/api/signup', (req, res, next) => {
       console.log('redirecting....');
       res.cookie('first_name', user.first_name);
       res.cookie('user_id', user.id);
-      req.flash('success_msg', 'You are now registered');
+      req.flash('success', 'You are now registered');
       return res.redirect('/dashboard');
     });
   })(req, res, next);
@@ -73,7 +74,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.post('/send', (req, res) => {
-  console.log('Line 71 in Send route', req.body);
+  console.log('Line 77 in Send route', req.session.passport.user);
   if (req.isAuthenticated()) {
     db.User.findOne({
       where: {

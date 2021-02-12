@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 const express = require('express');
+const flash = require('express-flash-notification');
 const passport = require('passport');
 require('../config/passport')(passport);
 
@@ -9,6 +10,7 @@ const router = express.Router();
 // HTML ROUTE FOR LOGIN SCREEN
 router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
+    // 
     res.redirect('/dashboard');
   } else {
     res.render('login');
@@ -18,8 +20,8 @@ router.get('/login', (req, res) => {
 // ROUTE TO LOGIN USER INTO APPLICATION
 router.post('/api/login', (req, res, next) => {
   passport.authenticate('local-login', (err, user, info) => {
-    console.log('\n\n\n########userrrr info', info);
-    console.log('########user', user);
+    console.log('\n\n\nLine 23 login_controller -->userrrr info', info);
+    console.log('Line 23 login_controller -->user', user);
     console.log('Logged in user Email verification status: ', user.active);
     if (err) {
       console.log('passport err', err);
@@ -27,7 +29,6 @@ router.post('/api/login', (req, res, next) => {
     }
     // Generate a JSON response reflecting authentication status
     if (!user) {
-      req.flash('loginMessage', 'No user found.');
       return res.render('login', { title: 'Login Page', success: false, info });
     }
     req.login(user, (loginErr) => {

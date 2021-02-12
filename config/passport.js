@@ -94,7 +94,7 @@ module.exports = (app) => {
           active: false,
         },
       );
-      newUser.save((err, user) => {
+      newUser.save((err, newUser) => {
         if (err) return console.error(err);
         console.log('Document saved!');
       });

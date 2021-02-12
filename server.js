@@ -52,7 +52,6 @@ db.on('error', console.error.bind(console, 'connectionerror:'));
 
 console.log('Process PID: ', process.pid);
 
-
 // Set Handlebars.
 app.engine(
   'handlebars',
@@ -149,6 +148,13 @@ app.use(signupRoutes);
 app.use(loginRoutes);
 app.use(donateRoutes);
 app.use(profileRoutes);
+
+// Route that creates a flash message using the express-flash module
+// from this github gist https://gist.github.com/brianmacarthur/a4e3e0093d368aa8e423
+// app.all('/express-flash', (req, res) => {
+//   req.flash('success', 'This is a flash message using the express-flash module.');
+//   res.redirect(301, '/');
+// });
 
 app.use(fileupload({ safeFileNames: true, preserveExtension: 3 }));
 
