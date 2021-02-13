@@ -4,31 +4,34 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
-const User = require('../models/index');
+const User = require('../models/user');
 const db = require('../models/index');
 
 require('../config/passport')(passport);
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
+// function findOneUser(id, done) {
+//   db.User.findOne({ id: id.session.passport.user }, function (err, data) {
+//     if (err) {
+//       console.log('Not connected! user: ', req.session.passport.user);
+//       return done(err);
+//     }
+//     return done(null, data);
+//   });
+// }
 router.get('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
     // try {
     console.log('Profile_controller req: ', req.session.passport.user);
-    const dbuser = await User.getUserById({ id: req.session.passport.user }, function (err, obj) { console.log(obj); });
-    if (!dbuser) {
-      console.log('Not connected! user: ', dbuser);
-      res.json({ error: 'not connecting to database' });
-      return;
-    }
-
+    const id = req.session.passport.user;
     try {
-      const response =  User.findById ({ id: req.session.passport.user, dbuser, request: req });
-      res.json({ done: 1 });
-      console.log('Result : ', dbuser);
+      await User.findOne(req, { id: _id, request: req });
+      res.json({ done: true });
+      console.log('Result : ', _id);
     } catch (error) {
       console.log(error);
-      res.json({ error: err.message || err.toString() });
+      res.json({ error: error.message });
     }
     // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
     //   replacements: { id: req.session.passport.user },

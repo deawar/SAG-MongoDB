@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
 const db = require('../models/index.js');
+const User = require('../models/index.js');
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
 const smtpTransport = require('../config/verify'); // { sendMail }
@@ -49,6 +50,13 @@ router.post('/api/signup', (req, res, next) => {
       console.log('user error', user);
       return res.send({ success: false, message: 'authentication failed' });
     }
+    if (user.active === false) {
+      console.log('redirecting....');
+      res.cookie('first_name', user.first_name);
+      res.cookie('user_id', user.id);
+      req.flash('success', 'You must confirm your email account.');
+      return res.redirect('/send');
+    }
     req.login(user, (loginErr) => {
       if (loginErr) {
         console.log('loginerr', loginErr);
@@ -64,7 +72,6 @@ router.post('/api/signup', (req, res, next) => {
 });
 
 // Email verification
-console.log('In Email Verification');
 let mailOptions;
 let link;
 let secretToken;
@@ -74,7 +81,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.post('/send', (req, res) => {
-  console.log('Line 77 in Send route', req.session.passport.user);
+  console.log('Line 77 in Email Verification Send route', req.session.passport.user);
   if (req.isAuthenticated()) {
     db.User.findOne({
       where: {
@@ -185,59 +192,64 @@ router
 
       console.log('Line 182 ----->secretToken:', secretToken);
       // Find account with matching secret Token
-      const user = await db.User.findOne({
-        where: {
-          secretToken: secretToken.secretToken,
-        },
-      });
-      if (!user.dataValues.secretToken || user.dataValues.active === 1 || user.dataValues.secretToken === ' ') {
-        req.flash('You have either already confirmed your account OR you may need to register');
-        return res.status(404).redirect('/signup', { title: 'Register Page' });
-      }
-      console.log('Line 193------->User db output:', user.dataValues.secretToken);
-      console.log('line 194 ------>User db active output:', user.dataValues.active);
-
-      if (user.dataValues.secretToken === secretToken.secretToken) {
-        console.log('Domain is matched. Information is from Authentic email. secretToken:',
-          req.query.id === secretToken);
-        console.log('email is verified');
-        console.log('In Verify Route and user: ', user);
-        if (!user) {
-          console.log('*****************User NOT Found!!!****************');
-          // res.;
-          req.flash('Error, No user found.');
-          res.status(401).redirect('/signup');
-          return;
+      const findOnebySecretToken = function(user, done) {
+        User.findOne({ user: secretToken },
+        function (err, data) {
+          if (err) {
+            return done (err);
+          }
+          console.log('Signup_controller Line 201 data: ', data);
+          return done(null, data);
+        });
+        if (!user.data.secretToken || user.active === true || user.secretToken === ' ') {
+          req.flash('You have either already confirmed your account OR you may need to register');
+          return res.status(404).redirect('/signup', { title: 'Register Page' });
         }
-        const condition = {
-          where: {
-            secretToken: secretToken.secretToken,
-          },
-        };
-        console.log('Condition----->: ', condition);
-        db.User.update(
-          {
-            secretToken: null,
-            active: true,
-          },
-          condition,
-          function (result) {
-            console.log('============>', result);
-            if (result.changedRows === 0) {
-              req.flash('You have either already confirmed your account OR you may need to register', 'I did NOT find you in our database.');
-              return res.status(404).end();
-            }
-            req.flash('Success', 'Thank you! Now you can Login.');
-            res.redirect('/login').status(200);
-          },
-        );
+        console.log('Line 193------->User db output user.dataValues.secretToken:', user.dataValues.secretToken);
+        console.log('line 194 ------>User db active output user.dataValues.active:', user.dataValues.active);
 
-        req.flash('Success', 'Thank you! Now you can Login.');
-        res.redirect('/signup');
-      } else {
-        req.flash('Success', 'Thank you! Now you can Login.');
-        res.redirect('/login');
-      }
+        if (user.dataValues.secretToken === secretToken.secretToken) {
+          console.log('Domain is matched. Information is from Authentic email. secretToken:',
+            req.query.id === secretToken);
+          console.log('email is verified');
+          console.log('In Verify Route and user: ', user);
+          if (!user) {
+            console.log('*****************User NOT Found!!!****************');
+            // res.;
+            req.flash('Error, No user found.');
+            res.status(401).redirect('/signup');
+            return;
+          }
+          const condition = {
+            where: {
+              secretToken: secretToken.secretToken,
+            },
+          };
+          console.log('Condition----->: ', condition);
+          db.User.update(
+            {
+              secretToken: null,
+              active: true,
+            },
+            condition,
+            function (result) {
+              console.log('============>', result);
+              if (result.changedRows === 0) {
+                req.flash('You have either already confirmed your account OR you may need to register', 'I did NOT find you in our database.');
+                return res.status(404).end();
+              }
+              req.flash('Success', 'Thank you! Now you can Login.');
+              res.redirect('/login').status(200);
+            },
+          );
+
+          req.flash('Success', 'Thank you! Now you can Login.');
+          res.redirect('/signup');
+        } else {
+          req.flash('Success', 'Thank you! Now you can Login.');
+          res.redirect('/login');
+        }
+      };
     } catch (error) {
       throw new Error('BROKEN-DID NOT CATCH THE NULL VALUE');
       // eslint-disable-next-line no-unreachable

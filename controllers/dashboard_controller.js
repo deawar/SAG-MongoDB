@@ -8,8 +8,9 @@ const router = express.Router();
 // Find school Fx
 function findSchoolName(res) {
   // eslint-disable-next-line prefer-destructuring
-  let school = res.req.user.school;
-  if (school === null || school === undefined) {
+  let school;
+  // school = res.req.user.school;
+  if (res.req.user === null || res.req.user === undefined) {
     school = 'Make Art, Have Fun!';
     return school;
   }
@@ -21,7 +22,7 @@ function findSchoolName(res) {
 // This is get route for VERIFY
 router.get('/verify', (req, res) => {
   const school = findSchoolName(res);
-  console.log('res.req.user.school = school: ', res.req.user.school);
+  console.log('res.req.user.school = school: ', res.req.user);
   res.render('verifytoken', { title: 'Email Verification', school });
 //   console.log('Line 13 - In Get / route');
 });
@@ -29,7 +30,7 @@ router.get('/verify', (req, res) => {
 // This is get route for dashboard
 router.get('/dashboard', (req, res) => {
   // console.log('Line 28 dashboard get with {{school}} res.req.user: ', res.req.user.school);
-  let school = findSchoolName(res);
+  const school = findSchoolName(res);
   // console.log('res.req.user.school = school: ', school);
   res.render('dashboard', { title: 'Dashboard', school }); // : 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');

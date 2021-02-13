@@ -48,7 +48,7 @@ const PORT = process.env.PORT || 3000;
 const { SESSION_SECRET } = process.env;
 const db = require('./models');
 
-db.on('error', console.error.bind(console, 'connectionerror:'));
+db.on('error', console.error.bind(console, 'connection error:'));
 
 console.log('Process PID: ', process.pid);
 
@@ -142,12 +142,14 @@ const signupRoutes = require('./controllers/signup_controller.js');
 const loginRoutes = require('./controllers/login_controller.js');
 const donateRoutes = require('./controllers/donate_controller.js');
 const profileRoutes = require('./controllers/profile_controller.js');
+const chooseSchoolRoutes = require('./controllers/choose_school_controller.js');
 
 app.use(dashboardRoutes);
 app.use(signupRoutes);
 app.use(loginRoutes);
 app.use(donateRoutes);
 app.use(profileRoutes);
+app.use(chooseSchoolRoutes);
 
 // Route that creates a flash message using the express-flash module
 // from this github gist https://gist.github.com/brianmacarthur/a4e3e0093d368aa8e423
@@ -168,7 +170,6 @@ app.post('/upload', (req, res) => {
   const { sampleFile } = req.files;
   console.log('Is there a file: ', req.files, req.files.sampleFile.name);
 
-  // Use the mv() method to place the file somewhere on your server
   // eslint-disable-next-line consistent-return
   sampleFile.mv(`./public/upload/${sampleFile}`, (err) => {
     if (err) return res.status(500).send(err);
@@ -178,14 +179,17 @@ app.post('/upload', (req, res) => {
 });
 
 const hostname = os.hostname();
+db.once('open', () => {
+  console.log('\nConnectd to MongoDB');
 
-app.listen(PORT, () => {
-  console.log(`PID: ${pid}\n`);
-  console.log(
-    `==> 🌎  Listening on port %s. Visit http://${hostname}:%s/ in your browser.`,
-    PORT,
-    PORT,
-  );
+  app.listen(PORT, () => {
+    console.log(`PID: ${pid}\n`);
+    console.log(
+      `==> 🌎  Listening on port %s. Visit http://${hostname}:%s/ in your browser.`,
+      PORT,
+      PORT,
+    );
+  });
 });
 
 module.exports = express;
