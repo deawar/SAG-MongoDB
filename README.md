@@ -1,6 +1,6 @@
 # SAG-MongoDB
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=plastic)
-        <img src="https://img.shields.io/badge/license-MIT-green?style=plastic" alt="License Badge">  [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closedcom/deawar/SAG-MongoDB?style=plastic)](https://GitHub.com/deawar/SAG-MongoDB/pull/) [![GitHub stars](https://img.shields.io/github/stars/deawar/SAG-MongoDB?style=social&label=Star&maxAge=2592000)](https://GitHub.com/deawar/SAG-MongoDB/stargazers/)
+        <img src="https://img.shields.io/badge/license-MIT-green?style=plastic" alt="License Badge">  [![GitHub issues](https://img.shields.io/github/issues/deawar/SAG-MongoDB?style=plastic)](https://github.com/deawar/SAG-MongoDB/issues) [![GitHub stars](https://img.shields.io/github/stars/deawar/SAG-MongoDB?style=social&label=Star&maxAge=2592000)](https://GitHub.com/deawar/SAG-MongoDB/stargazers/)
 # Project-Title
 SilentAuctionGallery using a MongoDB vs MySQL backend.
 
