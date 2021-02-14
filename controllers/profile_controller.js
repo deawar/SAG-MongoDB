@@ -8,6 +8,7 @@ const User = require('../models/user');
 const db = require('../models/index');
 
 require('../config/passport')(passport);
+const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
@@ -20,41 +21,46 @@ const router = express.Router();
 //     return done(null, data);
 //   });
 // }
-router.get('/profile', async (req, res) => {
+router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     // try {
     console.log('Profile_controller req: ', req.session.passport.user);
+    console.log('Profile req.session: ', req.session);
+    // eslint-disable-next-line no-underscore-dangle
     const id = req.session.passport.user;
-    try {
-      await User.findOne(req, { id: _id, request: req });
-      res.json({ done: true });
-      console.log('Result : ', _id);
-    } catch (error) {
-      console.log(error);
-      res.json({ error: error.message });
+    console.log('req.session.passport.user: ', req.session.passport.user);
+    console.log('req.user: ', req.user);
+    console.log('req.user.active: ', req.user.active);
+    const userInfo = {
+      id: req.session.passport.user,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      address1: req.user.address[0].address1,
+      address2: req.user.address[0].address2,
+      city: req.user.address[0].city,
+      state: req.user.address[0].state,
+      zip: req.user.address[0].zip,
+      email: req.user.email,
+      phone: req.user.phone,
+      school: req.user.school,
+      role: req.user.role[0].role,
+      active: req.user.active,
+      isloggedin: req.isAuthenticated(),
+    };
+    const {school} = userInfo;
+    // if (userInfo.active === false) {
+    //   res.render('verifytoken', userInfo);
+    // }
+    if (userInfo.role === 'student') {
+      res.render('userProfilepage', userInfo);
+    } else if (userInfo.role === 'admin') {
+      res.render('adminProfilepage', userInfo);
+    } else {
+      res.render('bidderProfilepage', school, userInfo);
     }
-    // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
-    //   replacements: { id: req.session.passport.user },
-    //   type: db.Sequelize.QueryTypes.SELECT,
-    // })
-      
-    //     .then((dbUser) => {
-    //       const user = {
-    //         userInfo: dbUser[0],
-    //         id: req.session.passport.user,
-    //         active: dbUser[0].active,
-    //         isloggedin: req.isAuthenticated(),
-    //       };
-    //       console.log('user.userInfo:', user);
-    //       if (dbUser[0].role_id > 1) {
-    //         res.render('userProfilepage', user);
-    //       } else {
-    //         res.render('adminProfilepage', user);
-    //       }
-    //     });
   } else {
   // eslint-disable-next-line no-unused-vars
-    const user = {
+    const userInfo = {
       id: null,
       isloggedin: req.isAuthenticated(),
     };
