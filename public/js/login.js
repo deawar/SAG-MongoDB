@@ -37,6 +37,7 @@ $(document).ready(() => {
             console.log(`Invalid Username and password ~~~~~~${res.info}`);
           }
         }).then((res) => {
+          console.log('Line 40 Login.js checking  req.active: ', res);
           if (res.active === false) {
             window.location.replace('/verify');
           }
