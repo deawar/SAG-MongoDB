@@ -107,10 +107,10 @@ const userSchema = new Schema({
 
 // eslint-disable-next-line consistent-return
 userSchema.pre('save', function (next) {
-  const User = this;
+  const user = this;
 
   // only hash the password if it has been modified (or is new)
-  if (!User.isModified('password')) return next();
+  if (!user.isModified('password')) return next();
 
   // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
@@ -118,14 +118,12 @@ userSchema.pre('save', function (next) {
 
     // hash the password using our new salt
     // eslint-disable-next-line prefer-arrow-callback
-    bcrypt.hash(User.password, salt, function (err, hash) {
+    bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) return next(err);
       // override the cleartext password with the hashed one
-      User.password = hash;
+      user.password = hash;
       next();
     });
-
-    return next();
   });
 });
 
@@ -162,7 +160,7 @@ userSchema.methods.validPassword = function (password) {
 // authenticate input against database
 userSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email })
-    .exec(function (err, user) {
+     .exec(function (err, user) {
       if (err) {
         return callback(err);
       // eslint-disable-next-line no-else-return

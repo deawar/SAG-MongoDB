@@ -10,7 +10,7 @@ const router = express.Router();
 // HTML ROUTE FOR LOGIN SCREEN
 router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
-    // 
+    //
     res.redirect('/dashboard');
   } else {
     res.render('login');
@@ -21,7 +21,7 @@ router.get('/login', (req, res) => {
 router.post('/api/login', (req, res, next) => {
   passport.authenticate('local-login', (err, user, info) => {
     console.log('\n\n\nLine 23 login_controller -->userrrr info', info);
-    console.log('Line 23 login_controller -->user', user);
+    console.log('Line 24 login_controller -->user', user);
     console.log('Logged in user Email verification status: ', user.active);
     if (err) {
       console.log('passport err', err);
