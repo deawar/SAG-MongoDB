@@ -45,13 +45,12 @@ if (process.env.NODE_ENV === 'development') {
 
 const { pid } = process;
 const PORT = process.env.PORT || 3000;
-const { SESSION_SECRET } = process.env;
+const SESSION_SECRET =  'your in the matrix now' //process.env;
 const db = require('./models');
 
 db.on('error', console.error.bind(console, 'connectionerror:'));
 
 console.log('Process PID: ', process.pid);
-
 
 // Set Handlebars.
 app.engine(
