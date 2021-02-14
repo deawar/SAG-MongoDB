@@ -26,6 +26,7 @@ require('./user');
 require('./school');
 require('./role');
 require('./bid');
+require('./artwork');
 // Object.keys(db).forEach((modelName) => {
 //   if (db[modelName].associate) {
 //     db[modelName].associate(db);

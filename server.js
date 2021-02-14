@@ -11,7 +11,7 @@ const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const passport = require('passport');
 // const LocalStrategy = require('passport-local').Strategy;
-const passportLocalMongoose = require('passport-local-mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 const morgan = require('morgan'); // logging middleware
 
 const app = express();
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
-// or "npm run start_local"
+// or "npm run start"
 
 const { pid } = process;
 const PORT = process.env.PORT || 3000;
@@ -100,35 +100,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(app);
-
-// passport.use(new LocalStrategy(
-//   (username, password, done) => {
-//     User.findByUsername({ username }, (err, user) => {
-//       if (err) { return done(err); }
-//       if (!user) { return done(null, false); }
-//       if (!user.verifyPassword(password)) { return done(null, false); }
-//       return done(null, user);
-//     });
-//   },
-// ));
-
-// passport.use(new LocalStrategy((username, password, cb) => {
-//   db.users.findByUsername(username, (err, user) => {
-//     if (err) { return cb(err); }
-//     if (!user) { return cb(null, false); }
-//     if (user.password !== password) { return cb(null, false); }
-//     return cb(null, user);
-//   });
-// }));
-// passport.serializeUser((user, cb) => {
-//   cb(null, user.id);
-// });
-// passport.deserializeUser((id, cb) => {
-//   db.users.findById(id, (err, user) => {
-//     if (err) { return cb(err); }
-//     cb(null, user);
-//   });
-// });
 
 // Using flash for messages
 app.use(flash(app));
