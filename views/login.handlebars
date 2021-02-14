@@ -40,6 +40,19 @@
                             </form>
                             <br />
                             <p><a href="/signup" class="hoverable">Or sign up here</a></p>
+                              {{#if expressFlash}}
+                                  <p><strong>ERROR via Express-Flash!</strong> {{ expressFlash }}</p>
+                              {{/if}}
+
+                              {{#if sessionFlash.message}}
+                                  <div class="{{ sessionFlash.type }}">
+                                      <strong>ERROR via Session-FLASH!</strong> {{ sessionFlash.message }}
+                                  </div>
+                              {{/if}}
+
+                              <h3 id="create-err-msg"></h3>
+
+                              <h3 id="err-msg"></h3>
                           </div>
                         </div>
                       </div>

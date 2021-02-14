@@ -1,4 +1,5 @@
 const express = require('express');
+const flash = require('express-flash-notification');
 
 const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
@@ -6,29 +7,32 @@ const router = express.Router();
 
 // Find school Fx
 function findSchoolName(res) {
-  if (res.req.user.school === null) {
-    let school = { school: 'Make Art, Have Fun!' };
+  // eslint-disable-next-line prefer-destructuring
+  let school;
+  // school = res.req.user.school;
+  if (res.req.user === null || res.req.user === undefined) {
+    school = 'Make Art, Have Fun!';
     return school;
   }
   // eslint-disable-next-line prefer-destructuring
-  const school = res.req.user.school;
+  school = res.req.user.school;
   return school;
 }
 
 // This is get route for VERIFY
 router.get('/verify', (req, res) => {
-  const school = findSchoolName(req);
-  // console.log('res.req.user.school = school: ', school);
-  res.render('verifytoken', { title: 'Email Verifcation', school });
+  const school = findSchoolName(res);
+  console.log('res.req.user.school = school: ', res.req.user);
+  res.render('verifytoken', { title: 'Email Verification', school });
 //   console.log('Line 13 - In Get / route');
 });
 
 // This is get route for dashboard
 router.get('/dashboard', (req, res) => {
-  console.log('Line 28 dashboard get with {{school}} res.req.user: ', res.req.user.school);
-  let school = findSchoolName(res);
+  // console.log('Line 28 dashboard get with {{school}} res.req.user: ', res.req.user.school);
+  const school = findSchoolName(res);
   // console.log('res.req.user.school = school: ', school);
-  res.render('dashboard', { title: 'Dashboard', school }); //: 'Make Art, Have Fun!' });
+  res.render('dashboard', { title: 'Dashboard', school }); // : 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });
 
@@ -42,6 +46,12 @@ router.get('/gallery', checkAuthenticated, (req, res) => {  // eslint-disable-ne
 router.get('/privacypolicy', checkAuthenticated, (req, res) => {
   let school = findSchoolName(res); // res.req.user.school;
   res.render('newPrivacyPolicy', { title: 'Privacy Policy', school });
+//   console.log('Line 13 - In Get / route');
+});
+
+router.get('/about', checkAuthenticated, (req, res) => {
+  let school = findSchoolName(res); // res.req.user.school;
+  res.render('about', { title: 'About', school });
 //   console.log('Line 13 - In Get / route');
 });
 

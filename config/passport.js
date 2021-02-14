@@ -94,14 +94,10 @@ module.exports = (app) => {
           active: false,
         },
       );
-      newUser.save((err, user) => {
+      newUser.save((err, newUser) => {
         if (err) return console.error(err);
-        console.log('Document saved!');
+        console.log('Document saved!', newUser);
       });
-
-      // .then((dbUser) => done(null, dbUser)).catch((error) => {
-      //   console.log(error);
-      // });
     });
     return process.nextTick;
     // });

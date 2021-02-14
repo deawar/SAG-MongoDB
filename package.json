@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run lint & nodemon -r dotenv/config server.js",
     "test": "npm run lint",
-    "lint": "./node_modules/.bin/eslint **/*.js"
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,11 @@
     "express-flash-notification": "^0.5.0",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+<<<<<<< HEAD
     "mongodb": "^3.6.3",
+=======
+    "mongodb": "^3.6.4",
+>>>>>>> 03c85225cfcf8d5332d2fd1f5d1c59bca7fd81da
     "mongoose": "^5.11.15",
     "mongoose-type-phone": "^1.0.1",
     "mongoose-unique-validator": "^2.0.3",

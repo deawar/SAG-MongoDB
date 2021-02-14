@@ -4,20 +4,39 @@ const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const os = require('os');
-const User = require('../models/index');
+const User = require('../models/user');
 const db = require('../models/index');
+
+require('../config/passport')(passport);
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
+// function findOneUser(id, done) {
+//   db.User.findOne({ id: id.session.passport.user }, function (err, data) {
+//     if (err) {
+//       console.log('Not connected! user: ', req.session.passport.user);
+//       return done(err);
+//     }
+//     return done(null, data);
+//   });
+// }
 router.get('/profile', async (req, res) => {
   if (req.isAuthenticated()) {
+    // try {
+    console.log('Profile_controller req: ', req.session.passport.user);
+    const id = req.session.passport.user;
     try {
-      console.log('Profile_controller req: ', req.session.passport.user);
-      await db.User.findById({ id: req.session.passport.user }, 'name length').exec();
-      // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
-      //   replacements: { id: req.session.passport.user },
-      //   type: db.Sequelize.QueryTypes.SELECT,
-      // })
+      await User.findOne(req, { id: _id, request: req });
+      res.json({ done: true });
+      console.log('Result : ', _id);
+    } catch (error) {
+      console.log(error);
+      res.json({ error: error.message });
+    }
+    // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
+    //   replacements: { id: req.session.passport.user },
+    //   type: db.Sequelize.QueryTypes.SELECT,
+    // })
       
     //     .then((dbUser) => {
     //       const user = {
@@ -33,9 +52,6 @@ router.get('/profile', async (req, res) => {
     //         res.render('adminProfilepage', user);
     //       }
     //     });
-    } catch (error) {
-      console.log(error);
-    }
   } else {
   // eslint-disable-next-line no-unused-vars
     const user = {
@@ -50,12 +66,11 @@ router.get('/profile', async (req, res) => {
 router.delete('/user/:account_id/:email', (req, res) => {
   console.log(`id: ${req.params.account_id}`);
   console.log(`email: ${req.params.email}`);
-  db.User.destroy({
-    where: {
-      id: req.params.account_id,
-      email: req.params.email,
-    },
-  }).then((dbUser) => res.status(200).end());
+  User.findOneAndDelete({ id: req.params.account_id, email: req.params.email }, function (err) {
+    if (err) console.log(err);
+    console.log('Successful Account Deleteion');
+  })
+    .then(id => res.status(200).end());
 });
 
 // ROUTER TO UPDATE ACCOUNT

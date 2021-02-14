@@ -64,10 +64,10 @@ $(document).ready(() => {
         data: newAccount,
       })
       // .then()
-      .then((data) => {
-        console.log('status post ajax call to /api/signup :', data);
-        window.location.replace('/dashboard');
-      });
+        .then((data) => {
+          console.log('status post ajax call to /api/signup :', data);
+          window.location.replace('/dashboard');
+        });
     } else {
       console.log('**Please fill out entire form**');
       $('#Form-modal').modal('open');
