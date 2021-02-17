@@ -12,23 +12,13 @@ const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
-// function findOneUser(id, done) {
-//   db.User.findOne({ id: id.session.passport.user }, function (err, data) {
-//     if (err) {
-//       console.log('Not connected! user: ', req.session.passport.user);
-//       return done(err);
-//     }
-//     return done(null, data);
-//   });
-// }
 router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     // try {
     console.log('Profile_controller req: ', req.session.passport.user);
     console.log('Profile req.session: ', req.session);
     // eslint-disable-next-line no-underscore-dangle
-    const id = req.session.passport.user;
-    console.log('req.session.passport.user: ', req.session.passport.user);
+    // const id = req.session.passport.user;
     console.log('req.user: ', req.user);
     console.log('req.user.active: ', req.user.active);
     const userInfo = {
@@ -47,7 +37,7 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       active: req.user.active,
       isloggedin: req.isAuthenticated(),
     };
-    const {school} = userInfo;
+    // const { school } = userInfo;
     // if (userInfo.active === false) {
     //   res.render('verifytoken', userInfo);
     // }
@@ -56,7 +46,7 @@ router.get('/profile', checkAuthenticated, (req, res) => {
     } else if (userInfo.role === 'admin') {
       res.render('adminProfilepage', userInfo);
     } else {
-      res.render('bidderProfilepage', school, userInfo);
+      res.render('bidderProfilepage', userInfo);
     }
   } else {
   // eslint-disable-next-line no-unused-vars

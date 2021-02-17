@@ -562,7 +562,7 @@ div.desc {
 
 /* ------------------- BODY BACKGROUND ------------------- */
 html {
-  background-image: url(../resources/backgroundImage.png);
+  background-image: url(https://cdn.jsdelivr.net/gh/deawar/SAG-MongoDB@main/public/resources/backgroundImage.png);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
