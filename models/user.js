@@ -145,7 +145,10 @@ module.exports.getUserByEmail = function (email, callback) {
   User.findOne(query, callback);
 };
 
-userSchema.plugin(passportLocalMongoose);
+module.exports.getUserBysecretToken = function (secretToken, callback) {
+  const query = { secretToken };
+  User.findOne(query, callback);
+};
 
 // // hash the password
 // userSchema.methods.generateHash = function (password) {

@@ -89,7 +89,8 @@ $(document).ready(() => {
       // eslint-disable-next-line no-unused-vars
       $.post('/verify', token, (req, res) => {
         console.log('<-------verfy email button clicked-------->');
-        $('.modal').modal();
+        // verify modal triggers
+        $('.verified-token-modal').modal();
         // eslint-disable-next-line no-shadow
         $('#confirm-token').click((event) => {
           event.preventDefault();
