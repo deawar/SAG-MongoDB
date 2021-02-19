@@ -514,7 +514,7 @@ router
 
       console.log('Line 515 ----->secretToken:', secretToken);
       // Find account with matching secret Token
-      console.log('signup_controller Line 255 prior to findOnebySecretToken fx', secretToken);
+      console.log('signup_controller Line 517 prior to findOnebySecretToken fx', secretToken);
       // await findOnebySecretToken(req, res, secretToken);
       const filter = { secretToken };
       console.log('line 520 secretToken null ck: ', secretToken);
@@ -531,7 +531,7 @@ router
               throw err;
             } else {
               console.log('User has been verified in DB!', resp);
-              res.redirect('/login');
+              // res.redirect('/login');
             }
           });
           res.redirect('/login');

@@ -49,8 +49,8 @@ module.exports = (app) => {
           if (err) {
             return done(null, err);
           } if (!user) {
-            const err = new Error('User not found.');
-            err.status = 401;
+            const e = new Error('User not found.');
+            e.status = 401;
             return done(null, user);
           }
           if (user) {
@@ -89,25 +89,26 @@ module.exports = (app) => {
       );
       newUser.save((err, newUser) => {
         if (err) return console.error(err);
+        console.log('permalink: ', permalink);
         console.log('Document saved!', newUser);
       });
     });
-    try {
-      newUser.save((err) => {
-        if (err) {
-          throw err;
-        } else {
-          // VerifyEmail.sendverification(email, secretToken, permalink);
-          return done(null, newUser);
-        }
-      });
-    } catch (err) {
-      if (err) {
-        throw err;
-      } else {
-        return done(err, err.message);
-      }
-    }
+    // try {
+    //   newUser.save((err) => {
+    //     if (err) {
+    //       throw err;
+    //     } else {
+    //       // VerifyEmail.sendverification(email, secretToken, permalink);
+    //       return done(null, newUser);
+    //     }
+    //   });
+    // } catch (err) {
+    //   if (err) {
+    //     throw err;
+    //   } else {
+    //     return done(err, err.message);
+    //   }
+    // }
     return process.nextTick;
     // });
   }),
