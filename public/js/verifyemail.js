@@ -2,6 +2,7 @@ let to;
 
 const subject = 'Silent Auction Verification Email';
 $(document).ready(() => {
+  $('.modal').modal();
   // URL parser for jQuery
   function GetURLParameter(sParam) {
     const sPageURL = window.location.search.substring(1);
