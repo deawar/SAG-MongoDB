@@ -95,7 +95,7 @@ $(document).ready(() => {
         // eslint-disable-next-line no-shadow
         $('#confirm-token').click((event) => {
           event.preventDefault();
-          window.location.href = '/dashboard';
+          window.location.href = '/login';
           return false;
         });
       });

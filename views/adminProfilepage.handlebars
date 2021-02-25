@@ -25,60 +25,60 @@
                     <form class="signup col s12 m12 l12">
                         <div class="row">
                             <div class="input-field col s2">
-                                <input disabled id="account_id" type="text" value="{{userInfo.id}}">
+                                <input disabled id="account_id" type="text" value="{{id}}">
                                 <label for="id">Account ID</label>
                             </div>
                             <div class="welcomMessage col s10">
-                                <h2>Hello, {{userInfo.first_name}} {{userInfo.last_name}}</h2>
+                                <h2>Hello, {{first_name}} {{last_name}}</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="First Name" id="firstname-input" type="text"
-                                    value="{{userInfo.first_name}}">
+                                    value="{{first_name}}">
                                 <label for="first_name">Full Name*</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="lastname-input" type="text" value="{{userInfo.last_name}}">
+                                <input id="lastname-input" type="text" value="{{last_name}}">
                                 <label for="last_name">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="address-input" type="text" value="{{userInfo.address}}">
+                                <input id="address-input" type="text" value="{{address1}}">
                                 <label for="address">Address</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="address2-input" type="text" value="{{userInfo.address2}}">
+                                <input id="address2-input" type="text" value="{{address2}}">
                                 <label for="address2">Address2</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="city-input" type="text" value="{{userInfo.city}}">
+                                <input id="city-input" type="text" value="{{city}}">
                                 <label for="city">City</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="state-input" type="text" value="{{userInfo.state}}">
+                                <input id="state-input" type="text" value="{{state}}">
                                 <label for="state">State</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="zipcode-input" type="text" value="{{userInfo.zip}}">
+                                <input id="zipcode-input" type="text" value="{{zip}}">
                                 <label for="zipCode">Zip Code</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="phone-input" type="text" value="{{userInfo.phone}}">
+                                <input id="phone-input" type="text" value="{{phone}}">
                                 <label for="phoneNumber">Tel Number</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="email-input" type="text" value="{{userInfo.email}}">
+                                <input disabled id="email-input" type="text" value="{{email}}">
                                 <label for="email">Email</label>
                             </div>
                         </div>
@@ -87,17 +87,17 @@
                         <h3 style="font-size: 1.7vw;">School Afilliation</h3>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="school-input" type="text" value="{{userInfo.school}}">
+                                <input disabled id="school-input" type="text" value="{{school}}">
                                 <label for="school">School</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="role-input" type="text" value="{{userInfo.role_name}}">
+                                <input disabled id="role-input" type="text" value="{{role_name}}">
                                 <label for="role">Role</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default red darken-4" id="updateButton">UPDATE PROFILE</button>
+                        <button type="submit" class="btn btn-default red darken-4" id="updateButton">UPDATE PROFILE</button><br><br>
                         <button type="submit" class="btn btn-default red darken-4" id="refreshButton">REFRESH</button>
 
                         <hr>
@@ -180,9 +180,9 @@
 
 
 
-        {{!-- <div id="manageUser" class="tabcontent"> --}}
+        <div id="manageUser" class="tabcontent">
 
-            {{!-- <div class="hero-image">
+            <div class="hero-image">
             </div>
 
             <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
@@ -302,8 +302,8 @@
 
                 </div>
 
-            </div> --}}
-        {{!-- </div> --}}
+            </div>
+        </div>
 
         {{>manageUser}}
 

@@ -96,9 +96,9 @@ router.put('/user/:account_id', (req, res) => {
 
 router.get('/searchuser/:email', async (req, res) => {
   try {
-    await db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.email = :email', {
+    const query = req.params.email;
+    await db.User.findOne(query, Users.email, {
       replacements: { email: req.params.email },
-      type: db.Sequelize.QueryTypes.SELECT,
     })
       .then((dbUser) => {
         console.log(dbUser);

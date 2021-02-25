@@ -69,7 +69,7 @@ router.get('/dashboard', (req, res) => {
   // console.log('Line 43 dashboard get with {{school}} res.req.user: ', res.req.user.school);
   const school = findSchoolName(res);
   const first_name = findFirstName(res);
-  console.log('Line 45 res.req.user.first_name = first_name: ', req.user);
+  console.log('Line 72 req.user.first_name = first_name: ', req.user.first_name);
   res.render('dashboard', { title: 'Dashboard', school, first_name }); // : 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });

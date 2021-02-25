@@ -66,7 +66,8 @@ $(document).ready(() => {
       // .then()
         .then((data) => {
           console.log('status post ajax call to /api/signup :', data);
-          window.location.replace('/dashboard');
+          $('#Form-modal').modal('open');
+          window.location.replace('/login');
         });
     } else {
       console.log('**Please fill out entire form**');
