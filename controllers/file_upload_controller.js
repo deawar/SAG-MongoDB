@@ -31,6 +31,11 @@ function findSchoolName(req) {
   }
   // eslint-disable-next-line prefer-destructuring
   school = req.user.school;
+  let uploadPath = `./public/upload/${school}/`;
+  console.log('School: ', school);
+  if (!fs.existsSync(uploadPath)) {
+    fs.mkdirSync(uploadPath);
+  }
   return school;
 }
 
@@ -47,24 +52,48 @@ function findFirstName(req) {
   return first_name;
 }
 
+// Find Id
+function findId(req) {
+  let reqvar;
+  if (req.user === null || req.user === undefined) {
+    reqvar = 'Not Available';
+    return reqvar;
+  }
+  reqvar = req.user._id;
+  return reqvar;
+}
+
 const storage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, './public/upload/');
+    cb(null, `./public/upload/${findSchoolName(req)}`);
     // cb(null, uploadPath);
   },
   // By default, multer removes file extensions so let's add them back
   filename(req, file, cb) {
     // cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-    cb(null, `${file.originalname}`);
+    cb(null, `${findId(req)}-${file.originalname}`);
   },
 });
 
-const upload = multer({ storage: storage, fileFilter: helpers.imageFilter });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 10000000 },
+  fileFilter: helpers.imageFilter,
+}).single('sampleFile');
 // eslint-disable-next-line consistent-return
-router.post('/upload', checkAuthenticated, upload.single('sampleFile'), (req, res) => {
+
+// router.post('/upload', checkAuthenticated, upload.single('sampleFile'), (req, res) => {
+router.post('/upload', checkAuthenticated, upload, (req, res) => {
   // let sampleFile;
-  console.log('Line 65 file_upload_controller req.user: ', req.user);
+  console.log('Line 77 file_upload_controller req.user: ', req.user);
   const school = findSchoolName(req);
+  let _id;
+
+  // eslint-disable-next-line no-underscore-dangle
+  _id = findId(req);
+  console.log('====================================');
+  console.log('_id: ', _id);
+  console.log('====================================');
   let uploadPath = `./public/upload/${school}/`;
   console.log('School: ', school);
   if (!fs.existsSync(uploadPath)) {
@@ -75,40 +104,16 @@ router.post('/upload', checkAuthenticated, upload.single('sampleFile'), (req, re
   const first_name = findFirstName(req);
   console.log('First_name: ', first_name);
   // console.log('Upload_controller req.files: ', req.files);
-  // let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('sampleFile');
+
   // eslint-disable-next-line consistent-return
   console.log('File_upload_controller File res.files: ', req.file);
 
   // Display uploaded image for user validation
-  const displayPath = `/upload/${req.file.originalname}`;
-  res.send(`You have uploaded this image: <hr/><img src="${displayPath}" width="500"><hr /><a href="/profile">Upload another image</a>`);
+  const displayPath = `/upload/${_id}-${req.file.originalname}`;
+  res.render('userProfilepage', req.user);
+  // res.send(`You have uploaded this image: <hr/><img src="${displayPath}" width="500"><hr /><a href="/profile">Upload another image</a>`);
 });
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('No files were uploaded.');
-//   }
-//   req.upload(req.files, (uploadErr) => {
-//     if (uploadErr) {
-//       console.log('No files were uploaded.', err);
-//       return next(uploadErr);
-//     }
-//   });
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  // eslint-disable-next-line prefer-destructuring
-//   sampleFile = req.files.sampleFile;
-//   console.log('Is there a file: ', req.files, req.files.sampleFile.name);
-//   uploadPath = `__dirname + './public/upload/${school}/${sampleFile.name}`;
-//   // eslint-disable-next-line consistent-return
-//   console.log('uploadPath: ', uploadPath);
-  // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
-//   if (!fs.existsSync(uploadPath)) {
-//     fs.mkdirSync(uploadPath);
-//     sampleFile.mv(uploadPath, (err) => {
-//       if (err) return res.status(500).send(err);
-//       return res.render('profile', { title: 'Profile', school, first_name });
-//     });
-//   }
-//   return res.write(`upload of file ${sampleFile.name} complete`);
-//   // status(200);
-// });
+
+// https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
 
 module.exports = router;

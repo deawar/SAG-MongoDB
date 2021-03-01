@@ -2,6 +2,7 @@
 /* eslint-disable consistent-return */
 const express = require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const os = require('os');
 const User = require('../models/user');
@@ -96,27 +97,56 @@ router.put('/user/:account_id', (req, res) => {
 
 router.get('/searchuser/:email', async (req, res) => {
   try {
-    const query = req.params.email;
-    await db.User.findOne(query, Users.email, {
-      replacements: { email: req.params.email },
-    })
-      .then((dbUser) => {
-        console.log(dbUser);
-        if (!dbUser) {
-          res.status(404);
-          return res.send('No User Found');
-        }
-        const newSearch = {
-          searchedUser: dbUser[0],
-          id: req.params.email,
-          roleid: dbUser[0].role_id,
-          isloggedin: req.isAuthenticated(),
-        };
-        console.log(newSearch);
-        res.status(200);
-        res.json(newSearch);
-        // res.render('partials/manageUser', newSearch);
-      });
+    console.log('profile_controller req.params.email: ', req.params.email);
+    const searchEmail = req.params.email;
+    // const query = User.find({ email: searchEmail }, { email: 1 });
+
+    await User.findOne({ email: searchEmail }, function (err, doc) {
+      if (!doc) {
+        res.status(404);
+        return res.send(`No User associated with ${searchEmail}!`);
+      }
+      console.log('---> doc: ', doc);
+      const returnDoc = {
+        searchedId: doc.id,
+        searchedEmail: doc.email,
+        searchedFirst_name: doc.first_name,
+        searchedLast_name: doc.last_name,
+        searchedAddress1: doc.address[0].address1,
+        searchedAddress2: doc.address[0].address2,
+        searchedCity: doc.address[0].city,
+        searchedState: doc.address[0].state,
+        searchedZip: doc.address[0].zip,
+        searchedSchool: doc.school,
+        searchedPhone: doc.phone,
+        searchedRole: doc.role[0].role,
+        searchedIsloggedin: req.isAuthenticated(),
+      };
+      console.log('2nd ---> doc: ', returnDoc);
+      res.status(200);
+      res.json(returnDoc);
+      res.render('adminProfilepage', returnDoc);
+    });
+      // .then((dbUser) => {
+      //   console.log(dbUser);
+      //   if (!dbUser) {
+      //     res.status(404);
+      //     return res.send('No Email User Found');
+      //   }
+      //   console.log('---> dbUser: ', dbUser);
+      //   const newSearch = {
+      //     searchedUser: dbUser[0],
+      //     id: dbUser[0].id,
+      //     email: req.params.email,
+      //     first_name: dbUser.first_name,
+      //     role: dbUser[0].role,
+      //     isloggedin: req.isAuthenticated(),
+      //   };
+      //   console.log('Profile_controller newSearch: ', newSearch);
+      //   res.status(200);
+      //   res.json(newSearch);
+      //   // res.render('partials/manageUser', newSearch);
+      // });
   } catch (error) {
     res.status(404);
     return res.send('No User Found');

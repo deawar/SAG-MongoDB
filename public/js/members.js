@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-unused-vars */
 $(document).ready(() => {
+  M.updateTextFields();
   // DELETE ACCOUNT
   $('#deleteButton').on('click', (event) => {
     event.preventDefault();
@@ -97,21 +98,21 @@ $(document).ready(() => {
         })
           .then((res) => {
             // const accountId = $('#accountid');
-            $('#roleinput').val(res.searchedUser.role_name);
-            $('#accountid').val(res.searchedUser.id);
-            $('#fullname').val(res.searchedUser.first_name || res.searchedUser.last_name);
-            $('#firstnameinput').val(res.searchedUser.first_name);
-            $('#lastnameinput').val(res.searchedUser.last_name);
-            $('#addressinput').val(res.searchedUser.address);
-            $('#address2input').val(res.searchedUser.address2);
-            $('#cityinput').val(res.searchedUser.city);
-            $('#stateinput').val(res.searchedUser.state);
+            $('#roleinput').val(res.searchedRole);
+            $('#accountid').val(res.searchedId);
+            // $('#fullname').val(res.searchedUser.first_name || res.searchedUser.last_name);
+            $('#firstnameinput').val(res.searchedFirst_name);
+            $('#lastnameinput').val(res.searchedLast_name);
+            $('#addressinput').val(res.searchedAddress1);
+            $('#address2input').val(res.searchedAddress2);
+            $('#cityinput').val(res.searchedCity);
+            $('#stateinput').val(res.searchedState);
             // $('#statedropdown').append(`<option value="">${res.searchedUser.state}</option>`);
-            $('#zipcodeinput').val(res.searchedUser.zip);
-            $('#phoneinput').val(res.searchedUser.phone);
-            $('#emailinput1').val(res.searchedUser.email);
-            $('#schoolinput').val(res.searchedUser.school);
-            console.log(res.searchedUser.email);
+            $('#zipcodeinput').val(res.searchedZip);
+            $('#phoneinput').val(res.searchedPhone);
+            $('#emailinput').val(res.searchedEmail);
+            $('#schoolinput').val(res.searchedSchool);
+            console.log(res.searchedEmail);
           });
       } catch (err) {
         console.log(`Something went wrong ${err}`);

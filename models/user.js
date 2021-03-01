@@ -163,7 +163,7 @@ userSchema.methods.validPassword = function (password) {
 // authenticate input against database
 userSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email })
-     .exec(function (err, user) {
+    .exec(function (err, user) {
       if (err) {
         return callback(err);
       // eslint-disable-next-line no-else-return

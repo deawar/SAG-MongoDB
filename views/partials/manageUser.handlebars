@@ -1,9 +1,9 @@
         <div id="manageUser" class="tabcontent">
-
+           IN THE PARTIAL manageUser
             <div class="hero-image">
             </div>
 
-            <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
+            <div class="card" id="profilePageAboutUserCard" style="width: 100%; margin-top: 0;">
                 <div>
                     <hr>
                     <h6>Search User by Email</h6>
@@ -16,7 +16,8 @@
                                     <i class="material-icons">close</i>
                                 </div>
                             </form>
-                            <h3 id="email-err-msg"></h3>
+                            <button type="submit" class="btn btn-default red darken-4" id="searchforUser">Search for USER</button>
+                            <h3 id="err-msg"></h3>
                         </div>
                     </nav>
                     <hr>
@@ -26,65 +27,65 @@
                         <div class="row">
                             <div class="input-field col s2">
                                 <input disabled placeholder="AccountId" id="accountid" type="text"
-                                    value="{{searchedUser.id}}">
+                                    value="{{searchedId}}">
                                 <label for="id">Account ID</label>
                             </div>
                             <div class="welcomMessage col s10">
-                                <h2>{{searchedUser.first_name}} {{searchedUser.last_name}}</h2>
+                                <h2>{{searchedFirst_name}} {{searchedLast_name}}</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="First Name" id="firstnameinput" type="text"
-                                    value="{{searchedUser.first_name}}">
+                                    value="{{searchedFirst_name}}">
                                 <label for="first_name">First Name*</label>
                             </div>
                             <div class="input-field col s6">
                                 <input placeholder="Last Name" id="lastnameinput" type="text"
-                                    value="{{searchedUser.last_name}}">
+                                    value="{{searchedLast_name}}">
                                 <label for="last_name">Last Name*</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="Address1" id="addressinput" type="text"
-                                    value="{{searchedUser.address}}">
+                                    value="{{searchedAddress1}}">
                                 <label for="address">Address1*</label>
                             </div>
                             <div class="input-field col s6">
                                 <input placeholder="Address2" id="address2input" type="text"
-                                    value="{{searchedUser.address2}}">
+                                    value="{{searchedAddress2}}">
                                 <label for="address2">Address2</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="City" id="cityinput" type="text" value="{{searchedUser.city}}">
+                                <input placeholder="City" id="cityinput" type="text" value="{{searchedCity}}">
                                 <label for="city">City*</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input placeholder="State" id="stateinput" type="text" value="{{searchedUser.state}}">
+                                <input placeholder="State" id="stateinput" type="text" value="{{searchedState}}">
                                 <label for="state">State*</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="Zip Code" id="zipcodeinput" type="text"
-                                    value="{{searchedUser.zip}}">
+                                    value="{{searchedZip}}">
                                 <label for="zipCode">Zip Code*</label>
                             </div>
 
                             <div class="input-field col s6">
                                 <input placeholder="Phone Number" id="phoneinput" type="text"
-                                    value="{{searchedUser.phone}}">
+                                    value="{{searchedPhone}}">
                                 <label for="phoneNumber">Phone Number*</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="EmailId" id="emailinput1" type="text" value="{{searchedUser.email}}">
+                                <input placeholder="EmailId" id="emailinput1" type="text" value="{{searchedEmail}}">
                                 <label for="email">EmailId*</label>
                             </div>
                         </div>
@@ -94,13 +95,13 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input disabled placeholder="School" id="schoolinput" type="text"
-                                    value="{{searchedUser.school}}">
+                                    value="{{searchedSchool}}">
                                 <label for="school">School*</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="Role" id="roleinput" type="text" value="{{searchedUser.role_name}}">
+                                <input placeholder="Role" id="roleinput" type="text" value="{{searchedRole}}">
                                 <label for="role">Role*</label>
                             </div>
                         </div>

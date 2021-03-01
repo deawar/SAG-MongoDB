@@ -65,7 +65,7 @@ router.get('/verify:secretToken', (req, res) => {
 });
 
 // This is get route for dashboard
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', checkAuthenticated, (req, res) => {
   // console.log('Line 43 dashboard get with {{school}} res.req.user: ', res.req.user.school);
   const school = findSchoolName(res);
   const first_name = findFirstName(res);

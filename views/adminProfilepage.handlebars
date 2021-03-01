@@ -14,7 +14,7 @@
                 <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
                 {{!-- <img src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"
                     alt="Avatar" class="img-floating profilePic">{{!-- <img src="{{profileAvatar}}"
-                    alt="Avatar" class="img-floating profilePic">  need to make this a handlebars varible --}} --}}
+                    alt="Avatar" class="img-floating profilePic">  need to make this a handlebars varible --}}
             </div>
 
 
@@ -23,13 +23,13 @@
                     <h3 style="font-size: 1.7vw;">Account Information</h3>
                     <hr>
                     <form class="signup col s12 m12 l12">
-                        <div class="row">
-                            <div class="input-field col s2">
-                                <input disabled id="account_id" type="text" value="{{id}}">
-                                <label for="id">Account ID</label>
-                            </div>
                             <div class="welcomMessage col s10">
                                 <h2>Hello, {{first_name}} {{last_name}}</h2>
+                            </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input disabled id="account_id" type="text" value="{{id}}">
+                                <label for="id">Account ID</label>
                             </div>
                         </div>
                         <div class="row">
@@ -93,7 +93,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="role-input" type="text" value="{{role_name}}">
+                                <input disabled id="role-input" type="text" value="{{role}}">
                                 <label for="role">Role</label>
                             </div>
                         </div>
@@ -124,14 +124,10 @@
 
 
 
-
-
-
-
-
-
-
         <div id="artwork" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
             <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                 <div class="row">
                     <div class="column">
@@ -140,38 +136,27 @@
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                        <img src="falls2.jpg">
-                        <img src="paris.jpg">
-                        <img src="nature.jpg">
-                        <img src="mist.jpg">
-                        <img src="paris.jpg">
+
                     </div>
                     <div class="column">
-                        <img src="underwater.jpg">
-                        <img src="ocean.jpg">
-                        <img src="wedding.jpg">
-                        <img src="mountainskies.jpg">
-                        <img src="rocks.jpg">
-                        <img src="underwater.jpg">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
+                            <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
+
                     </div>
                     <div class="column">
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                        <img src="falls2.jpg">
-                        <img src="paris.jpg">
-                        <img src="nature.jpg">
-                        <img src="mist.jpg">
-                        <img src="paris.jpg">
+
                     </div>
                     <div class="column">
-                        <img src="underwater.jpg">
-                        <img src="ocean.jpg">
-                        <img src="wedding.jpg">
-                        <img src="mountainskies.jpg">
-                        <img src="rocks.jpg">
-                        <img src="underwater.jpg">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
                     </div>
                 </div>
             </div>
@@ -181,8 +166,8 @@
 
 
         <div id="manageUser" class="tabcontent">
-
             <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
             </div>
 
             <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
@@ -192,7 +177,7 @@
                     <nav>
                         <div class="nav-wrapper">
                             <form id="userSearch">
-                                <div class="input-field" id="searchblock">
+                                <div class="input-field hoverable" id="searchblock">
                                     <input id="searchforUser" type="search" required>
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
@@ -207,82 +192,82 @@
                     <form class="signup col s12 m12 l12">
                         <div class="row">
                             <div class="input-field col s2">
-                                <input disabled id="accountid" type="text" value="{{searchedUser.id}}">
-                                <label for="id">Account ID</label>
+                                <input disabled id="accountid" type="text" value="{{searchedId}}">
+                                <label class="active" for="id">Account ID</label>
                             </div>
                             <div class="welcomMessage col s10">
-                                <h2>{{searchedUser.first_name}} {{searchedUser.last_name}}</h2>
+                                <h2>{{searchedFirst_name}} {{searchedLast_name}}</h2>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="First Name" id="firstnameinput" type="text"
-                                    value="{{searchedUser.first_name}}">
-                                <label for="first_name">Full Name*</label>
+                                    value="{{searchedFirst_name}}">
+                                <label class="active" for="first_name">First Name</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="lastnameinput" type="text" value="{{searchedUser.last_name}}">
-                                <label for="last_name">Last Name</label>
+                                <input id="lastnameinput" type="text" value="{{searchedLast_name}}">
+                                <label class="active" for="last_name">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="addressinput" type="text" value="{{searchedUser.address}}">
-                                <label for="address">Address</label>
+                                <input id="addressinput" type="text" value="{{searchedAddress1}}">
+                                <label class="active" for="address">Address</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="address2input" type="text" value="{{searchedUser.address2}}">
-                                <label for="address2">Address2</label>
+                                <input id="address2input" type="text" value="{{searchedAddress2}}">
+                                <label class="active" for="address2">Address2</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="cityinput" type="text" value="{{searchedUser.city}}">
-                                <label for="city">City</label>
+                                <input id="cityinput" type="text" value="{{searchedCity}}">
+                                <label class="active" for="city">City</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="stateinput" type="text" value="{{searchedUser.state}}">
-                                <label for="state">State</label>
+                                <input id="stateinput" type="text" value="{{searchedState}}">
+                                <label class="active" for="state">State</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="zipcodeinput" type="text" value="{{searchedUser.zip}}">
-                                <label for="zipCode">Zip Code</label>
+                                <input id="zipcodeinput" type="text" value="{{searchedZip}}">
+                                <label class="active" for="zipCode">Zip Code</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="phoneinput" type="text" value="{{searchedUser.phone}}">
-                                <label for="phoneNumber">Tel Number</label>
+                                <input id="phoneinput" type="text" value="{{searchedPhone}}">
+                                <label class="active" for="phoneNumber">Tel Number</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="emailinput" type="email" value="{{searchedUser.email}}">
-                                <label for="email">Email</label>
+                                <input id="emailinput" type="email" value="{{searchedEmail}}">
+                                <label class="active" for="email">Email</label>
                             </div>
                         </div>
 
                         <hr>
-                        <h3 style="font-size: 1.7vw;">School Afilliation</h3>
+                        <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="schoolinput" type="text" value="{{searchedUser.school}}">
-                                <label for="school">School</label>
+                                <input disabled id="schoolinput" type="text" value="{{searchedSchool}}">
+                                <label class="active" for="school">School</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="roleinput" type="text" value="{{searchedUser.role_name}}">
-                                <label for="role">Role</label>
+                                <input id="roleinput" type="text" value="{{searchedRole}}">
+                                <label class="active" for="role">Role</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default red darken-4" id="updateUserButton">UPDATE
+                        <button type="submit" class="btn btn-default red darken-4 hoverable" id="updateUserButton">UPDATE
                             USER</button>
                         <button type="submit" data-target="delete-account-modal"
-                            class="btn btn-default red darken-4 modal-trigger" id="deleteButton">DELETE USER</button>
+                            class="btn btn-default red darken-4 modal-trigger hoverable" id="deleteButton">DELETE USER</button>
 
                         <hr>
                     </form>
@@ -308,6 +293,9 @@
         {{>manageUser}}
 
         <div id="About" class="tabcontent">
+        <div class="hero-image">
+            <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+        </div>
             <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                 <h3>About</h3>
                 <p>Who we are and what we do.</p>

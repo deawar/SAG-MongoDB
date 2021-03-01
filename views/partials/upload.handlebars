@@ -12,20 +12,20 @@
                                 <div class="container" id="imgUploadContainer">
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <input id="artist-email-input" type="email" class="validate" required=""
+                                            <input id="artist-email-input" name="artist-email-input" type="email" class="validate hoverable" required=""
                                                 aria-required="true">
                                             <label for="email">Artist Email</label>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input id="art-name-input" type="text" class="validate" required=""
+                                            <input id="art-name-input" name="art-name-input" type="text" class="validate" required=""
                                                 aria-required="true">
                                             <label for="art-name">Art Piece Name</label>
                                         </div>
                                     <div class="row">
                                         <div class="input-field col s6">
-                                            <div class="col s6" id="medium-input-list">
-                                                <label>Medium - i.e. photograph, watercolor, acrylic, etc.</label>
-                                                <select id="medium-input" class="browser-default" required="">
+                                            <div class="col s12" id="medium-input-list">
+                                                <label>Medium - photograph, oil, acrylic, etc.</label>
+                                                <select id="medium-input" name="medium-input" class="browser-default" required="">
                                                     <option value="" disabled selected>Medium...</option>
                                                     <option value="Painting-Oil">Painting - Oil</option>
                                                     <option value="Painting-Acrylic">Painting - Acrylic</option>
@@ -114,21 +114,22 @@
                                             </div>
                                         </div>
                                         <div class="input-field col s6">
-                                            <input id="description-input" type="text" class="validate" required=""
+                                            <input id="description-input" name="description-input" type="text" class="validate" required=""
                                                 aria-required="true">
                                             <label for="description">Brief Description - Approx 140 chars</label>
                                         </div>
                                     <div class="row">
-                                        <div class="input-field col s4">
-                                            <input id="h-size-input" type="number" class="validate" required=""
+                                        <div class="input-field col s6">
+                                            <input id="h-size-input" name="h-size-input" type="number" class="validate" required=""
                                                 aria-required="true">
                                             <label for="size">Size: Height in inches</label>
                                         </div>    
-                                        <div class="input-field col s4">
-                                            <input id="w-size-input" type="number" class="validate" required=""
+                                        <div class="input-field col s6">
+                                            <input id="w-size-input" name="w-size-input" type="number" class="validate" required=""
                                                 aria-required="true">
                                             <label for="size">Size: Width in inches</label>
                                         </div>
+
                                         {{!-- <div class="input-field col s3">
                                             <label>
                                             <input name="group1" type="radio" checked />
@@ -142,10 +143,21 @@
                                             </label>    
                                         </div> --}}
                                     </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="price-input" type="number" class="validate" name="price" required=""
+                                                aria-required="true">
+                                            <label for="size">Starting Price: $ </label>
+                                        </div>
                                     <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'>
-                                        <input type="file" name="sampleFile" />
-                                        <input type='submit' value='Upload!' id="fileUpload"/>
+                                        <input type="file" name="sampleFile" id="sampleFile" />
+                                        {{!-- <input type='submit' value='Upload!' id="fileUpload"/> --}}
+                                        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
+                                        {{!-- <input id="fileUpload" type="file" name="sampleFiles" multiple="multiple"></form></br> --}}
                                     </form>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar"></div>
+                                    </div>
                                     </div>
                                         <h3 id="art-upload"></h3>
                                         <h3 id="upload-err-msg"></h3>
@@ -156,6 +168,22 @@
                                 </div>
                             </div> 
                         </div>
+                    </div>
+{{!-- Modal carousel                     --}}
+                    <div class="carousel" id="upload-carousel">
+                    
+                        <a class="carousel-item" href="#one!"><img src="upload/{{school}}/{{id}}-jon.png"></a>
+                    
+                        <a class="carousel-item" href="#two!"><img src="upload/{{school}}/{{id}}-tower-lightning.jpg"></a>
+                    
+                        <a class="carousel-item" href="#three!"><img src="{{displayPath}}"></a>
+                    
+                        <a class="carousel-item" href="#four!"><img src="upload/{{school}}/{{id}}-{{req.file.originalname}}"></a>
+                    
+                        <a class="carousel-item" href="#five!"><img src="upload/{{school}}/{{id}}-{{req.file.originalname}}"></a>
+                    
+                    </div>
+                    
                     </div>
            
   {{!-- <script type="text/javascript" src="./js/upload.js"></script> --}}
