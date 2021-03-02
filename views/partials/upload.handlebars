@@ -14,12 +14,12 @@
                                         <div class="input-field col s6">
                                             <input id="artist-email-input" name="artist-email-input" type="email" class="validate hoverable" required=""
                                                 aria-required="true">
-                                            <label for="email">Artist Email</label>
+                                            <label class="active" for="email">Artist Email</label>
                                         </div>
                                         <div class="input-field col s6">
                                             <input id="art-name-input" name="art-name-input" type="text" class="validate" required=""
                                                 aria-required="true">
-                                            <label for="art-name">Art Piece Name</label>
+                                            <label class="active" for="art-name">Art Piece Name</label>
                                         </div>
                                     <div class="row">
                                         <div class="input-field col s6">
@@ -116,18 +116,23 @@
                                         <div class="input-field col s6">
                                             <input id="description-input" name="description-input" type="text" class="validate" required=""
                                                 aria-required="true">
-                                            <label for="description">Brief Description - Approx 140 chars</label>
+                                            <label class="active" for="description">Brief Description - Approx 140 chars</label>
                                         </div>
                                     <div class="row">
                                         <div class="input-field col s6">
                                             <input id="h-size-input" name="h-size-input" type="number" class="validate" required=""
                                                 aria-required="true">
-                                            <label for="size">Size: Height in inches</label>
+                                            <label class="active" for="size">Size: Height in inches</label>
                                         </div>    
                                         <div class="input-field col s6">
                                             <input id="w-size-input" name="w-size-input" type="number" class="validate" required=""
                                                 aria-required="true">
-                                            <label for="size">Size: Width in inches</label>
+                                            <label class="active" for="size">Size: Width in inches</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input id="d-size-input" name="d-size-input" type="number" class="validate" 
+                                                aria-required="true">
+                                            <label class="active" for="size">Size: Depth in inches</label>
                                         </div>
 
                                         {{!-- <div class="input-field col s3">
@@ -145,9 +150,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
+                                            <i class="material-icons prefix">attach_money</i>
                                             <input id="price-input" type="number" class="validate" name="price" required=""
                                                 aria-required="true">
-                                            <label for="size">Starting Price: $ </label>
+                                            <label class="active" for="size">Starting Price: </label>
                                         </div>
                                     <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'>
                                         <input type="file" name="sampleFile" id="sampleFile" />

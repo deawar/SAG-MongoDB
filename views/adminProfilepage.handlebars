@@ -29,57 +29,57 @@
                         <div class="row">
                             <div class="input-field col s6">
                                 <input disabled id="account_id" type="text" value="{{id}}">
-                                <label for="id">Account ID</label>
+                                <label class="active" for="id">Account ID</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input placeholder="First Name" id="firstname-input" type="text"
                                     value="{{first_name}}">
-                                <label for="first_name">Full Name*</label>
+                                <label class="active" for="first_name">Full Name*</label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="lastname-input" type="text" value="{{last_name}}">
-                                <label for="last_name">Last Name</label>
+                                <label class="active" for="last_name">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="address-input" type="text" value="{{address1}}">
-                                <label for="address">Address</label>
+                                <label class="active" for="address">Address</label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="address2-input" type="text" value="{{address2}}">
-                                <label for="address2">Address2</label>
+                                <label class="active" for="address2">Address2</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="city-input" type="text" value="{{city}}">
-                                <label for="city">City</label>
+                                <label class="active" for="city">City</label>
                             </div>
 
                             <div class="input-field col s6">
                                 <input id="state-input" type="text" value="{{state}}">
-                                <label for="state">State</label>
+                                <label class="active" for="state">State</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="zipcode-input" type="text" value="{{zip}}">
-                                <label for="zipCode">Zip Code</label>
+                                <label class="active" for="zipCode">Zip Code</label>
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="phone-input" type="text" value="{{phone}}">
-                                <label for="phoneNumber">Tel Number</label>
+                                <input id="phone-input" type="tel" value="{{phone}}">
+                                <label class="active" for="phoneNumber">Tel Number</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input disabled id="email-input" type="text" value="{{email}}">
-                                <label for="email">Email</label>
+                                <label class="active" for="email">Email</label>
                             </div>
                         </div>
 
@@ -88,13 +88,13 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input disabled id="school-input" type="text" value="{{school}}">
-                                <label for="school">School</label>
+                                <label class="active" for="school">School</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input disabled id="role-input" type="text" value="{{role}}">
-                                <label for="role">Role</label>
+                                <label class="active" for="role">Role</label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-default red darken-4" id="updateButton">UPDATE PROFILE</button><br><br>
@@ -110,7 +110,7 @@
                             style="color:red;font-weight:bold"></span>
                         
                             <input id="emailinput" type="text" class="validate emailVal">
-                            <label for="email">Enter Your Email Address</label>
+                            <label class="active" for="email">Enter Your Email Address</label>
                         </div>
                         <button type="submit" class="btn btn-default red darken-4 enableOnInput emailVal" disabled="disabled" id="validateEmailButton">VALIDATE
                             EMAIL</button>
@@ -195,9 +195,10 @@
                                 <input disabled id="accountid" type="text" value="{{searchedId}}">
                                 <label class="active" for="id">Account ID</label>
                             </div>
-                            <div class="welcomMessage col s10">
-                                <h2>{{searchedFirst_name}} {{searchedLast_name}}</h2>
-                            </div>
+                            {{!-- <div class="welcomMessage col s10">
+                                <input disabled id="welcomeMessage" type="text" value="{{searchedFirst_name}} {{searchedLast_name}}">
+                                <h2></h2>
+                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
@@ -239,7 +240,7 @@
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="phoneinput" type="text" value="{{searchedPhone}}">
+                                <input id="phoneinput" type="tel" value="{{searchedPhone}}">
                                 <label class="active" for="phoneNumber">Tel Number</label>
                             </div>
                         </div>
@@ -278,7 +279,7 @@
                 <div class="modal-content">
                     <h4>Confirmation</h4>
                     <div class="modal-header">
-                        <h6> Are you sure you want to delete this account?</h6>
+                        <h6> Are you sure you want to delete {{{emailSearched}}}'s account?</h6>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-default red darken-4" id="confirm-delete">YES</button>
@@ -366,8 +367,6 @@
 
 
 <script>
-
-
     //profile card
     function openPage(pageName, elmnt, color) {
         // Hide all elements with class="tabcontent" by default */
@@ -395,5 +394,6 @@
 
     $(document).ready(function () {
         $('.sidenav').sidenav();
+        M.updateTextFields();
     });
 </script>

@@ -12,6 +12,20 @@ require('../config/passport')(passport);
 const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
+
+// Find School
+function findSchoolName(req) {
+  // eslint-disable-next-line prefer-destructuring
+  let school;
+  // school = res.req.user.school;
+  if (req.user === null || req.user === undefined) {
+    school = 'Make Art, Have Fun!';
+    return school;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  school = req.user.school;
+  return school;
+}
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
 router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
@@ -61,36 +75,64 @@ router.get('/profile', checkAuthenticated, (req, res) => {
 
 // ROUTER TO DELETE ACCOUNT
 router.delete('/user/:account_id/:email', (req, res) => {
-  console.log(`id: ${req.params.account_id}`);
-  console.log(`email: ${req.params.email}`);
-  User.findOneAndDelete({ id: req.params.account_id, email: req.params.email }, function (err) {
-    if (err) console.log(err);
-    console.log('Successful Account Deleteion');
-  })
-    .then(id => res.status(200).end());
+  try{ 
+    console.log(`_id: ${req.params.account_id}`);
+    console.log(`email: ${req.params.email}`);
+
+    const filter = { _id: req.params.account_id, email: req.params.email };
+
+    User.findOneAndDelete(filter, function (err, delDoc) {
+      if (err) {
+        console.log(err);
+        res.status(404);
+        return res.send('No User Deleted.');
+      }
+      console.log('Successfully Deleted: ', delDoc);
+      res.status(200);
+      res.json(delDoc);
+      res.render('adminProfilepage', delDoc);
+    });
+  } catch (error) {
+    console.log('Catch ERROR: ', error);
+    res.status(404);
+    return res.send('No Profiles Deleted');
+  }
 });
 
 // ROUTER TO UPDATE ACCOUNT
-router.put('/user/:account_id', (req, res) => {
-  console.log(req.body);
-  db.User.update({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    address: req.body.address1,
-    address2: req.body.address2,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    school: req.body.school,
-    email: req.body.email,
-    phone: req.body.phone,
-  }, {
-    where: {
-      id: req.params.account_id,
-    },
-  }).then((dbuser) => {
-    res.json(dbuser);
-  });
+router.put('/user/:account_id', async (req, res) => {
+  try {
+    console.log('req.body: ', req.body);
+    let updateDoc = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      address: req.body.address1,
+      address2: req.body.address2,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
+      school: req.body.school,
+      email: req.body.email,
+      phone: req.body.phone,
+    };
+    const filter = { _id: req.params.account_id };
+    const opts = { new: true };
+    await User.findOneAndUpdate(filter, { $set: req.body }, opts, function (err, dbuser) {
+      if (err) {
+        console.log(err);
+        res.status(404);
+        return res.send('No User found to Update.');
+      }
+      console.log('Profile Updates going in:', updateDoc);
+      res.status(200);
+      res.json(updateDoc);
+      res.render('adminProfilepage', updateDoc);
+    });
+  } catch (error) {
+    console.log('Catch ERROR: ', error);
+    res.status(404);
+    return res.send('No Updates Performed');
+  }
 });
 
 // PROFILE SEARCH BY ADMIN
@@ -100,8 +142,8 @@ router.get('/searchuser/:email', async (req, res) => {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;
     // const query = User.find({ email: searchEmail }, { email: 1 });
-
-    await User.findOne({ email: searchEmail }, function (err, doc) {
+    const school = findSchoolName(req);
+    await User.findOne({ email: searchEmail, school }, function (err, doc) {
       if (!doc) {
         res.status(404);
         return res.send(`No User associated with ${searchEmail}!`);
@@ -127,26 +169,26 @@ router.get('/searchuser/:email', async (req, res) => {
       res.json(returnDoc);
       res.render('adminProfilepage', returnDoc);
     });
-      // .then((dbUser) => {
-      //   console.log(dbUser);
-      //   if (!dbUser) {
-      //     res.status(404);
-      //     return res.send('No Email User Found');
-      //   }
-      //   console.log('---> dbUser: ', dbUser);
-      //   const newSearch = {
-      //     searchedUser: dbUser[0],
-      //     id: dbUser[0].id,
-      //     email: req.params.email,
-      //     first_name: dbUser.first_name,
-      //     role: dbUser[0].role,
-      //     isloggedin: req.isAuthenticated(),
-      //   };
-      //   console.log('Profile_controller newSearch: ', newSearch);
-      //   res.status(200);
-      //   res.json(newSearch);
-      //   // res.render('partials/manageUser', newSearch);
-      // });
+    // .then((dbUser) => {
+    //   console.log(dbUser);
+    //   if (!dbUser) {
+    //     res.status(404);
+    //     return res.send('No Email User Found');
+    //   }
+    //   console.log('---> dbUser: ', dbUser);
+    //   const newSearch = {
+    //     searchedUser: dbUser[0],
+    //     id: dbUser[0].id,
+    //     email: req.params.email,
+    //     first_name: dbUser.first_name,
+    //     role: dbUser[0].role,
+    //     isloggedin: req.isAuthenticated(),
+    //   };
+    //   console.log('Profile_controller newSearch: ', newSearch);
+    //   res.status(200);
+    //   res.json(newSearch);
+    //   // res.render('partials/manageUser', newSearch);
+    // });
   } catch (error) {
     res.status(404);
     return res.send('No User Found');

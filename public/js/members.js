@@ -13,8 +13,8 @@ $(document).ready(() => {
   $('#confirm-delete').on('click', (event) => {
     console.log('Clicked on Confirm Delete button');
     const deleteAccount = {
-      account_id: $('#account_id').val().trim(),
-      email: $('#email-input').val().trim(),
+      account_id: $('#accountid').val().trim(),
+      email: $('#emailinput').val().trim(),
     };
     console.log(deleteAccount);
     if (deleteAccount.account_id.length > 0 && deleteAccount.email.length > 0) {
