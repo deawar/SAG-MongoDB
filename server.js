@@ -1,6 +1,6 @@
 const express = require('express');
-const flash = require('express-flash-notification');
 const session = require('express-session');
+const flash = require('express-flash-notification');
 const process = require('process');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -85,9 +85,6 @@ app.engine(
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.use(morgan('dev'));
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));

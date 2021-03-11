@@ -25,15 +25,18 @@ router.post('/api/login', (req, res, next) => {
     console.log('Logged in user Email verification status: ', user.active);
     if (err) {
       console.log('passport err', err);
+      req.flash('info', 'Aww Snap! Somehting Broke! Checkback later, please.', false);
       return next(err); // will generate a 500 error
     }
     // Generate a JSON response reflecting authentication status
     if (!user) {
+      req.flash('info', 'Invalid username or password!', false);
       return res.render('login', { title: 'Login Page', success: false, info });
     }
     req.login(user, (loginErr) => {
       if (loginErr) {
         console.log('loginerr', loginErr);
+        req.flash('info', 'Invalid username or password!', false);
         return next(loginErr);
       }
       console.log('redirecting....');

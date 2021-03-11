@@ -186,8 +186,7 @@ userSchema.statics.authenticate = function (email, password, callback) {
 
 // Apply the uniqueValidator plugin to userDataSchema.
 userSchema.plugin(uniqueValidator, {
-  // eslint-disable-next-line comma-dangle
-  message: 'Sorry, {PATH} needs to be unique'
+  message: 'Sorry, {PATH} needs to be unique',
 });
 
 module.exports = mongoose.model('user', userSchema);

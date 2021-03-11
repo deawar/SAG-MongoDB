@@ -75,22 +75,30 @@ router.get('/dashboard', checkAuthenticated, (req, res) => {
 });
 
 router.get('/gallery', checkAuthenticated, (req, res) => { // eslint-disable-next-line prefer-destructuring
-  let school = findSchoolName(res); // res.req.user.school;
+  const school = findSchoolName(res); // res.req.user.school;
   const first_name = findFirstName(res);
   console.log('res.req.user.school = school: ', school);
   res.render('artGallery', { title: 'Art Gallery', school, first_name });
 //   console.log('Line 13 - In Get / route');
 });
 
+router.get('/bid', checkAuthenticated, (req, res) => { // eslint-disable-next-line prefer-destructuring
+  const school = findSchoolName(res); // res.req.user.school;
+  const first_name = findFirstName(res);
+  console.log('res.req.user.school = school: ', school);
+  res.render('bid', { title: 'Auction Page', school, first_name });
+//   console.log('Line 13 - In Get / route');
+});
+
 router.get('/privacypolicy', checkAuthenticated, (req, res) => {
-  let school = findSchoolName(res); // res.req.user.school;
+  const school = findSchoolName(res); // res.req.user.school;
   const first_name = findFirstName(res);
   res.render('newPrivacyPolicy', { title: 'Privacy Policy', school, first_name });
 //   console.log('Line 13 - In Get / route');
 });
 
 router.get('/about', checkAuthenticated, (req, res) => {
-  let school = findSchoolName(res); // res.req.user.school;
+  const school = findSchoolName(res); // res.req.user.school;
   const first_name = findFirstName(res);
   res.render('about', { title: 'About', school, first_name });
 //   console.log('Line 13 - In Get / route');

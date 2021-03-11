@@ -28,12 +28,12 @@
                               <div class="form-group">
                                 <i class="material-icons prefix">email</i>
                                 <label for="exampleInputEmail1"></label>
-                                <input type="email" class="form-control" id="email-input" placeholder="Email">
+                                <input type="email" class="form-control" id="email-input" placeholder="Email" autocomplete="username">
                               </div>
                               <div class="form-group">
                                 <i class="material-icons prefix">lock</i>
                                 <label for="exampleInputPassword1"></label>
-                                <input type="password" class="form-control" id="password-input" placeholder="Password">
+                                <input type="password" class="form-control" id="password-input" placeholder="Password" autocomplete="current-password">
                               </div>
                               <br>
                               <button type="submit" class="btn btn-default red darken-4 waves-effect waves-light hoverable" id="logInButton">Login</button>
@@ -42,7 +42,7 @@
                             <p><b>Or</b></p><br />
                             <p><a href="/signup" class="btn btn-default red darken-4 waves-effect waves-light hoverable">Sign Up Here</a></p>
                               {{#if expressFlash}}
-                                  <p><strong>ERROR via Express-Flash!</strong> {{ expressFlash }}</p>
+                                  <p><strong>ERROR via Express-Flash!</strong> {{ flash }}</p>
                               {{/if}}
 
                               {{#if sessionFlash.message}}
@@ -51,9 +51,9 @@
                                   </div>
                               {{/if}}
 
-                              <h3 id="create-err-msg"></h3>
+                              <h3 id="create-err-msg">{{flash}}</h3>
 
-                              <h3 id="err-msg"></h3>
+                              <h3 id="err-msg">{{flash}}</h3>
                           </div>
                         </div>
                       </div>

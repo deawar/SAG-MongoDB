@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="../../public/stylesheets/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/resources/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/resources/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="msapplication-TileImage" content="/resources/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="/resources/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <!-- main top ends here -->
+    <!-- sidebarNav starts here -->
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img class="responsive-img" src="./resources/sunset_dense.jpg">
+                </div>
+                <img class="responsive-img circle" style="text-align: center; margin-left:35%" src="./resources/SAGL.png">
+                {{!-- <img class="circle" style="text-align: center; margin-left:35%" src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"> --}}
+                <a href="/profile"><span class="white-text name">{{first_name}} {{last_name}}</span></a>
+                <a href="/profile"><span class="white-text email">{{email}}</span></a>
+            </div>
+        </li>
+        <li class="sidenavLinks">
+            <div class="divider"style="color:rgba(206, 219, 18, 0.746)></div>
+        </li>
+        <li class="sidenavLinks"><a href="/admin"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>Admin</a>
+        <li class="sidenavLinks"><a href="/dashboard"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">home</i>Home</a></li>
+        <li class="sidenavLinks"><a href="/profile"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>Profile</a></li>
+        <li class="sidenavLinks"><a href="/gallery"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">color_lens</i>Art Gallery</a></li>
+        <li class="sidenavLinks"><a href="/privacypolicy"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">security</i>Privacy Policy</a></li>
+        <li class="sidenavLinks"><a href="/donate"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">payment</i>Donate</a></li>
+        <li class="sidenavLinks"><a href="/bid"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">gavel</i>Bid</a></li>
+        <li class="sidenavLinks"><a href="/about"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">info</i>About</a></li>
+        <li class="sidenavLinks"><a href="/logout"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">power_settings_new</i>Logout</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" style="color:black">menu</i></a>
+    
+    
+    <div class="w3-main ">
+    
+        <div class="w3-teal" id="headerBg">
+            <a href="#" data-target="slide-out" class="sidenav-trigger"></a>
+            <div class="w3-container">
+                <h1 class="headerText">Silent Auction Gallery</h1>
+                <h1 class="headerText">{{school}}</h1>
+            </div>
+    
+    
+        </div>
+    </div>
+    
+    <div class="header hide-on-med-and-down" id="secondNavBar">
+        <a href="/dashboard">S.A.G</a>
+        <div class="header-right">
+            <a href="/dashboard"><i class="material-icons" style="color:rgba(219, 48, 18, 0.746)">home</i> Home</a>
+            <a href="/profile"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>{{first_name}} Profile</a>
+            {{!-- <a href="/admin">Admin</a> --}}
+            <a href="/gallery"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">school</i>{{school}} Gallery</a>
+            <a href="/donate"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">payment</i>Donate</a>
+            <a href="/bid"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">gavel</i>Bid</a>
+            <a href="/privacypolicy"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">security</i>Privacy Policy</a>
+            <a href="/about"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">info</i>About Us</a>
+            <a href="/logout"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">power_settings_new</i>Log Out</a>
+        </div>
+    </div>
+  <div class="row">
+    <div class="col s12 m7">
+      <div class="card hoverable card-small">
+        <div class="card-image artBid-image">
+          <img src="../../public/upload/North Oconee High School/60301ba11614e348985b94e5-ArtiePup.jpg">
+          <span class="card-title">{{artwork-name}}</span>
+        </div>
+        <div class="card-content">
+            <p>Name :<span>"{{artwork-name}}"</span></p>
+            <p>Category :<span>{{medium}}</span></p>
+            <p>Size :<span>Height: {{height}} by Width: {{width}} by Depth: {{depth}}</span></p>
+            <p>Starting Bid :<span>{{price}}</span></p> 
+            <p>Current Bid :<span>{{currentBid}}</span></p>
+            <p> Time Left :<span id='schoolauction'></span></p>
+        </div>
+        <div class="card-action">
+          <a href="#"class="btn-large halfway-fab waves-effect waves-light red cardButton">BID</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- {{>  footer }}partial begins here -->
+<footer class="page-footer white">
+    <div class="container footerText">
+        <p><a href="/privacypolicy" class="navText">Privacy Policy</a> © 2021 by Dean Warren & Jonathan Kelley
+        </p>
+    </div>
+</footer>
+  <!-- {{>  footer }}partial ends here -->
+  <!-- Main bottem ends here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="../../public/js/countdown.js"></script>
+  <script type="text/javascript" src="../../public/js/members.js"></script>
+  <script type="text/javascript" src="../../public/js/verifyemail.js"></script>
+</body>
+</html>

@@ -488,8 +488,7 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
         }
         req.flash('Success', 'Thank you! Now you can Login.');
         res.redirect('/login').status(200);
-      },
-    );
+      });
 
     req.flash('Success', 'Thank you! Now you can Login.');
     res.redirect('/signup');

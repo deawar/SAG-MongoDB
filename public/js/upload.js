@@ -1,3 +1,19 @@
+function addFile(form, sampleFile, name) {
+  const newArtwork = new FormData();
+  // newArtwork.append('formvalues', form);
+  newArtwork.append('sampleFile', sampleFile[0], name);
+  newArtwork.append('art-name-input', form.artwork_name);
+  newArtwork.append('description-input', form.description);
+  newArtwork.append('d-size-input', form.depth);
+  newArtwork.append('artist-email-input', form.email);
+  newArtwork.append('h-size-input', form.height);
+  newArtwork.append('medium-input', form.medium);
+  newArtwork.append('price-input', form.price);
+  newArtwork.append('w-size-input', form.width);
+  console.log('newArtwork form after append: ', newArtwork);
+  return newArtwork;
+}
+
 $(document).ready(() => {
   $('.modal').modal();
   $('#fileUpload').on('click', (event) => {
@@ -6,7 +22,7 @@ $(document).ready(() => {
     // });
     // $('#fileUpload').on('change', function (event) {
     event.preventDefault();
-    let newArtwork = new FormData();
+
     console.log('====================================');
     console.log('Upload Clicked!');
     console.log('====================================');
@@ -26,7 +42,7 @@ $(document).ready(() => {
       && $('#w-size-input').length && $('#w-size-input').val().length
       && $('#price-input').length && $('#price-input').val().length
       && $('#sampleFile').length && $('#sampleFile').val().length) {
-      newArtwork = {
+      const newArtworkform = {
         email: $('#artist-email-input').val().trim(),
         artwork_name: $('#art-name-input').val().trim(),
         medium: $('#medium-input').val().trim(),
@@ -36,7 +52,8 @@ $(document).ready(() => {
         price: $('#price-input').val().trim(),
         file: $('#sampleFile').val(),
       };
-      console.log('Artwork form: ', newArtwork);
+      console.log('newArtwork form: ', newArtworkform);
+
       if (sampleFile.length > 0) {
         // let newArkwork = new FormData();
         // eslint-disable-next-line no-plusplus
@@ -47,18 +64,18 @@ $(document).ready(() => {
           console.log('====================================');
           file = $('#sampleFile').prop('files')[0];
         }
-        FormData.append('files', sampleFile, sampleFile.name);
         console.log('sampleFile[0]: ', sampleFile[0]);
         let tmppath = URL.createObjectURL(sampleFile[0]);
         // newArkwork.append('file', $('#sampleFile'), tmppath);
-        console.log('image value: ', newArtwork.file);
+        console.log('image value path: ', tmppath);
         $('#upload-err-msg').empty('');
-        console.log('formData: ', newArtwork);
-        newArtwork.append('files', sampleFile[0].file, sampleFile.name);
-        if (newArtwork.email.length > 0 && newArtwork.artwork_name.length > 0
-        && newArtwork.medium.length > 0 && newArtwork.description.length > 0
-        && newArtwork.height.length > 0 && newArtwork.width.length > 0
-        && newArtwork.price > 0) {
+        const newArtwork = addFile(newArtworkform, $('#sampleFile').get(0).files, sampleFile.name);
+        console.log('formData: ', newArtworkform);
+        // newArtwork.append('files', sampleFile[0].file, sampleFile.name);
+        if (newArtworkform.email.length > 0 && newArtworkform.artwork_name.length > 0
+        && newArtworkform.medium.length > 0 && newArtworkform.description.length > 0
+        && newArtworkform.height.length > 0 && newArtworkform.width.length > 0
+        && newArtworkform.price > 0) {
         // console.log('files to upload: ', res.sampleFile);
         // const fileUpload = req.file.path;
           if (newArtwork !== '') {
@@ -69,9 +86,10 @@ $(document).ready(() => {
                 data: newArtwork,
                 processData: false,
                 contentType: false,
+                cache: false,
                 // eslint-disable-next-line object-shorthand
                 error: function (xhr, status, error) {
-                  alert(error);
+                  alert('Umm...something broke...', error);
                 },
                 success(response) {
                   alert(response);
@@ -101,12 +119,12 @@ $(document).ready(() => {
                 },
 
               }).then((res) => {
-                console.log(newArtwork.image);
+                console.log('newArtwork.file: ', newArtwork.file);
                 if (newArtwork.image !== undefined) {
                   window.location.replace('/profile');
                 } else {
-                  $('#art-upload').empty('').text(`These Files Uploaded: ${newArtwork.image.name}`);
-                  console.log(`** These Files Uploaded: ${newArtwork.image.name}`);
+                  $('#art-upload').empty('').text(`These Files Uploaded: ${sampleFile.name}`);
+                  console.log(`** These Files Uploaded: ${sampleFile.name}`);
                 }
               }).then((res) => {
                 console.log('Line 20 upload.js checking res.files', res.files);

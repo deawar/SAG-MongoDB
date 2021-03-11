@@ -23,7 +23,7 @@ function findSchoolName(res) {
 // This is get route for login page
 router.get('/donate', checkAuthenticated, (req, res) => {
   req.headers.logged = 'true';
-  let school = findSchoolName(res);
+  const school = findSchoolName(res);
   res.render('donationsPage', { title: 'Donations Page', school, logged: req.isAuthenticated() });
 });
 

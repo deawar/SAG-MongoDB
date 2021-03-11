@@ -1,8 +1,8 @@
 const path = require('path');
 
-const imageFilter = function(req, file, cb) {
+const imageFilter = function (req, file, cb) {
   // Accept images only
-  console.log('helpers file req.files: ', req.files);
+  console.log('helpers file req.file: ', req.file);
   // Allowed ext
   const filetypes = /(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|webp|WEBP)/;
   // Check ext
@@ -12,9 +12,8 @@ const imageFilter = function(req, file, cb) {
 
   if (mimetype && extname) {
     return cb(null, true);
-  } else {
-    cb('Only image files are allowed!');
-    return cb(new Error('Only image files are allowed!'), false);
   }
+  cb('Only image files are allowed!');
+  return cb(new Error('Only image files are allowed!'), false);
 };
 exports.imageFilter = imageFilter;

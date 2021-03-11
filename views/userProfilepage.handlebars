@@ -14,7 +14,7 @@
                 {{!-- <img src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"
                     alt="Avatar" class="img-floating profilePic"> --}}
             </div>
-            <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
+            <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
                 <div>
                     <h3 style="font-size: 1.7vw;">Account Information</h3>
                     <hr>
@@ -68,7 +68,7 @@
                             </div>
 
                             <div class="input-field col s6">
-                                <input id="phone-input" type="text" value="{{phone}}">
+                                <input id="phone-input" type="tel" value="{{phone}}">
                                 <label for="phoneNumber">Tel Number</label>
                             </div>
                         </div>
@@ -133,31 +133,31 @@
                     {{> upload }}
                     <div class="row">
                         <div class="column">
-                            <div class="uploads responsive-img id="uploaded-item-template">
-                                <ul class="{{first_name}}-artwork">
+                            <div class="uploads responsive-img" id="uploaded-item-template">
+                                <ul class="{{first_name}}'s-artwork">
                                     {{#each artwork}}
                                     <li>{{this}}</li>
                                     {{/each}}
                                 </ul>
                             </div>
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
+                            <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
                             
                         </div>
                         <div class="col s6">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                            <img class="responsive-img" src="./upload/{{school}}/{{id}}-jon.png">
+                            <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
                         </div>
                         <div class="col s6">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
+                            <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
+                            <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
                         </div>
                         <div class="col s6">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                            <img class="responsive-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
+                            <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
+                            <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
                         </div>
                     </div>
                 </div>
@@ -212,9 +212,9 @@
 
     /*About me page style*/
 
-    .hero-image {
+    {{!-- .hero-image {
         /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://www.cultureentertainment.us/wp-content/uploads/2018/09/Organizing-Your-Office-With-Wall-Art.jpg");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".resources/webpage/Organizing-Your-Office-With-Wall-Art.jpg");
         height: 25vh;
 
         position: relative;
@@ -222,7 +222,7 @@
         background-size: cover;
         background-repeat: round;
 
-    }
+    } --}}
 
     .profilePic {
         border-radius: 50%;
@@ -278,23 +278,23 @@
         $('#upload-carousel').carousel();
     });
 </script>
-<script id="upload-carousel" type="text/x-handlebars-template">
-<div style='margin: 20px'>
+{{!-- <script id="upload-carousel" type="text/x-handlebars-template"> --}}
+{{!-- <div style='margin: 20px'>
         <ul style='list-style-type: none; width:500px'>
             <h4 style='padding:10px; overflow: auto'>Uploaded Images</h4>
             {{#each this}}
             <li style='padding:10px; overflow: auto'>
                 <h3>{{{title}}}</h3>
-                <a class="carousel-item" href="#one!"><img src="upload/{{school}}/{{id}}-jon.png"></a>
+                <a class="carousel-item" href="{{count}}"><img src="upload/{{school}}/{{file}}"></a>
                 {{!-- <p>{{{description}}</p> --}}
-                {{#if approved}}
-                <h4>Approved</h4>
-                {{/if}}
+                {{!-- {{#if approved}} --}}
+                {{!-- <h4>Approved</h4> --}}
+                {{!-- {{/if}} --}}
                 
-            </li>
-            {{/each}}
+            {{!-- </li> --}}
+            {{!-- {{/each}} --}}
 
-        </ul>
-    </div>
+        {{!-- </ul>
+    </div> --}}
 
-</script>
+{{!-- </script> --}}
