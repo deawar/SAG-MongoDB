@@ -10,6 +10,7 @@ function addFile(form, sampleFile, name) {
   newArtwork.append('medium-input', form.medium);
   newArtwork.append('price-input', form.price);
   newArtwork.append('w-size-input', form.width);
+  newArtwork.append('school-input', form.school);
   console.log('newArtwork form after append: ', newArtwork);
   return newArtwork;
 }
@@ -50,6 +51,7 @@ $(document).ready(() => {
         height: $('#h-size-input').val().trim(),
         width: $('#w-size-input').val().trim(),
         price: $('#price-input').val().trim(),
+        school: $('#school-input').val().trim(),
         file: $('#sampleFile').val(),
       };
       console.log('newArtwork form: ', newArtworkform);

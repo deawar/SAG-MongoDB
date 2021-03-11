@@ -131,6 +131,7 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
     medium: req.medium,
     price: req.price,
     width: req.width,
+    school: req.school,
     img: {
       // eslint-disable-next-line max-len
       // data: fs.readFileSync(path.join(`${__dirname}/public/upload/${findSchoolName(req)}/${findId(req)}-${req.file.originalname}`)),
