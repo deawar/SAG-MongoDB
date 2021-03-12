@@ -1,9 +1,12 @@
 
                     <div class="upload">
-                        {{#unless submitted}}
+                        {{#if locals.message}}
+                            <div class="alert alert-success" role="alert">
+                                <strong>Upload Successful!</strong>
+                            </div>
                             <h3 id="create-err-msg"></h3>
                             <h3 id="err-msg"></h3> 
-                        {{/unless}}
+                        {{/if}}
                         {{#if submitted}}
                             {{#unless errors}}
                                 <div class="alert alert-success">
@@ -27,20 +30,20 @@
                                     {{!-- <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'> --}}
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="artist-email-input" name="artist-email-input" value="{{email}}" type="email" class="validate hoverable" required=""
+                                                <input id="artist_email_input" name="artist_email_input" value="{{email}}" type="email" class="validate hoverable" required=""
                                                     aria-required="true">
                                                 <label class="active" for="email">Artist Email</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="art-name-input" name="art-name-input" type="text" class="validate" required=""
+                                                <input id="art_name_input" name="art_name_input" type="text" class="validate" required=""
                                                     aria-required="true">
-                                                <label class="active" for="art-name">Art Piece Name</label>
+                                                <label class="active" for="art_name">Art Piece Name</label>
                                             </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <div class="col s12" id="medium-input-list">
+                                                <div class="col s12" id="medium_input-list">
                                                     <label>Medium - photograph, oil, acrylic, etc.</label>
-                                                    <select id="medium-input" name="medium-input" class="browser-default" required="">
+                                                    <select id="medium_input" name="medium_input" class="browser-default" required="">
                                                         <option value="" disabled selected>Medium...</option>
                                                         <option value="Painting-Oil">Painting - Oil</option>
                                                         <option value="Painting-Acrylic">Painting - Acrylic</option>
@@ -129,23 +132,23 @@
                                                 </div>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="description-input" name="description-input" type="text" class="validate" required=""
+                                                <input id="description_input" name="description_input" type="text" class="validate" required=""
                                                     aria-required="true">
                                                 <label class="active" for="description">Brief Description - Approx 140 chars</label>
                                             </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="h-size-input" name="h-size-input" type="number" class="validate" required=""
+                                                <input id="h_size_input" name="h_size_input" type="number" class="validate" required=""
                                                     aria-required="true">
                                                 <label class="active" for="size">Size: Height in inches</label>
                                             </div>    
                                             <div class="input-field col s6">
-                                                <input id="w-size-input" name="w-size-input" type="number" class="validate" required=""
+                                                <input id="w_size_input" name="w_size_input" type="number" class="validate" required=""
                                                     aria-required="true">
                                                 <label class="active" for="size">Size: Width in inches</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input id="d-size-input" name="d-size-input" type="number" class="validate" 
+                                                <input id="d_size_input" name="d_size_input" type="number" class="validate" 
                                                     aria-required="true">
                                                 <label class="active" for="size">Size: Depth in inches</label>
                                             </div>
@@ -166,7 +169,7 @@
                                         <div class="row">
                                             <div class="input-field col s12">
                                                 <i class="material-icons prefix">attach_money</i>
-                                                <input id="price-input" type="number" class="validate" name="price" required=""
+                                                <input id="price_input" type="number" class="validate" name="price" required=""
                                                     aria-required="true">
                                                 <label class="active" for="size">Starting Price: </label>
                                             </div>
@@ -175,19 +178,21 @@
                                             {{!-- <input type='submit' value='Upload!' id="fileUpload"/> --}}
                                             <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
                                             {{!-- <input id="fileUpload" type="file" name="sampleFiles" multiple="multiple"></form></br> --}}
-                                        </form>
                                         <hr>
                                         <div class="row">
                                         <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                                             <div class="input-field col s12">
-                                                <input disabled id="school-input" type="text" value="{{school}}">
+                                                <input disabled id="school_input" type="text" value="{{school}}">
                                                 <label for="school">School</label>
                                             </div>
                                         </div>
+                                        </form>
                                     </form>    
                                     
                                         <div class="progress">
-                                            <div class="progress-bar" role="progressbar"></div>
+                                            <div class="progress-bar" role="progressbar">
+                                                <span class="progress-bar">0%</span>
+                                            </div>
                                         </div>
                                         </div>
                                             <h3 id="art-upload"></h3>

@@ -23,7 +23,7 @@ const asyncMiddleware = require('../config/middleware/asyncMiddleware');
 
 const router = express.Router();
 app.use(express.static(`${__dirname}/public`));
-
+app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -91,16 +91,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 10000000 },
+  limits: { fileSize: 100000000 },
   fileFilter: helpers.imageFilter,
 }).single('sampleFile');
-// eslint-disable-next-line consistent-return
 
 // router.post('/upload', checkAuthenticated, upload.single('sampleFile'), (req, res) => {
 router.post('/upload', checkAuthenticated, upload, (req, res) => {
-  // let sampleFile;
-  console.log('Line 102 file_upload_controller req.body: ', req.body);
-  console.log('File_upload_controller File res.files: ', req.files);
+  console.log('====================================');
+  console.log('Line 101---------->price_input sent in req.body.price_input: ', req.body.price_input);
+  console.log('Line 102 ==>file_upload_controller req.body: ', req.body);
+  console.log('Line 103 ===>File_upload_controller File res.files: ', req.files);
   console.log('Text fields sent with file-req.body: ', req.body);
   const school = findSchoolName(req);
   let _id;
@@ -119,52 +119,73 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   const first_name = findFirstName(req);
   console.log('line 121-->File_name: ', req.file.filename);
   const fileExt = getFileType(req.file.filename);
-  console.log('File Extension: ', fileExt);
+  console.log('line 122------>File Extension: ', fileExt);
 
-  let newArtwork = new Artwork();
   const displayPath = uploadPath;
-  newArtwork = {
-    artist_email: req.email,
-    art_name: req.artwork_name,
-    description: req.description,
-    height: req.height,
-    medium: req.medium,
-    price: req.price,
-    width: req.width,
-    school: req.school,
+  const newArtwork = new Artwork({
+    artist_email_input: req.body.artist_email_input,
+    art_name_input: req.body.art_name_input,
+    depth: req.body.d_size_input,
+    description_input: req.body.description_input,
+    height: req.body.h_size_input,
+    medium_input: req.body.medium_input,
+    price: req.body.price_input,
+    width: req.body.w_size_input,
+    school: req.body.school_input,
+    approved: req.body.approved,
     img: {
       // eslint-disable-next-line max-len
       // data: fs.readFileSync(path.join(`${__dirname}/public/upload/${findSchoolName(req)}/${findId(req)}-${req.file.originalname}`)),
       data: fs.readFileSync(`./public/upload/${findSchoolName(req)}/${findId(req)}-${req.file.originalname}`),
       contentType: `image/${fileExt}`,
     },
-  };
+  });
   // newArtwork.create(newArtwork, (err, item) => {
   //   if (err) {
-  //     return console.log(err);
-  //   }
+  console.log('Line 145 newArtwork: ', newArtwork);
   const uploadedArtwork = `<img src="${displayPath}" width="200">`;
-  newArtwork.save((err, doc) => {
-    if (err) return console.error(err);
-    console.log('Document inserted succussfully!');
-    return res.render('userProfilepage', uploadedArtwork, school, (req, res));
-  });
-  // res.redirect('userProfilepage', uploadedArtwork);
-  return res.render('userProfilepage', uploadedArtwork, school, (req, res));
-  // });
-});
 
-router.get('/get-imgs', (req, res) => {
-  artwork.find({}, (err, items) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('An error occurred: ', err);
-    } else {
+  newArtwork.save()
+    .then((doc) => {
+      console.log('Document inserted succussfully!', doc);
+      res.locals.message = req.flash('success', 'Document inserted succussfully!');
+      return res.end('/userProfilepage', checkAuthenticated, (req, res));
+    })
+    .catch((err) => console.error(err));
+});
+// res.redirect('userProfilepage', uploadedArtwork);
+// return res.render('userProfilepage', uploadedArtwork, school, (req, res));
+// });
+// });
+
+router.get('/get-imgs', checkAuthenticated, (req, res, next) => {
+  if (req.isAuthenticated()) {
+    const getArtwork = new Artwork();
+    getArtwork.find({}, (err, items) => {
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
       const school = findSchoolName(req);
+      const getArtwork = {
+        id: req.session.passport.user,
+        artist_email: req.getArtwork.email,
+        depth: req.getArtwork.depth,
+        description_input: req.getArtwork.description_input,
+        height: req.getArtwork.h_size_input,
+        width: req.getArtwork.w_size_input,
+        medium_input: req.getArtwork.medium_input,
+        price: req.getArtwork.price_input,
+        school: req.getArtwork.school_input,
+        approved: req.getArtwork.approved,
+        img: req.getArtwork.img,
+      }
+        
 
       res.render('userProfilepage', { school, items });
-    }
-  });
+      
+    });
+  }
 });
 
 // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js

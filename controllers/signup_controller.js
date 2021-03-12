@@ -448,7 +448,7 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
       return done(null, user);
     });
   if (!user.secretToken || user.active === true || user.secretToken === ' ') {
-    req.flash('You have either already confirmed your account OR you may need to register');
+    req.flash('success', 'You have either already confirmed your account OR you may need to register');
     return res.status(404).redirect('/signup', { title: 'Register Page' });
   }
   console.log('Line 454------->User db output user.dataValues.secretToken:', user.dataValues.secretToken);

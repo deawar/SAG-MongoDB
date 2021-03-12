@@ -13,7 +13,10 @@ const validateEmail = function (email) {
 // eslint-disable-next-line prefer-destructuring
 const artworkSchema = new Schema({
   updated: { type: Date, default: Date.now },
-  artist_email: {
+  approved: {
+    type: Boolean,
+  },
+  artist_email_input: {
     type: String,
     trim: true,
     lowercase: true,
@@ -21,13 +24,21 @@ const artworkSchema = new Schema({
     validate: [validateEmail, 'Please fill a valid email address'],
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
   },
-  art_name: {
+  art_name_input: {
     type: String,
     trim: true,
     required: true,
   },
-  description: {
+  medium_input: {
     type: String,
+    trim: true,
+  },
+  description_input: {
+    type: String,
+    trim: true,
+  },
+  depth: {
+    type: Number,
     trim: true,
   },
   height: {
@@ -40,6 +51,11 @@ const artworkSchema = new Schema({
   },
   price: {
     type: Number,
+  },
+  school: {
+    type: String,
+    trim: true,
+    required: true,
   },
   img: {
     data: Buffer,
@@ -70,8 +86,12 @@ module.exports.getArtworkById = function (id, callback) {
   Artwork.findById(id, callback);
 };
 
+module.exports.getArtworkBySchool = function (id, callback) {
+  Artwork.findById(id, callback);
+};
+
 artworkSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique',
 });
 
-module.exports = mongoose.model('artwork', artworkSchema, 'artwork');
+module.exports = mongoose.model('artwork', artworkSchema);

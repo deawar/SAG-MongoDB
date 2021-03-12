@@ -75,7 +75,7 @@ router.get('/profile', checkAuthenticated, (req, res) => {
 
 // ROUTER TO DELETE ACCOUNT
 router.delete('/user/:account_id/:email', (req, res) => {
-  try{ 
+  try {
     console.log(`_id: ${req.params.account_id}`);
     console.log(`email: ${req.params.email}`);
 

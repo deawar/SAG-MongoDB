@@ -2,15 +2,16 @@ function addFile(form, sampleFile, name) {
   const newArtwork = new FormData();
   // newArtwork.append('formvalues', form);
   newArtwork.append('sampleFile', sampleFile[0], name);
-  newArtwork.append('art-name-input', form.artwork_name);
-  newArtwork.append('description-input', form.description);
-  newArtwork.append('d-size-input', form.depth);
-  newArtwork.append('artist-email-input', form.email);
-  newArtwork.append('h-size-input', form.height);
-  newArtwork.append('medium-input', form.medium);
-  newArtwork.append('price-input', form.price);
-  newArtwork.append('w-size-input', form.width);
-  newArtwork.append('school-input', form.school);
+  newArtwork.append('art_name_input', form.artwork_name);
+  newArtwork.append('description_input', form.description);
+  newArtwork.append('d_size_input', form.depth);
+  newArtwork.append('artist_email_input', form.email);
+  newArtwork.append('h_size_input', form.height);
+  newArtwork.append('medium_input', form.medium);
+  newArtwork.append('price_input', form.price);
+  newArtwork.append('w_size_input', form.width);
+  newArtwork.append('school_input', form.school);
+  newArtwork.append('approved', form.approved);
   console.log('newArtwork form after append: ', newArtwork);
   return newArtwork;
 }
@@ -23,7 +24,6 @@ $(document).ready(() => {
     // });
     // $('#fileUpload').on('change', function (event) {
     event.preventDefault();
-
     console.log('====================================');
     console.log('Upload Clicked!');
     console.log('====================================');
@@ -35,23 +35,25 @@ $(document).ready(() => {
     // FormData.append('file', $('#sampleFile').Filelist[0]file, sampleFile.name);
     console.log('====================================');
     console.log('sampleFile: ', sampleFile);
-    if ($('#artist-email-input').length && $('#artist-email-input').val().length
-      && $('#art-name-input').length && $('#art-name-input').val().length
-      && $('#medium-input').length && $('#medium-input').val().length
-      && $('#description-input').length && $('#description-input').val().length
-      && $('#h-size-input').length && $('#h-size-input').val().length
-      && $('#w-size-input').length && $('#w-size-input').val().length
-      && $('#price-input').length && $('#price-input').val().length
+    if ($('#artist_email_input').length && $('#artist_email_input').val().length
+      && $('#art_name_input').length && $('#art_name_input').val().length
+      && $('#medium_input').length && $('#medium_input').val().length
+      && $('#description_input').length && $('#description_input').val().length
+      && $('#h_size_input').length && $('#h_size_input').val().length
+      && $('#w_size_input').length && $('#w_size_input').val().length
+      && $('#price_input').length && $('#price_input').val().length
       && $('#sampleFile').length && $('#sampleFile').val().length) {
       const newArtworkform = {
-        email: $('#artist-email-input').val().trim(),
-        artwork_name: $('#art-name-input').val().trim(),
-        medium: $('#medium-input').val().trim(),
-        description: $('#description-input').val().trim(),
-        height: $('#h-size-input').val().trim(),
-        width: $('#w-size-input').val().trim(),
-        price: $('#price-input').val().trim(),
-        school: $('#school-input').val().trim(),
+        email: $('#artist_email_input').val().trim(),
+        artwork_name: $('#art_name_input').val().trim(),
+        medium: $('#medium_input').val().trim(),
+        depth: $('#d_size_input').val().trim(),
+        description: $('#description_input').val().trim(),
+        height: $('#h_size_input').val().trim(),
+        width: $('#w_size_input').val().trim(),
+        price: $('#price_input').val().trim(),
+        school: $('#school_input').val().trim(),
+        approved: false,
         file: $('#sampleFile').val(),
       };
       console.log('newArtwork form: ', newArtworkform);
@@ -61,8 +63,9 @@ $(document).ready(() => {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < sampleFile.length; i++) {
           let file = sampleFile[i];
+          let filename = file.name;
           console.log('====================================');
-          console.log('file.name: ', file.name);
+          console.log('file.name: ', filename);
           console.log('====================================');
           file = $('#sampleFile').prop('files')[0];
         }
@@ -77,10 +80,10 @@ $(document).ready(() => {
         if (newArtworkform.email.length > 0 && newArtworkform.artwork_name.length > 0
         && newArtworkform.medium.length > 0 && newArtworkform.description.length > 0
         && newArtworkform.height.length > 0 && newArtworkform.width.length > 0
-        && newArtworkform.price > 0) {
-        // console.log('files to upload: ', res.sampleFile);
-        // const fileUpload = req.file.path;
-          if (newArtwork !== '') {
+        && newArtworkform.price.length > 0) {
+          console.log('#####===========>is newArtwork null: ', newArtwork);
+          // const fileUpload = req.file.path;
+          if (newArtwork !== '' || !newArtwork) {
             try {
               $.ajax({
                 type: 'post',
@@ -91,41 +94,43 @@ $(document).ready(() => {
                 cache: false,
                 // eslint-disable-next-line object-shorthand
                 error: function (xhr, status, error) {
+                  $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
                   alert('Umm...something broke...', error);
                 },
-                success(response) {
-                  alert(response);
+                success(status, response) {
+                  $('#upload-err-msg').empty('').text(`**${status} Success! ${sampleFile[0].name} uploaded! **`);
+                  alert('Success! File uploaded!', response);
                 },
                 xhr() {
                   const xhr = new XMLHttpRequest();
 
                   // listen for the progress events
-                  xhr.upload.addEventListener('progress', (evt) => {
-                    if (evt.lengthComputable) {
-                    // calculate the percentage of upload completed
-                      let percentComplete = evt.loaded / evt.total;
-                      percentComplete = parseInt(percentComplete * 100, 10);
+                  // xhr.upload.addEventListener('progress', (evt) => {
+                  //   if (evt.lengthComputable) {
+                  //   // calculate the percentage of upload completed
+                  //     let percentComplete = evt.loaded / evt.total;
+                  //     percentComplete = parseInt(percentComplete * 100, 10);
 
-                      // update the Bootstrap progress bar with the new percentage
-                      $('.progress-bar').text(`${percentComplete}%`);
-                      $('.progress-bar').width(`${percentComplete}%`);
+                  //     // update the Bootstrap progress bar with the new percentage
+                  //     $('.progress-bar').text(`${percentComplete}%`);
+                  //     $('.progress-bar').width(`${percentComplete}%`);
 
-                      // once the upload reaches 100%, set the progress bar text to done
-                      if (percentComplete === 100) {
-                        $('.progress-bar').html('Done');
-                      }
-                    }
-                  }, false);
+                  //     // once the upload reaches 100%, set the progress bar text to done
+                  //     if (percentComplete === 100) {
+                  //       $('.progress-bar').html('Done');
+                  //     }
+                  //   }
+                  // }, false);
 
                   return xhr;
                 },
 
               }).then((res) => {
-                console.log('newArtwork.file: ', newArtwork.file);
+                console.log('Line 129 ================> res: ', res);
                 if (newArtwork.image !== undefined) {
                   window.location.replace('/profile');
                 } else {
-                  $('#art-upload').empty('').text(`These Files Uploaded: ${sampleFile.name}`);
+                  $('#art-upload').empty('').text(`This File Uploaded: ${sampleFile.name}`);
                   console.log(`** These Files Uploaded: ${sampleFile.name}`);
                 }
               }).then((res) => {
@@ -151,5 +156,14 @@ $(document).ready(() => {
       $('#upload-err-msg').empty('').text('**Please fill out entire form**');
     }
   });
+
+  // Render files in upload directories
+  let divimg = document.getElementById('image');
+  try {
+    $.ajax({
+      type: 'get',
+      url: '/get-imgs',
+      data: items,
+
   // });
 });
