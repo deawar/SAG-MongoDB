@@ -39,6 +39,7 @@
                                                     aria-required="true">
                                                 <label class="active" for="art_name">Art Piece Name</label>
                                             </div>
+                                        </div>
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <div class="col s12" id="medium_input-list">
@@ -136,6 +137,7 @@
                                                     aria-required="true">
                                                 <label class="active" for="description">Brief Description - Approx 140 chars</label>
                                             </div>
+                                        </div>    
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <input id="h_size_input" name="h_size_input" type="number" class="validate" required=""
@@ -179,8 +181,9 @@
                                             <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
                                             {{!-- <input id="fileUpload" type="file" name="sampleFiles" multiple="multiple"></form></br> --}}
                                         <hr>
+                                        </div>
                                         <div class="row">
-                                        <h3 style="font-size: 1.7vw;">School Affiliation</h3>
+                                          <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                                             <div class="input-field col s12">
                                                 <input disabled id="school_input" type="text" value="{{school}}">
                                                 <label for="school">School</label>
@@ -194,7 +197,7 @@
                                                 <span class="progress-bar">0%</span>
                                             </div>
                                         </div>
-                                        </div>
+                                        <div>
                                             <h3 id="art-upload"></h3>
                                             <h3 id="upload-err-msg"></h3>
                                             {{#if success}}
@@ -219,7 +222,4 @@
                         <a class="carousel-item" href="#five!"><img src="upload/{{school}}/{{id}}-{{req.file.originalname}}"></a>
                     
                     </div>
-                    
-                    </div>
-           
-  <script type="text/javascript" src="./js/upload.js"></script>
+<script type="text/javascript" src="./js/upload.js"></script>

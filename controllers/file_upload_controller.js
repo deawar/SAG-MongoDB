@@ -46,6 +46,19 @@ function findSchoolName(req) {
   return school;
 }
 
+// Find Email Fx
+function findEmail(req) {
+  // eslint-disable-next-line prefer-destructuring
+  let email;
+  if (req.user === null || req.user === undefined) {
+    email = 'Not Found';
+    return email;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  email = req.user.email;
+  return email;
+}
+
 // Find first_name Fx
 function findFirstName(req) {
   // eslint-disable-next-line prefer-destructuring
@@ -149,7 +162,7 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
     .then((doc) => {
       console.log('Document inserted succussfully!', doc);
       res.locals.message = req.flash('success', 'Document inserted succussfully!');
-      return res.end('/userProfilepage', checkAuthenticated, (req, res));
+      return res.status(200).end('{"success" : "Document Inserted Successfully", "status" : 200}', '/userProfilepage', checkAuthenticated, (req, res));
     })
     .catch((err) => console.error(err));
 });
@@ -158,33 +171,31 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
 // });
 // });
 
-router.get('/get-imgs', checkAuthenticated, (req, res, next) => {
-  if (req.isAuthenticated()) {
-    const getArtwork = new Artwork();
-    getArtwork.find({}, (err, items) => {
-      if (err) {
-        console.log(err);
-        return next(err);
-      }
-      const school = findSchoolName(req);
-      const getArtwork = {
-        id: req.session.passport.user,
-        artist_email: req.getArtwork.email,
-        depth: req.getArtwork.depth,
-        description_input: req.getArtwork.description_input,
-        height: req.getArtwork.h_size_input,
-        width: req.getArtwork.w_size_input,
-        medium_input: req.getArtwork.medium_input,
-        price: req.getArtwork.price_input,
-        school: req.getArtwork.school_input,
-        approved: req.getArtwork.approved,
-        img: req.getArtwork.img,
-      }
-        
+const newArtwork = require('../models/artwork');
 
-      res.render('userProfilepage', { school, items });
-      
-    });
+router.get('/get-imgs', checkAuthenticated, (req, res) => {
+  if (req.isAuthenticated()) {
+    const pics = [];
+    const query = { artist_email_input: findEmail(req) };
+    console.log('Email: ', query);
+    newArtwork.find(query, (err, items) => {
+      if (!items || items.length === 0) {
+        console.log(err);
+        return res.status(404).json({
+          err: 'No files exist',
+        });
+      }
+      console.log('*********> # of images: ', items.length);
+      for (let i = 0; i < items.length; ++i) {
+        const base = Buffer.from(items[i].img.data);
+        const conversion = base.toString('base64');
+        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
+        console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        pics.push(images);
+      }
+      return res.send(pics);
+    },
+    );
   }
 });
 

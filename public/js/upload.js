@@ -19,8 +19,8 @@ function addFile(form, sampleFile, name) {
 $(document).ready(() => {
   $('.modal').modal();
   $('#fileUpload').on('click', (event) => {
-    $('.progress-bar').text('0%');
-    $('.progress-bar').width('0%');
+    // $('.progress-bar').text('0%');
+    // $('.progress-bar').width('0%');
     // });
     // $('#fileUpload').on('change', function (event) {
     event.preventDefault();
@@ -63,17 +63,18 @@ $(document).ready(() => {
         // eslint-disable-next-line no-plusplus
         for (let i = 0; i < sampleFile.length; i++) {
           let file = sampleFile[i];
-          let filename = file.name;
+          const filename = file.name;
           console.log('====================================');
           console.log('file.name: ', filename);
           console.log('====================================');
           file = $('#sampleFile').prop('files')[0];
         }
         console.log('sampleFile[0]: ', sampleFile[0]);
-        let tmppath = URL.createObjectURL(sampleFile[0]);
+        const tmppath = URL.createObjectURL(sampleFile[0]);
         // newArkwork.append('file', $('#sampleFile'), tmppath);
         console.log('image value path: ', tmppath);
         $('#upload-err-msg').empty('');
+        $('#art-upload').empty('');
         const newArtwork = addFile(newArtworkform, $('#sampleFile').get(0).files, sampleFile.name);
         console.log('formData: ', newArtworkform);
         // newArtwork.append('files', sampleFile[0].file, sampleFile.name);
@@ -94,6 +95,9 @@ $(document).ready(() => {
                 cache: false,
                 // eslint-disable-next-line object-shorthand
                 error: function (xhr, status, error) {
+                  // $.each(xhr, (key, value) => {
+                  //   alert(key + ": " + value);
+                  // });
                   $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
                   alert('Umm...something broke...', error);
                 },
@@ -101,36 +105,38 @@ $(document).ready(() => {
                   $('#upload-err-msg').empty('').text(`**${status} Success! ${sampleFile[0].name} uploaded! **`);
                   alert('Success! File uploaded!', response);
                 },
-                xhr() {
-                  const xhr = new XMLHttpRequest();
 
-                  // listen for the progress events
-                  // xhr.upload.addEventListener('progress', (evt) => {
-                  //   if (evt.lengthComputable) {
-                  //   // calculate the percentage of upload completed
-                  //     let percentComplete = evt.loaded / evt.total;
-                  //     percentComplete = parseInt(percentComplete * 100, 10);
+                // xhr() {
+                //   const xhr = new XMLHttpRequest();
 
-                  //     // update the Bootstrap progress bar with the new percentage
-                  //     $('.progress-bar').text(`${percentComplete}%`);
-                  //     $('.progress-bar').width(`${percentComplete}%`);
+                // listen for the progress events
+                // xhr.upload.addEventListener('progress', (evt) => {
+                //   if (evt.lengthComputable) {
+                //   // calculate the percentage of upload completed
+                //     let percentComplete = evt.loaded / evt.total;
+                //     percentComplete = parseInt(percentComplete * 100, 10);
 
-                  //     // once the upload reaches 100%, set the progress bar text to done
-                  //     if (percentComplete === 100) {
-                  //       $('.progress-bar').html('Done');
-                  //     }
-                  //   }
-                  // }, false);
+                //     // update the Bootstrap progress bar with the new percentage
+                //     $('.progress-bar').text(`${percentComplete}%`);
+                //     $('.progress-bar').width(`${percentComplete}%`);
 
-                  return xhr;
-                },
+                //     // once the upload reaches 100%, set the progress bar text to done
+                //     if (percentComplete === 100) {
+                //       $('.progress-bar').html('Done');
+                //     }
+                //   }
+                // }, false);
+
+                //   return xhr;
+                // },
 
               }).then((res) => {
-                console.log('Line 129 ================> res: ', res);
+                console.log('Line 133 ================> res: ', res);
                 if (newArtwork.image !== undefined) {
+                  console.log('Line 135 in .then(res)');
                   window.location.replace('/profile');
                 } else {
-                  $('#art-upload').empty('').text(`This File Uploaded: ${sampleFile.name}`);
+                  $('#upload-err-msg').empty('').text(`This File Uploaded: ${sampleFile.name}`);
                   console.log(`** These Files Uploaded: ${sampleFile.name}`);
                 }
               }).then((res) => {
@@ -158,12 +164,49 @@ $(document).ready(() => {
   });
 
   // Render files in upload directories
-  let divimg = document.getElementById('image');
+  const divimg = document.getElementById('image');
+  const items = [];
   try {
     $.ajax({
       type: 'get',
       url: '/get-imgs',
       data: items,
-
-  // });
+    })
+      .then((res) => {
+        const picrow = $('#uldRow');
+        const divcol = $('<div/>')
+          .addClass('col s12 m6 l3')
+          .attr('id', 'ulDisplay0')
+          .appendTo(picrow);
+        $(divcol);
+        let count = 0;
+        // eslint-disable-next-line no-loop-func
+        $.each(res, (i) => {
+          console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
+          if (count < 4) {
+            console.log('added: ', divcol);
+            console.log(`res[${i}]`);
+            const img = $('<img>')
+              .addClass('responsive-img');
+            img.attr('src', res[i]);
+            img.appendTo(divcol);
+            console.log('img: ', img);
+            count++;
+          } else {
+            $(divcol)
+              .attr('id', `ulDisplay${i}`)
+              .appendTo(picrow);
+            count = 0;
+          }
+          console.log('in if then divcol: ', divcol);
+        });
+        // const li = $('<li/>')
+        // .text(res[i])
+        // .appendTo(cpics);
+        // eslint-disable-next-line no-plusplus
+      });
+  } catch (err) {
+    console.log(`Something went wrong ${err}`);
+    $('#err-msg').empty('').text('**images not found.**');
+  }
 });
