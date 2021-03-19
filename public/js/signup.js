@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function(){
               console.log('=====================================');
               let autoInput = document.querySelectorAll('.autocomplete');
               M.Autocomplete.init(autoInput,{
-                data: schoolObj
+                data: schoolObj,
+                minLength: 2
               });
             }
           };
@@ -43,27 +44,7 @@ $(document).ready(() => {
   // Code here handles what happens when a user submits a new account.
 
   console.log('Signup.js loaded');
-  // $('#school-input').val().searchInput.on('keyup', function(){
-  //   console.log('line 42----->query: ', searchInput);
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: `autocomplete/?q=${searchInput}`,
-  //     success: function(response) {
-  //       let RecievedData = JSON.parse(response);
-  //       let schoolList = {};
-  //       for (let i= 0; i < schoolList.length; i++) {
-  //         schoolList[RecievedData[i].schoolname] = ReceivedData[i];
-  //       } 
-  //       $('input.autocomplete').autocomplete({
-  //         data:schoolList,
-  //         minLength: 1
-  //       });
-  //     }
-  
-  //   });
 
-  // });
- 
   // Password conpare code
   function matchPassword(pw1, pw2) {
     console.log('1st PW: ', pw1);
