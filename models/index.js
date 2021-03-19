@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 exports.User = require('./user');
+// exports.School = require('./school');
 
 const basename = path.basename(__filename);
 

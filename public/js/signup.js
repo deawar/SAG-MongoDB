@@ -1,9 +1,69 @@
+document.addEventListener('DOMContentLoaded', function(){
+  let searchInput = document.getElementById('school-input');
+  searchInput.addEventListener('input', getQuery);
+
+    function getQuery(){
+          let query = document.getElementById('school-input').value;
+          console.log(query);
+    
+          if(query === ''){
+          console.log('Search again');
+      }else {
+          let url = `autocomplete/?q=${query}`;
+          let xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200){
+              console.log(this.responseText);
+              let ReceivedData = JSON.parse(this.responseText);
+              const arrayToObject = (array, keyField) =>
+                array.reduce((obj, item) => {
+                  obj[item[keyField]] = item
+                  return obj
+                }, {})
+              const schoolObj = arrayToObject(ReceivedData, 'school');
+              
+              console.log('=====================================');
+              console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
+              console.log('=====================================');
+              let autoInput = document.querySelectorAll('.autocomplete');
+              M.Autocomplete.init(autoInput,{
+                data: schoolObj
+              });
+            }
+          };
+          xhr.open('GET',url,true);
+          xhr.send(query);
+      }
+    }
+
+});
+
 $(document).ready(() => {
   $('.modal').modal();
   // Code here handles what happens when a user submits a new account.
 
   console.log('Signup.js loaded');
+  // $('#school-input').val().searchInput.on('keyup', function(){
+  //   console.log('line 42----->query: ', searchInput);
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: `autocomplete/?q=${searchInput}`,
+  //     success: function(response) {
+  //       let RecievedData = JSON.parse(response);
+  //       let schoolList = {};
+  //       for (let i= 0; i < schoolList.length; i++) {
+  //         schoolList[RecievedData[i].schoolname] = ReceivedData[i];
+  //       } 
+  //       $('input.autocomplete').autocomplete({
+  //         data:schoolList,
+  //         minLength: 1
+  //       });
+  //     }
+  
+  //   });
 
+  // });
+ 
   // Password conpare code
   function matchPassword(pw1, pw2) {
     console.log('1st PW: ', pw1);

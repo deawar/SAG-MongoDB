@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const os = require('os');
 const db = require('../models/index.js');
 const User = require('../models/user');
+const School = require('../models/school');
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
 const smtpTransport = require('../config/verify'); // { sendMail }
@@ -15,6 +16,11 @@ const PORT = process.env.PORT || 3000;
 // const { checkNotAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
+
+// REGEX Function for autocomplete
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 // HTML ROUTE FOR SIGNUP SCREEN
 router.get('/signup', async (req, res) => {
@@ -33,6 +39,39 @@ router.get('/privacypolicy', (req, res) => {
     title: 'Privacy Policy Page',
     school: 'Make Art, Have Fun!',
   });
+});
+
+// ROUTE TO AUTOCOMPLETE SCHOOL NAME FROM DB
+let schoolname = School.find({});
+router.get('/autocomplete', (req, res, next) => {
+  if (req.query.q) {
+    const regex = new RegExp(escapeRegex(req.query.q,'i'));
+    let mysearch = req.query.q;
+    console.log('regex: ',regex); 
+    console.log('mysearch: ', mysearch);
+    // let findSchool = 
+    schoolname.find({ SchoolName: {'$regex': regex, '$options': 'i'}}, function(err, data) {
+      let result = [];
+      if (!err){
+        if(data && data.length && data.length > 0){
+          data.forEach(schoolname => {
+            let obj = {
+              id: schoolname._id,
+              school: schoolname.SchoolName[0],
+              college_board_id: schoolname.CollegeBoardID,
+            };
+            console.log('obj: ', obj);
+            result.push(obj);
+          });
+        }
+        res.jsonp(result);
+      } else {
+        console.log(err);
+      } 
+      console.log('LINE 59================================>OutPut of find(): ',result);
+    
+    });
+  } 
 });
 
 // ROUTE TO SIGNUP A NEW USER
