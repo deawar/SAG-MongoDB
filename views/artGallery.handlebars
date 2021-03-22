@@ -4,51 +4,60 @@
         <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
     </div>
 <div class="container" id="mainContent2">
-  <div class="card" id="profilePageCard" style="width: 90%; margin-left:12%">
+  <div class="card" id="profilePageCard" style="width: 90%;">
     <h2>Welcome to the {{school}} Art Gallery</h2>
     <div class="responsive">
       <div class="gallery">
-        {{!-- <a target="_blank" href="https://www.goodnet.org/photos/281x197/31606_hd.jpg"> --}}
-        <a target="_blank" href="./resources/webpage/31606_hd.jpg"></a>
-          <img src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-        </a>
+        <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
 
     <div class="responsive">
       <div class="gallery">
-        {{!-- <a target="_blank" href="https://img-lumas-avensogmbh1.netdna-ssl.com/showimg_ime50_full.jpg"> --}}
-        <a target="_blank" href="./resources/webpage/showimg_ime50_full.jpg">
-          <img src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
-            height="400">
-        </a>
+        <img class="materialboxed" src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
+          height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        {{!-- <a target="_blank" 
-          href="https://static.greatbigcanvas.com/images/singlecanvas_thick_none/diane-millsap/frenchmen-street-new-orleans,2348142.jpg"> --}}
-        <a target="_blank" href="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg">
-          <img src="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg"
-            alt="Northern Lights" width="100%" height="400">
-        </a>
+        <img class="materialboxed" src="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg"
+          alt="Northern Lights" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
 <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg">
-          <img
-            src="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg"
-            alt="Mountains" width="100%" height="400">
-        </a>
+        <img class="materialboxed" src="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg" alt="Mountains" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
     <div class="row">
@@ -56,45 +65,59 @@
     </div>
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/31606_hd.jpg">
-          <img src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-        </a>
+          <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/showimg_ime50_full.jpg">
-          <img src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
+          <img class="materialboxed" src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
             height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg"
             alt="Northern Lights" width="100%" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg"
             alt="Mountains" width="100%" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
     <div class="row">
@@ -102,45 +125,59 @@
     </div>
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/31606_hd.jpg">
-          <img src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-        </a>
+          <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/showimg_ime50_full.jpg">
-          <img src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
+          <img class="materialboxed" src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
             height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg"
             alt="Northern Lights" width="100%" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg"
             alt="Mountains" width="100%" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
     <div class="row">
@@ -150,45 +187,59 @@
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/31606_hd.jpg">
-          <img src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-        </a>
+          <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank" href="./resources/webpage/showimg_ime50_full.jpg">
-          <img src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
+          <img class="materialboxed" src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
             height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/frenchmen-street-new-orleans,2348142.jpg"
             alt="Northern Lights" width="600" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
 
     <div class="responsive">
       <div class="gallery">
-        <a target="_blank"
-          href="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg">
-          <img
+          <img class="materialboxed"
             src="./resources/webpage/M41573-1_john-biggers-women-ghana-oil-masonite-board-circa-1960-painting.jpg"
             alt="Mountains" width="600" height="400">
-        </a>
+        <div class="art_name_input">Title: {{art_name_input}}</div>
+        <div class="artist_name">Artist: {{artist_name}}</div>
         <div class="desc">Add a description of the image here</div>
+        {{#if bid}}
+        <div class="currentPrice">${{currentPrice}}.00</div>
+        <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+        {{/if}}
       </div>
     </div>
     <div class="row">
@@ -200,3 +251,4 @@
 </div>
 
 </div>
+<script type="text/javascript" src="./js/gallery.js"></script>

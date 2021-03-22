@@ -1,42 +1,40 @@
-document.addEventListener('DOMContentLoaded', function(){
-  let searchInput = document.getElementById('school-input');
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('school-input');
   searchInput.addEventListener('input', getQuery);
 
-    function getQuery(){
-          let query = document.getElementById('school-input').value;
-          console.log(query);
-    
-          if(query === ''){
-          console.log('Search again');
-      }else {
-          let url = `autocomplete/?q=${query}`;
-          let xhr = new XMLHttpRequest();
-          xhr.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200){
-              console.log(this.responseText);
-              let ReceivedData = JSON.parse(this.responseText);
-              const arrayToObject = (array, keyField) =>
-                array.reduce((obj, item) => {
-                  obj[item[keyField]] = item
-                  return obj
-                }, {})
-              const schoolObj = arrayToObject(ReceivedData, 'school');
-              
-              console.log('=====================================');
-              console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
-              console.log('=====================================');
-              let autoInput = document.querySelectorAll('.autocomplete');
-              M.Autocomplete.init(autoInput,{
-                data: schoolObj,
-                minLength: 2
-              });
-            }
-          };
-          xhr.open('GET',url,true);
-          xhr.send(query);
-      }
-    }
+  function getQuery() {
+    const query = document.getElementById('school-input').value;
+    console.log(query);
 
+    if (query === '') {
+      console.log('Search again');
+    } else {
+      const url = `autocomplete/?q=${query}`;
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          console.log(this.responseText);
+          const ReceivedData = JSON.parse(this.responseText);
+          const arrayToObject = (array, keyField) => array.reduce((obj, item) => {
+            obj[item[keyField]] = item;
+            return obj;
+          }, {});
+          const schoolObj = arrayToObject(ReceivedData, 'school');
+
+          console.log('=====================================');
+          console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
+          console.log('=====================================');
+          const autoInput = document.querySelectorAll('.autocomplete');
+          M.Autocomplete.init(autoInput, {
+            data: schoolObj,
+            minLength: 1,
+          });
+        }
+      };
+      xhr.open('GET', url, true);
+      xhr.send(query);
+    }
+  }
 });
 
 $(document).ready(() => {

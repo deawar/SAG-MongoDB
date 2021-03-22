@@ -2,7 +2,6 @@ const path = require('path');
 
 const imageFilter = function (req, file, cb) {
   // Accept images only
-  console.log('helpers file req.file: ', req.file);
   // Allowed ext
   const filetypes = /(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|webp|WEBP)/;
   // Check ext
