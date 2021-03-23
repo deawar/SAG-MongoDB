@@ -1,14 +1,9 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable camelcase */
 const express = require('express');
 const flash = require('express-flash-notification');
-const session = require('express-session');
-const process = require('process');
 const bodyParser = require('body-parser');
-const path = require('path');
 const multer = require('multer');
-// const formidable = require('formidable');
-const os = require('os');
-const mongoose = require('mongoose');
 const passport = require('passport');
 const fs = require('fs');
 const Artwork = require('../models/artwork');
@@ -116,8 +111,8 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   console.log('Line 103 ===>File_upload_controller File res.files: ', req.files);
   console.log('Text fields sent with file-req.body: ', req.body);
   const school = findSchoolName(req);
-  let _id;
   // eslint-disable-next-line no-underscore-dangle
+  let _id;
   _id = findId(req);
   console.log('====================================');
   console.log('_id: ', _id);
