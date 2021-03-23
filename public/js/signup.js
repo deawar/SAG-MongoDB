@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
               let autoInput = document.querySelectorAll('.autocomplete');
               M.Autocomplete.init(autoInput,{
                 data: schoolObj,
-                minLength: 2
+                minLength: 1
               });
             }
           };
