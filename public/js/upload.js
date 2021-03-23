@@ -173,10 +173,7 @@ $(document).ready(() => {
       data: items,
     })
       .then((res) => {
-        const picrow = $('#ulDisplay');
-        const delButton = $('button').on('click', function () {
-          $(this).parent().remove();
-        });
+        const picrow = $('#uldRow');
         const divcol = $('<div/>')
           .addClass('col s12 m6 l3')
           .attr('id', 'ulDisplay0')
@@ -192,14 +189,13 @@ $(document).ready(() => {
             const img = $('<img>')
               .addClass('responsive-img');
             img.attr('src', res[i]);
-            // delButton.append(img);
             img.appendTo(divcol);
             console.log('img: ', img);
             count++;
           } else {
             $(divcol)
               .attr('id', `ulDisplay${i}`)
-              .prependTo(picrow);
+              .appendTo(picrow);
             count = 0;
           }
           console.log('in if then divcol: ', divcol);
