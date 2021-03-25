@@ -171,6 +171,7 @@ const newArtwork = require('../models/artwork');
 router.get('/get-imgs', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const pics = [];
+    let artInfo = {};
     const query = { artist_email_input: findEmail(req) };
     console.log('Email: ', query);
     newArtwork.find(query, (err, items) => {
@@ -182,15 +183,30 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
       }
       console.log('*********> # of images: ', items.length);
       for (let i = 0; i < items.length; ++i) {
+        console.log('===============> items[i]._id: ', items[i]._id);
         const base = Buffer.from(items[i].img.data);
         const conversion = base.toString('base64');
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        // console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        artInfo = {
+          artId: items[i]._id,
+          artistEmail: items[i].artist_email_input,
+          artName: items[i].art_name_input,
+          artDesc: items[i].description_input,
+          artMedium: items[i].medium_input,
+          artHeight: items[i].height,
+          artWidth: items[i].width,
+          artDepth: items[i].depth,
+          artPrice: items[i].price,
+          artApproved: items[i].approved,
+        };
+        pics.push(artInfo);
         pics.push(images);
+        console.log('------------->artInfo after artInfo push: ', artInfo);
+        console.log('------------->pics after artInfo push: ', pics[i].artId);
       }
-      return res.send(pics);
-    },
-    );
+      return res.status(200).send(pics);
+    });
   }
 });
 

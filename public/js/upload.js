@@ -18,6 +18,7 @@ function addFile(form, sampleFile, name) {
 
 $(document).ready(() => {
   $('.modal').modal();
+  $('.materialboxed').materialbox();
   $('#fileUpload').on('click', (event) => {
     // $('.progress-bar').text('0%');
     // $('.progress-bar').width('0%');
@@ -164,7 +165,7 @@ $(document).ready(() => {
   });
 
   // Render files in upload directories
-  const divimg = document.getElementById('image');
+  // const divimg = document.getElementById('image');
   const items = [];
   try {
     $.ajax({
@@ -173,32 +174,66 @@ $(document).ready(() => {
       data: items,
     })
       .then((res) => {
-        const picrow = $('#uldRow');
-        const divcol = $('<div/>')
-          .addClass('col s12 m6 l3')
-          .attr('id', 'ulDisplay0')
-          .appendTo(picrow);
-        $(divcol);
         let count = 0;
         // eslint-disable-next-line no-loop-func
         $.each(res, (i) => {
-          console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
-          if (count < 4) {
-            console.log('added: ', divcol);
-            console.log(`res[${i}]`);
-            const img = $('<img>')
-              .addClass('responsive-img');
-            img.attr('src', res[i]);
-            img.appendTo(divcol);
-            console.log('img: ', img);
-            count++;
+          let respdiv = $('<div>')
+            .addClass('responsive');
+          let picrow = $('<div>')
+            .addClass('gallery');
+          let divcol = $('<div/>')
+            .addClass('gallery');
+          if (!res[i].artId || res[i].artId === undefined) {
+            respdiv = $('<div>')
+              .addClass('responsive')
+              .attr('id', `resp${count}`)
+              .prependTo('#startGal');
+            picrow = $('<div>')
+              .addClass('gallery')
+              .attr('id', `#row${count}`)
+              .prependTo(respdiv);
+            divcol = $('<div/>')
+              .addClass('gallery')
+              .attr('id', `ulimage${count}`)
+              .prependTo(picrow);
+            $(divcol);
           } else {
-            $(divcol)
-              .attr('id', `ulDisplay${i}`)
-              .appendTo(picrow);
-            count = 0;
+            console.log('trying to add Title Div to <img>: ', res[count].artName);
+            console.log(`<img${count + 1}>`);
           }
+          console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
+          if (count % 4 !== 0) {
+            console.log('added: ', divcol);
+            console.log(`res[${i}.artId] ${res[i].artId}`);
+            const img = $('<img>')
+              .addClass('materialboxed')
+              .addClass('responsive-img')
+              .attr('id', `img${count}`)
+              .attr('src', res[count])
+              .prependTo(picrow);
+            $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
+            $(`<div>Artist Email: ${res[count - 1].artistEmail}</div>`).appendTo(picrow);
+            $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
+            $
+            console.log(`res[${count}]._id`);
+          } else {
+            const img = $('<img>')
+              .addClass('materialboxed')
+              .addClass('responsive-img')
+              .attr('id', `img${count}`)
+              .attr('src', res[count])
+              .prependTo(picrow);
+            // $(`<div>Title: ${res[count].artName}</div>`).append(picrow);
+            $('<div>' + '<br>' + '</div>')
+              .addClass('row')
+              .attr('id', `ulDisplay${count}`)
+              .appendTo(respdiv);
+            // count = 0;
+          }
+          // eslint-disable-next-line no-plusplus
+          count++;
           console.log('in if then divcol: ', divcol);
+          $('.materialboxed').materialbox();
         });
         // const li = $('<li/>')
         // .text(res[i])

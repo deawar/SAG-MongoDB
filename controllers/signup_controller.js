@@ -42,20 +42,20 @@ router.get('/privacypolicy', (req, res) => {
 });
 
 // ROUTE TO AUTOCOMPLETE SCHOOL NAME FROM DB
-let schoolname = School.find({});
+const schoolname = School.find({});
 router.get('/autocomplete', (req, res, next) => {
   if (req.query.q) {
     const regex = new RegExp(escapeRegex(req.query.q,'i'));
-    let mysearch = req.query.q;
+    const mysearch = req.query.q;
     console.log('regex: ',regex); 
     console.log('mysearch: ', mysearch);
     // let findSchool = 
-    schoolname.find({ SchoolName: {'$regex': regex, '$options': 'i'}}, function(err, data) {
-      let result = [];
-      if (!err){
-        if(data && data.length && data.length > 0){
-          data.forEach(schoolname => {
-            let obj = {
+    schoolname.find({ SchoolName: { $regex: regex, $options: 'i' }}, function(err, data) {
+      const result = [];
+      if (!err) {
+        if (data && data.length && data.length > 0) {
+          data.forEach((schoolname) => {
+            const obj = {
               id: schoolname._id,
               school: schoolname.SchoolName[0],
               college_board_id: schoolname.CollegeBoardID,
@@ -67,11 +67,10 @@ router.get('/autocomplete', (req, res, next) => {
         res.jsonp(result);
       } else {
         console.log(err);
-      } 
+      }
       console.log('LINE 59================================>OutPut of find(): ',result);
-    
     });
-  } 
+  }
 });
 
 // ROUTE TO SIGNUP A NEW USER
@@ -135,7 +134,7 @@ router.post('/send', (req, res) => {
     secretToken = user.secretToken;
     let school = user.school;
     // eslint-disable-next-line no-cond-assign
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
       link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
     } else {
       // eslint-disable-next-line prefer-template
