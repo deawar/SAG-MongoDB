@@ -10,11 +10,14 @@
         <div id="aboutMe" class="tabcontent">
 
             <div class="hero-image">
-                <img class="responsive-img img-floating profilePic" style="text-align: center;" src="./resources/SAGL.png" alt="Avatar">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
                 {{!-- <img src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"
-                    alt="Avatar" class="img-floating profilePic"> --}}
+                    alt="Avatar" class="img-floating profilePic">{{!-- <img src="{{profileAvatar}}"
+                    alt="Avatar" class="img-floating profilePic">  need to make this a handlebars varible --}}
             </div>
-            <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
+
+
+            <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
                 <div>
                     <h3 style="font-size: 1.7vw;">Account Information</h3>
                     <hr>
@@ -165,12 +168,14 @@
 
 
             <div id="About" class="tabcontent">
-                <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                    <h3>About</h3>
-                    <p>Information about the artist and their favorite medium.</p>
-                </div>
+        <div class="hero-image">
+            <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+        </div>
+            <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+                <h3>About</h3>
+                <p>Who we are and what we do.</p>
             </div>
-
+        </div>
     </div>
 </div>
 
