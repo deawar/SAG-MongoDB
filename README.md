@@ -7,7 +7,7 @@ SilentAuctionGallery using a MongoDB vs MySQL backend.
 This is a fork of the SilentAuctionGallery Project found at [ankmud01/SilentAuctionGallery](https://github.com/ankmud01/SilentAuctionGallery).
 
 ## Authors: 
-Dean Warren and Jonathan Kelley using the above mentiond project as it's base.
+Dean Warren and Jonathan Kelley using the above mentioned project as it's base.
 
 ## Table of Contents
 =====================
@@ -53,9 +53,10 @@ TWILIO_ACC_SID='your Twilio SID here'
 TWILIO_AUTH_TOKEN=your Twilio Auth_Token here'
 TWILIO_PHONE_NUM='Twilio Phone Number'
 ```
-
+You will also need to setup a Mongo Database either locally or on a Mongo DB provider of your choice. Please refer to
+[Install MongoDB Community Edition](https://docs.mongodb.com/manual/administration/install-community/) for step by step instructions to setup MongoDB locally.
 ## License
-MIT
+[MIT](https://github.com/git/git-scm.com/blob/master/MIT-LICENSE.txt)
 
 ## Usage
 I am a highschool art teacher whose students were unable to have a silent auction to display and sell their work due to COVID-19. I want to be able to display my students' work in a professional manner. Each artist will have a Bio page and thumbnails of their art that can be enlarged on click. 
