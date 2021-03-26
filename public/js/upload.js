@@ -95,42 +95,19 @@ $(document).ready(() => {
                 contentType: false,
                 cache: false,
                 // eslint-disable-next-line object-shorthand
-                error: function (xhr, status, error) {
+                success(status, response) {
+                  console.log('status: ', status.art_name_input);
+                  $('#upload-err-msg').empty('').text(`**${status} Success! ${sampleFile[0].name} uploaded! **`);
+                  $('#FileAction-modal').modal('open');
+                  // alert('Success! File uploaded!', response);
+                },
+                error(status, error) {
                   // $.each(xhr, (key, value) => {
                   //   alert(key + ": " + value);
                   // });
                   $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
                   alert('Umm...something broke...', error);
                 },
-                success(status, response) {
-                  $('#upload-err-msg').empty('').text(`**${status} Success! ${sampleFile[0].name} uploaded! **`);
-                  alert('Success! File uploaded!', response);
-                },
-
-                // xhr() {
-                //   const xhr = new XMLHttpRequest();
-
-                // listen for the progress events
-                // xhr.upload.addEventListener('progress', (evt) => {
-                //   if (evt.lengthComputable) {
-                //   // calculate the percentage of upload completed
-                //     let percentComplete = evt.loaded / evt.total;
-                //     percentComplete = parseInt(percentComplete * 100, 10);
-
-                //     // update the Bootstrap progress bar with the new percentage
-                //     $('.progress-bar').text(`${percentComplete}%`);
-                //     $('.progress-bar').width(`${percentComplete}%`);
-
-                //     // once the upload reaches 100%, set the progress bar text to done
-                //     if (percentComplete === 100) {
-                //       $('.progress-bar').html('Done');
-                //     }
-                //   }
-                // }, false);
-
-                //   return xhr;
-                // },
-
               }).then((res) => {
                 console.log('Line 133 ================> res: ', res);
                 if (newArtwork.image !== undefined) {
@@ -164,6 +141,41 @@ $(document).ready(() => {
     }
   });
 
+  // Delete artwork Button
+  $('#startGal').on('click', '.remove', function () {
+    console.log('Delete Clicked!');
+    console.log('id to remove: ', this.id);
+    const { id } = this;
+    const split_id = id.split('-');
+    const deleteindex = split_id[1];
+    try {
+      $.ajax({
+        type: 'post',
+        url: '/delete',
+        data: { _id: deleteindex },
+        success(status, response) {
+          console.log('status: ', status.art_name_input);
+          $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} removed from database! **`);
+          $('#FileAction-modal').modal('open');
+          //alert('Success! File removed!', response);
+        },
+        error(status, error) {
+          // $.each(xhr, (key, value) => {
+          //   alert(key + ": " + value);
+          // });
+          $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
+          alert('Umm...something broke...', error);
+        },
+      })
+        .then((res) => {
+        });
+    } catch (err) {
+      console.log(`Something went wrong ${err}`);
+      $('#err-msg').empty('').text('**images not Deleted.**');
+    }
+    $(`#resp-${deleteindex}`).remove();
+  });
+
   // Render files in upload directories
   // const divimg = document.getElementById('image');
   const items = [];
@@ -182,11 +194,13 @@ $(document).ready(() => {
           let picrow = $('<div>')
             .addClass('gallery');
           let divcol = $('<div/>')
-            .addClass('gallery');
+            .addClass('gallery')
+            .attr('style', 'overflow-wrap: normal');
+          const delBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable remove" value="Delete"><i class="material-icons right">delete</i>Delete</a>');
           if (!res[i].artId || res[i].artId === undefined) {
             respdiv = $('<div>')
               .addClass('responsive')
-              .attr('id', `resp${count}`)
+              .attr('id', `resp-${res[count - 1].artId}`)
               .prependTo('#startGal');
             picrow = $('<div>')
               .addClass('gallery')
@@ -214,7 +228,8 @@ $(document).ready(() => {
             $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
             $(`<div>Artist Email: ${res[count - 1].artistEmail}</div>`).appendTo(picrow);
             $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
-            $
+            $(delBut).attr('id', `del-${res[count - 1].artId}`);
+            $(picrow).append(delBut);
             console.log(`res[${count}]._id`);
           } else {
             const img = $('<img>')

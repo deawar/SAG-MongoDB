@@ -2,7 +2,10 @@
 form.login {
   margin-top: 90%;
 }
-
+.btn, .btn-small, .btn-large {
+  border-radius: 5px;
+  margin: 5px;
+}
 #err-msg, #email-err-msg, #Footer-err-msg, #upload-err-msg {
   color: red;
   text-align: center;

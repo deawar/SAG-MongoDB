@@ -150,16 +150,19 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   });
   // newArtwork.create(newArtwork, (err, item) => {
   //   if (err) {
-  console.log('Line 145 newArtwork: ', newArtwork);
+  console.log('Line 153 newArtwork: ', newArtwork);
   const uploadedArtwork = `<img src="${displayPath}" width="200">`;
 
   newArtwork.save()
-    .then((doc) => {
-      console.log('Document inserted succussfully!', doc);
-      res.locals.message = req.flash('success', 'Document inserted succussfully!');
-      return res.status(200).end('{"success" : "Document Inserted Successfully", "status" : 200}', '/userProfilepage', checkAuthenticated, (req, res));
+    .then((artwork) => {
+      console.log('Document inserted succussfully!', artwork);
+      res.locals.message = req.flash('success', `Document ${req.body.art_name_input} inserted succussfully!`);
+      return res.status(200).end('success', `Document ${req.body.art_name_input} Inserted Successfully!`, '/userProfilepage', checkAuthenticated, (req, res));
     })
-    .catch((err) => console.error(err));
+    .catch((error) => {
+      console.error(error);
+      res.send(400, 'Bad Request');
+    });
 });
 // res.redirect('userProfilepage', uploadedArtwork);
 // return res.render('userProfilepage', uploadedArtwork, school, (req, res));
@@ -189,6 +192,7 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
         // console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
         artInfo = {
+          // eslint-disable-next-line no-underscore-dangle
           artId: items[i]._id,
           artistEmail: items[i].artist_email_input,
           artName: items[i].art_name_input,
@@ -208,6 +212,19 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
       return res.status(200).send(pics);
     });
   }
+});
+// Delete artwork by _id
+router.post('/delete/', (req, res) => {
+  console.log('req.body: ', req.body);
+  newArtwork.findByIdAndDelete((req.params.id, req.body),
+    (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(data);
+        console.log('Data Deleted!');
+      }
+    });
 });
 
 // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js

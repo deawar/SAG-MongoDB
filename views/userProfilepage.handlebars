@@ -131,7 +131,7 @@
                     </div>
                     {{> upload }}
                     <div class="row" id="startGal">
-                        <div class="responsive" id="row0">
+                        {{!-- <div class="responsive" id="row0">
                             <div class="gallery" id="ulimage0">
                                 <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
                                 <div class="art_name_input">Title: {{art_name_input}}</div>
@@ -142,25 +142,8 @@
                                 <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
                                 {{/if}}
                             </div>
-                        </div>
-                        {{!-- <div class="responsive">
-                            <div class="gallery"> --}}
-                                {{!-- <div class="column" id="ulcol">
-                                    TEST
-                                    
-                                </div> --}}
-                                {{!-- <div class="col s12 m6 l3">
-                                    <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
-                                </div> --}}
-                                {{!-- <div class="col s12 m6 l3">
-                                    <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
-                                    <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
-                                </div> --}}
+                        </div> --}}
+
                             {{else}}
                             <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')">Account Info</button> Please got to Account Info and validate your account by verifying your email address.
                             {{/if}}
@@ -191,6 +174,16 @@
     </div>
 </div>
 
+<!-- Modal Structure -->
+<div id="FileAction-modal" class="modal">
+<div class="modal-content">
+    <h4>File Activity</h4>
+    <p></p><b>The File {{status.art_name_input}} was deleted successfully!</b></p>
+</div>
+<div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+</div>
+</div>
 <!-- Container for the image gallery -->
 <style>
     .row {

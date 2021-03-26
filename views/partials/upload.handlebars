@@ -176,9 +176,9 @@
                                                 <label class="active" for="size">Starting Price: </label>
                                             </div>
                                         <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'>
-                                            <input type="file" name="sampleFile" id="sampleFile" />
+                                            <input class="btn-small teal darken-3 waves-effect waves-light hoverable" type="file" name="sampleFile" id="sampleFile" />
                                             {{!-- <input type='submit' value='Upload!' id="fileUpload"/> --}}
-                                            <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
+                                            <button class="upload-btn teal darken-3 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
                                             {{!-- <input id="fileUpload" type="file" name="sampleFiles" multiple="multiple"></form></br> --}}
                                         <hr>
                                         </div>
@@ -208,18 +208,5 @@
                             </div> 
                         </div>
                     </div>
-{{!-- Modal carousel                     --}}
-                    {{!-- <div class="carousel" id="upload-carousel">
-                    
-                        <a class="carousel-item" href="#one!"><img src="upload/{{school}}/{{id}}-jon.png"></a>
-                    
-                        <a class="carousel-item" href="#two!"><img src="upload/{{school}}/{{id}}-tower-lightning.jpg"></a>
-                    
-                        <a class="carousel-item" href="#three!"><img src="{{displayPath}}"></a>
-                    
-                        <a class="carousel-item" href="#four!"><img src="upload/{{school}}/{{id}}-{{req.file.originalname}}"></a>
-                    
-                        <a class="carousel-item" href="#five!"><img src="upload/{{school}}/{{id}}-{{req.file.originalname}}"></a>
-                    
-                    </div> --}}
+
 <script type="text/javascript" src="./js/upload.js"></script>
