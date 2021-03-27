@@ -61,7 +61,6 @@ $(document).ready(() => {
       phone: $('#phone-input').val().trim(),
     };
     $('#err-msg').empty('');
-    // $("#change-account-modal").modal("show");
     console.log(changeAccount);
 
     if (changeAccount.phone.length > 0

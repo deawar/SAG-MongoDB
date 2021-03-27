@@ -19,6 +19,7 @@ function addFile(form, sampleFile, name) {
 $(document).ready(() => {
   $('.modal').modal();
   $('.materialboxed').materialbox();
+  $('textarea#description_input').characterCounter();
   $('#fileUpload').on('click', (event) => {
     // $('.progress-bar').text('0%');
     // $('.progress-bar').width('0%');

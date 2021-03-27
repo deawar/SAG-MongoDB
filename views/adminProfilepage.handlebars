@@ -105,64 +105,60 @@
                         <div class="row emailVal"></div>
                         {{else}}
                         <div class="row emailVal">
-                        <h3 style="font-size: 1.5vw;">Email Validation</h3> <span id="emailmsg"
-                            style="color:red;font-weight:bold"></span>
+                        <h3 class="emailVal" style="font-size: 1.5vw;">Email Validation</h3>
+                            This is the email we have from the Sign Up Page: <span id="email" value="{{email}}"><b>{{email}}</b>. </span>
+                            Please retype it below to verify.
+                        <span id="emailmsg" style="color:red;font-weight:bold"></span>
                         
-                            <input id="emailinput" type="text" class="validate emailVal">
+                            <input class="emailVal" id="emailinput" type="text" class="validate emailVal hoverable">
                             <label class="active" for="email">Enter Your Email Address</label>
                         </div>
                         <button type="submit" class="btn btn-default red darken-4 enableOnInput emailVal" disabled="disabled" id="validateEmailButton">VALIDATE
                             EMAIL</button>
                         {{/if}}
                     </form>
-
                 </div>
             </div>
-
         </div>
 
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/members.js"></script>
 
         <div id="artwork" class="tabcontent">
             <div class="hero-image">
                 <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
             </div>
-            <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+            <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
+                {{#if active}}   
                 <div class="row">
-                    <div class="column">
-
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-
-                    </div>
-                    <div class="column">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                            <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-
-                    </div>
-                    <div class="column">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-
-                    </div>
-                    <div class="column">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGysCiAn_WCk3ijjIdQGrFLeU6UJoqiQ0r4owkDr0BezaeqLqY&usqp=CAU">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQW85pptV5kK_va3clRW5N8YZ7B4kF2ojUpWK2O8kaVtcL1kWK0&usqp=CAU">
-                    </div>
+                
                 </div>
+                    <div class="column">
+                    </div>
+                {{> upload }}
+                    <div class="row" id="startGal">
+                        {{!-- <div class="responsive" id="row0">
+                            <div class="gallery" id="ulimage0">
+                                <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+                                <div class="art_name_input">Title: {{art_name_input}}</div>
+                                <div class="artist_name">Artist: {{artist_name}}</div>
+                                <div class="desc">Add a description of the image here</div>
+                                {{#if bid}}
+                                <div class="currentPrice">${{currentPrice}}.00</div>
+                                <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+                                {{/if}}
+                            </div>
+                        </div> --}}
+
+                    {{else}}
+                            <p style="text-align: center">Please got to Account Info and validate your account by verifying your email address.</p>
+                            <p style="text-align: center"><b>You will find it at the bottom of the Account Info page.</b></p>
+                            <button class="btn-small" onclick="openPage('aboutMe', this, 'white')">Account Info</button> 
+                            
+                            {{/if}}
+                    </div>
             </div>
         </div>
-
-
-
 
         <div id="manageUser" class="tabcontent">
             <div class="hero-image">
@@ -177,14 +173,17 @@
                         <div class="nav-wrapper">
                             <form id="userSearch">
                                 <div class="input-field hoverable" id="searchblock">
-                                    <input id="searchforUser" type="search" required>
-                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
+                                    <input id="searchforUser" type="search" required><a class="waves-effect waves-light btn-small"><i class="small material-icons right">search</i>SEARCH</a>
+                                    {{!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label> --}}
+                                    <i class="small material-icons">search</i>
                                 </div>
                             </form>
                             <h3 id="err-msg"></h3>
                         </div>
                     </nav>
+                    <div class="row">
+
+                    </div>
                     <hr>
                     <h3 style="font-size: 1.7vw;">User Account Information</h3>
                     <hr>
@@ -271,7 +270,6 @@
 
                         <hr>
                     </form>
-
                 </div>
             </div>
             {{!-- File Modal --}}
@@ -287,10 +285,9 @@
                     </div>
 
                 </div>
-
             </div>
-        </div>
-        {{!-- Delete User Account Modal --}}
+        
+        {{!-- Delete User Account Confirmation Modal --}}
             <div id="delete-account-modal" class="modal">
                 <div class="modal-content">
                     <h4>Confirmation</h4>
@@ -308,18 +305,19 @@
         </div>
 
         {{>manageUser}}
-
+        <!-- Auction timers and Bids -->
         <div id="About" class="tabcontent">
-        <div class="hero-image">
-            <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
-        </div>
-            <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                <h3>About</h3>
-                <p>Who we are and what we do.</p>
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
             </div>
+                <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+                    <h3>Auction Settings and Timers</h3>
+                    <p>Where Auctions are started and timers are set.</p>
+                </div>
         </div>
     </div>
 </div>
+
 
 <!-- Container for the image gallery -->
 <style>

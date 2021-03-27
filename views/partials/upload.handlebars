@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="input-field col s6">
+                                            <div class="input-field col s12">
                                                 <div class="col s12" id="medium_input-list">
                                                     <label>Medium - photograph, oil, acrylic, etc.</label>
                                                     <select id="medium_input" name="medium_input" class="browser-default" required="">
@@ -132,10 +132,12 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="input-field col s6">
-                                                <input id="description_input" name="description_input" type="text" class="validate" required=""
-                                                    aria-required="true">
-                                                <label class="active" for="description">Brief Description - Approx 140 chars</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <textarea id="description_input" name="description_input" type="text" class="materialize-textarea validate" data-length="140" required=""
+                                                    aria-required="true"></textarea>
+                                                <label class="active" for="description">Brief Description - No More than 140 chars</label>
                                             </div>
                                         </div>    
                                         <div class="row">
@@ -209,4 +211,5 @@
                         </div>
                     </div>
 
+<script type="text/javascript" src="./js/materialize.js"></script>
 <script type="text/javascript" src="./js/upload.js"></script>

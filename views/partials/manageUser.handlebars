@@ -13,10 +13,11 @@
                                 <div class="input-field" id="searchblock">
                                     <input id="searchforUser" type="search" required>
                                     <label class="label-icon active" for="search"><i class="material-icons">search</i></label>
+                                    <button type="submit" class="btn btn-default red darken-4" id="userSearchButton">SEARCH FOR
+                            USER<i class="material-icons">search</i></button>
                                     <i class="material-icons">close</i>
                                 </div>
                             </form>
-                            <button type="submit" class="btn btn-default red darken-4" id="searchforUser">Search for USER</button>
                             <h3 id="err-msg"></h3>
                         </div>
                     </nav>
@@ -48,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="Address1" id="addressinput" type="text"
+                                <input class="active" placeholder="Address1" id="addressinput" type="text"
                                     value="{{searchedAddress1}}">
                                 <label class="active" for="address">Address1*</label>
                             </div>
