@@ -214,8 +214,6 @@ $(document).ready(() => {
             </div>
             </div>`,
           );
-          //.text(`**${status}: Something Broke-->${error}**`);
-          
         },
       })
         .then((res) => {
@@ -280,6 +278,10 @@ $(document).ready(() => {
             $(`<div>Artist Email: ${res[count - 1].artistEmail}</div>`).appendTo(picrow);
             $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
             $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
+            $(`<div>Height: ${res[count - 1].artHeight} in Width: ${res[count - 1].artWidth} in</div>`).appendTo(picrow);
+            if (res[count - 1].artDepth > 0) {
+              $(`<div>Depth: ${res[count - 1].artDepth}in</div>`).appendTo(picrow);
+            }
             $(delBut).attr('id', `del-${res[count - 1].artId}`);
             $(picrow).append(delBut);
             console.log(`res[${count}]._id`);
