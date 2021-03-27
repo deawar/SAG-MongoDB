@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('school-input');
-  searchInput.addEventListener('input', getQuery);
 
   function getQuery() {
     const query = document.getElementById('school-input').value;
@@ -35,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       xhr.send(query);
     }
   }
+  searchInput.addEventListener('input', getQuery);
 });
 
 $(document).ready(() => {

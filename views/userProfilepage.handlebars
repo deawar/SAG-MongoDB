@@ -129,11 +129,11 @@
                 <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
             </div>
             <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%;">
+                    {{#if active}}    
                 <div class="row">
 
                 </div>
                     <div class="column">
-                    {{#if active}}    
                     </div>
                     {{> upload }}
                     <div class="row" id="startGal">
@@ -151,7 +151,20 @@
                         </div> --}}
 
                             {{else}}
-                            <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')">Account Info</button> Please got to Account Info and validate your account by verifying your email address.
+                            <p style="text-align: center">Please got to Account Info and validate your account by verifying your email address.</p>
+                            <p style="text-align: center"><b>You will find it at the bottom of the Account Info page.</b></p>
+                            <button class="btn-small" onclick="openPage('aboutMe', this, 'white')">Account Info</button> 
+                            {{!-- <div id="AccountAction-modal" class="modal">
+                                <div class="modal-content">
+                                    <h4>Account Activity</h4>
+                                    <p style="text-align: center"><b>Please got to Account Info and validate your account by verifying your email address.</b></p>
+                                    <p style="text-align: center">You will find it at the bottom of the Account Info page.</p>
+                                    <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')">Account Info</button> 
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                                </div> --}}
+                            </div>
                             {{/if}}
                             </div>
                         </div>
@@ -177,7 +190,7 @@
 
 
 
-            <div id="About" class="tabcontent">
+    <div id="About" class="tabcontent">
         <div class="hero-image">
             <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
         </div>

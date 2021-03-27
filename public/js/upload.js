@@ -146,7 +146,7 @@ $(document).ready(() => {
             }
           } else {
             console.log('Nothing Uploaded yet!');
-            $('#art-upload').empty('').text('Nothing to Uploaded chosen yet!');
+            $('#upload-err-msg').empty('').text('Nothing to Uploaded chosen yet!');
           }
         } else {
           console.log('**-->Please fill out entire form**');

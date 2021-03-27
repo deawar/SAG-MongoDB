@@ -1,6 +1,8 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-unused-vars */
 $(document).ready(() => {
+  $('.modal').modal();
+  $('#AccountAction-modal').modal('open');
   M.updateTextFields();
   // DELETE ACCOUNT
   $('#deleteButton').on('click', (event) => {

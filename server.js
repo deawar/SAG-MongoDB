@@ -27,6 +27,7 @@ const { DBLOCAL_HOST } = process.env;
 
 const models = require('./models/index.js');
 const User = require('./models/user');
+
 const connected = chalk.bold.cyan;
 const error = chalk.bold.yellow;
 const disconnected = chalk.bold.red;
@@ -45,7 +46,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
   const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
   mongoose.connect(uri, client);
   mongoose.connection.on('connected', () => {
-    console.log('Mongoose default connection is open to ', uri);
+    console.log(connected('Mongoose default connection is open to ', uri));
   });
   mongoose.connection.on('error', (err) => {
     console.log(error(`Mongoose default connection has occured ${err} error`));
@@ -71,7 +72,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
   const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
   mongoose.connect(uri, client);
   mongoose.connection.on('connected', () => {
-    console.log('Mongoose default connection is open to ', uri);
+    console.log(connected('Mongoose default connection is open to ', uri));
   });
   mongoose.connection.on('error', (err) => {
     console.log(error(`Mongoose default connection has occured ${err} error`));
