@@ -125,6 +125,9 @@
 
 
         <div id="artwork" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
             <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%;">
                 <div class="row">
 
@@ -159,9 +162,16 @@
  
 
         <div id="Contact" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
             <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                <h3>Contact</h3>
-                <p>Get in touch via email at <a href="mailto:silentauctions@gmail.com">silentauctions@gmail.com</a></p>
+                <div class="row">
+                    <div class="column">
+                        <h3>Contact</h3>
+                        <p>Get in touch via email at <a href="mailto:silentauctions@gmail.com">silentauctions@gmail.com</a></p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -181,13 +191,24 @@
 
 <!-- Modal Structure -->
 <div id="FileAction-modal" class="modal">
-<div class="modal-content">
-    <h4>File Activity</h4>
-    <p></p><b>The File {{status.art_name_input}} was deleted successfully!</b></p>
+    <div class="modal-content">
+        <h4>File Activity</h4>
+        <p><b>The File {{status.art_name_input}} was deleted successfully!</b></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
 </div>
-<div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-</div>
+
+<div id="upload-file-modal" class="modal">
+    <div class="modal-content">
+        <h4>File Activity</h4>
+        <span id="upload-msg"></span>
+        <p></p><b>The File was Uploaded successfully!</b></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
 </div>
 <!-- Container for the image gallery -->
 <style>

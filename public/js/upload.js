@@ -58,7 +58,6 @@ $(document).ready(() => {
         file: $('#sampleFile').val(),
       };
       console.log('newArtwork form: ', newArtworkform);
-
       if (sampleFile.length > 0) {
         // let newArkwork = new FormData();
         // eslint-disable-next-line no-plusplus
@@ -85,7 +84,7 @@ $(document).ready(() => {
         && newArtworkform.price.length > 0) {
           console.log('#####===========>is newArtwork null: ', newArtwork);
           // const fileUpload = req.file.path;
-          if (newArtwork !== '' || !newArtwork) {
+          if (newArtwork !== '' || !newArtwork || newArtwork !== undefined) {
             try {
               $.ajax({
                 type: 'post',
@@ -95,34 +94,53 @@ $(document).ready(() => {
                 contentType: false,
                 cache: false,
                 // eslint-disable-next-line object-shorthand
+                error: function (jqXHR, textStatus, errorThrown) {
+                  $('#upload-file-modal').modal('open').html(
+                    `<div class='modal-content'>
+                    <h4>File Activity</h4>
+                    <h4 class='center-align'>Error!</h4>
+                    <h5 class='center-align'>Error status code: ${jqXHR.status} errorThrown: ${errorThrown} jqXHR.responseText: ${jqXHR.responseText}</b></h5>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+                    </div>
+                    </div>`,
+                  );
+                  console.log('In Error block jqXHR:', jqXHR);
+                  console.log('textStatus:', textStatus);
+                  console.log('errorThrown: ', errorThrown);
+                },
                 success(status, response) {
                   console.log('status: ', status.art_name_input);
-                  $('#upload-err-msg').empty('').text(`**${status} Success! ${sampleFile[0].name} uploaded! **`);
-                  $('#FileAction-modal').modal('open');
-                  // alert('Success! File uploaded!', response);
+                  $('#upload-err-msg').empty('').text(`** Success! ${newArtworkform.artwork_name} added to database! **`);
+                  $('#FileAction-modal').modal('open').html(
+                    `<div class='modal-content'>
+                    <h4>File Activity</h4>
+                    <h4 class='center-align'>Success!</h4>
+                    <h5 class='center-align'><b>The File ${newArtworkform.artwork_name} was added to the database!</b></h5>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+                    </div>
+                    </div>`,
+                  );
                 },
-                error(status, error) {
-                  // $.each(xhr, (key, value) => {
-                  //   alert(key + ": " + value);
-                  // });
-                  $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
-                  alert('Umm...something broke...', error);
-                },
-              }).then((res) => {
-                console.log('Line 133 ================> res: ', res);
-                if (newArtwork.image !== undefined) {
-                  console.log('Line 135 in .then(res)');
-                  window.location.replace('/profile');
-                } else {
-                  $('#upload-err-msg').empty('').text(`This File Uploaded: ${sampleFile.name}`);
-                  console.log(`** These Files Uploaded: ${sampleFile.name}`);
-                }
-              }).then((res) => {
-                console.log('Line 20 upload.js checking res.files', res.files);
-                if (res.files) {
-                  window.location.replace('/profile');
-                }
-              });
+              })
+                .then((res) => {
+                  console.log('Line 133 ================> res: ', res);
+                  if (newArtwork.image !== undefined) {
+                    console.log('Line 135 in .then(res)');
+                    window.location.reload(true);
+                  } else {
+                    $('#upload-err-msg').empty('').text(`This File Uploaded: ${sampleFile.name}`);
+                    console.log(`** These Files Uploaded: ${sampleFile.name}`);
+                  }
+                }).then((res) => {
+                  console.log('Line 20 upload.js checking res.files', res.files);
+                  if (res.files) {
+                    window.location.replace('/profile');
+                  }
+                });
             } catch (err) {
               console.log('*** Nothing Uploaded *** :', err);
             }
@@ -131,13 +149,24 @@ $(document).ready(() => {
             $('#art-upload').empty('').text('Nothing to Uploaded chosen yet!');
           }
         } else {
-          console.log('**Please fill out entire form**');
+          console.log('**-->Please fill out entire form**');
           $('#upload-err-msg').empty('').text('**Please fill out entire form**');
         }
       }
     } else {
-      console.log('**Please fill out entire form**');
-      $('#upload-err-msg').empty('').text('**Please fill out entire form**');
+      console.log('**Please fill out entire form!!**');
+      $('#upload-err-msg').empty('').text('**Please fill out entire form!!**');
+      $('#FileAction-modal').modal('open').html(
+        `<div class='modal-content'>
+        <h4>File Activity</h4>
+        <h4 class='center-align'>Error!</h4>
+        <h5 class='center-align'><b>Please fill out the Whole form to upload a file.</b></h5>
+        </div>
+        <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+        </div>
+        </div>`,
+      );
     }
   });
 
@@ -146,8 +175,8 @@ $(document).ready(() => {
     console.log('Delete Clicked!');
     console.log('id to remove: ', this.id);
     const { id } = this;
-    const split_id = id.split('-');
-    const deleteindex = split_id[1];
+    const splitId = id.split('-');
+    const deleteindex = splitId[1];
     try {
       $.ajax({
         type: 'post',
@@ -156,15 +185,37 @@ $(document).ready(() => {
         success(status, response) {
           console.log('status: ', status.art_name_input);
           $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} removed from database! **`);
-          $('#FileAction-modal').modal('open');
-          //alert('Success! File removed!', response);
+          $('#FileAction-modal').modal('open').html(
+            `<div class='modal-content'>
+            <h4>File Activity</h4>
+            <h4 class='center-align'>Success!</h4>
+            <h5 class='center-align'><b>The File ${status.art_name_input} was removed from the database!</b></h5>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+            </div>
+            </div>`,
+          );
         },
         error(status, error) {
           // $.each(xhr, (key, value) => {
           //   alert(key + ": " + value);
           // });
           $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
-          alert('Umm...something broke...', error);
+          $('#FileAction-modal').modal('open').html(
+            `<div class='modal-content'>
+            <h4>File Activity</h4>
+            <h4 class='center-align'>Error!</h4>
+            <h5 class='center-align'><b>The File ${status.art_name_input} was NOT removed from the database!</b></h5>
+            <h5 class='center-align'><b>**${status}: Something Broke-->${error}** </b></h5>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+            </div>
+            </div>`,
+          );
+          //.text(`**${status}: Something Broke-->${error}**`);
+          
         },
       })
         .then((res) => {
@@ -228,6 +279,7 @@ $(document).ready(() => {
             $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
             $(`<div>Artist Email: ${res[count - 1].artistEmail}</div>`).appendTo(picrow);
             $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
+            $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
             $(delBut).attr('id', `del-${res[count - 1].artId}`);
             $(picrow).append(delBut);
             console.log(`res[${count}]._id`);
@@ -257,6 +309,6 @@ $(document).ready(() => {
       });
   } catch (err) {
     console.log(`Something went wrong ${err}`);
-    $('#err-msg').empty('').text('**images not found.**');
+    $('#err-msg').empty('').text('** Images not found. **');
   }
 });

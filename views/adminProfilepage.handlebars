@@ -103,7 +103,6 @@
                         <hr>
                         {{#if active}}
                         <div class="row emailVal"></div>
-                        {{>upload}}
                         {{else}}
                         <div class="row emailVal">
                         <h3 style="font-size: 1.5vw;">Email Validation</h3> <span id="emailmsg"
@@ -275,6 +274,23 @@
 
                 </div>
             </div>
+            {{!-- File Modal --}}
+            <div id="upload-file-modal" class="modal">
+                <div class="modal-content">
+                    <h4>Confirmation</h4>
+                    <div class="modal-header">
+                        <h6> File Upload of {{{art_name}}}:</h6>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default green darken-4" id="cancel-delete">CLOSE</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        {{!-- Delete User Account Modal --}}
             <div id="delete-account-modal" class="modal">
                 <div class="modal-content">
                     <h4>Confirmation</h4>
