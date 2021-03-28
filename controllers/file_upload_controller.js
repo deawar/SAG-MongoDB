@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-plusplus */
 /* eslint-disable camelcase */
 const express = require('express');
@@ -157,7 +158,7 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
     .then((artwork) => {
       console.log('Document inserted succussfully!', artwork);
       res.locals.message = req.flash('success', `Document ${req.body.art_name_input} inserted succussfully!`);
-      return res.status(200).end('success', `Document ${req.body.art_name_input} Inserted Successfully!`, '/userProfilepage', checkAuthenticated, (req, res));
+      res.status(200).end('success', `Document ${req.body.art_name_input} Inserted Successfully!`, '/userProfilepage', checkAuthenticated, (req, res));
     })
     .catch((error) => {
       console.error(error);
@@ -192,7 +193,6 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
         // console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
         artInfo = {
-          // eslint-disable-next-line no-underscore-dangle
           artId: items[i]._id,
           artistEmail: items[i].artist_email_input,
           artName: items[i].art_name_input,
