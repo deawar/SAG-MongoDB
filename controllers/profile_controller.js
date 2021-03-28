@@ -103,7 +103,7 @@ router.delete('/user/:account_id/:email', (req, res) => {
 router.put('/user/:account_id', async (req, res) => {
   try {
     console.log('req.body: ', req.body);
-    let updateDoc = {
+    const updateDoc = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       address: req.body.address1,
@@ -136,7 +136,12 @@ router.put('/user/:account_id', async (req, res) => {
 });
 
 // PROFILE SEARCH BY ADMIN
-
+function sendSearch(req, res, foundDoc) {
+  router.get('/searchuser/:result', function(req, res) {
+    return res.render('partials/manageUser', foundDoc);
+  });
+//   return res.render('adminProfilepage', foundDoc);
+}
 router.get('/searchuser/:email', async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
@@ -145,6 +150,7 @@ router.get('/searchuser/:email', async (req, res) => {
     const school = findSchoolName(req);
     await User.findOne({ email: searchEmail, school }, function (err, doc) {
       if (!doc) {
+        console.log('In Error branch - err: ', err);
         res.status(404);
         return res.send(`No User associated with ${searchEmail}!`);
       }
@@ -164,12 +170,13 @@ router.get('/searchuser/:email', async (req, res) => {
         searchedRole: doc.role[0].role,
         searchedIsloggedin: req.isAuthenticated(),
       };
-      console.log('2nd ---> doc: ', returnDoc);
+      console.log('2nd ---> returnDoc: ', returnDoc);
       res.status(200);
       res.json(returnDoc);
-      res.render('adminProfilepage', returnDoc);
+      sendSearch(req, res, returnDoc);
     });
-    // .then((dbUser) => {
+    // .then((returnDoc) => {
+    //   res.render('adminProfilepage', returnDoc).end();
     //   console.log(dbUser);
     //   if (!dbUser) {
     //     res.status(404);

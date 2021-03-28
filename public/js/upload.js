@@ -312,6 +312,6 @@ $(document).ready(() => {
       });
   } catch (err) {
     console.log(`Something went wrong ${err}`);
-    $('#err-msg').empty('').text('** Images not found. **');
+    $('#err-msg').empty('').text('** No Images found. **');
   }
 });

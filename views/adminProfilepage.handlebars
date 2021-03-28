@@ -2,10 +2,14 @@
 
 <div class="card" id="profilePageCardMain" style="width: 80%">
     <div class="container" id="mainContent2" style="margin-right:12%;">
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">Find a Student</a></li>
+            <li><a href="#!">List All Students</a></li>
+        </ul>
         <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')"
             id="defaultOpen">Account Info</button>
         <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('artwork', this, 'white')">Artwork</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('manageUser', this, 'white')">ManageUser</button>
+        <button class="dropdown-trigger tablink" style="font-size: 1.5vw;" onclick="openPage('manageUser', this, 'white')" data-target="dropdown1">ManageUser<i class="material-icons right">arrow_drop_down</i></button>
         <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('About', this, 'white')">Settings</button>
 
         <div id="aboutMe" class="tabcontent">
@@ -173,12 +177,12 @@
                         <div class="nav-wrapper">
                             <form id="userSearch">
                                 <div class="input-field hoverable" id="searchblock">
-                                    <input id="searchforUser" type="search" required><a class="waves-effect waves-light btn-small"><i class="small material-icons right">search</i>SEARCH</a>
-                                    {{!-- <label class="label-icon" for="search"><i class="material-icons">search</i></label> --}}
-                                    <i class="small material-icons">search</i>
+                                    <input id="searchforUser" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
                                 </div>
-                            </form>
                             <h3 id="err-msg"></h3>
+                            </form>
                         </div>
                     </nav>
                     <div class="row">
@@ -189,7 +193,7 @@
                     <hr>
                     <form class="signup col s12 m12 l12">
                         <div class="row">
-                            <div class="input-field col s2">
+                            <div class="input-field col s5">
                                 <input disabled id="accountid" type="text" value="{{searchedId}}">
                                 <label class="active" for="id">Account ID</label>
                             </div>
@@ -249,12 +253,11 @@
                             </div>
                         </div>
 
-                        <hr>
-                        <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                         <div class="row">
                             <div class="input-field col s12">
+                        <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                                 <input disabled id="schoolinput" type="text" value="{{searchedSchool}}">
-                                <label class="active" for="school">School</label>
+                                {{!-- <label class="active" for="school">School</label> --}}
                             </div>
                         </div>
                         <div class="row">
