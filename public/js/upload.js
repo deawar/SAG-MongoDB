@@ -2,6 +2,8 @@ function addFile(form, sampleFile, name) {
   const newArtwork = new FormData();
   // newArtwork.append('formvalues', form);
   newArtwork.append('sampleFile', sampleFile[0], name);
+  newArtwork.append('artist_firstname_input', form.first_name);
+  newArtwork.append('artist_lastname_input', form.last_name);
   newArtwork.append('art_name_input', form.artwork_name);
   newArtwork.append('description_input', form.description);
   newArtwork.append('d_size_input', form.depth);
@@ -37,7 +39,9 @@ $(document).ready(() => {
     // FormData.append('file', $('#sampleFile').Filelist[0]file, sampleFile.name);
     console.log('====================================');
     console.log('sampleFile: ', sampleFile);
-    if ($('#artist_email_input').length && $('#artist_email_input').val().length
+    if ($('#artist_firstname_input').length && $('#artist_firstname_input').val().length
+      && $('#artist_lastname_input').length && $('#artist_lastname_input').val().length
+      && $('#artist_email_input').length && $('#artist_email_input').val().length
       && $('#art_name_input').length && $('#art_name_input').val().length
       && $('#medium_input').length && $('#medium_input').val().length
       && $('#description_input').length && $('#description_input').val().length
@@ -46,6 +50,8 @@ $(document).ready(() => {
       && $('#price_input').length && $('#price_input').val().length
       && $('#sampleFile').length && $('#sampleFile').val().length) {
       const newArtworkform = {
+        first_name: $('#artist_firstname_input').val().trim(),
+        last_name: $('#artist_lastname_input').val().trim(),
         email: $('#artist_email_input').val().trim(),
         artwork_name: $('#art_name_input').val().trim(),
         medium: $('#medium_input').val().trim(),
@@ -79,7 +85,8 @@ $(document).ready(() => {
         const newArtwork = addFile(newArtworkform, $('#sampleFile').get(0).files, sampleFile.name);
         console.log('formData: ', newArtworkform);
         // newArtwork.append('files', sampleFile[0].file, sampleFile.name);
-        if (newArtworkform.email.length > 0 && newArtworkform.artwork_name.length > 0
+        if (newArtworkform.first_name.length > 0 && newArtworkform.last_name.length > 0
+        && newArtworkform.email.length > 0 && newArtworkform.artwork_name.length > 0
         && newArtworkform.medium.length > 0 && newArtworkform.description.length > 0
         && newArtworkform.height.length > 0 && newArtworkform.width.length > 0
         && newArtworkform.price.length > 0) {
@@ -264,7 +271,7 @@ $(document).ready(() => {
                 .prependTo(picrow);
               $(divcol);
             } else {
-              console.log('trying to add Title Div to <img>: ', res[count].artName);
+              console.log('=====================>>>>>trying to add Name Div to <img>: ', res[count].artistFirstName);
               console.log(`<img${count + 1}>`);
             }
             console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
@@ -278,7 +285,7 @@ $(document).ready(() => {
                 .attr('src', res[count])
                 .prependTo(picrow);
               $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
-              $(`<div>Artist Email: ${res[count - 1].artistEmail}</div>`).appendTo(picrow);
+              $(`<div>Artist: ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
               $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
               $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
               $(`<div>Height: ${res[count - 1].artHeight} in Width: ${res[count - 1].artWidth} in</div>`).appendTo(picrow);

@@ -16,6 +16,16 @@ const artworkSchema = new Schema({
   approved: {
     type: Boolean,
   },
+  artist_firstname_input: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  artist_lastname_input: {
+    type: String,
+    trim: true,
+    required: true,
+  },
   artist_email_input: {
     type: String,
     trim: true,

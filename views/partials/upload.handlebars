@@ -31,6 +31,18 @@
                                     {{!-- <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'> --}}
                                         <div class="row">
                                             <div class="input-field col s6">
+                                                <input id="artist_firstname_input" name="artist_firstname_input" value="{{first_name}}" type="text" class="validate hoverable" required=""
+                                                    aria-required="true">
+                                                <label class="active" for="artist_firstname_input">Artist First Name</label>
+                                            </div>
+                                            <div class="input-field col s6">
+                                                <input id="artist_lastname_input" name="artist_lastname_input" value="{{last_name}}" type="text" class="validate" required=""
+                                                    aria-required="true">
+                                                <label class="active" for="artist_lastname_input">Artist Last Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
                                                 <input id="artist_email_input" name="artist_email_input" value="{{email}}" type="email" class="validate hoverable" required=""
                                                     aria-required="true">
                                                 <label class="active" for="email">Artist Email</label>

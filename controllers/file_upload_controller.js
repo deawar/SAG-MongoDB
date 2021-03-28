@@ -132,6 +132,8 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
 
   const displayPath = uploadPath;
   const newArtwork = new Artwork({
+    artist_firstname_input: req.body.artist_firstname_input,
+    artist_lastname_input: req.body.artist_lastname_input,
     artist_email_input: req.body.artist_email_input,
     art_name_input: req.body.art_name_input,
     depth: req.body.d_size_input,
@@ -191,9 +193,11 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         const base = Buffer.from(items[i].img.data);
         const conversion = base.toString('base64');
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        // console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
         artInfo = {
           artId: items[i]._id,
+          artistFirstName: items[i].artist_firstname_input,
+          artistLastName: items[i].artist_lastname_input,
           artistEmail: items[i].artist_email_input,
           artName: items[i].art_name_input,
           artDesc: items[i].description_input,
