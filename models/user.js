@@ -32,18 +32,18 @@ const secretTokenGen = function () {
 };
 
 // subAddress Document
-const subAddress = new Schema({
-  type: { type: String },
-  address1: String,
-  address2: String,
-  city: String,
-  state: String,
-  zip: {
-    type: String,
-    required: true,
-    min: 5,
-  },
-});
+// const subAddress = new Schema({
+//   type: { type: String },
+//   address1: String,
+//   address2: String,
+//   city: String,
+//   state: String,
+//   zip: {
+//     type: String,
+//     required: true,
+//     min: 5,
+//   },
+// });
 
 // subRole Document
 const subRole = new mongoose.Schema({
@@ -72,7 +72,32 @@ const userSchema = new Schema({
     validate: [validatePhone, 'Please fill in a valid phone number.'],
     // match: [/^\(([2-9])(?!\1\1)\d\d\) [2-9]\d\d-\d{4}$/, 'Please fill in a valid phone number.'],
   },
-  address: [subAddress],
+  // address: [subAddress],
+  address1: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  address2: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  city: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  state: {
+    type: String,
+    trim: true,
+    required: true,
+  },
+  zip: {
+    type: String,
+    required: true,
+    min: 5,
+  },
   school: {
     type: String,
     trim: true,
@@ -97,7 +122,8 @@ const userSchema = new Schema({
     type: String,
     validate: [secretTokenGen],
   },
-  role: [subRole],
+  role: String,
+  // [subRole],
   // role: {
   //   type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
   //   ref: 'role',

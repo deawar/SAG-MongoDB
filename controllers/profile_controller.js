@@ -40,15 +40,15 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       id: req.session.passport.user,
       first_name: req.user.first_name,
       last_name: req.user.last_name,
-      address1: req.user.address[0].address1,
-      address2: req.user.address[0].address2,
-      city: req.user.address[0].city,
-      state: req.user.address[0].state,
-      zip: req.user.address[0].zip,
+      address1: req.user.address1,
+      address2: req.user.address2,
+      city: req.user.city,
+      state: req.user.state,
+      zip: req.user.zip,
       email: req.user.email,
       phone: req.user.phone,
       school: req.user.school,
-      role: req.user.role[0].role,
+      role: req.user.role,
       active: req.user.active,
       isloggedin: req.isAuthenticated(),
     };
@@ -90,7 +90,7 @@ router.delete('/user/:account_id/:email', (req, res) => {
       console.log('Successfully Deleted: ', delDoc);
       res.status(200);
       res.json(delDoc);
-      res.render('adminProfilepage', delDoc);
+      res.render('adminProfilepage/manageUser', delDoc);
     });
   } catch (error) {
     console.log('Catch ERROR: ', error);
@@ -114,6 +114,7 @@ router.put('/user/:account_id', async (req, res) => {
       school: req.body.school,
       email: req.body.email,
       phone: req.body.phone,
+      role: req.body.role,
     };
     const filter = { _id: req.params.account_id };
     const opts = { new: true };
@@ -126,7 +127,7 @@ router.put('/user/:account_id', async (req, res) => {
       console.log('Profile Updates going in:', updateDoc);
       res.status(200);
       res.json(updateDoc);
-      res.render('adminProfilepage', updateDoc);
+      res.render('adminProfilepage/#manageUser', updateDoc);
     });
   } catch (error) {
     console.log('Catch ERROR: ', error);
@@ -160,14 +161,14 @@ router.get('/searchuser/:email', async (req, res) => {
         searchedEmail: doc.email,
         searchedFirst_name: doc.first_name,
         searchedLast_name: doc.last_name,
-        searchedAddress1: doc.address[0].address1,
-        searchedAddress2: doc.address[0].address2,
-        searchedCity: doc.address[0].city,
-        searchedState: doc.address[0].state,
-        searchedZip: doc.address[0].zip,
+        searchedAddress1: doc.address1,
+        searchedAddress2: doc.address2,
+        searchedCity: doc.city,
+        searchedState: doc.state,
+        searchedZip: doc.zip,
         searchedSchool: doc.school,
         searchedPhone: doc.phone,
-        searchedRole: doc.role[0].role,
+        searchedRole: doc.role,
         searchedIsloggedin: req.isAuthenticated(),
       };
       console.log('2nd ---> returnDoc: ', returnDoc);
