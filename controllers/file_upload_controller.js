@@ -126,9 +126,9 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
     fs.mkdirSync(uploadPath);
   }
   const first_name = findFirstName(req);
-  console.log('line 121-->File_name: ', req.file.filename);
+  console.log('line 129-->File_name: ', req.file.filename);
   const fileExt = getFileType(req.file.filename);
-  console.log('line 122------>File Extension: ', fileExt);
+  console.log('line 131------>File Extension: ', fileExt);
 
   const displayPath = uploadPath;
   const newArtwork = new Artwork({
@@ -153,24 +153,20 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   });
   // newArtwork.create(newArtwork, (err, item) => {
   //   if (err) {
-  console.log('Line 153 newArtwork: ', newArtwork);
+  console.log('+++++++++++++++++++>Line 156 newArtwork: ', newArtwork);
   const uploadedArtwork = `<img src="${displayPath}" width="200">`;
 
   newArtwork.save()
     .then((artwork) => {
       console.log('Document inserted succussfully!', artwork);
-      res.locals.message = req.flash('success', `Document ${req.body.art_name_input} inserted succussfully!`);
-      res.status(200).end('success', `Document ${req.body.art_name_input} Inserted Successfully!`, '/userProfilepage', checkAuthenticated, (req, res));
+      res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
+      return res.status(200);
     })
     .catch((error) => {
-      console.error(error);
+      console.error('Line 166->in catch error block', error);
       res.send(400, 'Bad Request');
     });
 });
-// res.redirect('userProfilepage', uploadedArtwork);
-// return res.render('userProfilepage', uploadedArtwork, school, (req, res));
-// });
-// });
 
 const newArtwork = require('../models/artwork');
 
@@ -189,11 +185,11 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
       }
       console.log('*********> # of images: ', items.length);
       for (let i = 0; i < items.length; ++i) {
-        console.log('===============> items[i]._id: ', items[i]._id);
+        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
         const base = Buffer.from(items[i].img.data);
         const conversion = base.toString('base64');
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
         artInfo = {
           artId: items[i]._id,
           artistFirstName: items[i].artist_firstname_input,
@@ -217,6 +213,7 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
     });
   }
 });
+
 // Delete artwork by _id
 router.post('/delete/', (req, res) => {
   console.log('req.body: ', req.body);

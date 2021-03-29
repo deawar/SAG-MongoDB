@@ -37,7 +37,6 @@ function findFirstName(res) {
 }
 
 // Get Current User Role
-// Find school Fx
 function findRole(res) {
   // eslint-disable-next-line prefer-destructuring
   let role;
@@ -83,8 +82,14 @@ router.get('/dashboard', checkAuthenticated, (req, res) => {
   // console.log('Line 43 dashboard get with {{school}} res.req.user: ', res.req.user.school);
   const school = findSchoolName(res);
   const first_name = findFirstName(res);
+  const role = findRole(res);
   console.log('Line 72 req.user.first_name = first_name: ', req.user.first_name);
-  res.render('dashboard', { title: 'Dashboard', school, first_name }); // : 'Make Art, Have Fun!' });
+  res.render('dashboard', {
+    title: 'Dashboard',
+    school,
+    first_name,
+    role,
+  }); // : 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });
 

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
 const express = require('express');
@@ -12,7 +13,17 @@ require('../config/passport')(passport);
 const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
-
+// Find First Name and add 's
+function findFirstName(res) {
+  let first_name;
+  if (res.req.user === null || res.req.user === undefined) {
+    first_name = 'Your';
+    return first_name;
+  }
+  first_name = (res.req.user.first_name);
+  first_name = (`${first_name}'s`);
+  return first_name;
+}
 // Find School
 function findSchoolName(req) {
   // eslint-disable-next-line prefer-destructuring
@@ -33,7 +44,8 @@ router.get('/profile', checkAuthenticated, (req, res) => {
     console.log('Profile_controller req: ', req.session.passport.user);
     console.log('Profile req.session: ', req.session);
     // eslint-disable-next-line no-underscore-dangle
-    // const id = req.session.passport.user;
+    const school = findSchoolName(req);
+    const first_name = findFirstName(res);
     console.log('req.user: ', req.user);
     console.log('req.user.active: ', req.user.active);
     const userInfo = {
@@ -90,7 +102,7 @@ router.delete('/user/:account_id/:email', (req, res) => {
       console.log('Successfully Deleted: ', delDoc);
       res.status(200);
       res.json(delDoc);
-      res.render('adminProfilepage/manageUser', delDoc);
+      res.render('adminProfilepage', delDoc);
     });
   } catch (error) {
     console.log('Catch ERROR: ', error);
@@ -127,7 +139,7 @@ router.put('/user/:account_id', async (req, res) => {
       console.log('Profile Updates going in:', updateDoc);
       res.status(200);
       res.json(updateDoc);
-      res.render('adminProfilepage/#manageUser', updateDoc);
+      res.render('adminProfilepage', updateDoc);
     });
   } catch (error) {
     console.log('Catch ERROR: ', error);

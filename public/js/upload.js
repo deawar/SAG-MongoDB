@@ -102,37 +102,37 @@ $(document).ready(() => {
                 contentType: false,
                 cache: false,
                 // eslint-disable-next-line object-shorthand
-                error: function (jqXHR, textStatus, errorThrown) {
+                success(status, response) {
+                  console.log('status: ', status.art_name_input);
+                  $('#upload-err-msg').empty('').text(`** Success! ${status.artwork_name} added to database! **`);
+                  $('#upload-file-modal').modal('open').html(
+                    `<div class='modal-content'>
+                    <h4>File Activity</h4>
+                    <h4 class='center-align'>Success!</h4>
+                    <h5 class='center-align'><b>The File ${status.artwork_name} was added to the database!</b></h5>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+                    </div>
+                    </div>`,
+                  );
+                },
+                error(status, error) {
                   $('#upload-file-modal').modal('open').html(
                     `<div class='modal-content'>
                     <h4>File Activity</h4>
                     <h4 class='center-align'>Error!</h4>
-                    <h5 class='center-align'>Error status code: ${jqXHR.status} errorThrown: ${errorThrown} jqXHR.responseText: ${jqXHR.responseText}</b></h5>
+                    <h5 class='center-align'>Error status code: ${status.status} Error: ${error}</b></h5>
                     </div>
                     <div class="modal-footer">
                     <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
                     </div>
                     </div>`,
                   );
-                  console.log('In Error block jqXHR:', jqXHR);
-                  console.log('textStatus:', textStatus);
-                  console.log('errorThrown: ', errorThrown);
+                  console.log('Status:', status);
+                  console.log('error: ', error);
                 },
-                success(status, response) {
-                  console.log('status: ', status.art_name_input);
-                  $('#upload-err-msg').empty('').text(`** Success! ${newArtworkform.artwork_name} added to database! **`);
-                  $('#FileAction-modal').modal('open').html(
-                    `<div class='modal-content'>
-                    <h4>File Activity</h4>
-                    <h4 class='center-align'>Success!</h4>
-                    <h5 class='center-align'><b>The File ${newArtworkform.artwork_name} was added to the database!</b></h5>
-                    </div>
-                    <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-                    </div>
-                    </div>`,
-                  );
-                },
+
               })
                 .then((res) => {
                   console.log('Line 133 ================> res: ', res);
@@ -141,10 +141,10 @@ $(document).ready(() => {
                     window.location.reload(true);
                   } else {
                     $('#upload-err-msg').empty('').text(`This File Uploaded: ${sampleFile.name}`);
-                    console.log(`** These Files Uploaded: ${sampleFile.name}`);
+                    console.log(`Line 144---->** These Files Uploaded: ${sampleFile.name}`);
                   }
                 }).then((res) => {
-                  console.log('Line 20 upload.js checking res.files', res.files);
+                  console.log('Line 147 -------> upload.js checking res.files', res.files);
                   if (res.files) {
                     window.location.replace('/profile');
                   }
@@ -190,7 +190,7 @@ $(document).ready(() => {
         type: 'post',
         url: '/delete',
         data: { _id: deleteindex },
-        success(status, response) {
+        success(status, res) {
           console.log('status: ', status.art_name_input);
           $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} removed from database! **`);
           $('#FileAction-modal').modal('open').html(
@@ -231,6 +231,7 @@ $(document).ready(() => {
       $('#err-msg').empty('').text('**images not Deleted.**');
     }
     $(`#resp-${deleteindex}`).remove();
+    $('.displayUserArt').click();
   });
 
   // Render files in upload directories
@@ -314,10 +315,6 @@ $(document).ready(() => {
             console.log('in if then divcol: ', divcol);
             $('.materialboxed').materialbox();
           });
-        // const li = $('<li/>')
-        // .text(res[i])
-        // .appendTo(cpics);
-        // eslint-disable-next-line no-plusplus
         });
     } catch (err) {
       console.log(`Something went wrong ${err}`);
