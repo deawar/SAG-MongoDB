@@ -155,14 +155,12 @@ $(document).ready(() => {
             // const accountId = $('#accountid');
             $('#searchedRoleinput').val(res.searchedRole);
             $('#searchedAccountid').val(res.searchedId);
-            // $('#fullname').val(res.searchedUser.first_name || res.searchedUser.last_name);
             $('#searchedFirstnameinput').val(res.searchedFirst_name);
             $('#searchedLastnameinput').val(res.searchedLast_name);
             $('#searchedAddressinput').val(res.searchedAddress1);
             $('#searchedAddress2input').val(res.searchedAddress2);
             $('#searchedCityinput').val(res.searchedCity);
             $('#searchedStateinput').val(res.searchedState);
-            // $('#statedropdown').append(`<option value="">${res.searchedUser.state}</option>`);
             $('#searchedZipcodeinput').val(res.searchedZip);
             $('#searchedPhoneinput').val(res.searchedPhone);
             $('#searchedEmailinput').val(res.searchedEmail);
