@@ -3,7 +3,7 @@
 const express = require('express');
 const passport = require('passport');
 const School = require('../models/school');
-const User = require('../models/user');
+// const User = require('../models/user');
 require('../config/passport')(passport);
 
 const router = express.Router();
@@ -20,7 +20,7 @@ module.exports = function (router) {
       console.log(error);
       res.json({
         message: 'Error finding School Names',
-        error: err,
+        error,
       });
     }
 

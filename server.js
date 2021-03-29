@@ -4,8 +4,8 @@ const flash = require('express-flash-notification');
 const process = require('process');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const bodyParser = require('body-parser');
-const fileupload = require('express-fileupload');
+// const bodyParser = require('body-parser');
+// const fileupload = require('express-fileupload');
 const os = require('os');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
@@ -17,16 +17,16 @@ const morgan = require('morgan'); // logging middleware
 
 const app = express();
 
-const { DB_USER } = process.env;
-const { DB_PASSWORD } = process.env;
-const { DB_HOST } = process.env;
-const { DB_NAME } = process.env;
+// const { DB_USER } = process.env;
+// const { DB_PASSWORD } = process.env;
+// const { DB_HOST } = process.env;
+// const { DB_NAME } = process.env;
 const { MONGODB_URI } = process.env;
 const { LOCALMONGODB_URI } = process.env;
-const { DBLOCAL_HOST } = process.env;
+// const { DBLOCAL_HOST } = process.env;
 
-const models = require('./models/index.js');
-const User = require('./models/user');
+// const models = require('./models/index.js');
+// const User = require('./models/user');
 
 const connected = chalk.bold.cyan;
 const error = chalk.bold.yellow;
@@ -55,7 +55,9 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
     console.log(disconnected('Mongoose default connection is disconnected'));
   });
   client.connect((err) => {
-    const collection = client.db('test').collection('devices');
+    if (err) throw err;
+    // const collection = client.db('test').collection('devices');
+    client.db('test').collection('devices');
     // perform actions on the collection object
     client.close();
   });

@@ -2,15 +2,12 @@
 
 <div class="card" id="profilePageCardMain" style="width: 80%">
     <div class="container" id="mainContent2" style="margin-right:12%;">
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">Find a Student</a></li>
-            <li><a id="allStudents" href="#!">List All Students</a></li>
-        </ul>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')"
-            id="defaultOpen">Account Info</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('artwork', this, 'white')">Artwork</button>
-        <button class="dropdown-trigger tablink" style="font-size: 1.5vw;" onclick="openPage('manageUser', this, 'white')" data-target="dropdown1">ManageUser<i class="material-icons right">arrow_drop_down</i></button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('Auction', this, 'white')">Settings</button>
+
+        <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('aboutMe', this, 'white')" id="defaultOpen">Account Info</button>
+        <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('artwork', this, 'white')">Artwork</button>
+        <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('manageUser', this, 'white')">ManageUser</button>
+        <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('allStudents', this, 'white')">List Students</button>
+        <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('Auction', this, 'white')">Auction Settings</button>
 
         <div id="aboutMe" class="tabcontent">
 
@@ -296,18 +293,7 @@
 
             </div>
         </div>
-        <!-- list students by school -->
-        <div id="allStudents" class="tabcontent">
-            <div class="hero-image">
-                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
-            </div>
-                <div class="card" id="adminProfilePageCard" style="width: 100%;">
-                    <h3>Search for All Students</h3>
-                    <p>To List all Students from the Admin's School.</p>
-                </div>
-        </div>
-    </div>
-</div>
+
         <!-- Auction timers and Bids -->
         <div id="Auction" class="tabcontent">
             <div class="hero-image">
@@ -318,9 +304,19 @@
                     <p>Where Auctions are started and timers are set.</p>
                 </div>
         </div>
+
+                <!-- list students by school -->
+        <div id="allStudents" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
+                <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+                    <h3>Search for All Students</h3>
+                    <p>To List all Students from the Admin's School.</p>
+                </div>
+        </div>
     </div>
 </div>
-
 
 <!-- Container for the image gallery -->
 <style>

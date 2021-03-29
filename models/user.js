@@ -3,7 +3,7 @@
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 // const mongooseTypePhone = require('mongoose-type-phone');
 // Get the Schema constructor
@@ -46,10 +46,10 @@ const secretTokenGen = function () {
 // });
 
 // subRole Document
-const subRole = new mongoose.Schema({
-  type: { type: String },
-  role: String,
-});
+// const subRole = new mongoose.Schema({
+//   type: { type: String },
+//   role: String,
+// });
 
 // Creating our User Schema
 const userSchema = new Schema({
