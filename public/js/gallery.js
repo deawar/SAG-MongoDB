@@ -3,7 +3,7 @@ $(document).ready(() => {
 
   // Populate Gallery with approved artwork
   // $('.displayUserArt').one('click', (event) => {
-  console.log('line 6 event: ', event);
+  console.log('line 6 In gallery.js');
   const items = [];
   try {
     $.ajax({
@@ -22,12 +22,12 @@ $(document).ready(() => {
           let divcol = $('<div/>')
             .addClass('gallery')
             .attr('style', 'overflow-wrap: normal');
-          const delBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable remove" value="Delete"><i class="material-icons right">delete</i>Delete</a>');
+          const bidBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable remove" value="Bid"><i class="material-icons right">gavel</i>Bid</a>');
           if (!res[i].artId || res[i].artId === undefined) {
             respdiv = $('<div>')
               .addClass('responsive')
               .attr('id', `resp-${res[count - 1].artId}`)
-              .prependTo('#displayUserArtGal');
+              .prependTo('#displayUserArt');
             picrow = $('<div>')
               .addClass('gallery')
               .attr('id', `#row${count}`)
@@ -59,8 +59,8 @@ $(document).ready(() => {
             if (res[count - 1].artDepth > 0) {
               $(`<div>Depth: ${res[count - 1].artDepth}in</div>`).appendTo(picrow);
             }
-            $(delBut).attr('id', `del-${res[count - 1].artId}`);
-            $(picrow).append(delBut);
+            $(bidBut).attr('id', `bid-${res[count - 1].artId}`);
+            $(picrow).append(bidBut);
             console.log(`res[${count}]._id`);
           } else {
             const img = $('<img>')
