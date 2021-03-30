@@ -36,6 +36,19 @@ function findFirstName(res) {
   return first_name;
 }
 
+// Get Current User Role
+function findRole(res) {
+  // eslint-disable-next-line prefer-destructuring
+  let role;
+  // school = res.req.user.school;
+  if (res.req.user === null || res.req.user === undefined) {
+    role = '';
+    return role;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  role = res.req.user.role;
+  return role;
+}
 // This is get route for VERIFY
 router.get('/verify:secretToken', (req, res) => {
   const school = findSchoolName(res);
@@ -69,24 +82,42 @@ router.get('/dashboard', checkAuthenticated, (req, res) => {
   // console.log('Line 43 dashboard get with {{school}} res.req.user: ', res.req.user.school);
   const school = findSchoolName(res);
   const first_name = findFirstName(res);
+  const role = findRole(res);
   console.log('Line 72 req.user.first_name = first_name: ', req.user.first_name);
-  res.render('dashboard', { title: 'Dashboard', school, first_name }); // : 'Make Art, Have Fun!' });
+  res.render('dashboard', {
+    title: 'Dashboard',
+    school,
+    first_name,
+    role,
+  }); // : 'Make Art, Have Fun!' });
 //   console.log('Line 13 - In Get / route');
 });
 
 router.get('/gallery', checkAuthenticated, (req, res) => { // eslint-disable-next-line prefer-destructuring
   const school = findSchoolName(res); // res.req.user.school;
   const first_name = findFirstName(res);
+  const role = findRole(res);
   console.log('res.req.user.school = school: ', school);
-  res.render('artGallery', { title: 'Art Gallery', school, first_name });
+  res.render('artGallery', {
+    title: 'Art Gallery',
+    school,
+    first_name,
+    role,
+  });
 //   console.log('Line 13 - In Get / route');
 });
 
 router.get('/bid', checkAuthenticated, (req, res) => { // eslint-disable-next-line prefer-destructuring
   const school = findSchoolName(res); // res.req.user.school;
   const first_name = findFirstName(res);
+  const role = findRole(res);
   console.log('res.req.user.school = school: ', school);
-  res.render('bid', { title: 'Auction Page', school, first_name });
+  res.render('bid', {
+    title: 'Auction Page',
+    school,
+    first_name,
+    role,
+  });
 //   console.log('Line 13 - In Get / route');
 });
 

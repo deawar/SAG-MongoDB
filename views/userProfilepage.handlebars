@@ -2,25 +2,28 @@
 
 <div class="card center-align" id="profilePageCardMain" style="width: 80%">
     <div class="container" id="mainContent2" style="margin-right:12%;">
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('artwork', this, 'white')" id="defaultOpen">Artwork</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')">Account Info</button>
+        <button class="tablink displayUserArt" style="font-size: 1.5vw;" onclick="openPage('artwork', this, 'white')">Artwork</button>
+        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')" id="defaultOpen">Account Info</button>
         <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('Contact', this, 'white')">Contact</button>
         <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('About', this, 'white')">About</button>
 
         <div id="aboutMe" class="tabcontent">
 
             <div class="hero-image">
-                <img class="responsive-img img-floating profilePic" style="text-align: center;" src="./resources/SAGL.png" alt="Avatar">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
                 {{!-- <img src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"
-                    alt="Avatar" class="img-floating profilePic"> --}}
+                    alt="Avatar" class="img-floating profilePic">{{!-- <img src="{{profileAvatar}}"
+                    alt="Avatar" class="img-floating profilePic">  need to make this a handlebars varible --}}
             </div>
-            <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
+
+
+            <div class="card" id="profilePageAboutMeCard" style="width: 100%; margin-top: 0;">
                 <div>
-                    <h3 style="font-size: 1.7vw;">Account Information</h3>
+                    <h3>Account Information</h3>
                     <hr>
                     <form class="signup col s12 m12 l12">
                             <div class="welcomMessage col s10">
-                                <h2>Hello, {{first_name}} {{last_name}}</h2>
+                                <h3>Hello, {{first_name}} {{last_name}}</h3>
                             </div>
                         <div class="row">
                             <div class="input-field col s6">
@@ -99,75 +102,108 @@
                         <div class="row emailVal"></div>
                         {{else}}
                         <hr>
-                        <div class="row emailVal"></div>
-                        <h3 class="emailVal" style="font-size: 1.5vw;">Email Validation</h3> <span id="emailmsg"
-                            style="color:red;font-weight:bold"></span>
-                            <input class="emailVal" id="emailinput" type="text" class="validate emailVal hoverable ">
+                        <div class="row emailVal">
+                        <h3 class="emailVal" style="font-size: 1.5vw;">Email Validation</h3> 
+                            This is the email we have from the Sign Up Page: <span id="email" value="{{email}}"><b>{{email}}</b>. </span>
+                            Please retype it below to verify.
+                            <span id="emailmsg" style="color:red;font-weight:bold"></span>
+                            <input class="emailVal" id="emailinput" type="text" class="validate emailVal hoverable">
                             <label class="active" for="email">Enter Your Email Address</label>
                         </div>
                         <button type="submit" class="btn btn-default red darken-4 waves-effect waves-light enableOnInput emailVal" disabled="disabled" id="validateEmailButton">VALIDATE
                             EMAIL</button>
                         {{/if}}
                     </form>
-
                 </div>
             </div>
         </div>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/js/members.js"></script>
-
-        </body>
-
-
+<!-- Artwork page -->
         <div id="artwork" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
             <div class="card hoverable" id="profilePageAboutMeCard" style="width: 100%;">
-                <div class="row" id="uldRow">
+            {{#if active}}    
+                <div class="row">
+
+                </div>
                     <div class="column">
-                    {{#if active}}    
                     </div>
-                    {{> upload }}
-                    <div class="row" id="ulDisplay">
-                        {{!-- <div class="column"> --}}
-                            TEST
-                        {{!-- </div> --}}
-                        {{!-- <div class="col s12 m6 l3">
-                            <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
-                            <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
-                            <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
-                            <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
+            {{> upload }}
+                    <div class="row" id="startGal">
+                        {{!-- <div class="responsive" id="row0">
+                            <div class="gallery" id="ulimage0">
+                                <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+                                <div class="art_name_input">Title: {{art_name_input}}</div>
+                                <div class="artist_name">Artist: {{artist_name}}</div>
+                                <div class="desc">Add a description of the image here</div>
+                                {{#if bid}}
+                                <div class="currentPrice">${{currentPrice}}.00</div>
+                                <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
+                                {{/if}}
+                            </div>
                         </div> --}}
-                        {{!-- <div class="col s12 m6 l3">
-                            <img class="responsive-img" src="./resources/webpage/rainbocouple.jpg">
-                            <img class="responsive-img" src="./resources/webpage/mortal_coil.jpg">
-                            <img class="responsive-img" src="./resources/webpage/rgb_1914.jpg">
-                            <img class="responsive-img" src="./resources/webpage/rainbowface.jpg">
-                        </div> --}}
-                    {{else}}
-                    <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')">Account Info</button> Please got to Account Info and validate your account by verifying your email address.
-                    {{/if}}
+
+                            {{else}}
+                            <p style="text-align: center">Please got to Account Info and validate your account by verifying your email address.</p>
+                            <p style="text-align: center"><b>You will find it at the bottom of the Account Info page.</b></p>
+                            <button class="btn-small" onclick="openPage('aboutMe', this, 'white')">Account Info</button> 
+                            
+                            {{/if}}
                     </div>
-                </div>
             </div>
         </div>
- 
-
+<!-- Contact Page -->
         <div id="Contact" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
+            </div>
             <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                <h3>Contact</h3>
-                <p>Get in touch via email at <a href="mailto:silentauctions@gmail.com">silentauctions@gmail.com</a></p>
+                <div class="row">
+                    <div class="column">
+                        <h3>Contact</h3>
+                        <p>Get in touch via email at <a href="mailto:silentauctions@gmail.com">silentauctions@gmail.com</a></p>
+                    </div>
+                </div>
             </div>
         </div>
 
 
-
-            <div id="About" class="tabcontent">
-                <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                    <h3>About</h3>
-                    <p>Information about the artist and their favorite medium.</p>
-                </div>
+<!-- About Page -->
+        <div id="About" class="tabcontent">
+            <div class="hero-image">
+                <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
             </div>
+            <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+                <h3>About</h3>
+                <p>Who we are and what we do.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modal Structure -->
+<div id="FileAction-modal" class="modal">
+    <div class="modal-content">
+        <h4>File Activity</h4>
+        <p><b>The File {{status.art_name_input}} was deleted successfully!</b></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<div id="upload-file-modal" class="modal">
+    <div class="modal-content">
+        <h4>File Activity</h4>
+        <span id="upload-msg"></span>
+        <p></p><b>The File {{status.art_name_input}} was Uploaded successfully!</b></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </div>
 
@@ -200,7 +236,7 @@
     {{!-- .hero-image {
         /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(".resources/webpage/Organizing-Your-Office-With-Wall-Art.jpg");
-        height: 25vh;
+        height: 240px;
 
         position: relative;
         z-index: 1;

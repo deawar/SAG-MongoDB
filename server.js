@@ -4,28 +4,34 @@ const flash = require('express-flash-notification');
 const process = require('process');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const bodyParser = require('body-parser');
-const fileupload = require('express-fileupload');
+// const bodyParser = require('body-parser');
+// const fileupload = require('express-fileupload');
 const os = require('os');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const chalk = require('chalk');
 // const LocalStrategy = require('passport-local').Strategy;
 // const passportLocalMongoose = require('passport-local-mongoose');
 const morgan = require('morgan'); // logging middleware
 
 const app = express();
 
-const { DB_USER } = process.env;
-const { DB_PASSWORD } = process.env;
-const { DB_HOST } = process.env;
-const { DB_NAME } = process.env;
+// const { DB_USER } = process.env;
+// const { DB_PASSWORD } = process.env;
+// const { DB_HOST } = process.env;
+// const { DB_NAME } = process.env;
 const { MONGODB_URI } = process.env;
 const { LOCALMONGODB_URI } = process.env;
-const { DBLOCAL_HOST } = process.env;
+// const { DBLOCAL_HOST } = process.env;
 
-const models = require('./models/index.js');
-const User = require('./models/user');
+// const models = require('./models/index.js');
+// const User = require('./models/user');
+
+const connected = chalk.bold.cyan;
+const error = chalk.bold.yellow;
+const disconnected = chalk.bold.red;
+const termination = chalk.bold.magenta;
 
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useNewUrlParser', true);
@@ -33,16 +39,33 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('bufferCommands', false);
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
   // rsconst uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}?retryWrites=true&w=majority`;
   const uri = MONGODB_URI;
   console.log('MongoDB Access string: ', uri);
   const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
   mongoose.connect(uri, client);
+  mongoose.connection.on('connected', () => {
+    console.log(connected('Mongoose default connection is open to ', uri));
+  });
+  mongoose.connection.on('error', (err) => {
+    console.log(error(`Mongoose default connection has occured ${err} error`));
+  });
+  mongoose.connection.on('disconnected', () => {
+    console.log(disconnected('Mongoose default connection is disconnected'));
+  });
   client.connect((err) => {
-    const collection = client.db('test').collection('devices');
+    if (err) throw err;
+    // const collection = client.db('test').collection('devices');
+    client.db('test').collection('devices');
     // perform actions on the collection object
     client.close();
+  });
+  process.on('SIGINT', () => {
+    mongoose.connection.close(() => {
+      console.log(termination('Mongoose default connection is disconnected due to application termination'));
+      process.exit(0);
+    });
   });
 } else if (process.env.NODE_ENV === 'test') {
   // const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DBLOCAL_HOST}${DB_NAME}/test?retryWrites=true&w=majority`;
@@ -50,6 +73,15 @@ if (process.env.NODE_ENV === 'development') {
   console.log('MongoDB Access string: ', uri);
   const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
   mongoose.connect(uri, client);
+  mongoose.connection.on('connected', () => {
+    console.log(connected('Mongoose default connection is open to ', uri));
+  });
+  mongoose.connection.on('error', (err) => {
+    console.log(error(`Mongoose default connection has occured ${err} error`));
+  });
+  mongoose.connection.on('disconnected', () => {
+    console.log(disconnected('Mongoose default connection is disconnected'));
+  });
   client.connect((err) => {
     const collection = client.db('test').collection('devices');
     // perform actions on the collection object

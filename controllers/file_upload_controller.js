@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-plusplus */
 /* eslint-disable camelcase */
 const express = require('express');
@@ -125,12 +126,14 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
     fs.mkdirSync(uploadPath);
   }
   const first_name = findFirstName(req);
-  console.log('line 121-->File_name: ', req.file.filename);
+  console.log('line 129-->File_name: ', req.file.filename);
   const fileExt = getFileType(req.file.filename);
-  console.log('line 122------>File Extension: ', fileExt);
+  console.log('line 131------>File Extension: ', fileExt);
 
   const displayPath = uploadPath;
   const newArtwork = new Artwork({
+    artist_firstname_input: req.body.artist_firstname_input,
+    artist_lastname_input: req.body.artist_lastname_input,
     artist_email_input: req.body.artist_email_input,
     art_name_input: req.body.art_name_input,
     depth: req.body.d_size_input,
@@ -150,27 +153,27 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   });
   // newArtwork.create(newArtwork, (err, item) => {
   //   if (err) {
-  console.log('Line 145 newArtwork: ', newArtwork);
+  console.log('+++++++++++++++++++>Line 156 newArtwork: ', newArtwork);
   const uploadedArtwork = `<img src="${displayPath}" width="200">`;
 
   newArtwork.save()
-    .then((doc) => {
-      console.log('Document inserted succussfully!', doc);
-      res.locals.message = req.flash('success', 'Document inserted succussfully!');
-      return res.status(200).end('{"success" : "Document Inserted Successfully", "status" : 200}', '/userProfilepage', checkAuthenticated, (req, res));
+    .then((artwork) => {
+      console.log('Document inserted succussfully!', artwork);
+      res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
+      return res.status(200);
     })
-    .catch((err) => console.error(err));
+    .catch((error) => {
+      console.error('Line 166->in catch error block', error);
+      res.send(400, 'Bad Request');
+    });
 });
-// res.redirect('userProfilepage', uploadedArtwork);
-// return res.render('userProfilepage', uploadedArtwork, school, (req, res));
-// });
-// });
 
 const newArtwork = require('../models/artwork');
 
 router.get('/get-imgs', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const pics = [];
+    let artInfo = {};
     const query = { artist_email_input: findEmail(req) };
     console.log('Email: ', query);
     newArtwork.find(query, (err, items) => {
@@ -182,16 +185,93 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
       }
       console.log('*********> # of images: ', items.length);
       for (let i = 0; i < items.length; ++i) {
+        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
         const base = Buffer.from(items[i].img.data);
         const conversion = base.toString('base64');
         const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`-------------> items[${i}].img.data: `, items[i].img.data);
+        console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
+        artInfo = {
+          artId: items[i]._id,
+          artistFirstName: items[i].artist_firstname_input,
+          artistLastName: items[i].artist_lastname_input,
+          artistEmail: items[i].artist_email_input,
+          artName: items[i].art_name_input,
+          artDesc: items[i].description_input,
+          artMedium: items[i].medium_input,
+          artHeight: items[i].height,
+          artWidth: items[i].width,
+          artDepth: items[i].depth,
+          artPrice: items[i].price,
+          artApproved: items[i].approved,
+        };
+        pics.push(artInfo);
         pics.push(images);
+        console.log('------------->artInfo after artInfo push: ', artInfo);
+        console.log('------------->pics after artInfo push: ', pics[i].artId);
       }
-      return res.send(pics);
-    },
-    );
+      return res.status(200).send(pics);
+    });
   }
+});
+
+// Gallery Image download
+router.get('/get-gallery-imgs', checkAuthenticated, (req, res) => {
+  if (req.isAuthenticated()) {
+    const pics = [];
+    let artInfo = {};
+    const galleryschool = { school: findSchoolName(req), approved: true };
+    const query = galleryschool;
+    console.log('school_input: ', query);
+    newArtwork.find(query, (err, items) => {
+      if (!items || items.length === 0) {
+        console.log(err);
+        return res.status(404).json({
+          err: 'No files exist',
+        });
+      }
+      console.log('*********> # of images: ', items.length);
+      for (let i = 0; i < items.length; ++i) {
+        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
+        const base = Buffer.from(items[i].img.data);
+        const conversion = base.toString('base64');
+        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
+        console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
+        artInfo = {
+          artId: items[i]._id,
+          artistFirstName: items[i].artist_firstname_input,
+          artistLastName: items[i].artist_lastname_input,
+          artistEmail: items[i].artist_email_input,
+          artName: items[i].art_name_input,
+          artDesc: items[i].description_input,
+          artMedium: items[i].medium_input,
+          artHeight: items[i].height,
+          artWidth: items[i].width,
+          artDepth: items[i].depth,
+          artPrice: items[i].price,
+          artApproved: items[i].approved,
+        };
+        pics.push(artInfo);
+        pics.push(images);
+        console.log('------------->artInfo after artInfo push: ', artInfo);
+        console.log('------------->pics after artInfo push: ', pics[i].artId);
+      }
+      return res.status(200).send(pics);
+    });
+  }
+});
+
+// Delete artwork by _id
+router.post('/delete/', (req, res) => {
+  console.log('req.body: ', req.body);
+  newArtwork.findByIdAndDelete((req.params.id, req.body),
+    (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(data);
+        console.log('Data Deleted!');
+      }
+    });
 });
 
 // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js

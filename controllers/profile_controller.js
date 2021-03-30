@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
 const express = require('express');
@@ -12,7 +13,17 @@ require('../config/passport')(passport);
 const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
-
+// Find First Name and add 's
+function findFirstName(res) {
+  let first_name;
+  if (res.req.user === null || res.req.user === undefined) {
+    first_name = 'Your';
+    return first_name;
+  }
+  first_name = (res.req.user.first_name);
+  first_name = (`${first_name}'s`);
+  return first_name;
+}
 // Find School
 function findSchoolName(req) {
   // eslint-disable-next-line prefer-destructuring
@@ -33,22 +44,23 @@ router.get('/profile', checkAuthenticated, (req, res) => {
     console.log('Profile_controller req: ', req.session.passport.user);
     console.log('Profile req.session: ', req.session);
     // eslint-disable-next-line no-underscore-dangle
-    // const id = req.session.passport.user;
+    const school = findSchoolName(req);
+    const first_name = findFirstName(res);
     console.log('req.user: ', req.user);
     console.log('req.user.active: ', req.user.active);
     const userInfo = {
       id: req.session.passport.user,
       first_name: req.user.first_name,
       last_name: req.user.last_name,
-      address1: req.user.address[0].address1,
-      address2: req.user.address[0].address2,
-      city: req.user.address[0].city,
-      state: req.user.address[0].state,
-      zip: req.user.address[0].zip,
+      address1: req.user.address1,
+      address2: req.user.address2,
+      city: req.user.city,
+      state: req.user.state,
+      zip: req.user.zip,
       email: req.user.email,
       phone: req.user.phone,
       school: req.user.school,
-      role: req.user.role[0].role,
+      role: req.user.role,
       active: req.user.active,
       isloggedin: req.isAuthenticated(),
     };
@@ -103,7 +115,7 @@ router.delete('/user/:account_id/:email', (req, res) => {
 router.put('/user/:account_id', async (req, res) => {
   try {
     console.log('req.body: ', req.body);
-    let updateDoc = {
+    const updateDoc = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       address: req.body.address1,
@@ -114,6 +126,7 @@ router.put('/user/:account_id', async (req, res) => {
       school: req.body.school,
       email: req.body.email,
       phone: req.body.phone,
+      role: req.body.role,
     };
     const filter = { _id: req.params.account_id };
     const opts = { new: true };
@@ -136,7 +149,12 @@ router.put('/user/:account_id', async (req, res) => {
 });
 
 // PROFILE SEARCH BY ADMIN
-
+function sendSearch(req, res, foundDoc) {
+  router.get('/searchuser/:result', function(req, res) {
+    return res.render('partials/manageUser', foundDoc);
+  });
+//   return res.render('adminProfilepage', foundDoc);
+}
 router.get('/searchuser/:email', async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
@@ -145,6 +163,7 @@ router.get('/searchuser/:email', async (req, res) => {
     const school = findSchoolName(req);
     await User.findOne({ email: searchEmail, school }, function (err, doc) {
       if (!doc) {
+        console.log('In Error branch - err: ', err);
         res.status(404);
         return res.send(`No User associated with ${searchEmail}!`);
       }
@@ -154,22 +173,23 @@ router.get('/searchuser/:email', async (req, res) => {
         searchedEmail: doc.email,
         searchedFirst_name: doc.first_name,
         searchedLast_name: doc.last_name,
-        searchedAddress1: doc.address[0].address1,
-        searchedAddress2: doc.address[0].address2,
-        searchedCity: doc.address[0].city,
-        searchedState: doc.address[0].state,
-        searchedZip: doc.address[0].zip,
+        searchedAddress1: doc.address1,
+        searchedAddress2: doc.address2,
+        searchedCity: doc.city,
+        searchedState: doc.state,
+        searchedZip: doc.zip,
         searchedSchool: doc.school,
         searchedPhone: doc.phone,
-        searchedRole: doc.role[0].role,
+        searchedRole: doc.role,
         searchedIsloggedin: req.isAuthenticated(),
       };
-      console.log('2nd ---> doc: ', returnDoc);
+      console.log('2nd ---> returnDoc: ', returnDoc);
       res.status(200);
       res.json(returnDoc);
-      res.render('adminProfilepage', returnDoc);
+      sendSearch(req, res, returnDoc);
     });
-    // .then((dbUser) => {
+    // .then((returnDoc) => {
+    //   res.render('adminProfilepage', returnDoc).end();
     //   console.log(dbUser);
     //   if (!dbUser) {
     //     res.status(404);
