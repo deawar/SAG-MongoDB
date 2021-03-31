@@ -18,7 +18,7 @@
                                 <div class="card" id="loginCard2">
                                     <div class="card-content">
                                         <h2>Account Verification</h2>
-                                        <div class="card-content">
+                                        <div class="card-content hoverable">
                                             <div class="container tokenForm">
                                                 <div class="row">
                                                     <div class="col-md-6 col-md-offset-3">
@@ -33,16 +33,17 @@
                                                                     autofocus>
                                                             </div>
                                                             <p>You Entered:</p>
-                                                            <span id="token" type="text" value="{{token}}"></span>
+                                                            <span id="token" class="word-wrap: break-word" type="text" value="{{token}}"></span>
                                                             <br>
                                                             <br>
                                                             <button type="submit" data-target="verified-token-modal"
-                                                                class="btn btn-default red darken-4 modal-trigger"
+                                                                class="btn btn-default red darken-4 hoverable modal-trigger"
                                                                 id="verifyTokenBtn">Verify</button> <i
                                                                 class="material-icons prefix">done</i>
                                                         </form>
                                                         <br />
-                                                        <p><a href="/signup">Or sign up here</a></p>
+                                                        <p class="center-align hoverable"><a href="/login">Login</a></p>
+                                                        <p class="center-align hoverable"><a href="/signup">Or sign up here</a></p>
                                                     </div>
                                                     <!-- Modal Trigger -->
                                                     <div id="verified-token-modal" class="modal">
