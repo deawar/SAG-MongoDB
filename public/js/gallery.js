@@ -1,8 +1,27 @@
+function addFile(form, sampleFile, name) {
+  const newBid = new FormData();
+  // newArtwork.append('formvalues', form);
+  newBid.append('sampleFile', sampleFile[0], name);
+  newBid.append('artist_firstname_input', form.first_name);
+  newBid.append('artist_lastname_input', form.last_name);
+  newBid.append('art_name_input', form.artwork_name);
+  newBid.append('description_input', form.description);
+  newBid.append('d_size_input', form.depth);
+  newBid.append('artist_email_input', form.email);
+  newBid.append('h_size_input', form.height);
+  newBid.append('medium_input', form.medium);
+  newBid.append('price_input', form.price);
+  newBid.append('w_size_input', form.width);
+  newBid.append('school_input', form.school);
+  newBid.append('approved', form.approved);
+  console.log('newBid form after append: ', newBid);
+  return newBid;
+}
+
 $(document).ready(() => {
   $('.materialboxed').materialbox();
 
   // Populate Gallery with approved artwork
-  // $('.displayUserArt').one('click', (event) => {
   console.log('line 6 In gallery.js');
   const items = [];
   try {
@@ -22,7 +41,7 @@ $(document).ready(() => {
           let divcol = $('<div/>')
             .addClass('gallery')
             .attr('style', 'overflow-wrap: normal');
-          const bidBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable remove" value="Bid"><i class="material-icons right">gavel</i>Bid</a>');
+          const bidBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable addBid" value="Bid"><i class="material-icons right">gavel</i>Bid</a>');
           if (!res[i].artId || res[i].artId === undefined) {
             respdiv = $('<div>')
               .addClass('responsive')
@@ -54,8 +73,8 @@ $(document).ready(() => {
             $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
             $(`<div>Artist: ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
             $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
-            $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
             $(`<div>Height: ${res[count - 1].artHeight} in Width: ${res[count - 1].artWidth} in</div>`).appendTo(picrow);
+            $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
             if (res[count - 1].artDepth > 0) {
               $(`<div>Depth: ${res[count - 1].artDepth}in</div>`).appendTo(picrow);
             }
@@ -86,4 +105,62 @@ $(document).ready(() => {
     console.log(`Something went wrong ${err}`);
     $('#err-msg').empty('').text('** No Images found. **');
   }
+
+  // Bid Button
+  $('#displayUserArt').on('click', '.addBid', function () {
+    console.log('Bid Clicked!');
+    console.log('id to copy to user Bid page: ', this.id);
+    const { id } = this;
+    const splitId = id.split('-');
+    const bidindex = splitId[1];
+    try {
+      $.ajax({
+        type: 'post',
+        url: '/add-bid',
+        data: { _id: bidindex },
+        success(status, res) {
+          console.log('status: ', status.art_name_input);
+          $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} copied to bid collection! **`);
+          $('#FileAction-modal').modal('open').html(
+            `<div class='modal-content'>
+            <h4>File Activity</h4>
+            <h4 class='center-align'>Success!</h4>
+            <h5 class='center-align'><b>The File ${status.art_name_input} was copied to the bid collection!</b></h5>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+            </div>
+            </div>`,
+          );
+        },
+        error(status, error) {
+          // $.each(xhr, (key, value) => {
+          //   alert(key + ": " + value);
+          // });
+          $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
+          $('#FileAction-modal').modal('open').html(
+            `<div class='modal-content'>
+            <h4>File Activity</h4>
+            <h4 class='center-align'>Error!</h4>
+            <h5 class='center-align'><b>The File ${status.art_name_input} was NOT added to the bid collection!</b></h5>
+            <h5 class='center-align'><b>**${status}: Something Broke-->${error}** </b></h5>
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+            </div>
+            </div>`,
+          );
+        },
+      })
+        .then((res) => {
+        });
+    } catch (err) {
+      console.log(`Something went wrong ${err}`);
+      $('#err-msg').empty('').text('**images not added to the bid collection.**');
+    }
+    // the following line would remove the gallery block by index bidindex
+    // $(`#resp-${bidindex}`).remove();
+
+    $('.displayUserArt').click();
+  });
 });
