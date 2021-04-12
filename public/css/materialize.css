@@ -2353,7 +2353,10 @@ audio:not([controls]) {
  */
 img {
   border-style: none;
+  width: 200px;
+  /* background-color: (0,100,100, .03); */
 }
+
 
 /**
  * Hide the overflow in IE.

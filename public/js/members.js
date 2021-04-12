@@ -6,7 +6,6 @@ if (!ajaxLoading) {
   ajaxLoading = false;
 }
 $(document).ready(() => {
-  $('.sidenav').sidenav();
   M.updateTextFields();
   $('.modal').modal();
   $('#err-msg').text('');
@@ -29,8 +28,8 @@ $(document).ready(() => {
   $('#confirm-delete').on('click', (event) => {
     console.log('Clicked on Confirm Delete button');
     const deleteAccount = {
-      account_id: $('#accountid').val().trim(),
-      email: $('#emailinput').val().trim(),
+      account_id: $('#account_id').val().trim(),
+      email: $('#email-input').val().trim(),
     };
     console.log(deleteAccount);
     if (deleteAccount.account_id.length > 0 && deleteAccount.email.length > 0) {
@@ -55,7 +54,7 @@ $(document).ready(() => {
     $('#delete-account-modal').modal('close');
   });
 
-  // UPDATE MY ACCOUNT
+  // UPDATE ACCOUNT
   $('#updateButton').on('click', (event) => {
     event.preventDefault();
     console.log('About to update my account...');
@@ -75,6 +74,7 @@ $(document).ready(() => {
       phone: $('#phone-input').val().trim(),
     };
     $('#err-msg').empty('');
+    // $("#change-account-modal").modal("show");
     console.log(changeAccount);
 
     if (changeAccount.phone.length > 0
@@ -99,90 +99,35 @@ $(document).ready(() => {
     }
   });
 
-  // Update another user account from Email Search
-  $('#updateUserButton').on('click', (event) => {
-    event.preventDefault();
-    console.log('About to update another users account...');
-
-    // capture All changes
-    const changeAccount = {
-      account_id: $('#searchedAccountid').val().trim(),
-      first_name: $('#searchedFirstnameinput').val().trim(),
-      last_name: $('#searchedLastnameinput').val().trim(),
-      address1: $('#searchedAddressinput').val().trim(),
-      address2: $('#searchedAddress2input').val().trim(),
-      city: $('#searchedCityinput').val().trim(),
-      state: $('#searchedStateinput').val().trim(),
-      zip: $('#searchedZipcodeinput').val().trim(),
-      school: $('#searchedSchoolinput').val().trim(),
-      email: $('#searchedEmailinput').val().trim(),
-      phone: $('#searchedPhoneinput').val().trim(),
-      role: $('#searchedRoleinput').val().trim(),
-    };
-    $('#err-msg').empty('');
-    console.log(changeAccount);
-
-    if (changeAccount.phone.length > 0
-      && changeAccount.email.length > 0 && changeAccount.zip.length > 0
-      && changeAccount.state.length > 0 && changeAccount.city.length > 0
-      && changeAccount.address1.length > 0 && changeAccount.last_name.length > 0
-      && changeAccount.first_name.length > 0 && changeAccount.role.length > 0) {
-      $.ajax({
-        type: 'PUT',
-        url: `/user/${changeAccount.account_id}`,
-        data: changeAccount,
-      }).then(
-        () => {
-          console.log('Updated account', changeAccount);
-          // Reload the page to get the updated list
-          location.reload();
-        },
-      );
-    } else {
-      console.log('**Please fill out entire form**');
-      $('#update-err-msg').empty('').text('**Please fill out entire form**');
-    }
-  });
-
   // SEARCH FOR AN ACCOUNT
   $('#userSearch').submit((event) => {
     event.preventDefault();
     const emailSearched = $('#searchforUser').val().trim();
     console.log(`emailSearched ~~~~~~~ ${emailSearched}`);
-    const $errMsg = $('#err-msg');
 
     if (emailSearched.match(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/i)) {
       try {
         $.ajax({
           type: 'get',
           url: `/searchuser/${emailSearched}`,
-          error(jqXHR, textStatus, errorThrown) {
-            if (jqXHR.status === 404 || jqXHR.status === '404') {
-              $('#err-msg').empty('').text('**Email not found.. Please enter a different Email-Id**');
-              $('#searchforUser').val('');
-            }
-          },
         })
           .then((res) => {
             // const accountId = $('#accountid');
-            $('#searchedRoleinput').val(res.searchedRole);
-            $('#searchedAccountid').val(res.searchedId);
-            $('#searchedFirstnameinput').val(res.searchedFirst_name);
-            $('#searchedLastnameinput').val(res.searchedLast_name);
-            $('#searchedAddressinput').val(res.searchedAddress1);
-            $('#searchedAddress2input').val(res.searchedAddress2);
-            $('#searchedCityinput').val(res.searchedCity);
-            $('#searchedStateinput').val(res.searchedState);
-            $('#searchedZipcodeinput').val(res.searchedZip);
-            $('#searchedPhoneinput').val(res.searchedPhone);
-            $('#searchedEmailinput').val(res.searchedEmail);
-            $('#searchedSchoolinput').val(res.searchedSchool);
-            console.log('res.searchedEmailinput: ', res.searchedEmail);
-          })
-          .then(() => {
-            $('#searchforUser').val('');
-            $('#err-msg').text('');
-            M.updateTextFields();
+            $('#roleinput').val(res.searchedUser.role_name);
+            $('#accountid').val(res.searchedUser.id);
+            $('#fullname').val(res.searchedUser.first_name || res.searchedUser.last_name);
+            $('#firstnameinput').val(res.searchedUser.first_name);
+            $('#lastnameinput').val(res.searchedUser.last_name);
+            $('#addressinput').val(res.searchedUser.address);
+            $('#address2input').val(res.searchedUser.address2);
+            $('#cityinput').val(res.searchedUser.city);
+            $('#stateinput').val(res.searchedUser.state);
+            // $('#statedropdown').append(`<option value="">${res.searchedUser.state}</option>`);
+            $('#zipcodeinput').val(res.searchedUser.zip);
+            $('#phoneinput').val(res.searchedUser.phone);
+            $('#emailinput1').val(res.searchedUser.email);
+            $('#schoolinput').val(res.searchedUser.school);
+            console.log(res.searchedUser.email);
           });
       } catch (err) {
         console.log(`Something went wrong ${err}`);

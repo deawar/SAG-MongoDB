@@ -1,50 +1,34 @@
 {{> sidebarNav }}
 
-    <div class="hero-image">
-        <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
-    </div>
 <div class="container" id="mainContent2">
-  <div class="card" id="profilePageCard" style="width: 90%;">
-    <h2>Welcome to the {{school}} Art Gallery</h2>
-    {{!-- <div id="aboutMe" class="tabcontent displayUserArt"> --}}
-      <div class="row" id="displayUserArt">
-
+  <div class="card" id="profilePageCard" style="width: 90%; margin-left:12%">
+    <h2>Welcome to the Art Gallery</h2>
+    <div class="responsive">
+      <div class="gallery">
+        <a target="_blank" href="https://www.goodnet.org/photos/281x197/31606_hd.jpg">
+          <img src="https://www.goodnet.org/photos/281x197/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
+        </a>
+        <div class="desc">Add a description of the image here</div>
       </div>
-      {{!-- <div class="responsive">
-        <div class="gallery">
-          <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-          <div class="art_name_input">Title: {{art_name_input}}</div>
-          <div class="artist_name">Artist: {{artist_name}}</div>
-          <div class="desc">Add a description of the image here</div>
-          {{#if bid}}
-          <div class="currentPrice">${{currentPrice}}.00</div>
-          <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
-          {{/if}}
-        </div>
-      </div>
+    </div>
 
 
-      <div class="responsive">
-        <div class="gallery">
-          <img class="materialboxed" src="./resources/webpage/showimg_ime50_full.jpg" alt="Forest" width="100%"
+    <div class="responsive">
+      <div class="gallery">
+        <a target="_blank" href="https://img-lumas-avensogmbh1.netdna-ssl.com/showimg_ime50_full.jpg">
+          <img src="https://img-lumas-avensogmbh1.netdna-ssl.com/showimg_ime50_full.jpg" alt="Forest" width="100%"
             height="400">
-          <div class="art_name_input">Title: {{art_name_input}}</div>
-          <div class="artist_name">Artist: {{artist_name}}</div>
-          <div class="desc">Add a description of the image here</div>
-          {{#if bid}}
-          <div class="currentPrice">${{currentPrice}}.00</div>
-          <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
-          {{/if}}
-        </div>
+        </a>
+        <div class="desc">Add a description of the image here</div>
       </div>
+    </div>
 
       <div class="row">
 
-      </div> --}}
-    {{!-- </div> --}}
+    </div>
+  </div>
 
   <div class="clearfix"></div>
 </div>
 
 </div>
-<script type="text/javascript" src="./js/gallery.js"></script>

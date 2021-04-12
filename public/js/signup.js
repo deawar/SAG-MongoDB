@@ -112,8 +112,7 @@ $(document).ready(() => {
       // .then()
         .then((data) => {
           console.log('status post ajax call to /api/signup :', data);
-          $('#Form-modal').modal('open');
-          window.location.replace('/login');
+          window.location.replace('/dashboard');
         });
     } else {
       console.log('**Please fill out entire form**');

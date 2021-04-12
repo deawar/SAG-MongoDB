@@ -11,9 +11,15 @@ const { Schema } = mongoose;
 // Creating our School Schema
 const schoolSchema = new Schema({
   updated: { type: Date, default: Date.now },
+<<<<<<< HEAD
   SchoolName: {
     type: [String],
     text: true,
+=======
+  unique_id: { type: Number, index: true },
+  schoolName: {
+    type: String,
+>>>>>>> 4279c328447873f4f73dcf12d98fd1ac51127ddf
     trim: true,
     required: true,
   },
@@ -26,7 +32,7 @@ const schoolSchema = new Schema({
       },
       message: '{VALUE} is not a valid phone number!',
     },
-    required: [false, 'User phone number required'],
+    required: [true, 'User phone number required'],
   },
   address: {
     type: String,
@@ -39,6 +45,7 @@ const schoolSchema = new Schema({
   city: {
     type: String,
     trim: true,
+    required: true,
   },
   county: {
     type: String,
@@ -47,23 +54,21 @@ const schoolSchema = new Schema({
   state: {
     type: String,
     trim: true,
+    required: true,
     min: 2,
   },
   zip: {
     type: String,
     trim: true,
+    required: true,
     min: 5,
-  },
-  CollegeBoardID: {
-    type: Number,
   },
 });
 
 const School = mongoose.model('School', schoolSchema);
+<<<<<<< HEAD
 const schoolname = new School({ type: 'schoolname' });
+=======
+>>>>>>> 4279c328447873f4f73dcf12d98fd1ac51127ddf
 
-// module.exports.findSchoolName = function (SchoolName, callback) {
-//   const query = { SchoolName };
-//   School.find(query, callback);
-// };
-module.exports = School;
+module.exports = (School, schoolSchema);

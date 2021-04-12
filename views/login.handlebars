@@ -15,7 +15,7 @@
           <div class="col s10 m10 l5">
             <div class="row">
               <div class="col s10 m10 l10">
-                <div class="card hoverable" id="loginCard2">
+                <div class="card" id="loginCard2">
                   <div class="card-content" style="padding: 5px !important;">
                     <h2>Member Login</h2>
 
@@ -36,13 +36,12 @@
                                 <input type="password" class="form-control col s12" id="password-input" placeholder="Password" autocomplete="current-password">
                               </div>
                               <br>
-                              <button type="submit" class="btn btn-default red darken-4 waves-effect waves-light hoverable" id="logInButton">Login</button>
+                              <button type="submit" class="btn btn-default red darken-4 hoverable" id="logInButton">Login</button>
                             </form>
                             <br />
-                            <p><b>Or</b></p><br />
-                            <p><a href="/signup" class="btn btn-default red darken-4 waves-effect waves-light hoverable">Sign Up Here</a></p>
+                            <p><a href="/signup" class="hoverable">Or sign up here</a></p>
                               {{#if expressFlash}}
-                                  <p><strong>ERROR via Express-Flash!</strong> {{ flash }}</p>
+                                  <p><strong>ERROR via Express-Flash!</strong> {{ expressFlash }}</p>
                               {{/if}}
 
                               {{#if sessionFlash.message}}
@@ -51,9 +50,9 @@
                                   </div>
                               {{/if}}
 
-                              <h3 id="create-err-msg">{{flash}}</h3>
+                              <h3 id="create-err-msg"></h3>
 
-                              <h3 id="err-msg">{{flash}}</h3>
+                              <h3 id="err-msg"></h3>
                           </div>
                         </div>
                       </div>
