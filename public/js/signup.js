@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getQuery() {
     const query = document.getElementById('school-input').value;
+    // const instance = M.Autocomplete.init(autoInput, {
+    //   data: schoolObj,
+    //   minLength: 1,
+    // });
     console.log(query);
 
     if (query === '') {
@@ -12,19 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-          console.log(this.responseText);
+          // const imgfld = { img: null };
           const ReceivedData = JSON.parse(this.responseText);
+          console.log('ReceivedData: ', ReceivedData);
           const arrayToObject = (array, keyField) => array.reduce((obj, item) => {
             obj[item[keyField]] = item;
+            obj[item[keyField]] = null; // Returns only school name with null for image.
+            console.log('the obj to return: ', obj);
             return obj;
           }, {});
           const schoolObj = arrayToObject(ReceivedData, 'school');
-
           console.log('=====================================');
           console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
           console.log('=====================================');
-          const autoInput = document.querySelectorAll('.autocomplete');
-          M.Autocomplete.init(autoInput, {
+          const autoInput = document.querySelectorAll('.autocomplete'); // For autocomplete input field
+          console.log('AutoInputData: ', autoInput);
+          M.Autocomplete.init(autoInput, { // For Autocomplete input field
             data: schoolObj,
             minLength: 1,
           });

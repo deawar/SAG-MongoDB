@@ -81,7 +81,6 @@ const userSchema = new Schema({
   address2: {
     type: String,
     trim: true,
-    required: true,
   },
   city: {
     type: String,
@@ -122,12 +121,15 @@ const userSchema = new Schema({
     type: String,
     validate: [secretTokenGen],
   },
-  role: String,
+  role: {
+    type: String,
+    required: true,
+    default: 'student',
   // [subRole],
   // role: {
   //   type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
   //   ref: 'role',
-  // },
+  },
   active: Boolean,
 });
 

@@ -14,7 +14,7 @@ const validateEmail = function (email) {
 const artworkSchema = new Schema({
   updated: { type: Date, default: Date.now },
   approved: {
-    type: Boolean,
+    type: Boolean, default: false,
   },
   artist_firstname_input: {
     type: String,

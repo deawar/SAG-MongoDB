@@ -19,7 +19,7 @@ const app = express();
 
 // const { DB_USER } = process.env;
 // const { DB_PASSWORD } = process.env;
-// const { DB_HOST } = process.env;
+const { DB_HOST } = process.env;
 // const { DB_NAME } = process.env;
 const { MONGODB_URI } = process.env;
 const { LOCALMONGODB_URI } = process.env;
@@ -180,7 +180,7 @@ app.use(fileUpload);
 
 const hostname = os.hostname();
 db.once('open', () => {
-  console.log('\nConnectd to MongoDB');
+  console.log('\nConnected to MongoDB @', DB_HOST);
 
   app.listen(PORT, () => {
     console.log(`PID: ${pid}\n`);

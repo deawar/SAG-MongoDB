@@ -19,6 +19,7 @@ function addFile(form, sampleFile, name) {
 }
 
 $(document).ready(() => {
+  $('.sidenav').sidenav();
   $('.materialboxed').materialbox();
 
   // Populate Gallery with approved artwork
@@ -70,13 +71,13 @@ $(document).ready(() => {
               .attr('id', `img${count}`)
               .attr('src', res[count])
               .prependTo(picrow);
-            $(`<div>Title: ${res[count - 1].artName}</div>`).appendTo(picrow);
-            $(`<div>Artist: ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
+            $(`<div><b>Title:</b> ${res[count - 1].artName}</div>`).appendTo(picrow);
+            $(`<div><b>Artist:</b> ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
             $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
-            $(`<div>Height: ${res[count - 1].artHeight} in Width: ${res[count - 1].artWidth} in</div>`).appendTo(picrow);
-            $(`<div>Price: $ ${res[count - 1].artPrice}</div>`).appendTo(picrow);
+            $(`<div><b>Height:</b> ${res[count - 1].artHeight} <b>in Width:</b> ${res[count - 1].artWidth} <b>in</b></div>`).appendTo(picrow);
+            $(`<div><b>Price: $</b> ${res[count - 1].artPrice}</div>`).appendTo(picrow);
             if (res[count - 1].artDepth > 0) {
-              $(`<div>Depth: ${res[count - 1].artDepth}in</div>`).appendTo(picrow);
+              $(`<div><b>Depth:</b> ${res[count - 1].artDepth}<b>in</b></div>`).appendTo(picrow);
             }
             $(bidBut).attr('id', `bid-${res[count - 1].artId}`);
             $(picrow).append(bidBut);

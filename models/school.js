@@ -12,7 +12,7 @@ const { Schema } = mongoose;
 const schoolSchema = new Schema({
   updated: { type: Date, default: Date.now },
   SchoolName: {
-    type: [String], 
+    type: [String],
     text: true,
     trim: true,
     required: true,
@@ -60,7 +60,7 @@ const schoolSchema = new Schema({
 });
 
 const School = mongoose.model('School', schoolSchema);
-const schoolname = new School({type: 'schoolname'});
+const schoolname = new School({ type: 'schoolname' });
 
 // module.exports.findSchoolName = function (SchoolName, callback) {
 //   const query = { SchoolName };

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
 const express = require('express');
@@ -19,8 +20,8 @@ const router = express.Router();
 
 // REGEX Function for autocomplete
 function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
 
 // HTML ROUTE FOR SIGNUP SCREEN
 router.get('/signup', async (req, res) => {
@@ -45,31 +46,33 @@ router.get('/privacypolicy', (req, res) => {
 const schoolname = School.find({});
 router.get('/autocomplete', (req, res, next) => {
   if (req.query.q) {
-    const regex = new RegExp(escapeRegex(req.query.q,'i'));
+    const regex = new RegExp(escapeRegex(req.query.q, 'i'));
     const mysearch = req.query.q;
-    console.log('regex: ',regex); 
+    console.log('regex: ', regex);
     console.log('mysearch: ', mysearch);
-    // let findSchool = 
-    schoolname.find({ SchoolName: { $regex: regex, $options: 'i' }}, function(err, data) {
-      const result = [];
-      if (!err) {
-        if (data && data.length && data.length > 0) {
-          data.forEach((schoolname) => {
-            const obj = {
-              id: schoolname._id,
-              school: schoolname.SchoolName[0],
-              college_board_id: schoolname.CollegeBoardID,
-            };
-            console.log('obj: ', obj);
-            result.push(obj);
-          });
+    // let findSchool =
+    // schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } }, function (err, data) {
+    schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } },
+      function(err, data) {
+        const result = [];
+        if (!err) {
+          if (data && data.length && data.length > 0) {
+            data.forEach((schoolsearch) => {
+              const obj = {
+                id: schoolsearch._id,
+                school: schoolsearch.SchoolName[0],
+                college_board_id: schoolsearch.CollegeBoardID,
+              };
+              console.log('obj: ', obj);
+              result.push(obj);
+            });
+          }
+          res.jsonp(result);
+        } else {
+          console.log(err);
         }
-        res.jsonp(result);
-      } else {
-        console.log(err);
-      }
-      console.log('LINE 59================================>OutPut of find(): ',result);
-    });
+        console.log('LINE 59================================>OutPut of find(): ', result);
+      });
   }
 });
 

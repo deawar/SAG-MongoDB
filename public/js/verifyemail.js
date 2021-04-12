@@ -2,6 +2,7 @@ let to;
 
 const subject = 'Silent Auction Verification Email';
 $(document).ready(() => {
+  $('.sidenav').sidenav();
   $('.modal').modal();
   // URL parser for jQuery
   function GetURLParameter(sParam) {

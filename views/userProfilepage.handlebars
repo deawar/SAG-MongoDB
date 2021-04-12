@@ -2,10 +2,10 @@
 
 <div class="card center-align" id="profilePageCardMain" style="width: 80%">
     <div class="container" id="mainContent2" style="margin-right:12%;">
-        <button class="tablink displayUserArt" style="font-size: 1.5vw;" onclick="openPage('artwork', this, 'white')">Artwork</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('aboutMe', this, 'white')" id="defaultOpen">Account Info</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('Contact', this, 'white')">Contact</button>
-        <button class="tablink" style="font-size: 1.5vw;" onclick="openPage('About', this, 'white')">About</button>
+        <button class="tablink displayUserArt" onclick="openPage('artwork', this, 'white')">Artwork</button>
+        <button class="tablink" onclick="openPage('aboutMe', this, 'white')" id="defaultOpen">Account Info</button>
+        <button class="tablink" onclick="openPage('Contact', this, 'white')">Contact</button>
+        <button class="tablink" onclick="openPage('About', this, 'white')">About</button>
 
         <div id="aboutMe" class="tabcontent">
 
@@ -26,51 +26,51 @@
                                 <h3>Hello, {{first_name}} {{last_name}}</h3>
                             </div>
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input disabled id="account_id" type="text" value="{{id}}">
                                 <label class="active" for="id">Account ID</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input placeholder="First Name" id="firstname-input" type="text"
                                     value="{{first_name}}">
                                 <label class="active" for="first_name">First Name*</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="lastname-input" type="text" value="{{last_name}}">
                                 <label class="active" for="last_name">Last Name</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="address-input" type="text" value="{{address1}}">
                                 <label class="active" for="address">Address</label>
                             </div>
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="address2-input" type="text" value="{{address2}}">
                                 <label class="active" for="address2">Address2</label>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="city-input" type="text" value="{{city}}">
                                 <label class="active" for="city">City</label>
                             </div>
 
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="state-input" type="text" value="{{state}}">
                                 <label class="active" for="state">State</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="zipcode-input" type="text" value="{{zip}}">
                                 <label class="active" for="zipCode">Zip Code</label>
                             </div>
 
-                            <div class="input-field col s6">
+                            <div class="input-field col s12 m6 l6">
                                 <input id="phone-input" type="tel" value="{{phone}}">
                                 <label class="active" for="phoneNumber">Tel Number</label>
                             </div>
@@ -85,7 +85,7 @@
                         <hr>
                         <h3 style="font-size: 1.7vw;">School Afilliation</h3>
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s12 m12 l12">
                                 <input disabled id="school-input" type="text" value="{{school}}">
                                 <label class="active" for="school">School</label>
                             </div>

@@ -215,4 +215,29 @@ router.get('/searchuser/:email', async (req, res) => {
   }
 });
 
+// All Students Search
+router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
+  try {
+    let students = [];
+    const targetschool = req.params.school;
+    // const school = findSchoolName(req);
+    console.log('profile_controller req.params: ', req.params);
+    const query = { school: targetschool };
+    console.log('query string: ', query);
+    await User.find(query, function (err, doc) {
+      if (!doc) {
+        console.log('In Error branch - err: ', err);
+        res.status(404);
+        return res.send(`No User associated with ${targetschool}!`);
+      }
+      students = doc;
+      console.log('Line 234 ---> Students: ', students);
+      return res.status(200).send(students);
+    });
+  } catch (error) {
+    res.status(404);
+    return res.send('No User Found');
+  }
+});
+
 module.exports = router;

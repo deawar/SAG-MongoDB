@@ -4,71 +4,43 @@
   },
   "first_name": "John",
   "last_name": "Doe",
-  "address": [
-    {
-      "_id": {
-        "$oid": "602152e05f405b98f8230814"
-      },
-      "address1": "1220 River Valley Way",
-      "address2": "",
-      "city": "Kennett",
-      "state": "MO",
-      "zip": "65837"
-    }
-  ],
-  "school": "Holcomb Highschool",
+  "school": "Holcomb High School",
   "email": "deanw8986@gmail.com",
   "phone": "789-456-3320",
   "password": "$2a$10$OFQpuEtGNN0fOEtnRj71o.Ro/nnUR3c6PHyWfSvB2lhOZ//tVBo2i",
-  "role": [
-    {
-      "_id": {
-        "$oid": "602152e05f405b98f8230815"
-      },
-      "role": "bidder"
-    }
-  ],
+  "role": "bidder",
   "secretToken": "",
   "active": true,
   "updated": {
     "$date": "2021-02-08T15:04:00.208Z"
   },
+  "address1": "1220 River Valley Way",
+  "address2": "",
+  "city": "Kennett",
+  "state": "MO",
+  "zip": "65837",
   "__v": 0
 },{
   "_id": {
     "$oid": "6023517bebc39ea900ec5bd9"
   },
-  "first_name": "Dean",
+  "first_name": "Bristol",
   "last_name": "Warren",
-  "address": [
-    {
-      "_id": {
-        "$oid": "6023517bebc39ea900ec5bda"
-      },
-      "address1": "123456 No Way",
-      "address2": "Apt 14B",
-      "city": "Bristol",
-      "state": "TN",
-      "zip": "45122"
-    }
-  ],
-  "school": "Bristol HS",
+  "school": "Bristol High School",
   "email": "deawar@yahoo.com",
   "phone": "7178080770",
   "password": "$2a$10$xvDxAPkUGrdgo1QAEWplROAAKfGcxX2SL7eQF9G94tB4JQ36Go046",
-  "role": [
-    {
-      "_id": {
-        "$oid": "6023517bebc39ea900ec5bdb"
-      },
-      "role": "bidder"
-    }
-  ],
+  "role": "admin",
   "secretToken": "",
   "active": true,
   "updated": {
     "$date": "2021-02-10T03:22:35.690Z"
   },
+  "address1": "123456 No Way",
+  "address2": "Apt 14B",
+  "city": "Bristol",
+  "state": "TN",
+  "zip": "45122",
   "__v": 0
 },{
   "_id": {
@@ -76,35 +48,21 @@
   },
   "first_name": "Avery",
   "last_name": "Mutimer",
-  "address": [
-    {
-      "_id": {
-        "$oid": "6026c50c5c8ad1609c0281fa"
-      },
-      "address1": "1051 Ashland Dr.",
-      "address2": "",
-      "city": "Statham",
-      "state": "GA",
-      "zip": "30666"
-    }
-  ],
-  "school": "North Oconee Highschool",
+  "school": "North Oconee High School",
   "email": "averyalarmedaesthetic@gmail.com",
   "phone": "7066142766",
   "password": "$2a$10$CFJ5/rn4zAtkfnvKJnqCOeEJURQcSBO8nm0dZp2WL7bZZrue5MKc.",
-  "role": [
-    {
-      "_id": {
-        "$oid": "6026c50c5c8ad1609c0281fb"
-      },
-      "role": "student"
-    }
-  ],
+  "role": "student",
   "secretToken": "Ty8X8bpMx2MCYBCpZLNqI8NX5gsKLjmcdSxzeoVsjkYXf565gYBrqM0SfLgSZJJi",
   "active": false,
   "updated": {
     "$date": "2021-02-12T18:12:28.952Z"
   },
+  "address1": "1051 Ashland Dr.",
+  "address2": "",
+  "city": "Statham",
+  "state": "GA",
+  "zip": "30666",
   "__v": 0
 },{
   "_id": {
@@ -112,35 +70,21 @@
   },
   "first_name": "Lena",
   "last_name": "Konzelman",
-  "address": [
-    {
-      "_id": {
-        "$oid": "6026c9856fbe542184c8a900"
-      },
-      "address1": "987 Overlook Ridge Dr.",
-      "address2": "",
-      "city": "Bishop",
-      "state": "GA",
-      "zip": "30621"
-    }
-  ],
-  "school": "North Oconee Highschool",
+  "school": "North Oconee High School",
   "email": "lena.konzoelman@gmail.com",
   "phone": "6782021234",
   "password": "$2a$10$xheFq7BgIxaEkimjsTRfE.KMaJYCJJZg6Nqf842ActBlnZkqPIIGi",
-  "role": [
-    {
-      "_id": {
-        "$oid": "6026c9856fbe542184c8a901"
-      },
-      "role": "student"
-    }
-  ],
-  "secretToken": "2HGrySpB1eDzZ0xE2G5G80CIN7ybKDG3vnHlf63xcj02fhxYudIrboyrppDyrJAA",
-  "active": false,
+  "role": "student",
+  "secretToken": "",
+  "active": true,
   "updated": {
     "$date": "2021-02-12T18:31:33.648Z"
   },
+  "address1": "987 Overlook Ridge Dr.",
+  "address2": "",
+  "city": "Bishop",
+  "state": "GA",
+  "zip": "30621",
   "__v": 0
 },{
   "_id": {
@@ -148,35 +92,21 @@
   },
   "first_name": "Jonathan",
   "last_name": "Kelley",
-  "address": [
-    {
-      "_id": {
-        "$oid": "6028b9991d7bc088e8b94251"
-      },
-      "address1": "3117 Wyesham Circle",
-      "address2": "",
-      "city": "Duluth",
-      "state": "GA",
-      "zip": "30096"
-    }
-  ],
-  "school": "Duluth Highschool",
+  "school": "Duluth High School",
   "email": "jonathankelley87@gmail.com",
   "phone": "6786377448",
   "password": "$2a$10$8SQ0KAsLDoOQP6I.k61Vg.6lVustKKQTrYVeoqyPJzQ4ESSsfZl5e",
-  "role": [
-    {
-      "_id": {
-        "$oid": "6028b9991d7bc088e8b94252"
-      },
-      "role": "bidder"
-    }
-  ],
+  "role": "bidder",
   "secretToken": "WrrBubBXtf7c6jXmnQhYHkwkbEKzfjr7zSaITBnq7C1KRxbeOdscjiu8sZR7CtS0",
   "active": false,
   "updated": {
     "$date": "2021-02-14T05:48:09.070Z"
   },
+  "address1": "3117 Wyesham Circle",
+  "address2": "",
+  "city": "Duluth",
+  "state": "GA",
+  "zip": "30096",
   "__v": 0
 },{
   "_id": {
@@ -184,106 +114,86 @@
   },
   "first_name": "Dean",
   "last_name": "Warren",
-  "address": [
-    {
-      "_id": {
-        "$oid": "60301ba11614e348985b94e6"
-      },
-      "address1": "1051 Ashland Dr.",
-      "address2": "",
-      "city": "Statham",
-      "state": "GA",
-      "zip": "30666"
-    }
-  ],
-  "school": "North Oconee Highschool",
+  "school": "North Oconee High School",
   "email": "deawar@gmail.com",
-  "phone": "7178080770",
+  "phone": "717-808-0770",
   "password": "$2a$10$PKx8lDTFolRVgXQl9Macn.QEZHytGgkk5CM7SKJvbtQdX7oyKiTDS",
-  "role": [
-    {
-      "_id": {
-        "$oid": "60301ba11614e348985b94e7"
-      },
-      "role": "student"
-    }
-  ],
+  "role": "student",
   "secretToken": "",
   "active": true,
   "updated": {
     "$date": "2021-02-19T20:12:17.934Z"
   },
-  "__v": 0
+  "__v": 0,
+  "address1": "1051 Ashland Dr.",
+  "address2": "",
+  "city": "Statham",
+  "state": "GA",
+  "zip": "30666"
 },{
   "_id": {
     "$oid": "60304d19426348806c85e5bd"
   },
-  "first_name": "cathi",
-  "last_name": "warren",
-  "address": [
-    {
-      "_id": {
-        "$oid": "60304d19426348806c85e5be"
-      },
-      "address1": "1051 Ashland Dr",
-      "address2": "",
-      "city": "Statham",
-      "state": "GA",
-      "zip": "30666"
-    }
-  ],
+  "first_name": "Cathi",
+  "last_name": "Warren",
   "school": "North Oconee High School",
   "email": "cathiwarren1@gmail.com",
   "phone": "706-202-4325",
   "password": "$2a$10$oXPG36CLU.w1mA5hL5uaqe9BIlDA/xlmwnhGiup21kjX6pym7U1Ya",
-  "role": [
-    {
-      "_id": {
-        "$oid": "60304d19426348806c85e5bf"
-      },
-      "role": "admin"
-    }
-  ],
+  "role": "admin",
   "secretToken": "",
   "active": true,
   "updated": {
     "$date": "2021-02-19T23:43:21.078Z"
   },
-  "__v": 0
+  "__v": 0,
+  "address1": "1051 Ashland Dr.",
+  "address2": "",
+  "city": "Statham",
+  "state": "GA",
+  "zip": "30666"
 },{
   "_id": {
-    "$oid": "603659945f4fe67840096e69"
+    "$oid": "605f508e474c528d340c3471"
   },
-  "first_name": "Ed",
-  "last_name": "Warren",
-  "address": [
-    {
-      "_id": {
-        "$oid": "603659945f4fe67840096e6a"
-      },
-      "address1": "1532 Sweetwater Dr.",
-      "address2": "",
-      "city": "Warner Robins",
-      "state": "GA",
-      "zip": "30188"
-    }
-  ],
-  "school": "Houston County Highschool",
-  "email": "dean.ed.warren@gmail.com",
-  "phone": "7178080770",
-  "password": "$2a$10$D1wpeiqbPn4Gk7pSD4Ygf.QdhSXo2SPoBxEpkiJ.RRQxAeY1Q66Ta",
-  "role": [
-    {
-      "_id": {
-        "$oid": "603659945f4fe67840096e6b"
-      },
-      "role": "student"
-    }
-  ],
+  "first_name": "Wilber",
+  "last_name": "daUser",
+  "school": "Oconee County High School",
+  "email": "deawar@protonmail.com",
+  "phone": "989-989-9898",
+  "password": "$2a$10$aHKaZxyEKFeMl4iRfGMjW.t4R1J8DXH0JpuKXqT2.8Yemu47qRDui",
+  "role": "student",
   "secretToken": "",
   "active": true,
   "updated": {
-    "$date": "2021-02-24T13:50:12.442Z"
+    "$date": "2021-03-27T15:34:39.005Z"
   },
+  "address1": "231 Maple St.",
+  "address2": "",
+  "city": "Watkinsville",
+  "state": "GA",
+  "zip": "30642",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "605f992d82e091b4042ea16e"
+  },
+  "first_name": "Ed",
+  "last_name": "Warren",
+  "school": "Houston County High School",
+  "email": "dean.ed.warren@gmail.com",
+  "phone": "478-202-4325",
+  "password": "$2a$10$NC.oXGosbTIOFj/ClfUTTuk7ZTMChQkC5kEp9NOPlTi/1QJjzMj6i",
+  "role": "student",
+  "secretToken": "",
+  "active": true,
+  "updated": {
+    "$date": "2021-03-27T20:44:29.931Z"
+  },
+  "address1": "1532 Sweetwater Dr.",
+  "address2": "",
+  "city": "Warner Robins",
+  "state": "GA",
+  "zip": "31088",
   "__v": 0
 }]

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-plusplus */
 /* eslint-disable camelcase */
@@ -7,6 +8,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const passport = require('passport');
 const fs = require('fs');
+const { ObjectId } = require('bson');
 const Artwork = require('../models/artwork');
 const School = require('../models/school');
 const User = require('../models/user');
@@ -53,6 +55,53 @@ function findEmail(req) {
   // eslint-disable-next-line prefer-destructuring
   email = req.user.email;
   return email;
+}
+
+// Find Role Fx
+function findRole(req) {
+  // eslint-disable-next-line prefer-destructuring
+  let role;
+  if (req.user === null || req.user === undefined) {
+    role = 'Not Found';
+    return role;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  role = req.user.role;
+  if (role === 'student') {
+    role = 'student';
+    return role;
+  }
+  if (role === 'admin') {
+    role = 'admin';
+    return role;
+  }
+  role = 'bidder';
+  return role;
+}
+
+// Set Query based on Role Fx
+function setQuery(req) {
+  // eslint-disable-next-line prefer-destructuring
+  let role;
+  let query;
+  if (req.user === null || req.user === undefined) {
+    role = 'Not Found';
+    return role;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  role = req.user.role;
+  if (role === 'student') {
+    query = { artist_email_input: findEmail(req) };
+    return query;
+  }
+  if (role === 'admin') {
+    // const query = { school: findSchoolName(req), approved: true };
+    query = { school: findSchoolName(req) };
+    return query;
+  }
+  role = 'bidder';
+  query = { school: findSchoolName(req), approved: true };
+  return query;
 }
 
 // Find first_name Fx
@@ -112,7 +161,6 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   console.log('Line 103 ===>File_upload_controller File res.files: ', req.files);
   console.log('Text fields sent with file-req.body: ', req.body);
   const school = findSchoolName(req);
-  // eslint-disable-next-line no-underscore-dangle
   let _id;
   _id = findId(req);
   console.log('====================================');
@@ -159,8 +207,8 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   newArtwork.save()
     .then((artwork) => {
       console.log('Document inserted succussfully!', artwork);
-      res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
-      return res.status(200);
+      //res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
+      res.status(200);
     })
     .catch((error) => {
       console.error('Line 166->in catch error block', error);
@@ -172,9 +220,11 @@ const newArtwork = require('../models/artwork');
 
 router.get('/get-imgs', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
+    const role = findRole(req);
     const pics = [];
     let artInfo = {};
-    const query = { artist_email_input: findEmail(req) };
+    const query = setQuery(req);
+    // const query = { artist_email_input: findEmail(req) }; //<--check role here
     console.log('Email: ', query);
     newArtwork.find(query, (err, items) => {
       if (!items || items.length === 0) {
@@ -203,6 +253,7 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
           artDepth: items[i].depth,
           artPrice: items[i].price,
           artApproved: items[i].approved,
+          artReviewer: role,
         };
         pics.push(artInfo);
         pics.push(images);
@@ -221,7 +272,7 @@ router.get('/get-gallery-imgs', checkAuthenticated, (req, res) => {
     let artInfo = {};
     const galleryschool = { school: findSchoolName(req), approved: true };
     const query = galleryschool;
-    console.log('school_input: ', query);
+    console.log('Line 247 file_upload_controller school_input: ', query);
     newArtwork.find(query, (err, items) => {
       if (!items || items.length === 0) {
         console.log(err);
@@ -229,7 +280,7 @@ router.get('/get-gallery-imgs', checkAuthenticated, (req, res) => {
           err: 'No files exist',
         });
       }
-      console.log('*********> # of images: ', items.length);
+      console.log('Line 255 file_upload_controller *********> # of images: ', items.length);
       for (let i = 0; i < items.length; ++i) {
         console.log('get/imgs===============> items[i]._id: ', items[i]._id);
         const base = Buffer.from(items[i].img.data);
@@ -252,24 +303,42 @@ router.get('/get-gallery-imgs', checkAuthenticated, (req, res) => {
         };
         pics.push(artInfo);
         pics.push(images);
-        console.log('------------->artInfo after artInfo push: ', artInfo);
-        console.log('------------->pics after artInfo push: ', pics[i].artId);
+        console.log('Line 278 file_upload_controller------------->artInfo after artInfo push: ', artInfo);
+        console.log('Line 279 file_upload_controller------------->pics after artInfo push: ', pics[i].artId);
       }
       return res.status(200).send(pics);
     });
   }
 });
 
-// Delete artwork by _id
-router.post('/delete/', (req, res) => {
+// Approval button by _id
+router.post('/approve', checkAuthenticated, (req, res) => {
+  console.log('req.body: ', req.body._id);
+  // const query = { _id: `ObjectId('${req.body._id}')` };
+  const query = `${req.body._id}`;
+  const options = { new: true };
+  console.log('query: ', query);
+  // newArtwork.findByIdAndUpdate((req.params.id, req.body),
+  newArtwork.findByIdAndUpdate(query, { $set: { approved: true } }, options, (err, data) => {
+    if (err) {
+      console.log(err);
+      res.send(400, 'Bad Request');
+    }
+    console.log('Artwork approved!', data);
+    res.status(200).send(data);
+  });
+});
+
+// --------------------- Delete artwork by _id --------------------- //
+router.post('/delete/', checkAuthenticated, (req, res) => {
   console.log('req.body: ', req.body);
   newArtwork.findByIdAndDelete((req.params.id, req.body),
     (err, data) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(data);
         console.log('Data Deleted!');
+        res.send(data);
       }
     });
 });
