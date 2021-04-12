@@ -1,87 +1,38 @@
 const express = require('express');
-const session = require('express-session');
 const flash = require('express-flash-notification');
+const session = require('express-session');
 const process = require('process');
 const exphbs = require('express-handlebars');
 const path = require('path');
-// const bodyParser = require('body-parser');
-// const fileupload = require('express-fileupload');
+const bodyParser = require('body-parser');
+const fileupload = require('express-fileupload');
 const os = require('os');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const chalk = require('chalk');
 // const LocalStrategy = require('passport-local').Strategy;
-// const passportLocalMongoose = require('passport-local-mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 const morgan = require('morgan'); // logging middleware
 
 const app = express();
 
-// const { DB_USER } = process.env;
-// const { DB_PASSWORD } = process.env;
-// const { DB_HOST } = process.env;
-// const { DB_NAME } = process.env;
-const { MONGODB_URI } = process.env;
-const { LOCALMONGODB_URI } = process.env;
-// const { DBLOCAL_HOST } = process.env;
+const { DB_USER } = process.env;
+const { DB_PASSWORD } = process.env;
+const { DB_HOST } = process.env;
+const { DB_NAME } = process.env;
+const models = require('./models/index.js');
+const User = require('./models/user');
 
-// const models = require('./models/index.js');
-// const User = require('./models/user');
-
-const connected = chalk.bold.cyan;
-const error = chalk.bold.yellow;
-const disconnected = chalk.bold.red;
-const termination = chalk.bold.magenta;
-
-mongoose.set('useUnifiedTopology', true);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.set('bufferCommands', false);
+mongoose.set('useUnifiedTopology', true);
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
-  // rsconst uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}?retryWrites=true&w=majority`;
-  const uri = MONGODB_URI;
+if (process.env.NODE_ENV === 'development') {
+  const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}?retryWrites=true&w=majority`;
   console.log('MongoDB Access string: ', uri);
-  const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
+  const client = new MongoClient(uri, { useNewUrlParser: true });
   mongoose.connect(uri, client);
-  mongoose.connection.on('connected', () => {
-    console.log(connected('Mongoose default connection is open to ', uri));
-  });
-  mongoose.connection.on('error', (err) => {
-    console.log(error(`Mongoose default connection has occured ${err} error`));
-  });
-  mongoose.connection.on('disconnected', () => {
-    console.log(disconnected('Mongoose default connection is disconnected'));
-  });
-  client.connect((err) => {
-    if (err) throw err;
-    // const collection = client.db('test').collection('devices');
-    client.db('test').collection('devices');
-    // perform actions on the collection object
-    client.close();
-  });
-  process.on('SIGINT', () => {
-    mongoose.connection.close(() => {
-      console.log(termination('Mongoose default connection is disconnected due to application termination'));
-      process.exit(0);
-    });
-  });
-} else if (process.env.NODE_ENV === 'test') {
-  // const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DBLOCAL_HOST}${DB_NAME}/test?retryWrites=true&w=majority`;
-  const uri = LOCALMONGODB_URI;
-  console.log('MongoDB Access string: ', uri);
-  const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
-  mongoose.connect(uri, client);
-  mongoose.connection.on('connected', () => {
-    console.log(connected('Mongoose default connection is open to ', uri));
-  });
-  mongoose.connection.on('error', (err) => {
-    console.log(error(`Mongoose default connection has occured ${err} error`));
-  });
-  mongoose.connection.on('disconnected', () => {
-    console.log(disconnected('Mongoose default connection is disconnected'));
-  });
   client.connect((err) => {
     const collection = client.db('test').collection('devices');
     // perform actions on the collection object
@@ -90,11 +41,11 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
 }
 
 // require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
-// or "npm run start"
+// or "npm run start_local"
 
 const { pid } = process;
 const PORT = process.env.PORT || 3000;
-const { SESSION_SECRET } = process.env;
+const SESSION_SECRET =  'your in the matrix now' //process.env;
 const db = require('./models');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -117,6 +68,9 @@ app.engine(
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.use(morgan('dev'));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -147,12 +101,40 @@ app.use(passport.session());
 
 require('./config/passport')(app);
 
+// passport.use(new LocalStrategy(
+//   (username, password, done) => {
+//     User.findByUsername({ username }, (err, user) => {
+//       if (err) { return done(err); }
+//       if (!user) { return done(null, false); }
+//       if (!user.verifyPassword(password)) { return done(null, false); }
+//       return done(null, user);
+//     });
+//   },
+// ));
+
+// passport.use(new LocalStrategy((username, password, cb) => {
+//   db.users.findByUsername(username, (err, user) => {
+//     if (err) { return cb(err); }
+//     if (!user) { return cb(null, false); }
+//     if (user.password !== password) { return cb(null, false); }
+//     return cb(null, user);
+//   });
+// }));
+// passport.serializeUser((user, cb) => {
+//   cb(null, user.id);
+// });
+// passport.deserializeUser((id, cb) => {
+//   db.users.findById(id, (err, user) => {
+//     if (err) { return cb(err); }
+//     cb(null, user);
+//   });
+// });
+
 // Using flash for messages
 app.use(flash(app));
 
 // Serve static content for the app from the "public" directory in the application directory.
-// app.use(express.static('public'));
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
 // Import routes and give the server access to them.
 const dashboardRoutes = require('./controllers/dashboard_controller.js');
@@ -161,7 +143,6 @@ const loginRoutes = require('./controllers/login_controller.js');
 const donateRoutes = require('./controllers/donate_controller.js');
 const profileRoutes = require('./controllers/profile_controller.js');
 const chooseSchoolRoutes = require('./controllers/choose_school_controller.js');
-const fileUpload = require('./controllers/file_upload_controller.js');
 
 app.use(dashboardRoutes);
 app.use(signupRoutes);
@@ -169,7 +150,6 @@ app.use(loginRoutes);
 app.use(donateRoutes);
 app.use(profileRoutes);
 app.use(chooseSchoolRoutes);
-app.use(fileUpload);
 
 // Route that creates a flash message using the express-flash module
 // from this github gist https://gist.github.com/brianmacarthur/a4e3e0093d368aa8e423
@@ -177,6 +157,26 @@ app.use(fileUpload);
 //   req.flash('success', 'This is a flash message using the express-flash module.');
 //   res.redirect(301, '/');
 // });
+
+app.use(fileupload({ safeFileNames: true, preserveExtension: 3 }));
+
+// eslint-disable-next-line consistent-return
+app.post('/upload', (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  const { sampleFile } = req.files;
+  console.log('Is there a file: ', req.files, req.files.sampleFile.name);
+
+  // eslint-disable-next-line consistent-return
+  sampleFile.mv(`./public/upload/${sampleFile}`, (err) => {
+    if (err) return res.status(500).send(err);
+
+    res.send('File uploaded!');
+  });
+});
 
 const hostname = os.hostname();
 db.once('open', () => {

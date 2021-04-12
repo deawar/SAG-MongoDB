@@ -5,7 +5,6 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 exports.User = require('./user');
-// exports.School = require('./school');
 
 const basename = path.basename(__filename);
 
@@ -27,7 +26,6 @@ require('./user');
 require('./school');
 require('./role');
 require('./bid');
-require('./artwork');
 // Object.keys(db).forEach((modelName) => {
 //   if (db[modelName].associate) {
 //     db[modelName].associate(db);

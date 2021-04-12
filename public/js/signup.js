@@ -1,42 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('school-input');
-
-  function getQuery() {
-    const query = document.getElementById('school-input').value;
-    console.log(query);
-
-    if (query === '') {
-      console.log('Search again');
-    } else {
-      const url = `autocomplete/?q=${query}`;
-      const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          console.log(this.responseText);
-          const ReceivedData = JSON.parse(this.responseText);
-          const arrayToObject = (array, keyField) => array.reduce((obj, item) => {
-            obj[item[keyField]] = item;
-            return obj;
-          }, {});
-          const schoolObj = arrayToObject(ReceivedData, 'school');
-
-          console.log('=====================================');
-          console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
-          console.log('=====================================');
-          const autoInput = document.querySelectorAll('.autocomplete');
-          M.Autocomplete.init(autoInput, {
-            data: schoolObj,
-            minLength: 1,
-          });
-        }
-      };
-      xhr.open('GET', url, true);
-      xhr.send(query);
-    }
-  }
-  searchInput.addEventListener('input', getQuery);
-});
-
 $(document).ready(() => {
   $('.modal').modal();
   // Code here handles what happens when a user submits a new account.
@@ -105,8 +66,7 @@ $(document).ready(() => {
       // .then()
         .then((data) => {
           console.log('status post ajax call to /api/signup :', data);
-          $('#Form-modal').modal('open');
-          window.location.replace('/login');
+          window.location.replace('/dashboard');
         });
     } else {
       console.log('**Please fill out entire form**');

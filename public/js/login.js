@@ -32,19 +32,22 @@ $(document).ready(() => {
           console.log(res.school);
           if (res.email !== undefined) {
             window.location.replace('/dashboard');
-          } else if (res.active === false) {
-            window.location.replace('/verify');
           } else {
-            $('#err-msg').empty('').text('** INVALID Username and/or Password! **');
+            $('#err-msg').empty('').text('** INVALID Username and Password**');
             console.log(`Invalid Username and password ~~~~~~${res.info}`);
+          }
+        }).then((res) => {
+          console.log('Line 40 Login.js checking  req.active: ', res);
+          if (res.active === false) {
+            window.location.replace('/verify');
           }
         });
       } catch (err) {
         console.log(`Invalid Username and password ~~~~~~${err}`);
       }
     } else {
-      console.log('** Please enter a valid username and password! **');
-      $('#err-msg').empty('').text('** Please enter a valid username and password **');
+      console.log('**Please enter a valid username and password**');
+      $('#err-msg').empty('').text('**Please enter a valid username and password**');
     }
   });
 });

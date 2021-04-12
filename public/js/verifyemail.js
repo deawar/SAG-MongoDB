@@ -2,7 +2,6 @@ let to;
 
 const subject = 'Silent Auction Verification Email';
 $(document).ready(() => {
-  $('.modal').modal();
   // URL parser for jQuery
   function GetURLParameter(sParam) {
     const sPageURL = window.location.search.substring(1);
@@ -90,12 +89,11 @@ $(document).ready(() => {
       // eslint-disable-next-line no-unused-vars
       $.post('/verify', token, (req, res) => {
         console.log('<-------verfy email button clicked-------->');
-        // verify modal triggers
-        $('.verified-token-modal').modal();
+        $('.modal').modal();
         // eslint-disable-next-line no-shadow
         $('#confirm-token').click((event) => {
           event.preventDefault();
-          window.location.href = '/login';
+          window.location.href = '/dashboard';
           return false;
         });
       });
