@@ -1,4 +1,3 @@
-// Attempt to use dropdown/autocomplete to get school name.
 document.addEventListener('DOMContentLoaded', () => {
   function ajaxAutoComplete(options) {
     const defaults = {

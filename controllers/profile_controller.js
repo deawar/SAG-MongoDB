@@ -1,60 +1,83 @@
+/* eslint-disable camelcase */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
 const express = require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const os = require('os');
 const User = require('../models/user');
 const db = require('../models/index');
 
 require('../config/passport')(passport);
+const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
+// Find First Name and add 's
+function findFirstName(res) {
+  let first_name;
+  if (res.req.user === null || res.req.user === undefined) {
+    first_name = 'Your';
+    return first_name;
+  }
+  first_name = (res.req.user.first_name);
+  first_name = (`${first_name}'s`);
+  return first_name;
+}
+// Find School
+function findSchoolName(req) {
+  // eslint-disable-next-line prefer-destructuring
+  let school;
+  // school = res.req.user.school;
+  if (req.user === null || req.user === undefined) {
+    school = 'Make Art, Have Fun!';
+    return school;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  school = req.user.school;
+  return school;
+}
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
-// function findOneUser(id, done) {
-//   db.User.findOne({ id: id.session.passport.user }, function (err, data) {
-//     if (err) {
-//       console.log('Not connected! user: ', req.session.passport.user);
-//       return done(err);
-//     }
-//     return done(null, data);
-//   });
-// }
-router.get('/profile', async (req, res) => {
+router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     // try {
     console.log('Profile_controller req: ', req.session.passport.user);
-    const id = req.session.passport.user;
-    try {
-      await User.findOne(req, { id: _id, request: req });
-      res.json({ done: true });
-      console.log('Result : ', _id);
-    } catch (error) {
-      console.log(error);
-      res.json({ error: error.message });
+    console.log('Profile req.session: ', req.session);
+    // eslint-disable-next-line no-underscore-dangle
+    const school = findSchoolName(req);
+    const first_name = findFirstName(res);
+    console.log('req.user: ', req.user);
+    console.log('req.user.active: ', req.user.active);
+    const userInfo = {
+      id: req.session.passport.user,
+      first_name: req.user.first_name,
+      last_name: req.user.last_name,
+      address1: req.user.address1,
+      address2: req.user.address2,
+      city: req.user.city,
+      state: req.user.state,
+      zip: req.user.zip,
+      email: req.user.email,
+      phone: req.user.phone,
+      school: req.user.school,
+      role: req.user.role,
+      active: req.user.active,
+      isloggedin: req.isAuthenticated(),
+    };
+    // const { school } = userInfo;
+    // if (userInfo.active === false) {
+    //   res.render('verifytoken', userInfo);
+    // }
+    if (userInfo.role === 'student') {
+      res.render('userProfilepage', userInfo);
+    } else if (userInfo.role === 'admin') {
+      res.render('adminProfilepage', userInfo);
+    } else {
+      res.render('bidderProfilepage', userInfo);
     }
-    // db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.id = :id', {
-    //   replacements: { id: req.session.passport.user },
-    //   type: db.Sequelize.QueryTypes.SELECT,
-    // })
-      
-    //     .then((dbUser) => {
-    //       const user = {
-    //         userInfo: dbUser[0],
-    //         id: req.session.passport.user,
-    //         active: dbUser[0].active,
-    //         isloggedin: req.isAuthenticated(),
-    //       };
-    //       console.log('user.userInfo:', user);
-    //       if (dbUser[0].role_id > 1) {
-    //         res.render('userProfilepage', user);
-    //       } else {
-    //         res.render('adminProfilepage', user);
-    //       }
-    //     });
   } else {
   // eslint-disable-next-line no-unused-vars
-    const user = {
+    const userInfo = {
       id: null,
       isloggedin: req.isAuthenticated(),
     };
@@ -64,63 +87,128 @@ router.get('/profile', async (req, res) => {
 
 // ROUTER TO DELETE ACCOUNT
 router.delete('/user/:account_id/:email', (req, res) => {
-  console.log(`id: ${req.params.account_id}`);
-  console.log(`email: ${req.params.email}`);
-  User.findOneAndDelete({ id: req.params.account_id, email: req.params.email }, function (err) {
-    if (err) console.log(err);
-    console.log('Successful Account Deleteion');
-  })
-    .then(id => res.status(200).end());
+  try {
+    console.log(`_id: ${req.params.account_id}`);
+    console.log(`email: ${req.params.email}`);
+
+    const filter = { _id: req.params.account_id, email: req.params.email };
+
+    User.findOneAndDelete(filter, function (err, delDoc) {
+      if (err) {
+        console.log(err);
+        res.status(404);
+        return res.send('No User Deleted.');
+      }
+      console.log('Successfully Deleted: ', delDoc);
+      res.status(200);
+      res.json(delDoc);
+      res.render('adminProfilepage', delDoc);
+    });
+  } catch (error) {
+    console.log('Catch ERROR: ', error);
+    res.status(404);
+    return res.send('No Profiles Deleted');
+  }
 });
 
 // ROUTER TO UPDATE ACCOUNT
-router.put('/user/:account_id', (req, res) => {
-  console.log(req.body);
-  db.User.update({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    address: req.body.address1,
-    address2: req.body.address2,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    school: req.body.school,
-    email: req.body.email,
-    phone: req.body.phone,
-  }, {
-    where: {
-      id: req.params.account_id,
-    },
-  }).then((dbuser) => {
-    res.json(dbuser);
-  });
+router.put('/user/:account_id', async (req, res) => {
+  try {
+    console.log('req.body: ', req.body);
+    const updateDoc = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      address: req.body.address1,
+      address2: req.body.address2,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
+      school: req.body.school,
+      email: req.body.email,
+      phone: req.body.phone,
+      role: req.body.role,
+    };
+    const filter = { _id: req.params.account_id };
+    const opts = { new: true };
+    await User.findOneAndUpdate(filter, { $set: req.body }, opts, function (err, dbuser) {
+      if (err) {
+        console.log(err);
+        res.status(404);
+        return res.send('No User found to Update.');
+      }
+      console.log('Profile Updates going in:', updateDoc);
+      res.status(200);
+      res.json(updateDoc);
+      res.render('adminProfilepage', updateDoc);
+    });
+  } catch (error) {
+    console.log('Catch ERROR: ', error);
+    res.status(404);
+    return res.send('No Updates Performed');
+  }
 });
 
 // PROFILE SEARCH BY ADMIN
-
+function sendSearch(req, res, foundDoc) {
+  router.get('/searchuser/:result', function(req, res) {
+    return res.render('partials/manageUser', foundDoc);
+  });
+//   return res.render('adminProfilepage', foundDoc);
+}
 router.get('/searchuser/:email', async (req, res) => {
   try {
-    await db.sequelize.query('SELECT Roles.role_name, Users.* from Users, Roles where Users.role_id = Roles.id and Users.email = :email', {
-      replacements: { email: req.params.email },
-      type: db.Sequelize.QueryTypes.SELECT,
-    })
-      .then((dbUser) => {
-        console.log(dbUser);
-        if (!dbUser) {
-          res.status(404);
-          return res.send('No User Found');
-        }
-        const newSearch = {
-          searchedUser: dbUser[0],
-          id: req.params.email,
-          roleid: dbUser[0].role_id,
-          isloggedin: req.isAuthenticated(),
-        };
-        console.log(newSearch);
-        res.status(200);
-        res.json(newSearch);
-        // res.render('partials/manageUser', newSearch);
-      });
+    console.log('profile_controller req.params.email: ', req.params.email);
+    const searchEmail = req.params.email;
+    // const query = User.find({ email: searchEmail }, { email: 1 });
+    const school = findSchoolName(req);
+    await User.findOne({ email: searchEmail, school }, function (err, doc) {
+      if (!doc) {
+        console.log('In Error branch - err: ', err);
+        res.status(404);
+        return res.send(`No User associated with ${searchEmail}!`);
+      }
+      console.log('---> doc: ', doc);
+      const returnDoc = {
+        searchedId: doc.id,
+        searchedEmail: doc.email,
+        searchedFirst_name: doc.first_name,
+        searchedLast_name: doc.last_name,
+        searchedAddress1: doc.address1,
+        searchedAddress2: doc.address2,
+        searchedCity: doc.city,
+        searchedState: doc.state,
+        searchedZip: doc.zip,
+        searchedSchool: doc.school,
+        searchedPhone: doc.phone,
+        searchedRole: doc.role,
+        searchedIsloggedin: req.isAuthenticated(),
+      };
+      console.log('2nd ---> returnDoc: ', returnDoc);
+      res.status(200);
+      res.json(returnDoc);
+      sendSearch(req, res, returnDoc);
+    });
+    // .then((returnDoc) => {
+    //   res.render('adminProfilepage', returnDoc).end();
+    //   console.log(dbUser);
+    //   if (!dbUser) {
+    //     res.status(404);
+    //     return res.send('No Email User Found');
+    //   }
+    //   console.log('---> dbUser: ', dbUser);
+    //   const newSearch = {
+    //     searchedUser: dbUser[0],
+    //     id: dbUser[0].id,
+    //     email: req.params.email,
+    //     first_name: dbUser.first_name,
+    //     role: dbUser[0].role,
+    //     isloggedin: req.isAuthenticated(),
+    //   };
+    //   console.log('Profile_controller newSearch: ', newSearch);
+    //   res.status(200);
+    //   res.json(newSearch);
+    //   // res.render('partials/manageUser', newSearch);
+    // });
   } catch (error) {
     res.status(404);
     return res.send('No User Found');

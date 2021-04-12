@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
-/* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 // Get the Schema constructor
@@ -14,7 +13,6 @@ const validateEmail = function (email) {
 // eslint-disable-next-line prefer-destructuring
 const artworkSchema = new Schema({
   updated: { type: Date, default: Date.now },
-<<<<<<< HEAD
   approved: {
     type: Boolean, default: false,
   },
@@ -27,13 +25,8 @@ const artworkSchema = new Schema({
     type: String,
     trim: true,
     required: true,
-=======
-  artwork_unique_id: {
-    type: Number,
-    index: true,
->>>>>>> 4279c328447873f4f73dcf12d98fd1ac51127ddf
   },
-  artist_email: {
+  artist_email_input: {
     type: String,
     trim: true,
     lowercase: true,
@@ -41,13 +34,21 @@ const artworkSchema = new Schema({
     validate: [validateEmail, 'Please fill a valid email address'],
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
   },
-  art_name: {
+  art_name_input: {
     type: String,
     trim: true,
     required: true,
   },
-  description: {
+  medium_input: {
     type: String,
+    trim: true,
+  },
+  description_input: {
+    type: String,
+    trim: true,
+  },
+  depth: {
+    type: Number,
     trim: true,
   },
   height: {
@@ -61,9 +62,14 @@ const artworkSchema = new Schema({
   price: {
     type: Number,
   },
-  picture_link: {
+  school: {
     type: String,
-    required: 'Photo of artwork is required.',
+    trim: true,
+    required: true,
+  },
+  img: {
+    data: Buffer,
+    contentType: String,
   },
 });
 
@@ -80,5 +86,22 @@ artworkSchema.path('price').get((num) => (num / 100).toFixed(2));
 artworkSchema.path('price').get((num) => (num * 100));
 
 const Artwork = mongoose.model('Artwork', artworkSchema);
+const artwork = new Artwork({ type: 'artwork' });
+module.exports.getArtByEmail = function (email, callback) {
+  const query = { email };
+  Artwork.findOne(query, callback);
+};
 
-module.exports = (Artwork, artworkSchema);
+module.exports.getArtworkById = function (id, callback) {
+  Artwork.findById(id, callback);
+};
+
+module.exports.getArtworkBySchool = function (id, callback) {
+  Artwork.findById(id, callback);
+};
+
+artworkSchema.plugin(uniqueValidator, {
+  message: 'Sorry, {PATH} needs to be unique',
+});
+
+module.exports = mongoose.model('artwork', artworkSchema);

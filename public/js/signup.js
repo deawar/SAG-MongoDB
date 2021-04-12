@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getQuery() {
     const query = document.getElementById('school-input').value;
-    // const instance = M.Autocomplete.init(autoInput, {
-    //   data: schoolObj,
-    //   minLength: 1,
-    // });
     console.log(query);
 
     if (query === '') {
@@ -30,7 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('SignUp.js --> ReceivedData -->schoolObj: ', schoolObj);
           console.log('=====================================');
           const autoInput = document.querySelectorAll('.autocomplete'); // For autocomplete input field
+          // const autoInput = document.querySelectorAll('.dropdown-trigger');
           console.log('AutoInputData: ', autoInput);
+          // M.Dropdown.init(autoInput, {
+          //   autoTrigger: true,
+          //   hover: true,
+          //   data: schoolObj,
+          // });
           M.Autocomplete.init(autoInput, { // For Autocomplete input field
             data: schoolObj,
             minLength: 1,
@@ -112,7 +114,8 @@ $(document).ready(() => {
       // .then()
         .then((data) => {
           console.log('status post ajax call to /api/signup :', data);
-          window.location.replace('/dashboard');
+          $('#Form-modal').modal('open');
+          window.location.replace('/login');
         });
     } else {
       console.log('**Please fill out entire form**');

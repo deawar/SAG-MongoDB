@@ -20,11 +20,45 @@ function findSchoolName(res) {
   return school;
 }
 
+// Find First Name
+function findFirstName(res) {
+  let first_name;
+  if (res.req.user === null || res.req.user === undefined) {
+    first_name = 'Your';
+    return first_name;
+  }
+  first_name = (res.req.user.first_name);
+  first_name = (`${first_name}'s`);
+  return first_name;
+}
+
+// Get Current User Role
+function findRole(res) {
+  // eslint-disable-next-line prefer-destructuring
+  let role;
+  // school = res.req.user.school;
+  if (res.req.user === null || res.req.user === undefined) {
+    role = '';
+    return role;
+  }
+  // eslint-disable-next-line prefer-destructuring
+  role = res.req.user.role;
+  return role;
+}
+
 // This is get route for login page
 router.get('/donate', checkAuthenticated, (req, res) => {
   req.headers.logged = 'true';
-  let school = findSchoolName(res);
-  res.render('donationsPage', { title: 'Donations Page', school, logged: req.isAuthenticated() });
+  const school = findSchoolName(res);
+  const first_name = findFirstName(res);
+  const role = findRole(res);
+  res.render('donationsPage', {
+    title: 'Donations Page',
+    school,
+    first_name,
+    role,
+    logged: req.isAuthenticated(),
+  });
 });
 
 // Export routes for server.js to use.

@@ -2,26 +2,26 @@
     <li>
         <div class="user-view">
             <div class="background">
-                <img src="./resources/sunset_dense.jpg">
+                <img class="responsive-img" src="./resources/sunset_dense.jpg">
             </div>
             <img class="responsive-img circle" style="text-align: center; margin-left:35%" src="./resources/SAGL.png">
             {{!-- <img class="circle" style="text-align: center; margin-left:35%" src="https://avatars3.githubusercontent.com/u/61264828?s=460&u=85c3af334051baca42c09bd68c228ef867438da7&v=4"> --}}
-            <a href="#name"><span class="white-text name">{{userInfo.first_name}} {{userInfo.last_name}}</span></a>
-            <a href="#email"><span class="white-text email">{{userInfo.email}}</span></a>
+            <a href="/profile"><span class="white-text name">{{first_name}} {{last_name}}</span></a>
+            <a href="/profile"><span class="white-text email">{{email}}</span></a>
         </div>
     </li>
     <li class="sidenavLinks">
-        <div class="divider"style="color:rgba(206, 219, 18, 0.746)"></div>
+        <div class="divider"style="color:rgba(206, 219, 18, 0.746)></div>
     </li>
-    <li class="sidenavLinks"><a href="/admin"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">account_box</i>Admin</a>
-    <li class="sidenavLinks"><a href="/dashboard"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">home</i>Home</a></li>
-    <li class="sidenavLinks"><a href="/profile"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">account_box</i>Profile</a></li>
-    <li class="sidenavLinks"><a href="/gallery"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">color_lens</i>Art Gallery</a></li>
-    <li class="sidenavLinks"><a href="/privacypolicy"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">security</i>Privacy Policy</a></li>
-    <li class="sidenavLinks"><a href="/donate"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">payment</i>Donate</a></li>
-    <li class="sidenavLinks"><a href="/bid"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">gavel</i>Bid</a></li>
-    <li class="sidenavLinks"><a href="/about"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">info</i>About</a></li>
-    <li class="sidenavLinks"><a href="/logout"><i class="material-icons" style="color:rgba(206, 219, 18, 0.746)">power_settings_new</i>Logout</a></li>
+    <li class="sidenavLinks"><a href="/admin"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>Admin</a>
+    <li class="sidenavLinks"><a href="/dashboard"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">home</i>Home</a></li>
+    <li class="sidenavLinks"><a href="/profile"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>Profile</a></li>
+    <li class="sidenavLinks"><a href="/gallery"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">color_lens</i>Art Gallery</a></li>
+    <li class="sidenavLinks"><a href="/privacypolicy"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">security</i>Privacy Policy</a></li>
+    <li class="sidenavLinks"><a href="/donate"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">payment</i>Donate</a></li>
+    <li class="sidenavLinks"><a href="/bid"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">gavel</i>Bid</a></li>
+    <li class="sidenavLinks"><a href="/about"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">info</i>About</a></li>
+    <li class="sidenavLinks"><a href="/logout"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">power_settings_new</i>Logout</a></li>
 </ul>
 <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only"><i class="material-icons" style="color:black">menu</i></a>
 
@@ -30,14 +30,9 @@
 
     <div class="w3-teal" id="headerBg">
         <a href="#" data-target="slide-out" class="sidenav-trigger"></a>
-        <div>
-        <a href="/dashboard">
-        S.A.G.<img src="./resources/SAGL.png" class="circle responsive-img profilePic hide-on-small-only"  alt="Avatar" />
-        </a>
-        </div>
         <div class="w3-container">
-            <h1 class="headerText flow-text" style= "text-align: center;">Silent Auction Gallery</h1>
-            <h1 class="headerText flow-text" style= "text-align: center;">{{school}}</h1>
+            <h1 class="headerText">Silent Auction Gallery</h1>
+            <h1 class="headerText">{{school}}</h1>
         </div>
 
 
@@ -45,15 +40,16 @@
 </div>
 
 <div class="header hide-on-med-and-down" id="secondNavBar">
+    <a href="/dashboard">S.A.G</a>
     <div class="header-right">
         <a href="/dashboard"><i class="material-icons" style="color:rgba(219, 48, 18, 0.746)">home</i> Home</a>
-        <a href="/profile"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>Profile</a>
+        <a href="/profile"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">account_box</i>{{first_name}} Profile</a>
         {{!-- <a href="/admin">Admin</a> --}}
-        <a href="/gallery"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746">school</i>{{school}} Gallery</a>
+        <a href="/gallery"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">school</i>{{school}} Gallery</a>
         <a href="/donate"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">payment</i>Donate</a>
-        <a href="/bid"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746">gavel</i>Bid</a>
-        <a href="/privacypolicy"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746">security</i>Privacy Policy</a>
-        <a href="/about"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746">info</i>About Us</a>
-        <a href="/logout"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746">power_settings_new</i>Log Out</a>
+        <a href="/bid"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">gavel</i>Bid</a>
+        <a href="/privacypolicy"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">security</i>Privacy Policy</a>
+        <a href="/about"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">info</i>About Us</a>
+        <a href="/logout"><i class="material-icons" style="color:rgba(219, 18, 18, 0.746)">power_settings_new</i>Log Out</a>
     </div>
 </div>

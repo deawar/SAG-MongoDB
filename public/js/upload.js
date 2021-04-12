@@ -105,12 +105,12 @@ $(document).ready(() => {
                     $('#upload-err-msg').empty('').text(`** Success! ${status.artwork_name} added to database! **`);
                     $('#FileAction-modal').modal('open').html(
                       `<div class='modal-content'>
-                          <h4>File Activity</h4>
-                          <h4 class='center-align'>Success!</h4>
-                          <h5 class='center-align'><b>The File ${status.artwork_name} was added to the database!</b></h5>
+                      <h4>File Activity</h4>
+                      <h4 class='center-align'>Success!</h4>
+                      <h5 class='center-align'><b>The File ${status.artwork_name} was added to the database!</b></h5>
                       </div>
                       <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+                      <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
                       </div>
                       </div>`,
                     );

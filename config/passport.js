@@ -10,7 +10,7 @@ const User = require('../models/user');
 const db = mongoose.connection;
 module.exports = (app) => {
   console.log('passport loading');
-  console.log('In Passport db = ', db.models);
+  // console.log('In Passport db = ', db.models);
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -49,19 +49,10 @@ module.exports = (app) => {
           if (err) {
             return done(null, err);
           } if (!user) {
-            const err = new Error('User not found.');
-            err.status = 401;
+            const e = new Error('User not found.');
+            e.status = 401;
             return done(null, user);
           }
-          // this may need to be moved.
-          // eslint-disable-next-line prefer-arrow-callback
-          // bcrypt.compare(password, user.password, function (err, result) {
-          //   console.log('in bcrypt.compare!');
-          //   if (result === true) {
-          //     return done(null, user);
-          //   }
-          //   return done();
-          // });
           if (user) {
             console.log('signupMessage', 'That email is already taken.');
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
@@ -71,6 +62,7 @@ module.exports = (app) => {
       const secretToken = randomstring.generate(64);
       console.log('secretToken: ', secretToken);
       console.log('req.body: ', req.body);
+      const permalink = req.body.first_name.toLowerCase().replace(' ', '').replace(/[^\w\s]/gi, '').trim();
       const newUser = new User(
         {
           first_name: req.body.first_name,
@@ -88,13 +80,31 @@ module.exports = (app) => {
           role: req.body.role,
           secretToken,
           active: false,
+          permalink,
         },
       );
       newUser.save((err, newUser) => {
         if (err) return console.error(err);
+        console.log('permalink: ', permalink);
         console.log('Document saved!', newUser);
       });
     });
+    // try {
+    //   newUser.save((err) => {
+    //     if (err) {
+    //       throw err;
+    //     } else {
+    //       // VerifyEmail.sendverification(email, secretToken, permalink);
+    //       return done(null, newUser);
+    //     }
+    //   });
+    // } catch (err) {
+    //   if (err) {
+    //     throw err;
+    //   } else {
+    //     return done(err, err.message);
+    //   }
+    // }
     return process.nextTick;
     // });
   }),

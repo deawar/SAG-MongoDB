@@ -3,7 +3,7 @@
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 // const mongooseTypePhone = require('mongoose-type-phone');
 // Get the Schema constructor
@@ -32,24 +32,24 @@ const secretTokenGen = function () {
 };
 
 // subAddress Document
-const subAddress = new Schema({
-  type: { type: String },
-  address1: String,
-  address2: String,
-  city: String,
-  state: String,
-  zip: {
-    type: String,
-    required: true,
-    min: 5,
-  },
-});
+// const subAddress = new Schema({
+//   type: { type: String },
+//   address1: String,
+//   address2: String,
+//   city: String,
+//   state: String,
+//   zip: {
+//     type: String,
+//     required: true,
+//     min: 5,
+//   },
+// });
 
 // subRole Document
-const subRole = new mongoose.Schema({
-  type: { type: String },
-  role: String,
-});
+// const subRole = new mongoose.Schema({
+//   type: { type: String },
+//   role: String,
+// });
 
 // Creating our User Schema
 const userSchema = new Schema({
@@ -72,7 +72,6 @@ const userSchema = new Schema({
     validate: [validatePhone, 'Please fill in a valid phone number.'],
     // match: [/^\(([2-9])(?!\1\1)\d\d\) [2-9]\d\d-\d{4}$/, 'Please fill in a valid phone number.'],
   },
-<<<<<<< HEAD
   // address: [subAddress],
   address1: {
     type: String,
@@ -98,9 +97,6 @@ const userSchema = new Schema({
     required: true,
     min: 5,
   },
-=======
-  address: [subAddress],
->>>>>>> 4279c328447873f4f73dcf12d98fd1ac51127ddf
   school: {
     type: String,
     trim: true,
@@ -125,15 +121,11 @@ const userSchema = new Schema({
     type: String,
     validate: [secretTokenGen],
   },
-<<<<<<< HEAD
   role: {
     type: String,
     required: true,
     default: 'student',
   // [subRole],
-=======
-  role: [subRole],
->>>>>>> 4279c328447873f4f73dcf12d98fd1ac51127ddf
   // role: {
   //   type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
   //   ref: 'role',
@@ -143,10 +135,10 @@ const userSchema = new Schema({
 
 // eslint-disable-next-line consistent-return
 userSchema.pre('save', function (next) {
-  const User = this;
+  const user = this;
 
   // only hash the password if it has been modified (or is new)
-  if (!User.isModified('password')) return next();
+  if (!user.isModified('password')) return next();
 
   // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
@@ -154,14 +146,12 @@ userSchema.pre('save', function (next) {
 
     // hash the password using our new salt
     // eslint-disable-next-line prefer-arrow-callback
-    bcrypt.hash(User.password, salt, function (err, hash) {
+    bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) return next(err);
       // override the cleartext password with the hashed one
-      User.password = hash;
+      user.password = hash;
       next();
     });
-
-    return next();
   });
 });
 
@@ -183,7 +173,10 @@ module.exports.getUserByEmail = function (email, callback) {
   User.findOne(query, callback);
 };
 
-userSchema.plugin(passportLocalMongoose);
+module.exports.getUserBysecretToken = function (secretToken, callback) {
+  const query = { secretToken };
+  User.findOne(query, callback);
+};
 
 // // hash the password
 // userSchema.methods.generateHash = function (password) {
@@ -221,8 +214,7 @@ userSchema.statics.authenticate = function (email, password, callback) {
 
 // Apply the uniqueValidator plugin to userDataSchema.
 userSchema.plugin(uniqueValidator, {
-  // eslint-disable-next-line comma-dangle
-  message: 'Sorry, {PATH} needs to be unique'
+  message: 'Sorry, {PATH} needs to be unique',
 });
 
 module.exports = mongoose.model('user', userSchema);
