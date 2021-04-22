@@ -111,6 +111,41 @@ $(document).ready(() => {
   $('#displayUserArt').on('click', '.addBid', function () {
     console.log('Bid Clicked!');
     console.log('id to copy to user Bid page: ', this.id);
+    try {
+      $.ajax({
+        type: 'get',
+        url: '/get-gallery-imgs',
+        data: items,
+      })
+        .then((res) => {
+          $('#BidAction-modal').modal('open').html(`
+          <div class='modal-content'>
+            <h4>Enter Your Bid</h4>
+            <h4 class='center-align'>How much are you Bidding?</h4>
+            <h5 class='center-align'><b>Your bid on ${res[i].art_name_input} was copied to the bid collection!</b></h5>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default red darken-4" id="confirm-bid">YES</button>
+            <button type="submit" class="btn btn-default green darken-4 modal-close" id="cancel-bid">CANCEL</button>
+          </div>
+          </div>
+        `);
+        });
+    }
+    catch (err) {
+      $('#BidAction-modal').modal('open').html(`
+          <div class='modal-content'>
+            <h4>Error Entering Your Bid</h4>
+            <h4 class='center-align'>There was an issue with your Bid.</h4>
+            <h5 class='center-align'><b>Your bid did not go through!</b></h5>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default green darken-4 modal-close" id="cancel-bid">CANCEL</button>
+          </div>
+          </div>
+        `);
+
+    }
     const { id } = this;
     const splitId = id.split('-');
     const bidindex = splitId[1];

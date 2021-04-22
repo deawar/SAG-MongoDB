@@ -12,6 +12,7 @@ const { ObjectId } = require('bson');
 const Artwork = require('../models/artwork');
 const School = require('../models/school');
 const User = require('../models/user');
+const Bid = require('../models/bid');
 
 const app = express();
 require('../config/passport')(passport);
@@ -207,7 +208,8 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   newArtwork.save()
     .then((artwork) => {
       console.log('Document inserted succussfully!', artwork);
-      //res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
+      // eslint-disable-next-line max-len
+      // res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
       res.status(200);
     })
     .catch((error) => {
@@ -345,4 +347,19 @@ router.post('/delete/', checkAuthenticated, (req, res) => {
 
 // https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
 
+// ----------------------- Bid Button Gallery --------------------- //
+router.post('/add-bid', checkAuthenticated, (req, res) => {
+  console.log('got Bid: ', req.body);
+  const currentbid = req.body.bid;
+  newArtwork.findByIdAndUpdate((req.params.id, req.body), { currentbid },
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        res.send(400, 'Bad Request');
+      } else {
+        console.log('Bid added to Artwork id: ', req.params.id);
+        res.status(200).send(data);
+      }
+    });
+});
 module.exports = router;
