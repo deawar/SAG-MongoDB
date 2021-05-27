@@ -362,4 +362,51 @@ router.post('/add-bid', checkAuthenticated, (req, res) => {
       }
     });
 });
+
+router.get('/get-bid-img', checkAuthenticated, (req, res) => {
+  if (req.isAuthenticated()) {
+    // const role = findRole(req);
+    const pics = [];
+    let artInfo = {};
+    const query = setQuery(req);
+    // const query = { artist_email_input: findEmail(req) }; //<--check role here
+    console.log('Art ID: ', query);
+    newArtwork.find(query, (err, items) => {
+      if (!items || items.length === 0) {
+        console.log(err);
+        return res.status(404).json({
+          err: 'No files exist',
+        });
+      }
+      console.log('*********> # of images: ', items.length);
+      for (let i = 0; i < items.length; ++i) {
+        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
+        const base = Buffer.from(items[i].img.data);
+        const conversion = base.toString('base64');
+        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
+        console.log(`line 387 get/bid-img-------------> items[${i}].img.data: `, items[i].img.data);
+        artInfo = {
+          artId: items[i]._id,
+          artistFirstName: items[i].artist_firstname_input,
+          artistLastName: items[i].artist_lastname_input,
+          artistEmail: items[i].artist_email_input,
+          artName: items[i].art_name_input,
+          artDesc: items[i].description_input,
+          artMedium: items[i].medium_input,
+          artHeight: items[i].height,
+          artWidth: items[i].width,
+          artDepth: items[i].depth,
+          artPrice: items[i].price,
+          artApproved: items[i].approved,
+          // artReviewer: role,
+        };
+        pics.push(artInfo);
+        pics.push(images);
+        console.log('------------->artInfo after artInfo push: ', artInfo);
+        console.log('------------->pics after artInfo push: ', pics[i].artId);
+      }
+      return res.status(200).send(pics);
+    });
+  }
+});
 module.exports = router;

@@ -107,6 +107,14 @@ $(document).ready(() => {
     $('#err-msg').empty('').text('** No Images found. **');
   }
 
+  // ------------------------------ get_id_fx ---------------------------------- //
+  function getId(idIn) {
+    console.log('got id from button click idIn: ', idIn);
+    const splitId = idIn.split('-');
+    const idOut = splitId[1];
+    return (idOut);
+  }
+
   // Bid Button
   $('#displayUserArt').on('click', '.addBid', function () {
     console.log('Bid Clicked!');
@@ -118,11 +126,34 @@ $(document).ready(() => {
         data: items,
       })
         .then((res) => {
+          console.log('Info from button click res: ', res);
+          console.log('Line 130--->>>This: ', this.id);
+          const bidId = getId(this.id);
+          console.log('Line---132 this.artName: ', this.artName);
+          try {
+            $.ajax({
+              type: 'get',
+              url: '/get-bid-img',
+              data: bidId,
+            })
+              .then((resp) => {
+                console.log('resp: ', resp);
+                const bidArtname = resp.artName;
+              });
+          } catch (err) {
+            console.log(`Something went wrong ${err}`);
+            $('#err-msg').empty('').text('** No Images found. **');
+          }
           $('#BidAction-modal').modal('open').html(`
           <div class='modal-content'>
             <h4>Enter Your Bid</h4>
             <h4 class='center-align'>How much are you Bidding?</h4>
-            <h5 class='center-align'><b>Your bid on ${res[i].art_name_input} was copied to the bid collection!</b></h5>
+            <form action="#">
+            <p class="range-field">
+              <input type="range" id="newBid" min="0" max="1000" />
+            </p>
+          </form>
+            <h5 class='center-align'><b>Your bid on ${bidArtname} was copied to the bid collection!</b></h5>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-default red darken-4" id="confirm-bid">YES</button>
@@ -144,7 +175,6 @@ $(document).ready(() => {
           </div>
           </div>
         `);
-
     }
     const { id } = this;
     const splitId = id.split('-');
@@ -155,7 +185,7 @@ $(document).ready(() => {
         url: '/add-bid',
         data: { _id: bidindex },
         success(status, res) {
-          console.log('status: ', status.art_name_input);
+          console.log('Line 158--->status: ', status.art_name_input);
           $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} copied to bid collection! **`);
           $('#FileAction-modal').modal('open').html(
             `<div class='modal-content'>
