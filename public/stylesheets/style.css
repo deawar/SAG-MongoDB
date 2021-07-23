@@ -35,6 +35,13 @@ footer {
   border-top: 1px solid black;
 }
 
+.brand-logo{
+  float: left;
+  height: 10%;
+  padding: 1%;
+  position: absolute;
+}
+
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../resources/webpage/Organizing-Your-Office-With-Wall-Art.jpg");
@@ -166,8 +173,15 @@ h2{
   background-color: red;
 }
 
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  opacity: 1;
+  pointer-events: none;
+}
 .switch label input[type=checkbox]:checked+.lever:after{
   background-color: red;
+  opacity: 1 !important;
 }
 
 p{
@@ -416,16 +430,16 @@ body{
 /* Add a transparency effect for thumnbail images */
 
 .tablink {
-  background-color: white;
+  background-color:  rgb(230, 235, 240);
   color: black;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 7px 8px;
   font-size: 17px;
   font-weight: bold;
-  width: 25%;
+  width: 20%;
 }
 
 .tablink:hover {

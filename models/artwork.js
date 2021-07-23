@@ -71,6 +71,12 @@ const artworkSchema = new Schema({
     data: Buffer,
     contentType: String,
   },
+  currentbid: {
+    type: Number,
+  },
+  lastbid: {
+    type: Number,
+  },
 });
 
 // Apply the uniqueValidator plugin to userDataSchema.

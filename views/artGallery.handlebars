@@ -1,10 +1,10 @@
 {{> sidebarNav }}
 
-    <div class="hero-image">
-        <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar">
-    </div>
 <div class="container" id="mainContent2">
   <div class="card" id="profilePageCard" style="width: 90%;">
+    <div class="hero-image">
+        {{!-- <img class="responsive-img img-floating profilePic" style="text-align: center; margin-left:35%" src="./resources/SAGL.png" alt="Avatar"> --}}
+    </div>
     <h2>Welcome to the {{school}} Art Gallery</h2>
     {{!-- <div id="aboutMe" class="tabcontent displayUserArt"> --}}
       <div class="row" id="displayUserArt">
@@ -42,7 +42,16 @@
 
       </div> --}}
     {{!-- </div> --}}
-
+  <!-- Modal Structure -->
+  <div id="BidAction-modal" class="modal">
+      <div class="modal-content">
+          <h4>Enter Your Bid</h4>
+          <p><b>The File {{status.art_name_input}} was deleted successfully!</b></p>
+      </div>
+      <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+  </div>
   <div class="clearfix"></div>
 </div>
 

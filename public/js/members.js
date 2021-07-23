@@ -91,7 +91,6 @@ $(document).ready(() => {
       console.log('**Please fill out entire form**');
       $('#update-err-msg').empty('').text('**Please fill out entire form**');
     }
-
   });
 
   // Update another user account from Email Search
@@ -150,7 +149,7 @@ $(document).ready(() => {
       try {
         $.ajax({
           type: 'get',
-          url: `/searchuser/:email${emailSearched}`,
+          url: `/searchuser/${emailSearched}`,
           error(jqXHR, textStatus, errorThrown) {
             if (jqXHR.status === 404 || jqXHR.status === '404') {
               $('#err-msg').empty('').text('**Email not found.. Please enter a different Email-Id**');
@@ -227,7 +226,12 @@ $(document).ready(() => {
               const $tbody = $table.append('<tbody />').children('tbody');
               for (let i = 0; i < users.length; i++) { // # of Rows  = res.length
                 const $row = $('<tr />').data('id', `${res[i]._id}`);
-                $row.append(`<td><input type="checkbox" id="${users[i]._id}"/><label for="${users[i]._id}"></label></td>`)
+                $row
+                  .append(
+                    `<td class="action-checkbox">
+                        <input type="checkbox" id="${users[i]._id}"/>
+                    </td>`,
+                  )
                   .append(`<td>${users[i].first_name}</td>`)
                   .append(`<td>${users[i].last_name}</td>`)
                   .append(`<td>${users[i].active}</td>`)
