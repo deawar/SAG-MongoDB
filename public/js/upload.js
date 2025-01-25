@@ -27,7 +27,7 @@ $(document).ready(() => {
   // --------------------- File Upload Button --------------------- //
   $('#fileUpload').on('click', (event) => {
     event.preventDefault();
-    if(!ajaxLoading) {
+    if (!ajaxLoading) {
       ajaxLoading = true;
       console.log('====================================');
       console.log('Upload Clicked!');

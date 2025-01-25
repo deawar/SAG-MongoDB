@@ -1,16 +1,17 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
-const express = require('express');
-const flash = require('express-flash-notification');
-const passport = require('passport');
-require('../config/passport')(passport);
+import express from 'express';
+import flash from 'express-flash-notification';
+import passport from 'passport';
+import passportConfig from '../config/passport.js';
+
+passportConfig(passport);
 
 const router = express.Router();
 
 // HTML ROUTE FOR LOGIN SCREEN
 router.get('/login', (req, res) => {
   if (req.isAuthenticated()) {
-    //
     res.redirect('/dashboard');
   } else {
     res.render('login');
@@ -62,4 +63,4 @@ router.get('/logout', (req, res) => {
   // res.redirect('/login');
 });
 
-module.exports = router;
+export default router;

@@ -1,7 +1,7 @@
 // require('dotenv').config(); moved to dev-dependency must run "node -r dotenv/config server.js"
 // or "npm run start_local"
 
-module.exports = {
+const config = {
   development: {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -28,8 +28,6 @@ module.exports = {
     dialect: 'mongodb',
     dialectModule: 'mongodb',
   },
-  // production: {
-  //   use_env_variable: 'JAWSDB_URL',
-  //   dialect: 'mysql',
-  // },
 };
+
+export default config;

@@ -1,13 +1,9 @@
-const express = require('express');
-const flash = require('express-flash-notification');
-
-const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
+import express from 'express';
+import flash from 'express-flash-notification';
+import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
+import sag from '../models/user.js';
 
 const router = express.Router();
-
-// Import the model (index.js) to use its database functions.
-// eslint-disable-next-line no-unused-vars
-const sag = require('../models/user');
 
 // Find school Fx
 function findSchoolName(res) {
@@ -15,8 +11,7 @@ function findSchoolName(res) {
     const school = { school: 'Make Art, Have Fun!' };
     return school;
   }
-  // eslint-disable-next-line prefer-destructuring
-  const school = res.req.user.school;
+  const { school } = res.req.user;
   return school;
 }
 
@@ -34,14 +29,11 @@ function findFirstName(res) {
 
 // Get Current User Role
 function findRole(res) {
-  // eslint-disable-next-line prefer-destructuring
   let role;
-  // school = res.req.user.school;
   if (res.req.user === null || res.req.user === undefined) {
     role = '';
     return role;
   }
-  // eslint-disable-next-line prefer-destructuring
   role = res.req.user.role;
   return role;
 }
@@ -62,4 +54,4 @@ router.get('/donate', checkAuthenticated, (req, res) => {
 });
 
 // Export routes for server.js to use.
-module.exports = router;
+export default router;

@@ -2,17 +2,15 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
-const mongoose = require('mongoose');
-// const passportLocalMongoose = require('passport-local-mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
-// const mongooseTypePhone = require('mongoose-type-phone');
-// Get the Schema constructor
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
+import randomstring from 'randomstring';
+import bcrypt from 'bcryptjs';
+
 const { Schema } = mongoose;
-// eslint-disable-next-line prefer-destructuring
-const randomstring = require('randomstring');
-const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10;
+
 // Email Validator fx
 const validateEmail = function (email) {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -31,30 +29,9 @@ const secretTokenGen = function () {
   return secretToken;
 };
 
-// subAddress Document
-// const subAddress = new Schema({
-//   type: { type: String },
-//   address1: String,
-//   address2: String,
-//   city: String,
-//   state: String,
-//   zip: {
-//     type: String,
-//     required: true,
-//     min: 5,
-//   },
-// });
-
-// subRole Document
-// const subRole = new mongoose.Schema({
-//   type: { type: String },
-//   role: String,
-// });
-
 // Creating our User Schema
 const userSchema = new Schema({
   updated: { type: Date, default: Date.now },
-  // unique_id: { type: Number, index: true },
   first_name: {
     type: String,
     trim: true,
@@ -70,9 +47,7 @@ const userSchema = new Schema({
     trim: true,
     required: 'Please enter a Phone number.',
     validate: [validatePhone, 'Please fill in a valid phone number.'],
-    // match: [/^\(([2-9])(?!\1\1)\d\d\) [2-9]\d\d-\d{4}$/, 'Please fill in a valid phone number.'],
   },
-  // address: [subAddress],
   address1: {
     type: String,
     trim: true,
@@ -125,30 +100,20 @@ const userSchema = new Schema({
     type: String,
     required: true,
     default: 'student',
-  // [subRole],
-  // role: {
-  //   type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
-  //   ref: 'role',
   },
   active: Boolean,
 });
 
-// eslint-disable-next-line consistent-return
 userSchema.pre('save', function (next) {
   const user = this;
 
-  // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();
 
-  // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
     if (err) return next(err);
 
-    // hash the password using our new salt
-    // eslint-disable-next-line prefer-arrow-callback
     bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) return next(err);
-      // override the cleartext password with the hashed one
       user.password = hash;
       next();
     });
@@ -161,60 +126,48 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
     cb(null, isMatch);
   });
 };
-const User = mongoose.model('User', userSchema);
-const user = new User({ type: 'user' });
 
-module.exports.getUserById = function (id, callback) {
+const User = mongoose.model('User', userSchema);
+
+export const getUserById = function (id, callback) {
   User.findById(id, callback);
 };
 
-module.exports.getUserByEmail = function (email, callback) {
+export const getUserByEmail = function (email, callback) {
   const query = { email };
   User.findOne(query, callback);
 };
 
-module.exports.getUserBysecretToken = function (secretToken, callback) {
+export const getUserBysecretToken = function (secretToken, callback) {
   const query = { secretToken };
   User.findOne(query, callback);
 };
 
-// // hash the password
-// userSchema.methods.generateHash = function (password) {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
-// };
-
-// checking if password is valid
 userSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-// authenticate input against database
 userSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email })
     .exec(function (err, user) {
       if (err) {
         return callback(err);
-      // eslint-disable-next-line no-else-return
-      } else if (!user) {
+      } if (!user) {
         const err = new Error('User not found.');
         err.status = 401;
         return callback(err);
       }
-      // eslint-disable-next-line prefer-arrow-callback
       bcrypt.compare(password, user.password, function (err, result) {
         if (result === true) {
           return callback(null, user);
-        // eslint-disable-next-line no-else-return
-        } else {
-          return callback();
         }
+        return callback();
       });
     });
 };
 
-// Apply the uniqueValidator plugin to userDataSchema.
 userSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique',
 });
 
-module.exports = mongoose.model('user', userSchema);
+export default mongoose.model('User', userSchema);

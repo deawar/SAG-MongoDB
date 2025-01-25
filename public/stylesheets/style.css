@@ -127,9 +127,11 @@ footer {
  
 }
 
-
-
-
+.autocomplete-content {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
 
 #registerBtn{
   text-align: center;

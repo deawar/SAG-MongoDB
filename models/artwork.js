@@ -1,16 +1,17 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
+
 // Get the Schema constructor
 const { Schema } = mongoose;
+
 // Email Validator fx
 const validateEmail = function (email) {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
 };
 
-// eslint-disable-next-line prefer-destructuring
 const artworkSchema = new Schema({
   updated: { type: Date, default: Date.now },
   approved: {
@@ -81,8 +82,7 @@ const artworkSchema = new Schema({
 
 // Apply the uniqueValidator plugin to userDataSchema.
 artworkSchema.plugin(uniqueValidator, {
-  // eslint-disable-next-line comma-dangle
-  message: 'Sorry, {PATH} needs to be valid.'
+  message: 'Sorry, {PATH} needs to be valid.',
 });
 
 // Getter for Currency adjustment
@@ -92,22 +92,22 @@ artworkSchema.path('price').get((num) => (num / 100).toFixed(2));
 artworkSchema.path('price').get((num) => (num * 100));
 
 const Artwork = mongoose.model('Artwork', artworkSchema);
-const artwork = new Artwork({ type: 'artwork' });
-module.exports.getArtByEmail = function (email, callback) {
+
+export function getArtByEmail(email, callback) {
   const query = { email };
   Artwork.findOne(query, callback);
-};
+}
 
-module.exports.getArtworkById = function (id, callback) {
+export function getArtworkById(id, callback) {
   Artwork.findById(id, callback);
-};
+}
 
-module.exports.getArtworkBySchool = function (id, callback) {
+export function getArtworkBySchool(id, callback) {
   Artwork.findById(id, callback);
-};
+}
 
 artworkSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique',
 });
 
-module.exports = mongoose.model('artwork', artworkSchema);
+export default mongoose.model('artwork', artworkSchema);

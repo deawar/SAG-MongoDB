@@ -162,8 +162,7 @@ $(document).ready(() => {
           </div>
         `);
         });
-    }
-    catch (err) {
+    } catch (err) {
       $('#BidAction-modal').modal('open').html(`
           <div class='modal-content'>
             <h4>Error Entering Your Bid</h4>

@@ -1,20 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
-const express = require('express');
-const passport = require('passport');
-const bodyParser = require('body-parser');
-const os = require('os');
-const db = require('../models/index.js');
-const User = require('../models/user');
-const School = require('../models/school');
-// require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
-// or "npm run start_local"
-const smtpTransport = require('../config/verify'); // { sendMail }
+import express from 'express';
+import passport from 'passport';
+import bodyParser from 'body-parser';
+import os from 'os';
+import db from '../models/index.js';
+import User from '../models/user.js';
+import School from '../models/school.js';
+import smtpTransport from '../config/verify.js';
 
 const hostname = os.hostname();
 const PORT = process.env.PORT || 3000;
-// const { checkNotAuthenticated } = require('../config/middleware/isAuthenticated');
 
 const router = express.Router();
 
@@ -53,7 +50,7 @@ router.get('/autocomplete', (req, res, next) => {
     // let findSchool =
     // schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } }, function (err, data) {
     schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } },
-      function(err, data) {
+      function (err, data) {
         const result = [];
         if (!err) {
           if (data && data.length && data.length > 0) {
@@ -135,7 +132,7 @@ router.post('/send', (req, res) => {
     console.log('Line 99 os.hostname(): ', os.hostname());
     res.send(user.secretToken);
     secretToken = user.secretToken;
-    let school = user.school;
+    const { school } = user;
     // eslint-disable-next-line no-cond-assign
     if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
       link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
@@ -435,25 +432,10 @@ router.post('/send', (req, res) => {
           }
           </script>
           </html>`,
-      // <div itemscope itemtype="http://schema.org/EmailMessage">
-      //     <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ConfirmAction">
-      //       <meta itemprop="name" content="Verify Email"/>
-      //       <div>
-      //         <p>Hi there,<br> Copy this token:<br><b>${secretToken}</b><br>and
-      //              paste it into the Verification page at the link below.<br>
-      //         Please Click on the link to verify your email. <br>
-      //         Please<a href=${link}>Click here to verify</a></p>
-      //       <div itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
-      //         <link itemprop="url" href="${link}"/>
-      //       </div>
-      //     </div>
-      //     <meta itemprop="description" content="Email Verification Request"/>
-      //   </div>
     };
     console.log('Sent by:', process.env.GMAIL_USERNAME);
     console.log('Line 413 signup_controller.js: ', mailOptions);
-    // eslint-disable-next-line func-names
-    // eslint-disable-next-line no-unused-vars
+
     smtpTransport.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log('Error happened!!!');
@@ -473,9 +455,9 @@ router.post('/send', (req, res) => {
   }
 });
 
-secretToken = ''; // to clear for verify
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+// secretToken = ''; // to clear for verify
+// router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(bodyParser.json());
 
 // Find secretToken to compare from DB
 async function findOnebySecretToken(req, res, secretTokenPasted, done) {
@@ -545,9 +527,6 @@ router
     console.log('<----------------------------------Res.body: ', res.body);
     res.render('verifytoken', { title: 'Verify Email Page' });
   })
-  // eslint-disable-next-line prefer-template
-  // console.log(req.protocol + ':/' + req.get('host'));
-  // eslint-disable-next-line prefer-template
   .post('/verify', async (req, res, next) => {
     try {
       secretToken = req.body.secretToken;
@@ -555,7 +534,6 @@ router
       console.log('Line 515 ----->secretToken:', secretToken);
       // Find account with matching secret Token
       console.log('signup_controller Line 517 prior to findOnebySecretToken fx', secretToken);
-      // await findOnebySecretToken(req, res, secretToken);
       const filter = { secretToken };
       console.log('line 520 secretToken null ck: ', secretToken);
       console.log('line 521 filter null ck: ', filter);
@@ -588,4 +566,4 @@ router
 
 //   if ((req.protocol + '://' + req.get('host')) === ('http://' + host)) {
 
-module.exports = router;
+export default router;

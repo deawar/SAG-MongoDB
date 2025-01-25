@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
       data: {},
       minLength: 3,
     };
-  
+
     options = $.extend(defaults, options);
     const $input = $(`#${options.inputId}`);
-  
+
     if (options.ajaxUrl) {
       const $autocomplete = $('<ul id="ac" class="autocomplete-content dropdown-content"'
                   + 'style="position:absolute"></ul>');
@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
       let runningRequest = false;
       let timeout;
       let liSelected;
-  
+
       if ($inputDiv.length) {
         $inputDiv.append($autocomplete); // Set ul in body
       } else {
         $input.after($autocomplete);
       }
-  
+
       const highlight = function (string, match) {
         const matchStart = string.toLowerCase().indexOf(`${match.toLowerCase()}`);
         const matchEnd = matchStart + match.length - 1;
@@ -35,26 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
           matchText}</span>${afterMatch}</span>`;
         return string;
       };
-  
+
       $autocomplete.on('click', 'li', function () {
         $input.val($(this).text().trim());
         $autocomplete.empty();
       });
-  
+
       $input.on('keyup', (e) => {
         if (timeout) { // comment to remove timeout
           clearTimeout(timeout);
         }
-  
+
         if (runningRequest) {
           request.abort();
         }
-  
+
         if (e.which === 13) { // select element with enter key
           liSelected[0].click();
           return;
         }
-  
+
         // scroll ul with arrow keys
         if (e.which === 40) { // down arrow
           if (liSelected) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           return;
         }
-  
+
         // escape these keys
         if (e.which === 9 // tab
                       || e.which === 16 // shift
@@ -99,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
           $autocomplete.empty();
           return;
         }
-  
+
         const val = $input.val().toLowerCase();
         $autocomplete.empty();
-  
+
         if (val.length > options.minLength) {
           timeout = setTimeout(() => { // comment this line to remove timeout
             runningRequest = true;
-  
+
             request = $.ajax({
               type: 'GET',
               url: options.ajaxUrl + val,
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 250); // comment this line to remove timeout
         }
       });
-  
+
       $(document).click((event) => { // close ul if clicked outside
         if (!$(event.target).closest($autocomplete).length) {
           $autocomplete.empty();

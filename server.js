@@ -1,34 +1,61 @@
-require('dotenv').config();
-
 import express, { urlencoded, json, static as serveStatic } from 'express';
+import dotenv from 'dotenv';
 import session from 'express-session';
 import flash from 'express-flash-notification';
 import exphbs from 'express-handlebars';
-import { join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import { hostname as _hostname } from 'os';
-import { set, connect, connection } from 'mongoose';
-import { initialize, session as _session } from 'passport';
-import { bold } from 'chalk';
-import morgan from 'morgan'; // logging middleware
+import mongoose from 'mongoose';
+import passport from 'passport';
+import chalk from 'chalk';
+import morgan from 'morgan';
+
+// Import your local modules
+import passportConfig from './config/passport.js';
+import { on, once } from './models/index.js';
+
+// Import routes
+import dashboardRoutes from './controllers/dashboard_controller.js';
+import signupRoutes from './controllers/signup_controller.js';
+import loginRoutes from './controllers/login_controller.js';
+import donateRoutes from './controllers/donate_controller.js';
+import profileRoutes from './controllers/profile_controller.js';
+import chooseSchoolRoutes from './controllers/choose_school_controller.js';
+import fileUpload from './controllers/file_upload_controller.js';
+
+// Destructure mongoose after import
+const { set, connect, connection } = mongoose;
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const initialize = () => passport.initialize();
+const _session = passport.session();
 
 const app = express();
 
-const { DB_HOST, MONGODB_URI, LOCALMONGODB_URI, NODE_ENV, PORT, SESSION_SECRET } = process.env;
+const {
+  DB_HOST, MONGODB_URI, LOCALMONGODB_URI, NODE_ENV, PORT: port, SESSION_SECRET,
+} = process.env;
 
+const { bold } = chalk;
 const connected = bold.cyan;
 const error = bold.yellow;
 const disconnected = bold.red;
 const termination = bold.magenta;
 
-set('useUnifiedTopology', true);
-set('useNewUrlParser', true);
-set('useFindAndModify', false);
-set('useCreateIndex', true);
-set('bufferCommands', false);
+set('strictQuery', false);
 
 const connectToDatabase = async (uri) => {
   try {
-    await connect(uri);
+    await connect(uri, {
+      // Remove deprecated options and use modern connection settings
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      readPreference: 'primary'
+    });
     console.log(connected('Mongoose default connection is open to ', uri));
   } catch (err) {
     console.log(error(`Mongoose default connection has occurred ${err} error`));
@@ -49,8 +76,6 @@ const uri = NODE_ENV === 'test' ? LOCALMONGODB_URI : MONGODB_URI;
 connectToDatabase(uri);
 
 const { pid } = process;
-const port = PORT || 3000;
-import { on, once } from './models/index.js';
 
 on('error', console.error.bind(console, 'connection error:'));
 
@@ -61,7 +86,7 @@ app.engine(
   'handlebars',
   exphbs({
     defaultLayout: 'main',
-    partialsDir: [join(__dirname, 'views/partials')],
+    partialsDir: [join(__dirname, 'views', 'partials')],
   }),
 );
 app.set('view engine', 'handlebars');
@@ -81,33 +106,23 @@ app.use(session({
   },
 }));
 
-// using passport and session
-app.use(initialize());
-app.use(_session());
-
-require('./config/passport')(app);
-
 // Using flash for messages
 app.use(flash(app));
 
+// using passport and session
+app.use(initialize());
+passportConfig(passport);
+passportConfig(app);
+
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(serveStatic(join(__dirname, 'public')));
-
-// Import routes and give the server access to them.
-import dashboardRoutes from './controllers/dashboard_controller.js';
-import signupRoutes from './controllers/signup_controller.js';
-import loginRoutes from './controllers/login_controller.js';
-import donateRoutes from './controllers/donate_controller.js';
-import profileRoutes from './controllers/profile_controller.js';
-import chooseSchoolRoutes from './controllers/choose_school_controller.js';
-import fileUpload from './controllers/file_upload_controller.js';
 
 app.use(dashboardRoutes);
 app.use(signupRoutes);
 app.use(loginRoutes);
 app.use(donateRoutes);
 app.use(profileRoutes);
-app.use(chooseSchoolRoutes);
+app.use('/api', chooseSchoolRoutes);
 app.use(fileUpload);
 
 const hostname = _hostname();

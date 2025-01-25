@@ -1,11 +1,10 @@
 /* eslint-disable no-useless-escape */
 /* eslint-disable func-names */
 /* Requiring bcryptjs for password hashing */
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Get the Schema constructor
 const { Schema } = mongoose;
-// eslint-disable-next-line prefer-destructuring
 
 // Creating our Role schema
 const roleSchema = new Schema({
@@ -26,4 +25,4 @@ const roleSchema = new Schema({
 
 const Role = mongoose.model('Role', roleSchema);
 
-module.exports = (Role, roleSchema);
+export default Role;

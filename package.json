@@ -1,6 +1,7 @@
 {
   "name": "sag-mongodb",
   "version": "1.0.0",
+  "type": "module",
   "description": "Silent Auction Gallery with a MongoDB back end.",
   "main": "server.js",
   "scripts": {
@@ -29,6 +30,7 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bson": "^6.10.1",
     "chalk": "^4.1.0",
     "cloudinary": "^1.25.1",
     "dotenv": "^16.4.7",
@@ -56,9 +58,11 @@
     "twilio": "^3.57.0"
   },
   "devDependencies": {
-    "eslint": "^7.22.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.20"
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "nodemon": "^2.0.22"
   }
 }

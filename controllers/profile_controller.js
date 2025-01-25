@@ -1,18 +1,20 @@
 /* eslint-disable camelcase */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable consistent-return */
-const express = require('express');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const os = require('os');
-const User = require('../models/user');
-const db = require('../models/index');
+import express from 'express';
+import passport from 'passport';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import os from 'os';
+import User from '../models/user.js';
+import db from '../models/index.js';
+import passportConfig from '../config/passport.js';
+import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
 
-require('../config/passport')(passport);
-const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
+passportConfig(passport);
 
 const router = express.Router();
+
 // Find First Name and add 's
 function findFirstName(res) {
   let first_name;
@@ -24,26 +26,23 @@ function findFirstName(res) {
   first_name = (`${first_name}'s`);
   return first_name;
 }
+
 // Find School
 function findSchoolName(req) {
-  // eslint-disable-next-line prefer-destructuring
   let school;
-  // school = res.req.user.school;
   if (req.user === null || req.user === undefined) {
     school = 'Make Art, Have Fun!';
     return school;
   }
-  // eslint-disable-next-line prefer-destructuring
   school = req.user.school;
   return school;
 }
+
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
 router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
-    // try {
     console.log('Profile_controller req: ', req.session.passport.user);
     console.log('Profile req.session: ', req.session);
-    // eslint-disable-next-line no-underscore-dangle
     const school = findSchoolName(req);
     const first_name = findFirstName(res);
     console.log('req.user: ', req.user);
@@ -64,10 +63,6 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       active: req.user.active,
       isloggedin: req.isAuthenticated(),
     };
-    // const { school } = userInfo;
-    // if (userInfo.active === false) {
-    //   res.render('verifytoken', userInfo);
-    // }
     if (userInfo.role === 'student') {
       res.render('userProfilepage', userInfo);
     } else if (userInfo.role === 'admin') {
@@ -76,7 +71,6 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       res.render('bidderProfilepage', userInfo);
     }
   } else {
-  // eslint-disable-next-line no-unused-vars
     const userInfo = {
       id: null,
       isloggedin: req.isAuthenticated(),
@@ -150,16 +144,15 @@ router.put('/user/:account_id', async (req, res) => {
 
 // PROFILE SEARCH BY ADMIN
 function sendSearch(req, res, foundDoc) {
-  router.get('/searchuser/:result', function(req, res) {
+  router.get('/searchuser/:result', function (req, res) {
     return res.render('partials/manageUser', foundDoc);
   });
-//   return res.render('adminProfilepage', foundDoc);
 }
+
 router.get('/searchuser/:email', async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;
-    // const query = User.find({ email: searchEmail }, { email: 1 });
     const school = findSchoolName(req);
     await User.findOne({ email: searchEmail, school }, function (err, doc) {
       if (!doc) {
@@ -188,27 +181,6 @@ router.get('/searchuser/:email', async (req, res) => {
       res.json(returnDoc);
       sendSearch(req, res, returnDoc);
     });
-    // .then((returnDoc) => {
-    //   res.render('adminProfilepage', returnDoc).end();
-    //   console.log(dbUser);
-    //   if (!dbUser) {
-    //     res.status(404);
-    //     return res.send('No Email User Found');
-    //   }
-    //   console.log('---> dbUser: ', dbUser);
-    //   const newSearch = {
-    //     searchedUser: dbUser[0],
-    //     id: dbUser[0].id,
-    //     email: req.params.email,
-    //     first_name: dbUser.first_name,
-    //     role: dbUser[0].role,
-    //     isloggedin: req.isAuthenticated(),
-    //   };
-    //   console.log('Profile_controller newSearch: ', newSearch);
-    //   res.status(200);
-    //   res.json(newSearch);
-    //   // res.render('partials/manageUser', newSearch);
-    // });
   } catch (error) {
     res.status(404);
     return res.send('No User Found');
@@ -220,7 +192,6 @@ router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
   try {
     let students = [];
     const targetschool = req.params.school;
-    // const school = findSchoolName(req);
     console.log('profile_controller req.params: ', req.params);
     const query = { school: targetschool };
     console.log('query string: ', query);
@@ -240,4 +211,4 @@ router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
