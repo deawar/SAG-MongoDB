@@ -72,72 +72,81 @@ router.get('/autocomplete', (req, res, next) => {
 
 // ROUTE TO SIGNUP A NEW USER
 router.post('/api/signup', (req, res, next) => {
-  passport.authenticate('local-signup', async (err, user, info) => {
-    console.log('Passport authenticate result:', { err, user, info });
+  let responseHandled = false;
 
-    if (err) {
-      console.error('Passport authentication error:', err);
-      return res.status(500).json({
-        success: false,
-        message: 'An error occurred during signup'
-      });
-    }
-
-    // If authentication failed (e.g., email already exists)
-    if (!user) {
-      console.log('User authentication failed:', info);
-      return res.status(400).json({
-        success: false,
-        message: info?.message || 'Signup authentication failed'
-      });
-    }
-
-     // If the user is created but needs email verification
-    if (user && user.active === false) {
-      try {
-        console.log('redirecting....');
-        res.cookie('first_name', user.first_name);
-        res.cookie('user_id', user.id);
-
-        // Log the user in
-        await new Promise((resolve, reject) => {
-          req.login(user, (loginErr) => {
-              if (loginErr) reject(loginErr);
-              resolve();
-          });
-        });
-        
-        // Set flash message and redirect to email verification
-        req.flash('success', 'You must confirm your email account.');
-        return res.redirect('/send');
-      } catch (loginErr) {
-        console.error('Login error after signup:', loginErr);
-        return res.status(500).json({
-          success: false,
-          message: 'Error during login after signup'
-        });
+  const handleResponse = (statusCode, data) => {
+      if (!responseHandled) {
+          responseHandled = true;
+          console.log('Sending response:', { statusCode, data });
+          res.status(statusCode).json(data);
+      } else {
+          console.log('Prevented duplicate response:', { statusCode, data });
       }
-    }
+  };
 
-    try {
-      await new Promise((resolve, reject) => {
-          req.login(user, (loginErr) => {
-              if (loginErr) reject(loginErr);
-              resolve();
+  passport.authenticate('local-signup', async (err, user, info) => {
+      try {
+          // Handle authentication errors
+          if (err) {
+              return handleResponse(500, {
+                  success: false,
+                  message: 'Authentication error occurred'
+              });
+          }
+
+          // Handle authentication failure
+          if (!user) {
+              return handleResponse(400, {
+                  success: false,
+                  message: info?.message || 'Authentication failed'
+              });
+          }
+
+          try {
+              // Complete login BEFORE any response
+              await new Promise((resolve, reject) => {
+                  req.login(user, (loginErr) => {
+                      if (loginErr) reject(loginErr);
+                      resolve();
+                  });
+              });
+
+              // Set cookies after successful login
+              res.cookie('first_name', user.first_name);
+              res.cookie('user_id', user.id);
+
+              // Now handle the response based on user status
+              if (!user.active) {
+                  req.flash('success', 'Please verify your email');
+                  return handleResponse(200, {
+                      success: true,
+                      redirect: '/send',
+                      message: 'Please check your email for verification'
+                  });
+              }
+
+              // Handle active user case
+              req.flash('success', 'Registration successful');
+              return handleResponse(200, {
+                  success: true,
+                  redirect: '/dashboard',
+                  message: 'Registration successful'
+              });
+
+          } catch (loginError) {
+              console.error('Login error:', loginError);
+              return handleResponse(500, {
+                  success: false,
+                  message: 'Error during login process'
+              });
+          }
+      } catch (error) {
+          console.error('Signup process error:', error);
+          return handleResponse(500, {
+              success: false,
+              message: 'Error during signup process'
           });
-      });
-
-      res.cookie('first_name', user.first_name);
-      res.cookie('user_id', user.id);
-      req.flash('success', 'You are now registered');
-      return res.redirect('/dashboard');
-  } catch (loginErr) {
-      console.error('Login error:', loginErr);
-      return res.status(500).json({
-          success: false,
-          message: 'Error during login process'
-      });
-  }
+      }
   })(req, res, next);
 });
 
