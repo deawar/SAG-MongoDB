@@ -1,25 +1,70 @@
-// This is middleware for restricting routes a user is not allowed to visit if not logged in
-function checkAuthenticated(req, res, next) {
-  // If the user is logged in, continue with the request to the restricted route
+// // This is middleware for restricting routes a user is not allowed to visit if not logged in
+// function checkAuthenticated(req, res, next) {
+//   // If the user is logged in, continue with the request to the restricted route
+//   if (req.isAuthenticated()) {
+//     console.log('<-------------------------------here it isAuthenticated---------------------------------------->');
+//     return next();
+//   }
+
+//   // If the user isn't logged in, redirect them to the signup page
+//   res.status(403);
+//   return res.redirect('/signup');
+// }
+
+// function checkNotAuthenticated(req, res, next) {
+//   // If the user is logged in and clicks on login again then redirect them to dashboard
+//   if (req.isAuthenticated()) {
+//     console.log('++++++++++++++++++++++++++++++++++++notAuthenticated+++++++++++++++++++++++++++++++++++++++++++++');
+//     return res.redirect('/');
+//   }
+
+//   // If the user isn't logged in, redirect them to the login page
+//   return next();
+// }
+
+// export { checkAuthenticated, checkNotAuthenticated };
+// isAuthenticated.js
+
+/**
+ * Middleware for protecting routes that require authentication
+ * Checks if a user is logged in before allowing access to restricted routes
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next middleware function
+ * @returns {void}
+ */
+const checkAuthenticated = (req, res, next) => {
+  // Check if user is authenticated through Passport.js
   if (req.isAuthenticated()) {
-    console.log('<-------------------------------here it isAuthenticated---------------------------------------->');
+    console.log('User is authenticated - proceeding to restricted route');
     return next();
   }
 
-  // If the user isn't logged in, redirect them to the signup page
+  // User is not authenticated - redirect to signup
+  console.log('User is not authenticated - redirecting to signup');
   res.status(403);
   return res.redirect('/signup');
-}
+};
 
-function checkNotAuthenticated(req, res, next) {
-  // If the user is logged in and clicks on login again then redirect them to dashboard
+/**
+* Middleware for public routes that should not be accessible when logged in
+* Redirects authenticated users away from login/signup pages
+* @param {Object} req - Express request object
+* @param {Object} res - Express response object
+* @param {Function} next - Express next middleware function
+* @returns {void}
+*/
+const checkNotAuthenticated = (req, res, next) => {
+  // If user is already logged in, redirect to home
   if (req.isAuthenticated()) {
-    console.log('++++++++++++++++++++++++++++++++++++notAuthenticated+++++++++++++++++++++++++++++++++++++++++++++');
+    console.log('Authenticated user attempting to access public route - redirecting to home');
     return res.redirect('/');
   }
 
-  // If the user isn't logged in, redirect them to the login page
+  // User is not logged in - allow access to public route
+  console.log('User accessing public route - proceeding');
   return next();
-}
+};
 
+// Export both middleware functions
 export { checkAuthenticated, checkNotAuthenticated };

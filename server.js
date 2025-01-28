@@ -95,14 +95,21 @@ app.use(morgan('dev'));
 // Parse request body as JSON
 app.use(urlencoded({ extended: true }));
 app.use(json());
+// app.use(session({
+//   key: 'user_sid',
+//   secret: SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     secure: true,
+//     expires: 600000,
 app.use(session({
-  key: 'user_sid',
-  secret: SESSION_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
-    secure: true,
-    expires: 600000,
+      secure: process.env.NODE_ENV === 'production', // true in production
+      maxAge: 24 * 60 * 60 * 1000 
   },
 }));
 
@@ -110,8 +117,8 @@ app.use(session({
 app.use(flash(app));
 
 // using passport and session
-app.use(initialize());
-passportConfig(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 passportConfig(app);
 
 // Serve static content for the app from the "public" directory in the application directory.

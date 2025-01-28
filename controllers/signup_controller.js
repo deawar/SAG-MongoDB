@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
 import express from 'express';
 import passport from 'passport';
 import bodyParser from 'body-parser';
@@ -75,42 +72,77 @@ router.get('/autocomplete', (req, res, next) => {
 
 // ROUTE TO SIGNUP A NEW USER
 router.post('/api/signup', (req, res, next) => {
-  passport.authenticate('local-signup', (err, user, info) => {
-    console.log('Signup_controller-Route to Signup New User info', info); // undefined
-    console.log('Signup_controller-New User: ', user); // false
-    console.log('Signup_controller-New User err: ', err); // null
+  passport.authenticate('local-signup', async (err, user, info) => {
+    console.log('Passport authenticate result:', { err, user, info });
+
     if (err) {
-      console.log('passport err', err);
-      return next(err); // will generate a 500 error
+      console.error('Passport authentication error:', err);
+      return res.status(500).json({
+        success: false,
+        message: 'An error occurred during signup'
+      });
     }
-    // Generate a JSON response reflecting authentication status
+
+    // If authentication failed (e.g., email already exists)
     if (!user) {
-      console.log('user error', user);
-      return res.send({ success: false, message: 'authentication failed' });
+      console.log('User authentication failed:', info);
+      return res.status(400).json({
+        success: false,
+        message: info?.message || 'Signup authentication failed'
+      });
     }
-    if (user.active === false) {
-      console.log('redirecting....');
-      res.cookie('first_name', user.first_name);
-      res.cookie('user_id', user.id);
-      req.flash('success', 'You must confirm your email account.');
-      return res.redirect('/send');
-    }
-    req.login(user, (loginErr) => {
-      if (loginErr) {
-        console.log('loginerr', loginErr);
-        return next(loginErr);
+
+     // If the user is created but needs email verification
+    if (user && user.active === false) {
+      try {
+        console.log('redirecting....');
+        res.cookie('first_name', user.first_name);
+        res.cookie('user_id', user.id);
+
+        // Log the user in
+        await new Promise((resolve, reject) => {
+          req.login(user, (loginErr) => {
+              if (loginErr) reject(loginErr);
+              resolve();
+          });
+        });
+        
+        // Set flash message and redirect to email verification
+        req.flash('success', 'You must confirm your email account.');
+        return res.redirect('/send');
+      } catch (loginErr) {
+        console.error('Login error after signup:', loginErr);
+        return res.status(500).json({
+          success: false,
+          message: 'Error during login after signup'
+        });
       }
-      console.log('redirecting....');
+    }
+
+    try {
+      await new Promise((resolve, reject) => {
+          req.login(user, (loginErr) => {
+              if (loginErr) reject(loginErr);
+              resolve();
+          });
+      });
+
       res.cookie('first_name', user.first_name);
       res.cookie('user_id', user.id);
       req.flash('success', 'You are now registered');
       return res.redirect('/dashboard');
-    });
+  } catch (loginErr) {
+      console.error('Login error:', loginErr);
+      return res.status(500).json({
+          success: false,
+          message: 'Error during login process'
+      });
+  }
   })(req, res, next);
 });
 
 // Email verification
-let mailOptions;
+//let mailOptions;
 let link;
 let secretToken;
 // user.value.secretToken = secretToken;
@@ -118,9 +150,12 @@ let secretToken;
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.post('/send', (req, res) => {
+router.post('/send', async (req, res) => {
   console.log('Line 84 in signup_controller Email Verification Send route', req.session.passport.user);
-  if (req.isAuthenticated()) {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  try {  
     const user = {
       userInfo: req.user,
       id: req.session.passport.user,
@@ -133,16 +168,22 @@ router.post('/send', (req, res) => {
     res.send(user.secretToken);
     secretToken = user.secretToken;
     const { school } = user;
-    // eslint-disable-next-line no-cond-assign
-    if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-      link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
-    } else {
-      // eslint-disable-next-line prefer-template
-      link = 'https://silentauctiongallery.herokuapp/com/verify?id=' + secretToken;
-      // link = `http://${req.get(host)}/verify?id=${rand}`;
-    }
+
+    // Construct verification link
+    const hostname = os.hostname();
+    const link = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
+        ? `http://${hostname}:${process.env.PORT}/verify?id=${user.secretToken}`
+        : `https://silentauctiongallery.herokuapp.com/verify?id=${user.secretToken}`;
+    // if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+    //   link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
+    // } else {
+    //   // eslint-disable-next-line prefer-template
+    //   link = 'https://silentauctiongallery.herokuapp/com/verify?id=' + secretToken;
+    //   // link = `http://${req.get(host)}/verify?id=${rand}`;
+    // }
     console.log('Verify Return Link: ', link);
-    mailOptions = {
+    // Configure email options
+    const mailOptions = {
       from: '"Silent Auction Gallery" <silentauctiongallery@gmail.com>',
       to: req.body.to,
       subject:
@@ -436,24 +477,31 @@ router.post('/send', (req, res) => {
     console.log('Sent by:', process.env.GMAIL_USERNAME);
     console.log('Line 413 signup_controller.js: ', mailOptions);
 
-    smtpTransport.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log('Error happened!!!');
-        res.status(500).json({ message: 'Error happened!!' });
-      } else {
-        console.log('Email sent!!!');
-        res.json({ message: 'Email sent!!' });
-      }
-    });
-  } else {
-    // eslint-disable-next-line no-unused-vars
-    const user = {
-      id: null,
-      isloggedin: req.isAuthenticated(),
-    };
-    res.redirect('/');
+    await smtpTransport.sendMail(mailOptions);
+    console.log('Email sent successfully');
+      
+  } catch (error) {
+    console.error('Error in send route:', error);
+    res.status(500).json({ message: 'Error sending verification email' });
   }
+    // smtpTransport.sendMail(mailOptions, (error, info) => {
+    //   if (error) {
+    //     console.log('Error happened!!!');
+    //     res.status(500).json({ message: 'Error happened!!' });
+    //   } else {
+    //     console.log('Email sent!!!');
+    //     res.json({ message: 'Email sent!!' });
+    //   }
 });
+  // } else {
+
+  //   const user = {
+  //     id: null,
+  //     isloggedin: req.isAuthenticated(),
+  //   };
+  //   res.redirect('/');
+
+
 
 // secretToken = ''; // to clear for verify
 // router.use(bodyParser.urlencoded({ extended: true }));
