@@ -158,5 +158,42 @@ export default function configurePassport(app) {
         }
     ));
 
-    // Rest of your passport configuration...
+    passport.use('local-login', new LocalStrategy({
+      // by default, local strategy uses username and password, we will override with email
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true, // allows us to pass back the entire request to the callback
+    },
+    ((req, email, password, done) => {
+      process.nextTick(() => {
+        User
+          .findOne({ email: req.body.email })
+          .then((user, err) => {
+            if (err) {
+              console.log('user', user);
+              console.log('&&&', err);
+              console.log('****', !user);
+              console.log('^^^', (!user.validPassword(req.body.password)));
+              return done(err);
+            }
+  
+            // if no user is found, return the message
+            if (!user) {
+              console.log('no user found');
+              return done(null, false, 'No user found.');
+            }
+  
+            // if the user is found but the password is wrong
+            if (user && !user.validPassword(req.body.password)) {
+              return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+            }
+  
+            if (!user.active) {
+              return done(null, user);
+            }
+            // If everything good return successful user
+            return done(null, user);
+          });
+      });
+    })));
 }
