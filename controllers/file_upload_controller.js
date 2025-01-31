@@ -141,12 +141,14 @@ router.post('/upload', checkAuthenticated, upload, (req, res) => {
   console.log('Line 102 ==>file_upload_controller req.body: ', req.body);
   console.log('====================================');
   const school = findSchoolName(req);
+  console.log('----***>>>School: ', school);
   const _id = findId(req);
   console.log('_id: ', _id);
   console.log('====================================');
   app.use(express.static(`public/upload/${school}`));
-  console.log('line 113-->School: ', school);
+  console.log('line 149-->School: ', school);
   const uploadPath = `./public/upload/${school}/`;
+  console.log('$$$$ Upload Path: ', uploadPath);
 
   if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath);

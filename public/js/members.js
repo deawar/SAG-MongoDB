@@ -1,6 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-unused-vars */
 let ajaxLoading;
 if (!ajaxLoading) {
   ajaxLoading = false;

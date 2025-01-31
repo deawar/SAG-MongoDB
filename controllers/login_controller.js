@@ -49,18 +49,40 @@ router.post('/api/login', (req, res, next) => {
 });
 
 // ROUTE TO LOG OUT USER
+// router.get('/logout', (req, res) => {
+//   req.headers.logged = 'false';
+//   console.log('login_controller line 49 user is logged in: ', req.headers.logged);
+//   res.render('logout', {
+//     school: 'North Oconee High School',
+//     logged: req.isAuthenticated(), // needs to be Not Logged in to show the LogIn menu option
+//   });
+//   req.logout();
+//   res.clearCookie('user_sid');
+//   res.clearCookie('first_name');
+//   res.clearCookie('user_id');
+//   // res.redirect('/login');
+// });
 router.get('/logout', (req, res) => {
-  req.headers.logged = 'false';
-  console.log('login_controller line 49 user is logged in: ', req.headers.logged);
-  res.render('logout', {
-    school: 'North Oconee High School',
-    logged: req.isAuthenticated(), // needs to be Not Logged in to show the LogIn menu option
+  // Clear the user from the session
+  req.logout((err) => {
+      if (err) {
+          console.error('Logout error:', err);
+          return res.status(500).json({ message: 'Error logging out' });
+      }
+      
+      // Clear any cookies
+      res.clearCookie('first_name');
+      res.clearCookie('user_id');
+      
+      // Destroy the session
+      req.session.destroy((sessionErr) => {
+          if (sessionErr) {
+              console.error('Session destruction error:', sessionErr);
+          }
+          // Redirect to home page or login page
+          res.redirect('/');
+      });
   });
-  req.logout();
-  res.clearCookie('user_sid');
-  res.clearCookie('first_name');
-  res.clearCookie('user_id');
-  // res.redirect('/login');
 });
 
 export default router;
