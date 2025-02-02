@@ -54,7 +54,7 @@ const connectToDatabase = async (uri) => {
       // Remove deprecated options and use modern connection settings
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      readPreference: 'primary'
+      readPreference: 'primary',
     });
     console.log(connected('Mongoose default connection is open to ', uri));
   } catch (err) {
@@ -100,8 +100,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-      secure: process.env.NODE_ENV === 'production', // true in production
-      maxAge: 24 * 60 * 60 * 1000 
+    secure: process.env.NODE_ENV === 'production', // true in production
+    maxAge: 24 * 60 * 60 * 1000,
   },
 }));
 

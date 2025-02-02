@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const searchInput = document.getElementById('school-input');
   const autoComplete = document.querySelector('.autocomplete');
   const registerBtn = document.getElementById('registerBtn');
-  
+ 
   // Add this new form handler to prevent default submissions
   const form = document.querySelector('form.signup');
   if (form) {
-      form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          console.log('Prevented default form submission');
-      });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Prevented default form submission');
+    });
   }
 
   // Initialize Materialize components - needed for modals and other UI elements
@@ -19,30 +19,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // This function formats school data to work with Materialize's autocomplete
   function formatSchoolData(schools) {
-      return schools.reduce((acc, school) => {
-          acc[school.SchoolName] = null; // Materialize expects this format
-          return acc;
-      }, {});
+    return schools.reduce((acc, school) => {
+        acc[school.SchoolName] = null; // Materialize expects this format
+        return acc;
+    }, {});
   }
 
   // Initialize school autocomplete with error handling
   async function initializeSchoolAutocomplete() {
-      try {
-          const response = await fetch('./schools.json');
-          const schools = await response.json();
-          const schoolData = formatSchoolData(schools);
+    try {
+        const response = await fetch('./schools.json');
+        const schools = await response.json();
+        const schoolData = formatSchoolData(schools);
 
-          // Initialize Materialize autocomplete with the formatted data
-          const autocompleteInstance = M.Autocomplete.init(autoComplete, {
-              data: schoolData,
-              minLength: 1,
-              onAutocomplete: (selectedSchool) => {
-                  console.log('Selected school:', selectedSchool);
-                  searchInput.value = selectedSchool;
-              },
-          });
+        // Initialize Materialize autocomplete with the formatted data
+        const autocompleteInstance = M.Autocomplete.init(autoComplete, {
+            data: schoolData,
+            minLength: 1,
+            onAutocomplete: (selectedSchool) => {
+                console.log('Selected school:', selectedSchool);
+                searchInput.value = selectedSchool;
+            },
+        });
 
-          return autocompleteInstance;
+        return autocompleteInstance;
       } catch (error) {
           console.error('Error loading school data:', error);
           return null;

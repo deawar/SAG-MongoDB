@@ -1,9 +1,9 @@
 module.exports = {
   env: {
     browser: true,
-    modulees: true,
-    es6: true,
-    jquery: true,
+    es2021: true,  // This replaces 'modules: true' and includes ES module support
+    node: true,    // Added for Node.js environment
+    jquery: true,  // Kept for jQuery support
   },
   extends: [
     'airbnb-base',
@@ -13,8 +13,11 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaVersion: 2020,    // Updated to match your needs
+    sourceType: 'module', // Added to explicitly support ES modules
   },
   rules: {
+    // You can add custom rules here
+    'import/extensions': ['error', 'ignorePackages'], // Added to help with ES modules
   },
 };

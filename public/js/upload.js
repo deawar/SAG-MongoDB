@@ -1,14 +1,14 @@
 function addFile(form, sampleFile, name) {
   try {
     const newArtwork = new FormData();
-    
+
     // Handle numeric conversions
     const numericForm = {
       ...form,
       price: parseFloat(form.price) || 0,
       height: parseFloat(form.height) || 0,
       width: parseFloat(form.width) || 0,
-      depth: form.depth ? parseFloat(form.depth) : null
+      depth: form.depth ? parseFloat(form.depth) : null,
     };
 
     // Validate numeric values
@@ -58,7 +58,7 @@ $(document).ready(() => {
   // --------------------- File Upload Button --------------------- //
   $('#fileUpload').on('click', async (event) => {
     event.preventDefault();
-    
+
     if (ajaxLoading) {
       console.log('Upload already in progress');
       return;
@@ -69,10 +69,10 @@ $(document).ready(() => {
       console.log('====================================');
       console.log('Upload Clicked!');
       console.log('====================================');
-      
+
       $('#upload-carousel').carousel();
       console.log('Line 74 upload.js');
-      
+
       const sampleFile = $('#sampleFile').get(0).files;
       console.log('sampleFile: ', sampleFile);
 
@@ -87,7 +87,6 @@ $(document).ready(() => {
         && $('#w_size_input').length && $('#w_size_input').val().length
         && $('#price_input').length && $('#price_input').val().length
         && $('#sampleFile').length && $('#sampleFile').val().length) {
-
         const newArtworkform = {
           first_name: $('#artist_firstname_input').val().trim(),
           last_name: $('#artist_lastname_input').val().trim(),
