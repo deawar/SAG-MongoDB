@@ -1,31 +1,32 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable func-names */
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 
-// Get the Schema constructor
 const { Schema } = mongoose;
 
-// Email Validator fx
-const validateEmail = function (email) {
+// Email Validator function
+const validateEmail = (email) => {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
 };
 
 const artworkSchema = new Schema({
-  updated: { type: Date, default: Date.now },
+  updated: { 
+    type: Date, 
+    default: Date.now 
+  },
   approved: {
-    type: Boolean, default: false,
+    type: Boolean, 
+    default: false
   },
   artist_firstname_input: {
     type: String,
     trim: true,
-    required: true,
+    required: 'First name is required'
   },
   artist_lastname_input: {
     type: String,
     trim: true,
-    required: true,
+    required: 'Last name is required'
   },
   artist_email_input: {
     type: String,
@@ -33,81 +34,95 @@ const artworkSchema = new Schema({
     lowercase: true,
     required: 'Email address is required',
     validate: [validateEmail, 'Please fill a valid email address'],
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
   },
   art_name_input: {
     type: String,
     trim: true,
-    required: true,
+    required: 'Artwork name is required'
   },
   medium_input: {
     type: String,
     trim: true,
+    required: 'Medium is required'
   },
   description_input: {
     type: String,
     trim: true,
+    required: 'Description is required'
   },
   depth: {
     type: Number,
     trim: true,
+    get: v => v ? v.toFixed(2) : null
   },
   height: {
     type: Number,
     trim: true,
+    required: 'Height is required',
+    get: v => v.toFixed(2)
   },
   width: {
     type: Number,
     trim: true,
+    required: 'Width is required',
+    get: v => v.toFixed(2)
   },
   price: {
     type: Number,
+    required: 'Price is required',
+    get: v => (v / 100).toFixed(2),
+    set: v => v * 100
   },
   school: {
     type: String,
     trim: true,
-    required: true,
+    required: 'School is required'
   },
   img: {
-    data: Buffer,
-    contentType: String,
+    data: { 
+      type: Buffer,
+      required: true
+    },
+    contentType: { 
+      type: String,
+      required: true
+    }
   },
   currentbid: {
     type: Number,
+    get: v => v ? (v / 100).toFixed(2) : null,
+    set: v => v ? v * 100 : null
   },
   lastbid: {
     type: Number,
-  },
+    get: v => v ? (v / 100).toFixed(2) : null,
+    set: v => v ? v * 100 : null
+  }
+}, {
+  timestamps: true, // Adds createdAt and updatedAt
+  toJSON: { getters: true }, // Ensure getters are applied when converting to JSON
+  toObject: { getters: true } // Ensure getters are applied when converting to Object
 });
 
-// Apply the uniqueValidator plugin to userDataSchema.
+// Apply the uniqueValidator plugin once
 artworkSchema.plugin(uniqueValidator, {
-  message: 'Sorry, {PATH} needs to be valid.',
+  message: 'Sorry, {PATH} needs to be unique'
 });
 
-// Getter for Currency adjustment
-artworkSchema.path('price').get((num) => (num / 100).toFixed(2));
+// Define static methods
+artworkSchema.statics.getArtByEmail = function(email) {
+  return this.findOne({ artist_email_input: email });
+};
 
-// Setter for Currency adjustment
-artworkSchema.path('price').get((num) => (num * 100));
+artworkSchema.statics.getArtworkById = function(id) {
+  return this.findById(id);
+};
 
+artworkSchema.statics.getArtworkBySchool = function(school) {
+  return this.find({ school });
+};
+
+// Create and export the model
 const Artwork = mongoose.model('Artwork', artworkSchema);
-
-export function getArtByEmail(email, callback) {
-  const query = { email };
-  Artwork.findOne(query, callback);
-}
-
-export function getArtworkById(id, callback) {
-  Artwork.findById(id, callback);
-}
-
-export function getArtworkBySchool(id, callback) {
-  Artwork.findById(id, callback);
-}
-
-artworkSchema.plugin(uniqueValidator, {
-  message: 'Sorry, {PATH} needs to be unique',
-});
-
-export default mongoose.model('artwork', artworkSchema);
+export default Artwork;

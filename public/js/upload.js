@@ -1,23 +1,54 @@
 function addFile(form, sampleFile, name) {
-  const newArtwork = new FormData();
-  // newArtwork.append('formvalues', form);
-  newArtwork.append('sampleFile', sampleFile[0], name);
-  newArtwork.append('artist_firstname_input', form.first_name);
-  newArtwork.append('artist_lastname_input', form.last_name);
-  newArtwork.append('art_name_input', form.artwork_name);
-  newArtwork.append('description_input', form.description);
-  newArtwork.append('d_size_input', form.depth);
-  newArtwork.append('artist_email_input', form.email);
-  newArtwork.append('h_size_input', form.height);
-  newArtwork.append('medium_input', form.medium);
-  newArtwork.append('price_input', form.price);
-  newArtwork.append('w_size_input', form.width);
-  newArtwork.append('school_input', form.school);
-  newArtwork.append('approved', form.approved);
-  console.log('newArtwork form after append: ', newArtwork);
-  return newArtwork;
+  try {
+    const newArtwork = new FormData();
+    
+    // Handle numeric conversions
+    const numericForm = {
+      ...form,
+      price: parseFloat(form.price) || 0,
+      height: parseFloat(form.height) || 0,
+      width: parseFloat(form.width) || 0,
+      depth: form.depth ? parseFloat(form.depth) : null
+    };
+
+    // Validate numeric values
+    if (numericForm.price <= 0) throw new Error('Price must be greater than 0');
+    if (numericForm.height <= 0) throw new Error('Height must be greater than 0');
+    if (numericForm.width <= 0) throw new Error('Width must be greater than 0');
+    if (numericForm.depth !== null && numericForm.depth < 0) throw new Error('Depth cannot be negative');
+
+    // Append file
+    newArtwork.append('sampleFile', sampleFile[0], name);
+
+    // Append form fields with proper numeric values
+    newArtwork.append('artist_firstname_input', form.first_name.trim());
+    newArtwork.append('artist_lastname_input', form.last_name.trim());
+    newArtwork.append('art_name_input', form.artwork_name.trim());
+    newArtwork.append('description_input', form.description.trim());
+    newArtwork.append('artist_email_input', form.email.trim());
+    newArtwork.append('medium_input', form.medium.trim());
+    newArtwork.append('h_size_input', numericForm.height);
+    newArtwork.append('w_size_input', numericForm.width);
+    newArtwork.append('d_size_input', numericForm.depth);
+    newArtwork.append('price_input', numericForm.price);
+    newArtwork.append('school_input', form.school);
+    newArtwork.append('approved', form.approved);
+
+    console.log('newArtwork form after append: ', {
+      ...form,
+      price: numericForm.price,
+      height: numericForm.height,
+      width: numericForm.width,
+      depth: numericForm.depth
+    });
+
+    return newArtwork;
+  } catch (error) {
+    console.error('Error in addFile:', error);
+    throw error;
+  }
 }
-// let ajaxLoading = false;
+
 $(document).ready(() => {
   $('.sidenav').sidenav();
   $('.modal').modal();
@@ -25,20 +56,27 @@ $(document).ready(() => {
   $('textarea#description_input').characterCounter();
 
   // --------------------- File Upload Button --------------------- //
-  $('#fileUpload').on('click', (event) => {
+  $('#fileUpload').on('click', async (event) => {
     event.preventDefault();
-    if (!ajaxLoading) {
+    
+    if (ajaxLoading) {
+      console.log('Upload already in progress');
+      return;
+    }
+
+    try {
       ajaxLoading = true;
       console.log('====================================');
       console.log('Upload Clicked!');
       console.log('====================================');
+      
       $('#upload-carousel').carousel();
-      // eslint-disable-next-line no-undef
-      console.log('Line 15 upload.js');
+      console.log('Line 74 upload.js');
+      
       const sampleFile = $('#sampleFile').get(0).files;
       console.log('sampleFile: ', sampleFile);
-      console.log('====================================');
-      console.log('sampleFile: ', sampleFile);
+
+      // Form validation check
       if ($('#artist_firstname_input').length && $('#artist_firstname_input').val().length
         && $('#artist_lastname_input').length && $('#artist_lastname_input').val().length
         && $('#artist_email_input').length && $('#artist_email_input').val().length
@@ -49,6 +87,7 @@ $(document).ready(() => {
         && $('#w_size_input').length && $('#w_size_input').val().length
         && $('#price_input').length && $('#price_input').val().length
         && $('#sampleFile').length && $('#sampleFile').val().length) {
+
         const newArtworkform = {
           first_name: $('#artist_firstname_input').val().trim(),
           last_name: $('#artist_lastname_input').val().trim(),
@@ -64,101 +103,66 @@ $(document).ready(() => {
           approved: false,
           file: $('#sampleFile').val(),
         };
+
         console.log('newArtwork form: ', newArtworkform);
+
         if (sampleFile.length > 0) {
-          // eslint-disable-next-line no-plusplus
+          // File metadata handling
           for (let i = 0; i < sampleFile.length; i++) {
             let file = sampleFile[i];
             const filename = file.name;
             console.log('====================================');
             console.log('file.name: ', filename);
             console.log('====================================');
-            // eslint-disable-next-line prefer-destructuring
             file = $('#sampleFile').prop('files')[0];
           }
-          console.log('sampleFile[0]: ', sampleFile[0]);
+
           const tmppath = URL.createObjectURL(sampleFile[0]);
           console.log('image value path: ', tmppath);
+          
           $('#upload-err-msg').empty('');
           $('#art-upload').empty('');
-          const newArtwork = addFile(newArtworkform, $('#sampleFile').get(0).files, sampleFile.name);
-          console.log('formData: ', newArtworkform);
-          if (newArtworkform.first_name.length > 0 && newArtworkform.last_name.length > 0
-          && newArtworkform.email.length > 0 && newArtworkform.artwork_name.length > 0
-          && newArtworkform.medium.length > 0 && newArtworkform.description.length > 0
-          && newArtworkform.height.length > 0 && newArtworkform.width.length > 0
-          && newArtworkform.price.length > 0) {
-            console.log('#####===========>is newArtwork null: ', newArtwork);
-            // const fileUpload = req.file.path;
-            if (newArtwork !== '' || !newArtwork || newArtwork !== undefined) {
-              try {
-                $.ajax({
-                  type: 'post',
-                  url: '/upload',
-                  data: newArtwork,
-                  processData: false,
-                  contentType: false,
-                  cache: false,
-                  // eslint-disable-next-line object-shorthand
-                  success(status, response) {
-                    console.log('status: ', status.art_name_input);
-                    $('#upload-err-msg').empty('').text(`** Success! ${status.artwork_name} added to database! **`);
-                    $('#FileAction-modal').modal('open').html(
-                      `<div class='modal-content'>
-                      <h4>File Activity</h4>
-                      <h4 class='center-align'>Success!</h4>
-                      <h5 class='center-align'><b>The File ${status.artwork_name} was added to the database!</b></h5>
-                      </div>
-                      <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-                      </div>
-                      </div>`,
-                    );
-                  },
-                  error(status, error) {
-                    $('#upload-file-modal').modal('open').html(
-                      `<div class='modal-content'>
-                      <h4>File Activity</h4>
-                      <h4 class='center-align'>Error!</h4>
-                      <h5 class='center-align'>Error status code: ${status.status} Error: ${error}</b></h5>
-                      </div>
-                      <div class="modal-footer">
-                      <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-                      </div>
-                      </div>`,
-                    );
-                    console.log('Status:', status);
-                    console.log('error: ', error);
-                  },
-                  function() {
-                    ajaxLoading = false;
-                  },
-                })
-                  .then((res) => {
-                    console.log('Line 133 ================> res: ', res);
-                    if (newArtwork.image !== undefined) {
-                      console.log('Line 135 in .then(res)');
-                      window.location.reload(true);
-                    } else {
-                      $('#upload-err-msg').empty('').text(`This File Uploaded: ${sampleFile.name}`);
-                      console.log(`Line 139---->** These Files Uploaded: ${sampleFile.name}`);
-                    }
-                  }).then((res) => {
-                    console.log('Line 142 -------> upload.js checking res.files', res.files);
-                    if (res.files) {
-                      window.location.replace('/profile');
-                    }
-                  });
-              } catch (err) {
-                console.log('*** Nothing Uploaded *** :', err);
-              }
-            } else {
-              console.log('Nothing Uploaded yet!');
-              $('#upload-err-msg').empty('').text('Nothing to Uploaded chosen yet!');
-            }
-          } else {
-            console.log('**-->Please fill out entire form**');
-            $('#upload-err-msg').empty('').text('**Please fill out entire form**');
+
+          try {
+            const newArtwork = addFile(newArtworkform, sampleFile, sampleFile[0].name);
+            console.log('formData: ', newArtworkform);
+
+            const response = await $.ajax({
+              type: 'post',
+              url: '/upload',
+              data: newArtwork,
+              processData: false,
+              contentType: false,
+              cache: false
+            });
+
+            console.log('Upload success:', response);
+            $('#upload-err-msg').empty('').text(`** Success! ${response.artwork_name} added to database! **`);
+            $('#FileAction-modal').modal('open').html(
+              `<div class='modal-content'>
+                <h4>File Activity</h4>
+                <h4 class='center-align'>Success!</h4>
+                <h5 class='center-align'><b>The File ${response.artwork_name} was added to the database!</b></h5>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+              </div>`
+            );
+
+            window.location.replace('/profile');
+
+          } catch (error) {
+            console.error('Upload error:', error);
+            $('#FileAction-modal').modal('open').html(
+              `<div class='modal-content'>
+                <h4>File Activity</h4>
+                <h4 class='center-align'>Error!</h4>
+                <h5 class='center-align'><b>${error.message || 'Upload failed'}</b></h5>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+              </div>`
+            );
           }
         }
       } else {
@@ -166,16 +170,20 @@ $(document).ready(() => {
         $('#upload-err-msg').empty('').text('**Please fill out entire form!!**');
         $('#FileAction-modal').modal('open').html(
           `<div class='modal-content'>
-          <h4>File Activity</h4>
-          <h4 class='center-align'>Error!</h4>
-          <h5 class='center-align'><b>Please fill out the Whole form to upload a file.</b></h5>
+            <h4>File Activity</h4>
+            <h4 class='center-align'>Error!</h4>
+            <h5 class='center-align'><b>Please fill out the Whole form to upload a file.</b></h5>
           </div>
           <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-          </div>
-          </div>`,
+            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
+          </div>`
         );
       }
+    } catch (error) {
+      console.error('General error:', error);
+      $('#upload-err-msg').empty('').text(`Error: ${error.message}`);
+    } finally {
+      ajaxLoading = false;
     }
   });
 

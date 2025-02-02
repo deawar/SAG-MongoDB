@@ -95,14 +95,6 @@ app.use(morgan('dev'));
 // Parse request body as JSON
 app.use(urlencoded({ extended: true }));
 app.use(json());
-// app.use(session({
-//   key: 'user_sid',
-//   secret: SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: {
-//     secure: true,
-//     expires: 600000,
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,

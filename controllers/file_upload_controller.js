@@ -135,55 +135,62 @@ const upload = multer({
   fileFilter: helpers.imageFilter,
 }).single('sampleFile');
 
-router.post('/upload', checkAuthenticated, upload, (req, res) => {
-  console.log('====================================');
-  console.log('Line 101---------->price_input sent in req.body.price_input: ', req.body.price_input);
-  console.log('Line 102 ==>file_upload_controller req.body: ', req.body);
-  console.log('====================================');
-  const school = findSchoolName(req);
-  console.log('----***>>>School: ', school);
-  const _id = findId(req);
-  console.log('_id: ', _id);
-  console.log('====================================');
-  app.use(express.static(`public/upload/${school}`));
-  console.log('line 149-->School: ', school);
-  const uploadPath = `./public/upload/${school}/`;
-  console.log('$$$$ Upload Path: ', uploadPath);
+// Route to upload files
+router.post('/upload', checkAuthenticated, upload, async (req, res) => {
+  try {
+    console.log('====================================');
+    console.log('Line 142---------->price_input sent in req.body.price_input: ', req.body.price_input);
+    console.log('Line 143 ==>file_upload_controller req.body: ', req.body);
+    console.log('====================================');
+        
+    if (!req.file) {
+      return res.status(400).send('No file uploaded');
+    }
+    
+    const school = findSchoolName(req);
+    const _id = findId(req);
+    const fileExt = getFileType(req.file.filename);
 
-  if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath);
-  }
-
-  console.log('line 129-->File_name: ', req.file.filename);
-  const fileExt = getFileType(req.file.filename);
-  console.log('line 131------>File Extension: ', fileExt);
-
-  const newArtwork = new Artwork({
-    artist_firstname_input: req.body.artist_firstname_input,
-    artist_lastname_input: req.body.artist_lastname_input,
-    artist_email_input: req.body.artist_email_input,
-    art_name_input: req.body.art_name_input,
-    depth: req.body.d_size_input,
-    description_input: req.body.description_input,
-    medium_input: req.body.medium_input,
-    approved: req.body.approved,
-    img: {
-      data: fs.readFileSync(`./public/upload/${school}/${_id}-${req.file.originalname}`),
-      contentType: `image/${fileExt}`,
-    },
-  });
-  console.log('+++++++++++++++++++>Line 156 newArtwork: ', newArtwork);
-  const uploadedArtwork = `<img src="${uploadPath}${_id}-${req.file.originalname}" width="200">`;
-
-  newArtwork.save()
-    .then((artwork) => {
-      console.log('Document inserted succussfully!', artwork);
-      res.status(200).send(artwork);
-    })
-    .catch((error) => {
-      console.error('Line 166->in catch error block', error);
-      res.status(400).send('Bad Request');
+    // Create new artwork with all fields from the form
+    const newArtwork = new Artwork({
+      artist_firstname_input: req.body.artist_firstname_input,
+      artist_lastname_input: req.body.artist_lastname_input,
+      artist_email_input: req.body.artist_email_input,
+      art_name_input: req.body.art_name_input,
+      description_input: req.body.description_input,
+      medium_input: req.body.medium_input,
+      height: req.body.h_size_input,
+      width: req.body.w_size_input,
+      depth: req.body.d_size_input,
+      price: req.body.price_input,
+      school: school,
+      approved: false,
+      img: {
+        data: fs.readFileSync(path.join('./public/upload', school, req.file.filename)),
+        contentType: `image/${fileExt}`
+      }
     });
+    console.log('Saving artwork to database:', {
+      filename: req.file.filename,
+      contentType: `image/${fileExt}`,
+      school: school
+    });
+    
+    const savedArtwork = await newArtwork.save();
+    console.log('Artwork saved successfully:', savedArtwork._id);
+
+    // Send back the saved artwork data
+    res.status(200).json({
+      message: 'Upload successful',
+      artwork_name: savedArtwork.art_name_input,
+      id: savedArtwork._id
+    });
+  } catch (error) {
+    console.error('Error in upload:', error);
+    res.status(400).json({
+      error: error.message || 'Failed to upload artwork'
+    });
+  }
 });
 
 router.get('/get-imgs', checkAuthenticated, (req, res) => {
