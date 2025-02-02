@@ -5,7 +5,7 @@
   "description": "Silent Auction Gallery with a MongoDB back end.",
   "main": "server.js",
   "scripts": {
-    "ngrok" : "nodemon -r dotenv/config server.js & e:\ngrok-v3\ngrok http http://localhost:3000 ",
+    "ngrok": "nodemon -r dotenv/config server.js & e:\ngrok-v3\ngrok http http://localhost:3000 ",
     "start": "npm run lint & nodemon -r dotenv/config server.js",
     "test": "npm run lint",
     "lint": "eslint ./"
@@ -41,6 +41,7 @@
     "express-flash-notification": "^0.5.0",
     "express-handlebars": "^5.3.1",
     "express-session": "^1.17.1",
+    "fix": "^0.0.6",
     "formidable": "^1.2.2",
     "mongodb": "^3.6.4",
     "mongoose": "^5.13.15",
