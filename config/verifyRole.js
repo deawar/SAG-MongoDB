@@ -15,17 +15,19 @@
 import authRole from './authRole.js';
 
 // Protect a route requiring admin role
-router.get('/admin-dashboard', 
-    authRole('admin'),  // Only admins can access
-    (req, res) => {
-        res.send('Admin Dashboard');
-    }
+router.get(
+  '/admin-dashboard',
+  authRole('admin'), // Only admins can access
+  (req, res) => {
+    res.send('Admin Dashboard');
+  },
 );
 
 // Protect a route requiring any valid role
-router.get('/user-area', 
-    authRole(),  // Any valid role can access
-    (req, res) => {
-        res.send('User Area');
-    }
+router.get(
+  '/user-area',
+  authRole(), // Any valid role can access
+  (req, res) => {
+    res.send('User Area');
+  },
 );

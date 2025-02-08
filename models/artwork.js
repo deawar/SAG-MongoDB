@@ -10,23 +10,23 @@ const validateEmail = (email) => {
 };
 
 const artworkSchema = new Schema({
-  updated: { 
-    type: Date, 
-    default: Date.now 
+  updated: {
+    type: Date,
+    default: Date.now,
   },
   approved: {
-    type: Boolean, 
-    default: false
+    type: Boolean,
+    default: false,
   },
   artist_firstname_input: {
     type: String,
     trim: true,
-    required: 'First name is required'
+    required: 'First name is required',
   },
   artist_lastname_input: {
     type: String,
     trim: true,
-    required: 'Last name is required'
+    required: 'Last name is required',
   },
   artist_email_input: {
     type: String,
@@ -34,92 +34,92 @@ const artworkSchema = new Schema({
     lowercase: true,
     required: 'Email address is required',
     validate: [validateEmail, 'Please fill a valid email address'],
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
   },
   art_name_input: {
     type: String,
     trim: true,
-    required: 'Artwork name is required'
+    required: 'Artwork name is required',
   },
   medium_input: {
     type: String,
     trim: true,
-    required: 'Medium is required'
+    required: 'Medium is required',
   },
   description_input: {
     type: String,
     trim: true,
-    required: 'Description is required'
+    required: 'Description is required',
   },
   depth: {
     type: Number,
     trim: true,
-    get: v => v ? v.toFixed(2) : null
+    get: (v) => (v ? v.toFixed(2) : null),
   },
   height: {
     type: Number,
     trim: true,
     required: 'Height is required',
-    get: v => v.toFixed(2)
+    get: (v) => v.toFixed(2),
   },
   width: {
     type: Number,
     trim: true,
     required: 'Width is required',
-    get: v => v.toFixed(2)
+    get: (v) => v.toFixed(2),
   },
   price: {
     type: Number,
     required: 'Price is required',
-    get: v => (v / 100).toFixed(2),
-    set: v => v * 100
+    get: (v) => (v / 100).toFixed(2),
+    set: (v) => v * 100,
   },
   school: {
     type: String,
     trim: true,
-    required: 'School is required'
+    required: 'School is required',
   },
   img: {
-    data: { 
+    data: {
       type: Buffer,
-      required: true
+      required: true,
     },
-    contentType: { 
+    contentType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   currentbid: {
     type: Number,
-    get: v => v ? (v / 100).toFixed(2) : null,
-    set: v => v ? v * 100 : null
+    get: (v) => (v ? (v / 100).toFixed(2) : null),
+    set: (v) => (v ? v * 100 : null),
   },
   lastbid: {
     type: Number,
-    get: v => v ? (v / 100).toFixed(2) : null,
-    set: v => v ? v * 100 : null
-  }
+    get: (v) => (v ? (v / 100).toFixed(2) : null),
+    set: (v) => (v ? v * 100 : null),
+  },
 }, {
   timestamps: true, // Adds createdAt and updatedAt
   toJSON: { getters: true }, // Ensure getters are applied when converting to JSON
-  toObject: { getters: true } // Ensure getters are applied when converting to Object
+  toObject: { getters: true }, // Ensure getters are applied when converting to Object
 });
 
 // Apply the uniqueValidator plugin once
 artworkSchema.plugin(uniqueValidator, {
-  message: 'Sorry, {PATH} needs to be unique'
+  message: 'Sorry, {PATH} needs to be unique',
 });
 
 // Define static methods
-artworkSchema.statics.getArtByEmail = function(email) {
+artworkSchema.statics.getArtByEmail = function (email) {
   return this.findOne({ artist_email_input: email });
 };
 
-artworkSchema.statics.getArtworkById = function(id) {
+artworkSchema.statics.getArtworkById = function (id) {
   return this.findById(id);
 };
 
-artworkSchema.statics.getArtworkBySchool = function(school) {
+artworkSchema.statics.getArtworkBySchool = function (school) {
   return this.find({ school });
 };
 

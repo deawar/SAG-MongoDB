@@ -39,7 +39,7 @@ function addFile(form, sampleFile, name) {
       price: numericForm.price,
       height: numericForm.height,
       width: numericForm.width,
-      depth: numericForm.depth
+      depth: numericForm.depth,
     });
 
     return newArtwork;
@@ -118,7 +118,7 @@ $(document).ready(() => {
 
           const tmppath = URL.createObjectURL(sampleFile[0]);
           console.log('image value path: ', tmppath);
-          
+
           $('#upload-err-msg').empty('');
           $('#art-upload').empty('');
 
@@ -132,7 +132,7 @@ $(document).ready(() => {
               data: newArtwork,
               processData: false,
               contentType: false,
-              cache: false
+              cache: false,
             });
 
             console.log('Upload success:', response);
@@ -145,11 +145,10 @@ $(document).ready(() => {
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-              </div>`
+              </div>`,
             );
 
             window.location.replace('/profile');
-
           } catch (error) {
             console.error('Upload error:', error);
             $('#FileAction-modal').modal('open').html(
@@ -160,7 +159,7 @@ $(document).ready(() => {
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-              </div>`
+              </div>`,
             );
           }
         }
@@ -175,7 +174,7 @@ $(document).ready(() => {
           </div>
           <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-          </div>`
+          </div>`,
         );
       }
     } catch (error) {

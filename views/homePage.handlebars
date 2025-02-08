@@ -1,24 +1,37 @@
 <!-- Dropdown Trigger -->
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
-    <li><a data-target="contact-modal" class="btn btn-small white modal-trigger hoverable" href="#contact">Contact</a></li>
-    <li><a data-target="about-modal" class="btn btn-small white modal-trigger hoverable"href="#about">About</a></li>
+    <li><a data-target="contact-modal" class="btn btn-small blue modal-trigger hoverable" href="#contact">Contact</a></li>
+    <li><a data-target="about-modal" class="btn btn-small blue modal-trigger hoverable"href="#about">About</a></li>
   </ul>
 
 <div class="hero-image">
 <a href="#" data-target="dropdown1" class="dropdown-trigger hide-on-med-and-up"><i class="material-icons">menu</i>
   <div class="hero-text">
     <header class="homePageHeader">
-      <div class="header" id="homePageHeader">
-        <a href="/" class="logo">S.A.G</a>
-        <div class="header-right">
-          {{!-- <a class="btn btn-small white modal-trigger hoverable"href="#home">Home</a> --}}
-          <a data-target="contact-modal" class="btn btn-small white modal-trigger hoverable" href="#contact">Contact</a>
-          <a data-target="about-modal" class="btn btn-small white modal-trigger hoverable"href="#about">About</a>
+        <div class="modal-content">
+      {{!-- <div class="card-panel grey lighten-5 z-depth-1 hoverable"> --}}
+          <a href="#!" class="right-align modal-close waves-effect waves-light"></a>
+    {{!-- <div class="col s12 m8 offset-m2 l6 offset-l3"> --}}
+        <div class="hero-image">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+              <img class="responsive-img circle hide-on-small-only" src="./resources/SAGL.png" alt="Avatar">
+            </div>
+            <div class="col s10">
+            <div class="header-right">
+              {{!-- <a class="btn btn-small white modal-trigger hoverable"href="#home">Home</a> --}}
+              <a data-target="contact-modal" class="btn btn-small blue modal-trigger hoverable" href="#contact">Contact</a>
+              <a data-target="about-modal" class="btn btn-small blue modal-trigger hoverable"href="#about">About</a>
+            </div>
+              <h4 style="color:white; font-weight:bold;">(S.A.G.) Silent Auction Gallery</h4>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+    </div>  
     <button class="btn btn-default red darken-4 hoverable loginButton" onclick="window.location.href='/login'" style="margin-left: 45%; margin-top:20%; background-color:navajowhite">Login</button> 
+      
+    </header>
   </div>
 </div>
 
@@ -27,14 +40,14 @@
   <div class="modal-content">
     <div class="col s12 m8 offset-m2 l6 offset-l3">
       <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-        <a href="#!" class="right-align modal-close waves-effect waves-light"><i class="material-icons">close</i></a>
+          <a href="#!" class="right-align modal-close waves-effect waves-light"><i class="material-icons">close</i></a>
         <div class="hero-image">
           <div class="row valign-wrapper">
             <div class="col s2">
               <img class="responsive-img circle hide-on-small-only" src="./resources/SAGL.png" alt="Avatar">
             </div>
             <div class="col s10">
-              <h4>Contact Us! (S.A.G.) Silent Auction Gallery</h4>
+              <h4 style="color:white; font-weight:bold;">About (S.A.G.) Silent Auction Gallery</h4>
             </div>
           </div>
         </div>
@@ -72,7 +85,7 @@
 
               </p>
               <p class="flow-text"> 
-                This software was created by Dean Warren and Jonathan Kelley, who focus on improving  student experiences through software engineering. 
+                This software was created by Dean Warren, with a focus on improving student experiences through software engineering. 
 
               </p>
               <p class="flow-text">  

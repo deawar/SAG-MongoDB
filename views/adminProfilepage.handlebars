@@ -1,6 +1,6 @@
 {{> sidebarNav }}
 
-<div class="card" id="profilePageCardMain" style="width: 80%">
+<div class="card" id="profilePageCardMain" style="width: 85%">
     <div class="container" id="mainContent2" style="margin-right:12%;">
 
         <button class="tablink" style="font-size: 1.1vw;" onclick="openPage('aboutMe', this, 'white')" id="defaultOpen">Account Info</button>
@@ -134,19 +134,6 @@
                     </div>
                 {{> upload }}
                     <div class="row" id="startGal">
-                        {{!-- <div class="responsive" id="row0">
-                            <div class="gallery" id="ulimage0">
-                                <img class="materialboxed" src="./resources/webpage/31606_hd.jpg" alt="Cinque Terre" width="100%" height="400">
-                                <div class="art_name_input">Title: {{art_name_input}}</div>
-                                <div class="artist_name">Artist: {{artist_name}}</div>
-                                <div class="desc">Add a description of the image here</div>
-                                {{#if bid}}
-                                <div class="currentPrice">${{currentPrice}}.00</div>
-                                <button class="upload-btn red darken-4 waves-effect waves-light btn-small hoverable" type='submit' value='Bid' id="fileUpload">Bid!</button>
-                                {{/if}}
-                            </div>
-                        </div> --}}
-
                     {{else}}
                             <p style="text-align: center">Please got to Account Info and validate your account by verifying your email address.</p>
                             <p style="text-align: center"><b>You will find it at the bottom of the Account Info page.</b></p>
@@ -303,9 +290,55 @@
         <div id="Auction" class="tabcontent">
             <div class="hero-image"></div>
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
-                    <h3>Auction Settings and Timers</h3>
+                    <h3>Auction Settings</h3>
                     <p>Where Auctions are started and timers are set.</p>
+                
+                  <div class="row">
+                    <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                        <input placeholder="Auction Identifier" id="auction_id" type="text" class="validate">
+                        <label for="auction_id">Auction Identifier</label>
+                        </div>
+                        <div class="input-field col s6">
+                        <input id="charity_name" type="text" class="validate">
+                        <label for="charity_name">Charity Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                        <input value="Date of Auction start" id="auction_start_date" type="text" class="datepicker">
+                        <label for="date_auction_start">Date/Time of Auction Start</label>
+                        </div>
+                        <div class="input-field col s6">
+                        <input placeholder="Start Time" id="Time of Auction start" type="auction_start_time" type="text" class="timepicker">
+                        <label for="time_auction_start"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                        <input value="Date of Auction stop" id="auction_stop_date" type="text" class="datepicker">
+                        <label for="date_auction_stop">Date/Time of Auction Stop</label>
+                        </div>
+                        <div class="input-field col s6">
+                        <label for="time_auction_stop"></label>
+                        <input placeholder="Stop Time" id="Time of Auction stop" type="auction_stop_time" type="text" class="timepicker">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                        Auction Total Time: 
+                        <div class="input-field inline">
+                            <input placeholder="Auction Time" id="auction_total_time" type="" class="validate">
+                            {{!-- <label for="auction_total_time">Auction Time</label> --}}
+                            {{!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> --}}
+                        </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default teal darken-4 hoverable" id="updateAuctionButton">Submit Auction Info</button> 
+                    </form>
                 </div>
+            </div>
         </div>
 
                 <!-- list students by school -->
@@ -413,6 +446,8 @@
 
     $(document).ready(function () {
         $('.sidenav').sidenav();
+        $('.datepicker').datepicker();
+        $('.timepicker').timepicker();
         M.updateTextFields();
     });
 </script>

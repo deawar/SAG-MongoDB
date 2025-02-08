@@ -46,8 +46,9 @@ router.get('/autocomplete', (req, res, next) => {
     console.log('mysearch: ', mysearch);
     // let findSchool =
     // schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } }, function (err, data) {
-    schoolname.find({ SchoolName: { $regex: regex, $options: 'i' } },
-      function (err, data) {
+    schoolname.find(
+      { SchoolName: { $regex: regex, $options: 'i' } },
+      (err, data) => {
         const result = [];
         if (!err) {
           if (data && data.length && data.length > 0) {
@@ -66,7 +67,8 @@ router.get('/autocomplete', (req, res, next) => {
           console.log(err);
         }
         console.log('LINE 59================================>OutPut of find(): ', result);
-      });
+      },
+    );
   }
 });
 
@@ -75,83 +77,82 @@ router.post('/api/signup', (req, res, next) => {
   let responseHandled = false;
 
   const handleResponse = (statusCode, data) => {
-      if (!responseHandled) {
-          responseHandled = true;
-          console.log('Sending response:', { statusCode, data });
-          res.status(statusCode).json(data);
-      } else {
-          console.log('Prevented duplicate response:', { statusCode, data });
-      }
+    if (!responseHandled) {
+      responseHandled = true;
+      console.log('Sending response:', { statusCode, data });
+      res.status(statusCode).json(data);
+    } else {
+      console.log('Prevented duplicate response:', { statusCode, data });
+    }
   };
 
   passport.authenticate('local-signup', async (err, user, info) => {
-      try {
-          // Handle authentication errors
-          if (err) {
-              return handleResponse(500, {
-                  success: false,
-                  message: 'Authentication error occurred'
-              });
-          }
-
-          // Handle authentication failure
-          if (!user) {
-              return handleResponse(400, {
-                  success: false,
-                  message: info?.message || 'Authentication failed'
-              });
-          }
-
-          try {
-              // Complete login BEFORE any response
-              await new Promise((resolve, reject) => {
-                  req.login(user, (loginErr) => {
-                      if (loginErr) reject(loginErr);
-                      resolve();
-                  });
-              });
-
-              // Set cookies after successful login
-              res.cookie('first_name', user.first_name);
-              res.cookie('user_id', user.id);
-
-              // Now handle the response based on user status
-              if (!user.active) {
-                  req.flash('success', 'Please verify your email');
-                  return handleResponse(200, {
-                      success: true,
-                      redirect: '/send',
-                      message: 'Please check your email for verification'
-                  });
-              }
-
-              // Handle active user case
-              req.flash('success', 'Registration successful');
-              return handleResponse(200, {
-                  success: true,
-                  redirect: '/dashboard',
-                  message: 'Registration successful'
-              });
-
-          } catch (loginError) {
-              console.error('Login error:', loginError);
-              return handleResponse(500, {
-                  success: false,
-                  message: 'Error during login process'
-              });
-          }
-      } catch (error) {
-          console.error('Signup process error:', error);
-          return handleResponse(500, {
-              success: false,
-              message: 'Error during signup process'
-          });
+    try {
+      // Handle authentication errors
+      if (err) {
+        return handleResponse(500, {
+          success: false,
+          message: 'Authentication error occurred',
+        });
       }
+
+      // Handle authentication failure
+      if (!user) {
+        return handleResponse(400, {
+          success: false,
+          message: info?.message || 'Authentication failed',
+        });
+      }
+
+      try {
+        // Complete login BEFORE any response
+        await new Promise((resolve, reject) => {
+          req.login(user, (loginErr) => {
+            if (loginErr) reject(loginErr);
+            resolve();
+          });
+        });
+
+        // Set cookies after successful login
+        res.cookie('first_name', user.first_name);
+        res.cookie('user_id', user.id);
+
+        // Now handle the response based on user status
+        if (!user.active) {
+          req.flash('success', 'Please verify your email');
+          return handleResponse(200, {
+            success: true,
+            redirect: '/send',
+            message: 'Please check your email for verification',
+          });
+        }
+
+        // Handle active user case
+        req.flash('success', 'Registration successful');
+        return handleResponse(200, {
+          success: true,
+          redirect: '/dashboard',
+          message: 'Registration successful',
+        });
+      } catch (loginError) {
+        console.error('Login error:', loginError);
+        return handleResponse(500, {
+          success: false,
+          message: 'Error during login process',
+        });
+      }
+    } catch (error) {
+      console.error('Signup process error:', error);
+      return handleResponse(500, {
+        success: false,
+        message: 'Error during signup process',
+      });
+    }
   })(req, res, next);
 });
 
 // Email verification
-//let mailOptions;
+// let mailOptions;
 let link;
 let secretToken;
 // user.value.secretToken = secretToken;
@@ -164,7 +165,7 @@ router.post('/send', async (req, res) => {
   if (!req.isAuthenticated()) {
     return res.redirect('/login');
   }
-  try {  
+  try {
     const user = {
       userInfo: req.user,
       id: req.session.passport.user,
@@ -181,8 +182,8 @@ router.post('/send', async (req, res) => {
     // Construct verification link
     const hostname = os.hostname();
     const link = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
-        ? `http://${hostname}:${process.env.PORT}/verify?id=${user.secretToken}`
-        : `https://silentauctiongallery.herokuapp.com/verify?id=${user.secretToken}`;
+      ? `http://${hostname}:${process.env.PORT}/verify?id=${user.secretToken}`
+      : `https://silentauctiongallery.herokuapp.com/verify?id=${user.secretToken}`;
     // if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     //   link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
     // } else {
@@ -488,29 +489,26 @@ router.post('/send', async (req, res) => {
 
     await smtpTransport.sendMail(mailOptions);
     console.log('Email sent successfully');
-      
   } catch (error) {
     console.error('Error in send route:', error);
     res.status(500).json({ message: 'Error sending verification email' });
   }
-    // smtpTransport.sendMail(mailOptions, (error, info) => {
-    //   if (error) {
-    //     console.log('Error happened!!!');
-    //     res.status(500).json({ message: 'Error happened!!' });
-    //   } else {
-    //     console.log('Email sent!!!');
-    //     res.json({ message: 'Email sent!!' });
-    //   }
+  // smtpTransport.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     console.log('Error happened!!!');
+  //     res.status(500).json({ message: 'Error happened!!' });
+  //   } else {
+  //     console.log('Email sent!!!');
+  //     res.json({ message: 'Email sent!!' });
+  //   }
 });
-  // } else {
+// } else {
 
-  //   const user = {
-  //     id: null,
-  //     isloggedin: req.isAuthenticated(),
-  //   };
-  //   res.redirect('/');
-
-
+//   const user = {
+//     id: null,
+//     isloggedin: req.isAuthenticated(),
+//   };
+//   res.redirect('/');
 
 // secretToken = ''; // to clear for verify
 // router.use(bodyParser.urlencoded({ extended: true }));
@@ -518,15 +516,17 @@ router.post('/send', async (req, res) => {
 
 // Find secretToken to compare from DB
 async function findOnebySecretToken(req, res, secretTokenPasted, done) {
-  const user = User.findOne({ user: secretToken },
-    function (err, data) {
+  const user = User.findOne(
+    { user: secretToken },
+    (err, data) => {
       if (err) {
         return done(err);
       }
       console.log('Signup_controller Line 446 data: ', data);
       // const user = data;
       return done(null, user);
-    });
+    },
+  );
   if (!user.secretToken || user.active === true || user.secretToken === ' ') {
     req.flash('success', 'You have either already confirmed your account OR you may need to register');
     return res.status(404).redirect('/signup', { title: 'Register Page' });
@@ -535,8 +535,10 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
   console.log('line 455 ------>User db active output user.dataValues.active:', user.dataValues.active);
 
   if (user.secretToken === secretTokenPasted) {
-    console.log('Domain is matched. Information is from Authentic email. secretToken:',
-      req.query.id === secretToken);
+    console.log(
+      'Domain is matched. Information is from Authentic email. secretToken:',
+      req.query.id === secretToken,
+    );
     console.log('email is verified');
     console.log('In Verify Route and user: ', user);
     if (!user) {
@@ -552,12 +554,13 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
       },
     };
     console.log('Condition----->: ', condition);
-    const removed = await db.User.updateOne(condition,
+    const removed = await db.User.updateOne(
+      condition,
       {
         secretToken: null,
         active: true,
       },
-      function (err, result) {
+      (err, result) => {
         console.log('============>', result);
         if (err) {
           return done(err);
@@ -568,7 +571,8 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
         }
         req.flash('Success', 'Thank you! Now you can Login.');
         res.redirect('/login').status(200);
-      });
+      },
+    );
 
     req.flash('Success', 'Thank you! Now you can Login.');
     res.redirect('/signup');

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 import bcrypt from 'bcryptjs';
-import crypto from 'crypto';  // New import to replace randomstring
+import crypto from 'crypto'; // New import to replace randomstring
 
 const { Schema } = mongoose;
 
@@ -20,30 +20,28 @@ const validatePhone = function (phone) {
 };
 
 // New token generation function to replace secretTokenGen
-const generateSecureToken = () => {
-  return new Promise((resolve, reject) => {
-    crypto.randomBytes(64, (err, buffer) => {
-      if (err) {
-        reject(new Error(`Token generation failed: ${err.message}`));
-        return;
+const generateSecureToken = () => new Promise((resolve, reject) => {
+  crypto.randomBytes(64, (err, buffer) => {
+    if (err) {
+      reject(new Error(`Token generation failed: ${err.message}`));
+      return;
+    }
+
+    try {
+      const token = buffer.toString('base64')
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .slice(0, 64);
+
+      if (token.length !== 64) {
+        throw new Error('Generated token length is incorrect');
       }
-      
-      try {
-        const token = buffer.toString('base64')
-          .replace(/[^a-zA-Z0-9]/g, '')
-          .slice(0, 64);
-        
-        if (token.length !== 64) {
-          throw new Error('Generated token length is incorrect');
-        }
-        
-        resolve(token);
-      } catch (error) {
-        reject(new Error(`Token formatting failed: ${error.message}`));
-      }
-    });
+
+      resolve(token);
+    } catch (error) {
+      reject(new Error(`Token formatting failed: ${error.message}`));
+    }
   });
-};
+});
 
 // User Schema definition - most fields remain the same
 const userSchema = new Schema({
@@ -111,7 +109,7 @@ const userSchema = new Schema({
   // Modified secretToken field definition
   secretToken: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   role: {
     type: String,
@@ -122,7 +120,7 @@ const userSchema = new Schema({
 });
 
 // Modified pre-save middleware to handle both token generation and password hashing
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   const user = this;
 
   // Generate token for new users or when token is modified
@@ -178,7 +176,7 @@ userSchema.methods.validPassword = function (password) {
 // Authentication method remains unchanged
 userSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email })
-    .exec(function (err, user) {
+    .exec((err, user) => {
       if (err) {
         return callback(err);
       } if (!user) {
@@ -186,7 +184,7 @@ userSchema.statics.authenticate = function (email, password, callback) {
         err.status = 401;
         return callback(err);
       }
-      bcrypt.compare(password, user.password, function (err, result) {
+      bcrypt.compare(password, user.password, (err, result) => {
         if (result === true) {
           return callback(null, user);
         }

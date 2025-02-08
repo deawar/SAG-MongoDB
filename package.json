@@ -8,7 +8,56 @@
     "ngrok": "nodemon -r dotenv/config server.js & e:\ngrok-v3\ngrok http http://localhost:3000 ",
     "start": "npm run lint & nodemon -r dotenv/config server.js",
     "test": "npm run lint",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
+    "lint:safe": "eslint ./ --fix --quiet"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true,
+      "jquery": true
+    },
+    "extends": [
+      "airbnb-base"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "no-trailing-spaces": "error",
+      "max-len": [
+        "error",
+        {
+          "code": 100
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "no-console": "warn",
+      "no-undef": "warn",
+      "consistent-return": "warn",
+      "no-restricted-syntax": "warn",
+      "no-else-return": "warn",
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "^M"
+        }
+      ],
+      "import/extensions": [
+        "error",
+        "ignorePackages"
+      ]
+    }
   },
   "repository": {
     "type": "git",
@@ -60,8 +109,8 @@
     "twilio": "^3.84.1"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.2.1",

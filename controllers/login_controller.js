@@ -65,23 +65,23 @@ router.post('/api/login', (req, res, next) => {
 router.get('/logout', (req, res) => {
   // Clear the user from the session
   req.logout((err) => {
-      if (err) {
-          console.error('Logout error:', err);
-          return res.status(500).json({ message: 'Error logging out' });
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).json({ message: 'Error logging out' });
+    }
+
+    // Clear any cookies
+    res.clearCookie('first_name');
+    res.clearCookie('user_id');
+
+    // Destroy the session
+    req.session.destroy((sessionErr) => {
+      if (sessionErr) {
+        console.error('Session destruction error:', sessionErr);
       }
-      
-      // Clear any cookies
-      res.clearCookie('first_name');
-      res.clearCookie('user_id');
-      
-      // Destroy the session
-      req.session.destroy((sessionErr) => {
-          if (sessionErr) {
-              console.error('Session destruction error:', sessionErr);
-          }
-          // Redirect to home page or login page
-          res.redirect('/');
-      });
+      // Redirect to home page or login page
+      res.redirect('/');
+    });
   });
 });
 

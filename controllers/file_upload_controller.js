@@ -5,6 +5,8 @@ import multer from 'multer';
 import passport from 'passport';
 import fs from 'fs';
 import { ObjectId } from 'bson';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import Artwork from '../models/artwork.js';
 import School from '../models/school.js';
 import User from '../models/user.js';
@@ -12,16 +14,14 @@ import Bid from '../models/bid.js';
 import helpers from '../config/helpers.js';
 import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
 import asyncMiddleware from '../config/middleware/asyncMiddleware.js';
+import passportConfig from '../config/passport.js';
 
 // const { ObjectId } = pkg; // Removed redundant declaration
 
 const app = express();
-import passportConfig from '../config/passport.js';
 passportConfig(passport);
 
 const router = express.Router();
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -142,11 +142,11 @@ router.post('/upload', checkAuthenticated, upload, async (req, res) => {
     console.log('Line 142---------->price_input sent in req.body.price_input: ', req.body.price_input);
     console.log('Line 143 ==>file_upload_controller req.body: ', req.body);
     console.log('====================================');
-        
+
     if (!req.file) {
       return res.status(400).send('No file uploaded');
     }
-    
+
     const school = findSchoolName(req);
     const _id = findId(req);
     const fileExt = getFileType(req.file.filename);
@@ -163,19 +163,19 @@ router.post('/upload', checkAuthenticated, upload, async (req, res) => {
       width: req.body.w_size_input,
       depth: req.body.d_size_input,
       price: req.body.price_input,
-      school: school,
+      school,
       approved: false,
       img: {
         data: fs.readFileSync(path.join('./public/upload', school, req.file.filename)),
-        contentType: `image/${fileExt}`
-      }
+        contentType: `image/${fileExt}`,
+      },
     });
     console.log('Saving artwork to database:', {
       filename: req.file.filename,
       contentType: `image/${fileExt}`,
-      school: school
+      school,
     });
-    
+
     const savedArtwork = await newArtwork.save();
     console.log('Artwork saved successfully:', savedArtwork._id);
 
@@ -183,12 +183,12 @@ router.post('/upload', checkAuthenticated, upload, async (req, res) => {
     res.status(200).json({
       message: 'Upload successful',
       artwork_name: savedArtwork.art_name_input,
-      id: savedArtwork._id
+      id: savedArtwork._id,
     });
   } catch (error) {
     console.error('Error in upload:', error);
     res.status(400).json({
-      error: error.message || 'Failed to upload artwork'
+      error: error.message || 'Failed to upload artwork',
     });
   }
 });

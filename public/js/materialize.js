@@ -662,16 +662,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return null;
     }
     switch (type.toLowerCase()) {
-      case 'select-one':
-        return getSelectSingle_(el);
-      case 'select-multiple':
-        return getSelectMultiple_(el);
-      case 'radio':
-        return el.checked ? el.value : null;
-      case 'checkbox':
-        return el.checked ? el.value : null;
-      default:
-        return el.value ? el.value : null;
+    case 'select-one':
+      return getSelectSingle_(el);
+    case 'select-multiple':
+      return getSelectMultiple_(el);
+    case 'radio':
+      return el.checked ? el.value : null;
+    case 'checkbox':
+      return el.checked ? el.value : null;
+    default:
+      return el.value ? el.value : null;
     }
   }
 
@@ -685,24 +685,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
         const { name } = el;
         switch (el.type.toLowerCase()) {
-          case 'file':
-          case 'reset':
-          case 'submit':
-          case 'button':
-            break;
-          case 'select-multiple':
-            var values = getValue(el);
-            if (values !== null) {
-              each(values, (value) => {
-                query += encode(name, value);
-              });
-            }
-            break;
-          default:
-            var value = getValue(el);
-            if (value !== null) {
+        case 'file':
+        case 'reset':
+        case 'submit':
+        case 'button':
+          break;
+        case 'select-multiple':
+          var values = getValue(el);
+          if (values !== null) {
+            each(values, (value) => {
               query += encode(name, value);
-            }
+            });
+          }
+          break;
+        default:
+          var value = getValue(el);
+          if (value !== null) {
+            query += encode(name, value);
+          }
         }
       });
 
@@ -1556,32 +1556,32 @@ $jscomp.polyfill = function (e, r, p, m) {
     }a = r(n, (a, b) => f[b] === c); return a.length ? a[0] : d;
   } function K(a, c) {
     switch (J(a, c)) {
-      case 'transform':
-        return X(a, c); case 'css':
-        return E(a, c); case 'attribute':
-        return a.getAttribute(c);
+    case 'transform':
+      return X(a, c); case 'css':
+      return E(a, c); case 'attribute':
+      return a.getAttribute(c);
     } return a[c] || 0;
   } function L(a, c) {
     const d = /^(\*=|\+=|-=)/.exec(a); if (!d) return a; const b = y(a) || 0; c = parseFloat(c); a = parseFloat(a.replace(d[0], '')); switch (d[0][0]) {
-      case '+':
-        return c + a + b; case '-':
-        return c - a + b; case '*':
-        return c * a + b;
+    case '+':
+      return c + a + b; case '-':
+      return c - a + b; case '*':
+      return c * a + b;
     }
   } function F(a, c) {
-    return Math.sqrt(Math.pow(c.x - a.x, 2) + Math.pow(c.y - a.y, 2));
+    return Math.sqrt((c.x - a.x) ** 2 + (c.y - a.y) ** 2);
   } function M(a) {
     a = a.points; for (var c = 0, d, b = 0; b < a.numberOfItems; b++) {
       const f = a.getItem(b); b > 0 && (c += F(d, f)); d = f;
     } return c;
   } function N(a) {
     if (a.getTotalLength) return a.getTotalLength(); switch (a.tagName.toLowerCase()) {
-      case 'circle':
-        return 2 * Math.PI * a.getAttribute('r'); case 'rect':
-        return 2 * a.getAttribute('width') + 2 * a.getAttribute('height'); case 'line':
-        return F({ x: a.getAttribute('x1'), y: a.getAttribute('y1') }, { x: a.getAttribute('x2'), y: a.getAttribute('y2') }); case 'polyline':
-        return M(a); case 'polygon':
-        var c = a.points; return M(a) + F(c.getItem(c.numberOfItems - 1), c.getItem(0));
+    case 'circle':
+      return 2 * Math.PI * a.getAttribute('r'); case 'rect':
+      return 2 * a.getAttribute('width') + 2 * a.getAttribute('height'); case 'line':
+      return F({ x: a.getAttribute('x1'), y: a.getAttribute('y1') }, { x: a.getAttribute('x2'), y: a.getAttribute('y2') }); case 'polyline':
+      return M(a); case 'polygon':
+      var c = a.points; return M(a) + F(c.getItem(c.numberOfItems - 1), c.getItem(0));
     }
   } function Y(a, c) {
     function d(b) {
@@ -1589,11 +1589,11 @@ $jscomp.polyfill = function (e, r, p, m) {
     } const b = d();
     const f = d(-1);
     const n = d(1); switch (a.property) {
-      case 'x':
-        return b.x; case 'y':
-        return b.y;
-      case 'angle':
-        return 180 * Math.atan2(n.y - f.y, n.x - f.x) / Math.PI;
+    case 'x':
+      return b.x; case 'y':
+      return b.y;
+    case 'angle':
+      return 180 * Math.atan2(n.y - f.y, n.x - f.x) / Math.PI;
     }
   } function O(a, c) {
     const d = /-?\d*\.?\d+/g;
@@ -1802,7 +1802,7 @@ $jscomp.polyfill = function (e, r, p, m) {
   }());
   var Q = (function () {
     function a(a, b) {
-      return a === 0 || a === 1 ? a : -Math.pow(2, 10 * (a - 1)) * Math.sin(2 * (a - 1 - b / (2 * Math.PI) * Math.asin(1)) * Math.PI / b);
+      return a === 0 || a === 1 ? a : -(2 ** (10 * (a - 1))) * Math.sin(2 * (a - 1 - b / (2 * Math.PI) * Math.asin(1)) * Math.PI / b);
     } const c = 'Quad Cubic Quart Quint Sine Expo Circ Back Elastic'.split(' ');
     const d = {
       In: [[0.55, 0.085, 0.68, 0.53], [0.55, 0.055, 0.675, 0.19], [0.895, 0.03, 0.685, 0.22], [0.755, 0.05, 0.855, 0.06], [0.47, 0, 0.745, 0.715], [0.95, 0.05, 0.795, 0.035], [0.6, 0.04, 0.98, 0.335], [0.6, -0.28, 0.735, 0.045], a],

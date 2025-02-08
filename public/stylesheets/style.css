@@ -39,7 +39,7 @@ footer {
   float: left;
   height: 10%;
   padding: 1%;
-  position: absolute;
+  position: absolute; 
 }
 
 .hero-image {
@@ -635,6 +635,7 @@ div.desc {
 
   .logo {
       margin-bottom: 1%;
+      position:relative;
   }
 }
 
