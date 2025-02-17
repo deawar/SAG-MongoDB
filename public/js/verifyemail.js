@@ -1,105 +1,83 @@
-let to;
+document.addEventListener('DOMContentLoaded', () => {
+  const resendButton = document.getElementById('resendEmail');
+  const verifyButton = document.getElementById('verifyTokenBtn');
+  const tokenInput = document.getElementById('verificationToken');
+  const secretToken = document.getElementById('secretToken');
+  const verifyForm = document.getElementById('verify-form');
 
-const subject = 'Silent Auction Verification Email';
-$(document).ready(() => {
-  $('.sidenav').sidenav();
+  // Initialize Materialize components
   $('.modal').modal();
-  // URL parser for jQuery
-  function GetURLParameter(sParam) {
-    const sPageURL = window.location.search.substring(1);
-    const sURLVariables = sPageURL.split('&');
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < sURLVariables.length; i++) {
-      const sParameterName = sURLVariables[i].split('=');
-      // eslint-disable-next-line eqeqeq
-      if (sParameterName[0] == sParam) {
-        return sParameterName[1];
-      }
-    }
-  }
 
-  // Section to send Verification Email
-  // eslint-disable-next-line consistent-return
-  async function sendAnEmail(data) {
-    let result;
-    try {
-      result = await $.post('/send', data, (req, res) => {
-        console.log('Return from /send route', res);
-        if (res === 'success') {
-          // need to make this wait for the response<-----Look here Dean.
-          console.log('Email was sent to: ', to);
-          $('#emailmsg')
-            .empty()
-            .html(`Email has been sent to ${to}. Please check your inbox!`);
-        } else {
-          // eslint-disable-next-line prefer-template
-          $('#emailmsg')
-            .empty()
-            .html(
-              `Something happened - Unable to send email to ${to}. Please check the email address you entered.`,
-            );
-        }
-      });
+  if (resendButton) {
+    resendButton.addEventListener('click', async () => {
+      try {
+        resendButton.disabled = true;
+        resendButton.textContent = 'Sending...';
 
-      return result;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  $(() => {
-    $('#emailinput').change(() => {
-      // event.preventDefault();
-      if ($('#emailinput').val() === '') {
-        $('.enableOnInput').prop('disabled', true);
-        $('#emailmsg').text('You must type in an Email to verify.');
-      } else {
-        $('.enableOnInput').prop('disabled', false);
-        $('#validateEmailButton').click((event) => {
-          event.preventDefault();
-          to = $('#emailinput').val();
-          console.log('<-------verfy email button clicked-------->', to);
-          if (to === '') {
-            console.log('No Email to send!');
-            $('#emailmsg').text('You must type in an Email to verify.');
-          } else {
-            console.log('Sending email to: ', to);
-            $('#emailmsg').text('Sending E-mail...Please wait');
-            const data = {
-              to,
-              subject,
-            };
-            sendAnEmail(data);
-          }
+        const response = await fetch('/api/resend-verification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
+
+        if (!response.ok) {
+          throw new Error('Failed to resend verification email');
+        }
+
+        M.toast({ html: 'Verification email resent! Please check your inbox.', classes: 'green' });
+      } catch (error) {
+        console.error('Error resending email:', error);
+        M.toast({ html: 'Error resending email. Please try again.', classes: 'red' });
+      } finally {
+        resendButton.disabled = false;
+        resendButton.textContent = 'Resend Email';
       }
     });
-  });
+  }
 
-  $('#verifyTokenBtn').click((event) => {
-    event.preventDefault();
-    console.log('testing');
-    const hbtoken = GetURLParameter('id');
-    console.log(GetURLParameter('id'));
-    const token = { secretToken: $('#secretToken').val() };
-    if (!hbtoken) {
-      window.location.href = '/signup';
-    } else {
-      $('#token')
-        .empty()
-        .html(hbtoken);
-      // eslint-disable-next-line no-unused-vars
-      $.post('/verify', token, (req, res) => {
-        console.log('<-------verfy email button clicked-------->');
-        // verify modal triggers
-        $('.verified-token-modal').modal();
-        // eslint-disable-next-line no-shadow
-        $('#confirm-token').click((event) => {
-          event.preventDefault();
-          window.location.href = '/login';
-          return false;
+  if (verifyButton && tokenInput) {
+    verifyButton.addEventListener('click', async () => {
+      try {
+        const token = tokenInput.value.trim();
+        if (!token) {
+          M.toast({ html: 'Please enter your verification token', classes: 'red' });
+          return;
+        }
+
+        verifyButton.disabled = true;
+        verifyButton.textContent = 'Verifying...';
+
+        const response = await fetch('/verify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ secretToken: token }),
         });
-      });
-    }
-  });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          M.toast({ html: 'Email verified successfully!', classes: 'green' });
+          setTimeout(() => {
+            window.location.href = '/dashboard';
+          }, 2000);
+        } else {
+          throw new Error(data.message || 'Invalid verification token');
+        }
+
+        M.toast({ html: 'Email verified successfully!', classes: 'green' });
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 2000);
+      } catch (error) {
+        console.error('Error verifying token:', error);
+        M.toast({ html: error.message || 'Error verifying token', classes: 'red' });
+      } finally {
+        verifyButton.disabled = false;
+        verifyButton.textContent = 'Verify Token';
+      }
+    });
+  }
 });

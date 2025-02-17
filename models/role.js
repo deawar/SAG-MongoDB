@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable func-names */
-/* Requiring bcryptjs for password hashing */
 import mongoose from 'mongoose';
 
 // Get the Schema constructor

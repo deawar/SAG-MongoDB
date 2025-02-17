@@ -10,6 +10,7 @@ import school from './school.js';
 import role from './role.js';
 import bid from './bid.js';
 import artwork from './artwork.js';
+import auction from './auction.js';
 
 // Create proper directory path for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +30,7 @@ export {
   role,
   artwork,
   bid,
+  auction,
   on,
   once,
 };

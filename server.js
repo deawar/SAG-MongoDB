@@ -23,6 +23,7 @@ import donateRoutes from './controllers/donate_controller.js';
 import profileRoutes from './controllers/profile_controller.js';
 import chooseSchoolRoutes from './controllers/choose_school_controller.js';
 import fileUpload from './controllers/file_upload_controller.js';
+import auctionRoutes from './controllers/auction_controller.js';
 
 // Destructure mongoose after import
 const { set, connect, connection } = mongoose;
@@ -93,8 +94,8 @@ app.set('view engine', 'handlebars');
 app.use(morgan('dev'));
 
 // Parse request body as JSON
-app.use(urlencoded({ extended: true }));
 app.use(json());
+app.use(urlencoded({ extended: true }));
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -123,11 +124,42 @@ app.use(donateRoutes);
 app.use(profileRoutes);
 app.use('/api', chooseSchoolRoutes);
 app.use(fileUpload);
+app.use(auctionRoutes);
 
 const hostname = _hostname();
 once('open', () => {
   console.log('\nConnected to MongoDB @', DB_HOST);
 
+  // Handle 404s
+  app.use((req, res, next) => {
+    if (req.headers['content-type'] === 'application/json') {
+      res.status(404).json({
+        success: false,
+        message: 'Route not found',
+      });
+    } else {
+      next();
+    }
+  });
+
+  // General error handler
+  app.use((err, req, res, next) => {
+    console.error('Global error handler:', err);
+
+    // Don't send error details in production
+    const message = process.env.NODE_ENV === 'production'
+      ? 'Internal Server Error'
+      : err.message;
+
+    if (req.headers['content-type'] === 'application/json') {
+      res.status(err.status || 500).json({
+        success: false,
+        message,
+      });
+    } else {
+      next(err);
+    }
+  });
   app.listen(port, () => {
     console.log(`PID: ${pid}\n`);
     console.log(

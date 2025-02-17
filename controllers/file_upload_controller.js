@@ -164,6 +164,7 @@ router.post('/upload', checkAuthenticated, upload, async (req, res) => {
       depth: req.body.d_size_input,
       price: req.body.price_input,
       school,
+      auctionId,
       approved: false,
       img: {
         data: fs.readFileSync(path.join('./public/upload', school, req.file.filename)),
@@ -223,6 +224,7 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         artDepth: items[i].depth,
         artPrice: items[i].price,
         artApproved: items[i].approved,
+        artAuctionId: items[i].auctionId,
         artReviewer: role,
       };
       pics.push(artInfo);
@@ -242,6 +244,7 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         artDepth: items[i].depth,
         artPrice: items[i].price,
         artApproved: items[i].approved,
+        artAuctionId: items[i].auctionId,
         artReviewer: role,
       };
       pics.push(artInfo);
@@ -282,9 +285,9 @@ router.post('/delete/', checkAuthenticated, (req, res) => {
   });
   const query = `${req.body._id}`;
   const options = { new: true };
-  console.log('got Bid: ', req.body);
-  const currentbid = req.body.bid;
-  Artwork.findByIdAndUpdate(req.params.id, { currentbid }, (err, data) => {
+  console.log('Delete Button Pressed: ', req.body);
+  const currentId = req.body.bid;
+  Artwork.findByIdAndUpdate(req.params.id, { currentId }, (err, data) => {
     if (err) {
       console.log(err);
       res.status(400).send('Bad Request');

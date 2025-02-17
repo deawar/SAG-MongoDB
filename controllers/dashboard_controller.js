@@ -1,9 +1,9 @@
-/* eslint-disable camelcase */
 import express from 'express';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import flash from 'express-flash-notification';
+import Auction from '../models/auction.js';
 import db from '../models/index.js';
 import User from '../models/index.js';
 import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';

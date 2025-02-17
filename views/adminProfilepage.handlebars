@@ -291,56 +291,57 @@
             <div class="hero-image"></div>
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                     <h3>Auction Settings</h3>
-                    <p>Where Auctions are started and timers are set.</p>
+                    <p>Specifically for {{school}} sponsored by {{first_name}} {{last_name}}</p>
+                        <input disabled id="account_id" type="text" value="{{id}}">
+                        <label class="active" for="id">Account ID</label>
+                    <p>Set Auction ID's and timers here.</p>
                 
                   <div class="row">
-                    <form class="col s12">
+                    <form class="auctionData col s12">
                     <div class="row">
                         <div class="input-field col s6">
-                        <input placeholder="Auction Identifier" id="auction_id" type="text" class="validate">
-                        <label for="auction_id">Auction Identifier</label>
+                        <input placeholder="Auction Identifier" id="auctionId" name="auctionId" type="text" class="validate">
+                        <label for="auctionId">Auction Identifier</label>
                         </div>
                         <div class="input-field col s6">
-                        <input id="charity_name" type="text" class="validate">
+                        <input type="text" id="charityName" name="charityName" class="validate">
                         <label for="charity_name">Charity Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                        <input value="Date of Auction start" id="auction_start_date" type="text" class="datepicker">
-                        <label for="date_auction_start">Date/Time of Auction Start</label>
+                        <input type="text" value="Date of Auction start" id="dateAuctionStart" name="dateAuctionStart" class="datepicker">
+                        <label for="dateAuctionStart">Date/Time of Auction Start</label>
                         </div>
                         <div class="input-field col s6">
-                        <input placeholder="Start Time" id="Time of Auction start" type="auction_start_time" type="text" class="timepicker">
-                        <label for="time_auction_start"></label>
+                        <input type="text" placeholder="Start Time" id="timeAuctionStart" name="timeAuctionStart" class="timepicker">
+                        <label for="timeAuctionStart"></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                        <input value="Date of Auction stop" id="auction_stop_date" type="text" class="datepicker">
-                        <label for="date_auction_stop">Date/Time of Auction Stop</label>
+                        <input type="text" value="Date of Auction stop" id="dateAuctionStop"name="dateAuctionStop" class="datepicker">
+                        <label for="dateAuctionStop">Date/Time of Auction Stop</label>
                         </div>
                         <div class="input-field col s6">
                         <label for="time_auction_stop"></label>
-                        <input placeholder="Stop Time" id="Time of Auction stop" type="auction_stop_time" type="text" class="timepicker">
+                        <input type="text" placeholder="Stop Time" id="timeAuctionStop" name="timeAuctionStop" class="timepicker">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
                         Auction Total Time: 
                         <div class="input-field inline">
-                            <input placeholder="Auction Time" id="auction_total_time" type="" class="validate">
-                            {{!-- <label for="auction_total_time">Auction Time</label> --}}
-                            {{!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> --}}
+                            <p placeholder="Auction Time" id="auction_total_time">Expired</p>
                         </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default teal darken-4 hoverable" id="updateAuctionButton">Submit Auction Info</button> 
+                    <button type="submit" class="btn btn-default teal darken-4 hoverable" id="auctionBtn" value="Create Auction">Submit Auction Info</button> 
                     </form>
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" src="/js/auctionData.js"></script>
                 <!-- list students by school -->
         <div id="allStudents" class="tabcontent">
             <div class="hero-image">
@@ -417,7 +418,6 @@
     }
 </style>
 
-
 <script>
     //profile card
     function openPage(pageName, elmnt, color) {
@@ -445,9 +445,74 @@
     document.getElementById("defaultOpen").click();
 
     $(document).ready(function () {
+        $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoClose: true,
+                showClearBtn: true,
+            });
+        $('.timepicker').timepicker({
+            twelveHour: false,
+            showClearBtn: true,
+        });
+        // Calculate the total time for an auction based on start and end date/time inputs
+        $("#dateAuctionStart, #timeAuctionStart, #dateAuctionStop, #timeAuctionStop").on("change", function() {
+                // Get the input values
+                const dateAuctionStart = $("#dateAuctionStart").val();
+                const timeAuctionStart = $("#timeAuctionStart").val();
+                const dateAuctionStop = $("#dateAuctionStop").val();
+                const timeAuctionStop = $("#timeAuctionStop").val();
+
+                console.log("Date Auction Start:", dateAuctionStart);
+                console.log("Time Auction Start:", timeAuctionStart);
+                console.log("Date Auction Stop:", dateAuctionStop);
+                console.log("Time Auction Stop:", timeAuctionStop);
+
+                const startDate = dateAuctionStart + "T" + timeAuctionStart;
+                const endDate = dateAuctionStop + "T" + timeAuctionStop;
+                
+                console.log("Parsed Start Date:", startDate);
+                console.log("Parsed End Date:", endDate);
+                dtStartDate = new Date(startDate);
+                console.log("Start Date in dt:", dtStartDate);
+                dtEndDate = new Date(endDate);
+                console.log("End Date in dt:", dtEndDate);
+                msStartDate = dtStartDate.getTime()
+                msEndDate = dtEndDate.getTime()
+                console.log("Start Date in ms:", msStartDate);
+                console.log("End Date in ms:", msEndDate);
+
+                // Ensure all inputs are filled
+                if (!dateAuctionStart || !timeAuctionStart || !dateAuctionStop || !timeAuctionStop) {
+                    $("#auction_total_time").text("Please fill in all date and time fields.");
+                    return;
+                }
+
+                // Validate parsed dates
+                if (isNaN(dtStartDate.getTime()) || isNaN(dtEndDate.getTime())) {
+                    $("#auction_total_time").text("Invalid date/time input.");
+                    return;
+                }
+
+                // Calculate the total time in milliseconds
+                const totalTimeMs = dtEndDate - dtStartDate;
+
+                // Prevent negative time calculations
+                if (totalTimeMs < 0) {
+                    $("#auction_total_time").text("End time must be after start time.");
+                    return;
+                }
+
+                // Convert the total time to days, hours, minutes, and seconds
+                const days = Math.floor(totalTimeMs / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(totalTimeMs / (1000 * 60 * 60));
+                const minutes = Math.floor((totalTimeMs % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((totalTimeMs % (1000 * 60)) / 1000);
+
+                // Display the result
+                $("#auction_total_time").text(`${days} days, ${hours} hours, and ${minutes} minutes`);
+            });
+
         $('.sidenav').sidenav();
-        $('.datepicker').datepicker();
-        $('.timepicker').timepicker();
         M.updateTextFields();
     });
 </script>

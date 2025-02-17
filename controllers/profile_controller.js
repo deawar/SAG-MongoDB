@@ -1,11 +1,9 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
 import express from 'express';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import os from 'os';
+import Auction from '../models/auction.js';
 import User from '../models/user.js';
 import db from '../models/index.js';
 import passportConfig from '../config/passport.js';
@@ -87,7 +85,7 @@ router.delete('/user/:account_id/:email', (req, res) => {
 
     const filter = { _id: req.params.account_id, email: req.params.email };
 
-    User.findOneAndDelete(filter, function (err, delDoc) {
+    User.findOneAndDelete(filter, (err, delDoc) => {
       if (err) {
         console.log(err);
         res.status(404);
@@ -124,7 +122,7 @@ router.put('/user/:account_id', async (req, res) => {
     };
     const filter = { _id: req.params.account_id };
     const opts = { new: true };
-    await User.findOneAndUpdate(filter, { $set: req.body }, opts, function (err, dbuser) {
+    await User.findOneAndUpdate(filter, { $set: req.body }, opts, (err, dbuser) => {
       if (err) {
         console.log(err);
         res.status(404);
@@ -144,9 +142,7 @@ router.put('/user/:account_id', async (req, res) => {
 
 // PROFILE SEARCH BY ADMIN
 function sendSearch(req, res, foundDoc) {
-  router.get('/searchuser/:result', function (req, res) {
-    return res.render('partials/manageUser', foundDoc);
-  });
+  router.get('/searchuser/:result', (req, res) => res.render('partials/manageUser', foundDoc));
 }
 
 router.get('/searchuser/:email', async (req, res) => {
@@ -154,7 +150,7 @@ router.get('/searchuser/:email', async (req, res) => {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;
     const school = findSchoolName(req);
-    await User.findOne({ email: searchEmail, school }, function (err, doc) {
+    await User.findOne({ email: searchEmail, school }, (err, doc) => {
       if (!doc) {
         console.log('In Error branch - err: ', err);
         res.status(404);
@@ -195,7 +191,7 @@ router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
     console.log('profile_controller req.params: ', req.params);
     const query = { school: targetschool };
     console.log('query string: ', query);
-    await User.find(query, function (err, doc) {
+    await User.find(query, (err, doc) => {
       if (!doc) {
         console.log('In Error branch - err: ', err);
         res.status(404);

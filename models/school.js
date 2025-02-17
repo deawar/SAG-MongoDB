@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable func-names */
-/* Requiring bcryptjs for password hashing */
 import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 import uniqueValidator from 'mongoose-unique-validator';

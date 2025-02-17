@@ -1,5 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
 import express from 'express';
 import passport from 'passport';
 import School from '../models/school.js';
