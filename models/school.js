@@ -59,9 +59,8 @@ const schoolSchema = new Schema({
 const School = mongoose.model('School', schoolSchema);
 const schoolname = new School({ type: 'schoolname' });
 
-// export function findSchoolName(SchoolName, callback) {
-//   const query = { SchoolName };
-//   School.find(query, callback);
-// };
+// Export the School model
+schoolSchema.plugin(passportLocalMongoose);
+schoolSchema.plugin(uniqueValidator);
 
 export default School;

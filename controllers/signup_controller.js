@@ -452,7 +452,7 @@ body {font-family: 'Muli', sans-serif;}
     "name": "Approve Expense",
     "handler": {
       "@type": "HttpActionHandler",
-      "url": "https://silentauctiongallery.herokuapp.com/verify?id=${secretToken}"
+      "url": "https://silentauctiongallery.herokuapp.com/verify?id=${user.secretToken}"
     }
   },
   "description": "Email Verification for Silent Auction Gallery"
@@ -527,64 +527,14 @@ router.get('/autocomplete', (req, res, next) => {
 });
 
 // Email verification
-// let mailOptions;
+let mailOptions;
 let link;
-// let secretToken;
+//let secretToken;
+
 // user.value.secretToken = secretToken;
 // user.value.active = false; // Flag account as inactive until verified
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-
-// router.post('/send', async (req, res) => {
-//   console.log('Line 84 in signup_controller Email Verification Send route', req.session.passport.user);
-//   if (!req.isAuthenticated()) {
-//     return res.redirect('/login');
-//   }
-//   try {
-//     const user = {
-//       userInfo: req.user,
-//       id: req.session.passport.user,
-//       school: req.user.school,
-//       secretToken: req.user.secretToken,
-//       isloggedin: req.isAuthenticated(),
-//     };
-//     console.log('Line 98 User.Info:', user.userInfo);
-//     console.log('Line 99 os.hostname(): ', os.hostname());
-//     res.send(user.secretToken);
-//     secretToken = user.secretToken;
-//     const { school } = user;
-
-//     // Construct verification link
-//     const hostname = os.hostname();
-//     const link = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
-//       ? `http://${hostname}:${process.env.PORT}/verify?id=${user.secretToken}`
-//       : `https://silentauctiongallery.herokuapp.com/verify?id=${user.secretToken}`;
-//     // if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
-//     //   link = `http://${hostname}:${PORT}/verify?id=${secretToken}`;
-//     // } else {
-//     //   // eslint-disable-next-line prefer-template
-//     //   link = 'https://silentauctiongallery.herokuapp/com/verify?id=' + secretToken;
-//     //   // link = `http://${req.get(host)}/verify?id=${rand}`;
-//     // }
-//     console.log('Verify Return Link: ', link);
-//     // Configure email options
-//     const mailOptions = {
-//       from: '"Silent Auction Gallery" <silentauctiongallery@gmail.com>',
-//       to: req.body.to,
-//       subject:
-//             'Silent Auction Gallery is asking you to confirm your Email account',
-//       // eslint-disable-next-line prefer-template
-//     };
-//     console.log('Sent by:', process.env.GMAIL_USERNAME);
-//     console.log('Line 413 signup_controller.js: ', mailOptions);
-
-//     await smtpTransport.sendMail(mailOptions);
-//     console.log('Email sent successfully');
-//   } catch (error) {
-//     console.error('Error in send route:', error);
-//     res.status(500).json({ message: 'Error sending verification email' });
-//   }
-// });
 
 // Find secretToken to compare from DB
 async function findOnebySecretToken(req, res, secretTokenPasted, done) {
@@ -660,44 +610,9 @@ router
     console.log('<----------------------------------Res.body: ', res.url);
     res.render('verifytoken', { title: 'Verify Email Page' });
   })
-  .post('/verify', async (req, res, next) => {
-  //   try {
-  //     secretToken = req.body.secretToken;
-
-    //     console.log('Line 515 ----->secretToken:', secretToken);
-    //     // Find account with matching secret Token
-    //     console.log('signup_controller Line 517 prior to findOnebySecretToken fx', secretToken);
-    //     const filter = { secretToken };
-    //     console.log('line 520 secretToken null ck: ', secretToken);
-    //     console.log('line 521 filter null ck: ', filter);
-    //     const update = { secretToken: '', active: true };
-    //     console.log('line 523 update null ck: ', update);
-    //     User.findOne(filter, (err, user) => {
-    //       console.log('line 525 user null ck: ', user.secretToken);
-    //       console.log('line 526 req.body: ', req.body.secretToken);
-    //       if (user.secretToken === secretToken) {
-    //         console.log('Tokens match- Verify this user.');
-    //         User.findOneAndUpdate(filter, update, { new: true }, (err, resp) => {
-    //           if (err) {
-    //             throw err;
-    //           } else {
-    //             console.log('User has been verified in DB!', resp);
-    //             // res.redirect('/login');
-    //           }
-    //         });
-    //         res.redirect('/login');
-    //       } else {
-    //         console.log('secretToken did not match. Suer is rejected. Token should be: ', user.local.secretToken);
-    //       }
-    //     });
-    //   } catch (error) {
-    //     throw new Error('BROKEN-DID NOT CATCH THE NULL VALUE', error);
-    //     // eslint-disable-next-line no-unreachable
-    //     next(error);
-    //   }
-    // });
+  .post('/api/verify-token', async (req, res) => {
     try {
-      const { secretToken } = req.body;
+      const { } = req.body;
 
       if (!secretToken) {
         return res.status(400).json({ success: false, message: 'Secret token is required' });

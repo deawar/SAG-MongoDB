@@ -19,7 +19,7 @@ const validatePhone = function (phone) {
   return re.test(phone);
 };
 
-// New token generation function to replace secretTokenGen
+// Token generation using Promise
 const generateSecureToken = () => new Promise((resolve, reject) => {
   crypto.randomBytes(64, (err, buffer) => {
     if (err) {
@@ -123,77 +123,73 @@ const userSchema = new Schema({
 userSchema.pre('save', async function (next) {
   const user = this;
 
-  // Generate token for new users or when token is modified
-  if (user.isNew || user.isModified('secretToken')) {
-    try {
+  try {
+    // Generate token for new users or when token is modified
+    if (user.isNew || user.isModified('secretToken')) {
       user.secretToken = await generateSecureToken();
-    } catch (error) {
-      return next(error);
     }
-  }
 
-  // Handle password hashing
-  if (user.isModified('password')) {
-    try {
+    // Handle password hashing
+    if (user.isModified('password')) {
       const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
       user.password = await bcrypt.hash(user.password, salt);
-    } catch (error) {
-      return next(error);
     }
-  }
 
-  next();
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
-// Password comparison method remains unchanged
-userSchema.methods.comparePassword = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
+// Password comparison
+userSchema.methods = {
+  // Compare password using Promise
+  async comparePassword(candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+  },
+
+  // Validate password using async/await
+  async validPassword(password) {
+    return bcrypt.compare(password, this.password);
+  },
 };
 
 // User model static methods remain unchanged
-export const getUserById = function (id, callback) {
-  User.findById(id, callback);
+userSchema.statics = {
+  // Get user by ID
+  async getUserById(id) {
+    return this.findById(id);
+  },
+
+  // Get user by email
+  async getUserByEmail(email) {
+    return this.findOne({ email });
+  },
+
+  // Get user by secret token
+  async getUserBySecretToken(secretToken) {
+    return this.findOne({ secretToken });
+  },
+
+  // Authenticate user
+  async authenticate(email, password) {
+    const user = await this.findOne({ email });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      throw new Error('Invalid password');
+    }
+
+    return user;
+  },
 };
 
-export const getUserByEmail = function (email, callback) {
-  const query = { email };
-  User.findOne(query, callback);
-};
-
-export const getUserBysecretToken = function (secretToken, callback) {
-  const query = { secretToken };
-  User.findOne(query, callback);
-};
-
-// Password validation method remains unchanged
-userSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-};
-
-// Authentication method remains unchanged
-userSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email })
-    .exec((err, user) => {
-      if (err) {
-        return callback(err);
-      } if (!user) {
-        const err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, user.password, (err, result) => {
-        if (result === true) {
-          return callback(null, user);
-        }
-        return callback();
-      });
-    });
-};
-
-// Unique validator plugin remains unchanged
+// Unique validator plugin
 userSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique',
 });

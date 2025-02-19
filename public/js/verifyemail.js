@@ -1,83 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const resendButton = document.getElementById('resendEmail');
-  const verifyButton = document.getElementById('verifyTokenBtn');
-  const tokenInput = document.getElementById('verificationToken');
-  const secretToken = document.getElementById('secretToken');
-  const verifyForm = document.getElementById('verify-form');
-
   // Initialize Materialize components
-  $('.modal').modal();
+  M.AutoInit();
 
-  if (resendButton) {
-    resendButton.addEventListener('click', async () => {
-      try {
-        resendButton.disabled = true;
-        resendButton.textContent = 'Sending...';
+  const verifyForm = document.getElementById('verify-form');
+  const tokenInput = document.getElementById('secretToken');
+  const verifyButton = document.getElementById('verifyTokenBtn');
+  const inputDisplay = document.getElementById('inputValue');
 
-        const response = await fetch('/api/resend-verification', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to resend verification email');
-        }
-
-        M.toast({ html: 'Verification email resent! Please check your inbox.', classes: 'green' });
-      } catch (error) {
-        console.error('Error resending email:', error);
-        M.toast({ html: 'Error resending email. Please try again.', classes: 'red' });
-      } finally {
-        resendButton.disabled = false;
-        resendButton.textContent = 'Resend Email';
-      }
-    });
+  // Function to update the display of entered token
+  function displayInputValue() {
+    const inputValue = tokenInput.value.trim();
+    inputDisplay.textContent = inputValue;
+    // Enable/disable verify button based on input
+    verifyButton.disabled = !inputValue;
+    return inputValue;
   }
 
-  if (verifyButton && tokenInput) {
-    verifyButton.addEventListener('click', async () => {
-      try {
-        const token = tokenInput.value.trim();
-        if (!token) {
-          M.toast({ html: 'Please enter your verification token', classes: 'red' });
-          return;
-        }
+  // Function to check if input is filled
+  function isInputFilled() {
+    return tokenInput.value.trim().length > 0;
+  }
 
-        verifyButton.disabled = true;
-        verifyButton.textContent = 'Verifying...';
+  // Add input event listener to token input
+  tokenInput.addEventListener('input', displayInputValue);
 
-        const response = await fetch('/verify', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ secretToken: token }),
-        });
+  // Handle form submission
+  verifyForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        const data = await response.json();
+    const token = tokenInput.value.trim();
 
-        if (response.ok) {
-          M.toast({ html: 'Email verified successfully!', classes: 'green' });
-          setTimeout(() => {
-            window.location.href = '/dashboard';
-          }, 2000);
-        } else {
-          throw new Error(data.message || 'Invalid verification token');
-        }
+    if (!token) {
+      M.toast({ html: 'Please enter your verification token', classes: 'red' });
+      return;
+    }
 
+    try {
+      verifyButton.disabled = true;
+      const loadingToast = M.toast({ html: 'Verifying token...', classes: 'blue' });
+
+      const response = await fetch('/api/verify-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ secretToken: token }),
+      });
+
+      const data = await response.json();
+      loadingToast.dismiss();
+
+      if (data.success) {
         M.toast({ html: 'Email verified successfully!', classes: 'green' });
-        setTimeout(() => {
-          window.location.href = '/dashboard';
-        }, 2000);
-      } catch (error) {
-        console.error('Error verifying token:', error);
-        M.toast({ html: error.message || 'Error verifying token', classes: 'red' });
-      } finally {
+        // Open success modal
+        const modal = document.getElementById('verified-token-modal');
+        const instance = M.Modal.getInstance(modal);
+        instance.open();
+
+        // Store verification status
+        localStorage.setItem('verified', 'true');
+
+        // Redirect after modal close or button click
+        document.getElementById('confirm-token').addEventListener('click', () => {
+          window.location.href = '/login';
+        });
+      } else {
+        M.toast({ html: data.message || 'Verification failed. Please try again.', classes: 'red' });
         verifyButton.disabled = false;
-        verifyButton.textContent = 'Verify Token';
       }
-    });
-  }
+    } catch (error) {
+      console.error('Verification error:', error);
+      M.toast({ html: 'An error occurred. Please try again.', classes: 'red' });
+      verifyButton.disabled = false;
+    }
+  });
+
+  // Function to close modal
+  window.closeModal = function () {
+    const modal = document.getElementById('verified-token-modal');
+    const instance = M.Modal.getInstance(modal);
+    instance.close();
+  };
 });
