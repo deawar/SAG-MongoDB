@@ -550,11 +550,14 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
     },
   );
   if (!user.secretToken || user.active === true || user.secretToken === ' ') {
-    req.flash('success', 'You have either already confirmed your account OR you may need to register');
+    req.flash(
+      'success',
+      'You have either already confirmed your account OR you may need to register',
+    );
     return res.status(404).redirect('/signup', { title: 'Register Page' });
   }
-  console.log('Line 542------->User db output user.dataValues.secretToken:', user.dataValues.secretToken);
-  console.log('line 543 ------>User db active output user.dataValues.active:', user.dataValues.active);
+  console.log('->User db output user.dataValues.secretToken:', user.dataValues.secretToken);
+  console.log('->User db active output user.dataValues.active:', user.dataValues.active);
 
   if (user.secretToken === secretTokenPasted) {
     console.log(
@@ -588,7 +591,10 @@ async function findOnebySecretToken(req, res, secretTokenPasted, done) {
           return done(err);
         }
         if (removed.active === true) {
-          req.flash('You have either already confirmed your account OR you may need to register', 'I did NOT find you in our database.');
+          req.flash(
+            'You have either already confirmed your account OR you may need to register',
+            'I did NOT find you in our database.',
+          );
           return res.status(404).end();
         }
         req.flash('Success', 'Thank you! Now you can Login.');
