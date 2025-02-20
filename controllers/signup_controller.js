@@ -468,7 +468,7 @@ body {font-family: 'Muli', sans-serif;}
     console.log('Verification email sent successfully');
 
     // Render verification page
-    res.render('verify', {
+    res.render('verifytoken', {
       title: 'Verify Email',
       email: req.user.email,
       secretToken: user.secretToken,
@@ -529,7 +529,7 @@ router.get('/autocomplete', (req, res, next) => {
 // Email verification
 let mailOptions;
 let link;
-//let secretToken;
+// let secretToken;
 
 // user.value.secretToken = secretToken;
 // user.value.active = false; // Flag account as inactive until verified
@@ -612,25 +612,58 @@ router
   })
   .post('/api/verify-token', async (req, res) => {
     try {
-      const { } = req.body;
-
-      if (!secretToken) {
-        return res.status(400).json({ success: false, message: 'Secret token is required' });
-      }
+      const { secretToken } = req.body;
+      console.log('Looking for user with token:', secretToken);
 
       // Find user by secretToken
       const user = await User.findOne({ secretToken });
 
       if (!user) {
-        return res.status(404).json({ success: false, message: 'Invalid or expired token' });
+        return res.status(404).json({
+          success: false,
+          message: 'Invalid or expired token',
+        });
+      }
+
+      if (user.active) {
+        return res.status(400).json({
+          success: false,
+          message: 'This email has already been verified',
+        });
+      }
+
+      // Update the user: set active to true and remove the secretToken
+
+      if (!secretToken) {
+        console.log('Secret Token is required');
+        return res.status(400).json({ success: false, message: 'Secret token is required' });
+      }
+
+      console.log('Found User: ', user);
+      if (!user) {
+        console.log('No user found with token:', secretToken);
+        return res.status(404).json({
+          success: false,
+          message: 'Invalid or expired token',
+        });
       }
 
       // Update the user: set active to true and remove the secretToken
       user.active = true;
-      user.secretToken = null;
-      await user.save();
+      user.secretToken = '';
+      // Disable version key increment to prevent unnecessary updates
+      const savedUser = await user.save({ validateBeforeSave: false });
 
-      return res.status(200).json({ success: true, message: 'Email verified successfully' });
+      console.log('User verified:', {
+        email: savedUser.email,
+        active: savedUser.active,
+        secretToken: savedUser.secretToken,
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: 'Email verified successfully',
+      });
     } catch (error) {
       console.error('Verification error:', error);
       return res.status(500).json({

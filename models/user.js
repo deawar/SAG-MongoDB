@@ -124,9 +124,13 @@ userSchema.pre('save', async function (next) {
   const user = this;
 
   try {
-    // Generate token for new users or when token is modified
-    if (user.isNew || user.isModified('secretToken')) {
+    // Only generate token for new users
+    if (user.isNew) {
       user.secretToken = await generateSecureToken();
+      console.log('Generated new token for new user:', {
+        email: user.email,
+        token: user.secretToken,
+      });
     }
 
     // Handle password hashing
