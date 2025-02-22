@@ -194,26 +194,28 @@ router.post('/upload', checkAuthenticated, upload, async (req, res) => {
   }
 });
 
-router.get('/get-imgs', checkAuthenticated, (req, res) => {
-  const role = findRole(req);
-  let artInfo = {};
-  const query = setQuery(req);
-  console.log('Email: ', query);
-  Artwork.find(query, (err, items) => {
-    if (err) {
-      console.log(err);
+router.get('/get-imgs', checkAuthenticated, async (req, res) => {
+  try {
+    const role = findRole(req);
+    const query = setQuery(req);
+    console.log('Email: ', query);
+
+    const items = await Artwork.find(query);
+
+    if (!items || items.length === 0) {
       return res.status(404).json({
         err: 'No files exist',
       });
     }
+
     const pics = [];
     for (let i = 0; i < items.length; ++i) {
       console.log('get/imgs===============> items[i]._id: ', items[i]._id);
       let base = Buffer.from(items[i].img.data);
       let conversion = base.toString('base64');
       let images = `data:${items[i].img.contentType};base64, ${conversion}`;
-      console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
-      artInfo = {
+
+      let artInfo = {
         artId: items[i]._id,
         artistFirstName: items[i].artist_firstname_input,
         artistLastName: items[i].artist_lastname_input,
@@ -228,6 +230,8 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
         artReviewer: role,
       };
       pics.push(artInfo);
+
+      // Second push with full info
       base = Buffer.from(items[i].img.data);
       conversion = base.toString('base64');
       images = `data:${items[i].img.contentType};base64, ${conversion}`;
@@ -250,90 +254,122 @@ router.get('/get-imgs', checkAuthenticated, (req, res) => {
       pics.push(artInfo);
       pics.push(images);
     }
+
     console.log('Line 255 file_upload_controller *********> # of images: ', items.length);
     return res.status(200).send(pics);
-  });
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    return res.status(500).json({
+      err: 'Error fetching images',
+    });
+  }
 });
 
 // Approval button by _id
-router.post('/approve', checkAuthenticated, (req, res) => {
-  console.log('req.body: ', req.body._id);
-  const query = `${req.body._id}`;
-  const options = { new: true };
-  console.log('query: ', query);
-  Artwork.findByIdAndUpdate(query, { $set: { approved: true } }, options, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(400).send('Bad Request');
-    } else {
-      console.log('Artwork approved!', data);
-      res.status(200).send(data);
+router.post('/approve', checkAuthenticated, async (req, res) => {
+  try {
+    console.log('req.body: ', req.body._id);
+    const query = `${req.body._id}`;
+    const options = { new: true };
+    console.log('query: ', query);
+
+    const updatedArtwork = await Artwork.findByIdAndUpdate(
+      query,
+      { $set: { approved: true } },
+      options,
+    );
+
+    if (!updatedArtwork) {
+      return res.status(404).send('Artwork not found');
     }
-  });
+
+    console.log('Artwork approved!', updatedArtwork);
+    res.status(200).send(updatedArtwork);
+  } catch (error) {
+    console.error('Error approving artwork:', error);
+    res.status(400).send('Bad Request');
+  }
 });
 
 // Delete artwork by _id
-router.post('/delete/', checkAuthenticated, (req, res) => {
-  Artwork.findByIdAndDelete(req.params.id, req.body, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(400).send('Bad Request');
-    } else {
-      console.log('Data Deleted!');
-      res.send(data);
+router.post('/delete/', checkAuthenticated, async (req, res) => {
+  try {
+    const deletedArtwork = await Artwork.findByIdAndDelete(req.params.id);
+
+    if (!deletedArtwork) {
+      return res.status(404).send('Artwork not found');
     }
-  });
-  const query = `${req.body._id}`;
-  const options = { new: true };
-  console.log('Delete Button Pressed: ', req.body);
-  const currentId = req.body.bid;
-  Artwork.findByIdAndUpdate(req.params.id, { currentId }, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(400).send('Bad Request');
-    } else {
-      res.status(200).send(data);
+
+    console.log('Data Deleted!');
+
+    // Update related bid if exists
+    const currentId = req.body.bid;
+    if (currentId) {
+      const updatedArtwork = await Artwork.findByIdAndUpdate(
+        req.params.id,
+        { currentId },
+        { new: true },
+      );
+      console.log('Updated bid reference:', updatedArtwork);
     }
-  });
+
+    res.status(200).send(deletedArtwork);
+  } catch (error) {
+    console.error('Error deleting artwork:', error);
+    res.status(400).send('Bad Request');
+  }
 });
 
-router.get('/get-bid-img', checkAuthenticated, (req, res) => {
-  if (req.isAuthenticated()) {
-    const pics = [];
-    let artInfo = {};
+router.get('/get-bid-img', checkAuthenticated, async (req, res) => {
+  try {
+    if (!req.isAuthenticated()) {
+      return res.status(401).send('Not authenticated');
+    }
+
     const query = setQuery(req);
     console.log('Art ID: ', query);
-    Artwork.find(query, (err, items) => {
-      if (!items || items.length === 0) {
-        return res.status(404).json({
-          err: 'No files exist',
-        });
-      }
-      console.log('*********> # of images: ', items.length);
-      for (let i = 0; i < items.length; ++i) {
-        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
-        const base = Buffer.from(items[i].img.data);
-        const conversion = base.toString('base64');
-        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`line 387 get/bid-img-------------> items[${i}].img.data: `, items[i].img.data);
-        artInfo = {
-          artId: items[i]._id,
-          artistFirstName: items[i].artist_firstname_input,
-          artistLastName: items[i].artist_lastname_input,
-          artistEmail: items[i].artist_email_input,
-          artDesc: items[i].description_input,
-          artMedium: items[i].medium_input,
-          artHeight: items[i].height,
-          artWidth: items[i].width,
-          artDepth: items[i].depth,
-          artPrice: items[i].price,
-          artApproved: items[i].approved,
-        };
-        pics.push(artInfo);
-        pics.push(images);
-        console.log('------------->artInfo after artInfo push: ', artInfo);
-      }
-      return res.status(200).send(pics);
+
+    const items = await Artwork.find(query);
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist',
+      });
+    }
+
+    const pics = [];
+    console.log('*********> # of images: ', items.length);
+
+    for (let i = 0; i < items.length; ++i) {
+      console.log('get/imgs===============> items[i]._id: ', items[i]._id);
+      const base = Buffer.from(items[i].img.data);
+      const conversion = base.toString('base64');
+      const images = `data:${items[i].img.contentType};base64, ${conversion}`;
+
+      const artInfo = {
+        artId: items[i]._id,
+        artistFirstName: items[i].artist_firstname_input,
+        artistLastName: items[i].artist_lastname_input,
+        artistEmail: items[i].artist_email_input,
+        artDesc: items[i].description_input,
+        artMedium: items[i].medium_input,
+        artHeight: items[i].height,
+        artWidth: items[i].width,
+        artDepth: items[i].depth,
+        artPrice: items[i].price,
+        artApproved: items[i].approved,
+      };
+
+      pics.push(artInfo);
+      pics.push(images);
+      console.log('------------->artInfo after artInfo push: ', artInfo);
+    }
+
+    return res.status(200).send(pics);
+  } catch (error) {
+    console.error('Error fetching bid images:', error);
+    return res.status(500).json({
+      err: 'Error fetching images',
     });
   }
 });

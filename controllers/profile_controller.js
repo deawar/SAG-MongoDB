@@ -78,28 +78,23 @@ router.get('/profile', checkAuthenticated, (req, res) => {
 });
 
 // ROUTER TO DELETE ACCOUNT
-router.delete('/user/:account_id/:email', (req, res) => {
+router.delete('/user/:account_id/:email', async (req, res) => {
   try {
     console.log(`_id: ${req.params.account_id}`);
     console.log(`email: ${req.params.email}`);
 
     const filter = { _id: req.params.account_id, email: req.params.email };
+    const deletedUser = await User.findOneAndDelete(filter);
 
-    User.findOneAndDelete(filter, (err, delDoc) => {
-      if (err) {
-        console.log(err);
-        res.status(404);
-        return res.send('No User Deleted.');
-      }
-      console.log('Successfully Deleted: ', delDoc);
-      res.status(200);
-      res.json(delDoc);
-      res.render('adminProfilepage', delDoc);
-    });
+    if (!deletedUser) {
+      return res.status(404).send('No User Deleted.');
+    }
+
+    console.log('Successfully Deleted: ', deletedUser);
+    res.status(200).json(deletedUser);
   } catch (error) {
     console.log('Catch ERROR: ', error);
-    res.status(404);
-    return res.send('No Profiles Deleted');
+    return res.status(404).send('No Profiles Deleted');
   }
 });
 
@@ -122,88 +117,81 @@ router.put('/user/:account_id', async (req, res) => {
     };
     const filter = { _id: req.params.account_id };
     const opts = { new: true };
-    await User.findOneAndUpdate(filter, { $set: req.body }, opts, (err, dbuser) => {
-      if (err) {
-        console.log(err);
-        res.status(404);
-        return res.send('No User found to Update.');
-      }
-      console.log('Profile Updates going in:', updateDoc);
-      res.status(200);
-      res.json(updateDoc);
-      res.render('adminProfilepage', updateDoc);
-    });
+    const updatedUser = await User.findOneAndUpdate(
+      filter,
+      { $set: req.body },
+      opts,
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send('No User found to Update.');
+    }
+
+    console.log('Profile Updates going in:', updateDoc);
+    res.status(200).json(updateDoc);
   } catch (error) {
     console.log('Catch ERROR: ', error);
-    res.status(404);
-    return res.send('No Updates Performed');
+    return res.status(404).send('No Updates Performed');
   }
 });
 
 // PROFILE SEARCH BY ADMIN
-function sendSearch(req, res, foundDoc) {
-  router.get('/searchuser/:result', (req, res) => res.render('partials/manageUser', foundDoc));
-}
-
 router.get('/searchuser/:email', async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;
     const school = findSchoolName(req);
-    await User.findOne({ email: searchEmail, school }, (err, doc) => {
-      if (!doc) {
-        console.log('In Error branch - err: ', err);
-        res.status(404);
-        return res.send(`No User associated with ${searchEmail}!`);
-      }
-      console.log('---> doc: ', doc);
-      const returnDoc = {
-        searchedId: doc.id,
-        searchedEmail: doc.email,
-        searchedFirst_name: doc.first_name,
-        searchedLast_name: doc.last_name,
-        searchedAddress1: doc.address1,
-        searchedAddress2: doc.address2,
-        searchedCity: doc.city,
-        searchedState: doc.state,
-        searchedZip: doc.zip,
-        searchedSchool: doc.school,
-        searchedPhone: doc.phone,
-        searchedRole: doc.role,
-        searchedIsloggedin: req.isAuthenticated(),
-      };
-      console.log('2nd ---> returnDoc: ', returnDoc);
-      res.status(200);
-      res.json(returnDoc);
-      sendSearch(req, res, returnDoc);
-    });
+
+    const doc = await User.findOne({ email: searchEmail, school });
+
+    if (!doc) {
+      return res.status(404).send(`No User associated with ${searchEmail}!`);
+    }
+
+    console.log('---> doc: ', doc);
+    const returnDoc = {
+      searchedId: doc.id,
+      searchedEmail: doc.email,
+      searchedFirst_name: doc.first_name,
+      searchedLast_name: doc.last_name,
+      searchedAddress1: doc.address1,
+      searchedAddress2: doc.address2,
+      searchedCity: doc.city,
+      searchedState: doc.state,
+      searchedZip: doc.zip,
+      searchedSchool: doc.school,
+      searchedPhone: doc.phone,
+      searchedRole: doc.role,
+      searchedIsloggedin: req.isAuthenticated(),
+    };
+
+    console.log('2nd ---> returnDoc: ', returnDoc);
+    res.status(200).json(returnDoc);
   } catch (error) {
-    res.status(404);
-    return res.send('No User Found');
+    console.log('Search error:', error);
+    return res.status(404).send('No User Found');
   }
 });
 
 // All Students Search
 router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
   try {
-    let students = [];
     const targetschool = req.params.school;
     console.log('profile_controller req.params: ', req.params);
     const query = { school: targetschool };
     console.log('query string: ', query);
-    await User.find(query, (err, doc) => {
-      if (!doc) {
-        console.log('In Error branch - err: ', err);
-        res.status(404);
-        return res.send(`No User associated with ${targetschool}!`);
-      }
-      students = doc;
-      console.log('Line 234 ---> Students: ', students);
-      return res.status(200).send(students);
-    });
+
+    const students = await User.find(query);
+
+    if (!students || students.length === 0) {
+      return res.status(404).send(`No Users associated with ${targetschool}!`);
+    }
+
+    console.log('Line 234 ---> Students: ', students);
+    return res.status(200).json(students);
   } catch (error) {
-    res.status(404);
-    return res.send('No User Found');
+    console.log('List users error:', error);
+    return res.status(404).send('No Users Found');
   }
 });
 
