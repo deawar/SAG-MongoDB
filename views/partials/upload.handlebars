@@ -27,8 +27,7 @@
                                 <h3 class="card-title" style="text-align: center;">Artist Upload Form</h3>
                                 <span id="art-upload"></span>
                                 <div class="container" id="imgUploadContainer">
-                                    <form id="form">
-                                    {{!-- <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'> --}}
+                                    <form id="uploadForm" method="post" action="/upload" encType="multipart/form-data">
                                         <div class="row">
                                             <div class="input-field col s6">
                                                 <input id="artist_firstname_input" name="artist_firstname_input" value="{{first_name}}" type="text" class="validate hoverable" required=""
@@ -169,19 +168,6 @@
                                                     aria-required="true">
                                                 <label class="active" for="size">Size: Depth in inches</label>
                                             </div>
-
-                                            {{!-- <div class="input-field col s3">
-                                                <label>
-                                                <input name="group1" type="radio" checked />
-                                                <span>Approved</span>
-                                                </label>
-                                            </div>
-                                            <div class="input-field col s3">
-                                                <label>
-                                                <input name="group1" type="radio" />
-                                                <span>Rejected</span>
-                                                </label>    
-                                            </div> --}}
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
@@ -190,13 +176,34 @@
                                                     aria-required="true">
                                                 <label class="active" for="size">Starting Price: </label>
                                             </div>
-                                        <form method="post" id='uploadForm' action='/upload' encType="multipart/form-data" ref='uploadForm'>
-                                            <input class="btn-small teal darken-3 waves-effect waves-light hoverable" type="file" name="sampleFile" id="sampleFile" />
-                                            {{!-- <input type='submit' value='Upload!' id="fileUpload"/> --}}
-                                            <button class="upload-btn teal darken-3 waves-effect waves-light btn-small hoverable" type='submit' value='Upload!' id="fileUpload">Upload File</button></br>
-                                            {{!-- <input id="fileUpload" type="file" name="sampleFiles" multiple="multiple"></form></br> --}}
-                                        <hr>
+                                            <div class="col s12">
+                                                <input class="btn-small teal darken-3 waves-effect waves-light hoverable" 
+                                                    type="file" 
+                                                    name="sampleFile" 
+                                                    id="sampleFile" />
+                                                <button class="upload-btn teal darken-3 waves-effect waves-light btn-small hoverable" 
+                                                    type='submit' 
+                                                    value='Upload!' 
+                                                    id="fileUpload">Upload File</button>
+                                            </div>
                                         </div>
+                                        <div id="upload-progress-container" class="container" style="display: none;">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <div class="progress">
+                                                    <div class="determinate" 
+                                                        id="upload-progress-bar" 
+                                                        style="width: 0%" 
+                                                        role="progressbar" 
+                                                        aria-valuenow="0" 
+                                                        aria-valuemin="0" 
+                                                        aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                                <div class="center-align" id="upload-progress-text">0%</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                         <div class="row">
                                           <h3 style="font-size: 1.7vw;">School Affiliation</h3>
                                             <div class="input-field col s12">
@@ -204,30 +211,27 @@
                                                 <label for="school">School</label>
                                             </div>
                                         </div>
-                                        </form>
-                                    </form>    
-                                    
-<div id="upload-progress-container" class="container" style="display: none;">
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <div class="progress">
-                                                        <div class="determinate" id="upload-progress-bar" style="width: 0%"></div>
-                                                    </div>
-                                                    <div class="center-align" id="upload-progress-text">0%</div>
-                                                </div>
+                                        <div class="row">
+                                          <h3 style="font-size: 1.7vw;">Auctions List</h3>
+                                            <div class="input-field col s12">
+                                                <input disabled id="auctionId" type="text" value="{{auctionId}}">
+                                                <label for="auctionId">Auction ID</label>
                                             </div>
                                         </div>
-                                        <div>
-                                            <h3 id="art-upload"></h3>
-                                            <h3 id="upload-err-msg"></h3>
-                                            {{#if success}}
-                                                <p><strong>FLASH!</strong> {{ success }}</p>
-                                            {{/if}}
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <h3 id="art-upload"></h3>
+                                                <h3 id="upload-err-msg"></h3>
+                                                {{#if success}}
+                                                    <p><strong>FLASH!</strong> {{ success }}</p>
+                                                {{/if}}
+                                            </div>
                                         </div>
-                                </div>
-                            </div> 
+                                 </form>
+                            </div>
                         </div>
                     </div>
+                </div>
 
 <script type="text/javascript" src="./js/materialize.js"></script>
 <script type="text/javascript" src="./js/upload.js"></script>

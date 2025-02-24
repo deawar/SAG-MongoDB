@@ -43,6 +43,7 @@ const auctionSchema = new Schema({
   },
   location: { // Location like the Address of the auction
     type: String,
+    default: 'any',
   },
   organizer: { // ID of the user who created the auction
     type: String,

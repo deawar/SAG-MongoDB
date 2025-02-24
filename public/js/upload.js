@@ -1,46 +1,131 @@
+let ajaxLoading = false;
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Materialize components
+  const sidenavElems = document.querySelectorAll('.sidenav');
+  sidenavElems.forEach((elem) => M.Sidenav.init(elem));
+
+  const modalElems = document.querySelectorAll('.modal');
+  modalElems.forEach((elem) => M.Modal.init(elem));
+
+  const materialboxElems = document.querySelectorAll('.materialboxed');
+  materialboxElems.forEach((elem) => M.Materialbox.init(elem));
+
+  const textareaElems = document.querySelectorAll('textarea#description_input');
+  textareaElems.forEach((elem) => M.CharacterCounter.init(elem));
+
+  // Main form submission handling
+  const uploadForm = document.getElementById('uploadForm');
+  if (uploadForm) {
+    uploadForm.addEventListener('submit', handleFormSubmit);
+  }
+
+  // Gallery event listeners
+  const startGal = document.getElementById('startGal');
+  if (startGal) {
+    startGal.addEventListener('click', handleGalleryEvents);
+  }
+
+  // Display user art initialization
+  const displayArtBtn = document.querySelector('.displayUserArt');
+  if (displayArtBtn) {
+    displayArtBtn.addEventListener('click', handleDisplayArt, { once: true });
+  }
+});
+
+// Form data collection
+function collectFormData() {
+  console.log('Collecting form data...');
+  return {
+    artist_firstname_input: document.getElementById('artist_firstname_input').value.trim(),
+    artist_lastname_input: document.getElementById('artist_lastname_input').value.trim(),
+    artist_email_input: document.getElementById('artist_email_input').value.trim(),
+    art_name_input: document.getElementById('art_name_input').value.trim(),
+    medium_input: document.getElementById('medium_input').value.trim(),
+    description_input: document.getElementById('description_input').value.trim(),
+    h_size_input: document.getElementById('h_size_input').value.trim(),
+    w_size_input: document.getElementById('w_size_input').value.trim(),
+    d_size_input: document.getElementById('d_size_input').value.trim(),
+    price_input: document.getElementById('price_input').value.trim(),
+    school: document.getElementById('school_input').value.trim(),
+    approved: false, // Initial state is always unapproved
+  };
+}
+
+// Form validation
+function validateForm() {
+  console.log('Starting form validation');
+  const requiredFields = [
+    'artist_firstname_input',
+    'artist_lastname_input',
+    'artist_email_input',
+    'art_name_input',
+    'medium_input',
+    'description_input',
+    'h_size_input',
+    'w_size_input',
+    'price_input',
+    'sampleFile',
+  ];
+
+  const validationResults = requiredFields.map((fieldId) => {
+    const element = document.getElementById(fieldId);
+    const isValid = element && element.value.trim().length > 0;
+    console.log(`Validating ${fieldId}:`, {
+      element: !!element,
+      value: element?.value,
+      isValid,
+    });
+    return isValid;
+  });
+
+  const isValid = validationResults.every((result) => result);
+  console.log('Form validation result:', isValid);
+  return isValid;
+}
+
+// File processing and FormData creation
 function addFile(form, sampleFile, name) {
   try {
+    console.log('Processing file and form data:', {
+      fileName: name,
+      fileType: sampleFile[0]?.type,
+      fileSize: sampleFile[0]?.size,
+    });
+
     const newArtwork = new FormData();
 
     // Handle numeric conversions
     const numericForm = {
-      ...form,
-      price: parseFloat(form.price) || 0,
-      height: parseFloat(form.height) || 0,
-      width: parseFloat(form.width) || 0,
-      depth: form.depth ? parseFloat(form.depth) : null,
+      price: parseFloat(form.price_input) || 0,
+      height: parseFloat(form.h_size_input) || 0,
+      width: parseFloat(form.w_size_input) || 0,
+      depth: form.d_size_input ? parseFloat(form.d_size_input) : null,
     };
 
     // Validate numeric values
     if (numericForm.price <= 0) throw new Error('Price must be greater than 0');
     if (numericForm.height <= 0) throw new Error('Height must be greater than 0');
     if (numericForm.width <= 0) throw new Error('Width must be greater than 0');
-    if (numericForm.depth !== null && numericForm.depth < 0) throw new Error('Depth cannot be negative');
+    if (numericForm.depth !== null && numericForm.depth < 0) {
+      throw new Error('Depth cannot be negative');
+    }
 
-    // Append file
+    // Append file first
     newArtwork.append('sampleFile', sampleFile[0], name);
 
-    // Append form fields with proper numeric values
-    newArtwork.append('artist_firstname_input', form.first_name.trim());
-    newArtwork.append('artist_lastname_input', form.last_name.trim());
-    newArtwork.append('art_name_input', form.artwork_name.trim());
-    newArtwork.append('description_input', form.description.trim());
-    newArtwork.append('artist_email_input', form.email.trim());
-    newArtwork.append('medium_input', form.medium.trim());
-    newArtwork.append('h_size_input', numericForm.height);
-    newArtwork.append('w_size_input', numericForm.width);
-    newArtwork.append('d_size_input', numericForm.depth);
-    newArtwork.append('price_input', numericForm.price);
-    newArtwork.append('school_input', form.school);
-    newArtwork.append('approved', form.approved);
-
-    console.log('newArtwork form after append: ', {
-      ...form,
-      price: numericForm.price,
-      height: numericForm.height,
-      width: numericForm.width,
-      depth: numericForm.depth,
+    // Append all form fields
+    Object.entries(form).forEach(([key, value]) => {
+      console.log(`Appending form field: ${key} = ${value}`);
+      newArtwork.append(key, value);
     });
+
+    // Log final FormData contents
+    console.log('FormData created successfully. Fields:');
+    for (const pair of newArtwork.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
 
     return newArtwork;
   } catch (error) {
@@ -49,347 +134,171 @@ function addFile(form, sampleFile, name) {
   }
 }
 
-$(document).ready(() => {
-  $('.sidenav').sidenav();
-  $('.modal').modal();
-  $('.materialboxed').materialbox();
-  $('textarea#description_input').characterCounter();
+// Main form submission handler
+async function handleFormSubmit(event) {
+  event.preventDefault();
+  console.log('Form submission started');
 
-  // --------------------- File Upload Button --------------------- //
-  $('#fileUpload').on('click', async (event) => {
-    event.preventDefault();
-
-    if (ajaxLoading) {
+  if (ajaxLoading) {
       console.log('Upload already in progress');
       return;
-    }
+  }
 
-    try {
+  try {
       ajaxLoading = true;
-      console.log('====================================');
-      console.log('Upload Clicked!');
-      console.log('====================================');
+      
+      const sampleFileInput = document.getElementById('sampleFile');
+      const sampleFile = sampleFileInput?.files;
 
-      $('#upload-carousel').carousel();
-      console.log('Line 74 upload.js');
+      if (!sampleFile || sampleFile.length === 0) {
+          throw new Error('Please select a file to upload');
+      }
 
-      const sampleFile = $('#sampleFile').get(0).files;
-      console.log('sampleFile: ', sampleFile);
-
-      // Form validation check
-      if ($('#artist_firstname_input').length && $('#artist_firstname_input').val().length
-        && $('#artist_lastname_input').length && $('#artist_lastname_input').val().length
-        && $('#artist_email_input').length && $('#artist_email_input').val().length
-        && $('#art_name_input').length && $('#art_name_input').val().length
-        && $('#medium_input').length && $('#medium_input').val().length
-        && $('#description_input').length && $('#description_input').val().length
-        && $('#h_size_input').length && $('#h_size_input').val().length
-        && $('#w_size_input').length && $('#w_size_input').val().length
-        && $('#price_input').length && $('#price_input').val().length
-        && $('#sampleFile').length && $('#sampleFile').val().length) {
-        const newArtworkform = {
-          first_name: $('#artist_firstname_input').val().trim(),
-          last_name: $('#artist_lastname_input').val().trim(),
-          email: $('#artist_email_input').val().trim(),
-          artwork_name: $('#art_name_input').val().trim(),
-          medium: $('#medium_input').val().trim(),
-          depth: $('#d_size_input').val().trim(),
-          description: $('#description_input').val().trim(),
-          height: $('#h_size_input').val().trim(),
-          width: $('#w_size_input').val().trim(),
-          price: $('#price_input').val().trim(),
-          school: $('#school_input').val().trim(),
-          approved: false,
-          file: $('#sampleFile').val(),
-        };
-
-        console.log('newArtwork form: ', newArtworkform);
-
-        if (sampleFile.length > 0) {
-          // File metadata handling
-          for (let i = 0; i < sampleFile.length; i++) {
-            let file = sampleFile[i];
-            const filename = file.name;
-            console.log('====================================');
-            console.log('file.name: ', filename);
-            console.log('====================================');
-            file = $('#sampleFile').prop('files')[0];
-          }
-
-          const tmppath = URL.createObjectURL(sampleFile[0]);
-          console.log('image value path: ', tmppath);
-
-          $('#upload-err-msg').empty('');
-          $('#art-upload').empty('');
+      if (validateForm()) {
+          const formData = collectFormData();
+          clearMessages();
 
           try {
-            const newArtwork = addFile(newArtworkform, sampleFile, sampleFile[0].name);
-            console.log('formData: ', newArtworkform);
+              const artworkData = addFile(formData, sampleFile, sampleFile[0].name);
+              
+              // Show progress container
+              const progressContainer = document.getElementById('upload-progress-container');
+              if (progressContainer) progressContainer.style.display = 'block';
 
-            const response = await $.ajax({
-              type: 'post',
-              url: '/upload',
-              data: newArtwork,
-              processData: false,
-              contentType: false,
-              cache: false,
-            });
+              // Use XMLHttpRequest for upload progress
+              const uploadPromise = new Promise((resolve, reject) => {
+                  const xhr = new XMLHttpRequest();
 
-            console.log('Upload success:', response);
-            $('#upload-err-msg').empty('').text(`** Success! ${response.artwork_name} added to database! **`);
-            $('#FileAction-modal').modal('open').html(
-              `<div class='modal-content'>
-                <h4>File Activity</h4>
-                <h4 class='center-align'>Success!</h4>
-                <h5 class='center-align'><b>The File ${response.artwork_name} was added to the database!</b></h5>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-              </div>`,
-            );
+                  xhr.upload.addEventListener('progress', (event) => {
+                      if (event.lengthComputable) {
+                          const percentComplete = Math.round((event.loaded / event.total) * 100);
+                          updateProgress(percentComplete);
+                      }
+                  });
 
-            window.location.replace('/profile');
+                  xhr.addEventListener('load', () => {
+                      if (xhr.status >= 200 && xhr.status < 300) {
+                          resolve(JSON.parse(xhr.response));
+                      } else {
+                          reject(new Error(`Upload failed: ${xhr.statusText}`));
+                      }
+                  });
+
+                  xhr.addEventListener('error', () => {
+                      reject(new Error('Upload failed'));
+                  });
+
+                  xhr.open('POST', '/upload');
+                  xhr.send(artworkData);
+              });
+
+              const result = await uploadPromise;
+              
+              console.log('Upload success:', result);
+              updateProgress(100);
+              showSuccessModal(result.artwork_name);
+              
+              setTimeout(() => {
+                  window.location.replace('/profile');
+              }, 2000);
           } catch (error) {
-            console.error('Upload error:', error);
-            $('#FileAction-modal').modal('open').html(
-              `<div class='modal-content'>
-                <h4>File Activity</h4>
-                <h4 class='center-align'>Error!</h4>
-                <h5 class='center-align'><b>${error.message || 'Upload failed'}</b></h5>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-              </div>`,
-            );
+              console.error('Upload error:', error);
+              showErrorModal(error.message);
           }
-        }
       } else {
-        console.log('**Please fill out entire form!!**');
-        $('#upload-err-msg').empty('').text('**Please fill out entire form!!**');
-        $('#FileAction-modal').modal('open').html(
-          `<div class='modal-content'>
-            <h4>File Activity</h4>
-            <h4 class='center-align'>Error!</h4>
-            <h5 class='center-align'><b>Please fill out the Whole form to upload a file.</b></h5>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-          </div>`,
-        );
+          showFormErrorModal();
       }
-    } catch (error) {
-      console.error('General error:', error);
-      $('#upload-err-msg').empty('').text(`Error: ${error.message}`);
-    } finally {
+  } catch (error) {
+      console.error('Form submission error:', error);
+      showErrorMessage(error.message);
+  } finally {
       ajaxLoading = false;
-    }
-  });
+  }
+}
 
-  // --------------------- Approve Artwork Button --------------------- //
-  $('#startGal').on('click', '.approve', function () {
-    $('.modal').modal();
-    console.log('Approve Clicked!');
-    console.log('id to Approve: ', this.id);
-    const { id } = this;
-    const splitId = id.split('-');
-    const approveindex = splitId[1];
-    try {
-      $.ajax({
-        type: 'post',
-        url: '/approve',
-        data: { _id: approveindex },
-        success(status, res) {
-          console.log('status: ', status.art_name_input);
-          $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} Approved for Gallery! **`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
+function updateProgress(percent) {
+  console.log(`Upload progress: ${percent}%`);
+  const progressBar = document.getElementById('upload-progress-bar');
+  const progressText = document.getElementById('upload-progress-text');
+  
+  if (progressBar) {
+      progressBar.style.width = `${percent}%`;
+      progressBar.setAttribute('aria-valuenow', percent);
+  }
+  if (progressText) {
+      progressText.textContent = `${Math.round(percent)}%`;
+  }
+}
+
+// UI Update Functions
+function clearMessages() {
+  const uploadErrMsg = document.getElementById('upload-err-msg');
+  const artUpload = document.getElementById('art-upload');
+  if (uploadErrMsg) uploadErrMsg.textContent = '';
+  if (artUpload) artUpload.textContent = '';
+}
+
+function updateProgress(percent) {
+  const progressBar = document.getElementById('upload-progress-bar');
+  const progressText = document.getElementById('upload-progress-text');
+  const progressContainer = document.getElementById('upload-progress-container');
+
+  if (progressContainer) progressContainer.style.display = 'block';
+  if (progressBar) progressBar.style.width = `${percent}%`;
+  if (progressText) progressText.textContent = `${percent}%`;
+}
+
+function showModal(content) {
+  const modal = document.getElementById('FileAction-modal');
+  if (modal) {
+    modal.innerHTML = content;
+    const instance = M.Modal.getInstance(modal);
+    if (instance) instance.open();
+  }
+}
+
+// Modal Content Generators
+function getSuccessModalContent(artworkName) {
+  return `
+        <div class='modal-content'>
             <h4>File Activity</h4>
             <h4 class='center-align'>Success!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was Approved!</b></h5>
-            </div>
-            <div class="modal-footer">
+            <h5 class='center-align'><b>The File ${artworkName} was added to the database!</b></h5>
+        </div>
+        <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-        error(status, error) {
-          console.log('Line 205===-------->>>In ERROR: ', status);
-          $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
+        </div>
+    `;
+}
+
+function getErrorModalContent(message) {
+  return `
+        <div class='modal-content'>
             <h4>File Activity</h4>
             <h4 class='center-align'>Error!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was NOT Approved!</b></h5>
-            <h5 class='center-align'><b>**${status}: Something Broke-->${error}** </b></h5>
-            </div>
-            <div class="modal-footer">
+            <h5 class='center-align'><b>${message}</b></h5>
+        </div>
+        <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-      })
-        .then((res) => {
-          console.log('Success res: ', res);
-        });
-    } catch (err) {
-      console.log(`Something went wrong ${err}`);
-      $('#err-msg').empty('').text('**images not Approved.**');
-    }
-    // $(`#resp-${approveindex}`).load();  <----TODO next
-    $('.displayUserArt').click();
-  });
+        </div>
+    `;
+}
 
-  // --------------------- Delete Artwork Button --------------------- //
-  $('#startGal').on('click', '.remove', function () {
-    console.log('Delete Clicked!');
-    console.log('id to remove: ', this.id);
-    const { id } = this;
-    const splitId = id.split('-');
-    const deleteindex = splitId[1];
-    try {
-      $.ajax({
-        type: 'post',
-        url: '/delete',
-        data: { _id: deleteindex },
-        success(status, res) {
-          console.log('status: ', status.art_name_input);
-          $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} removed from database! **`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
-            <h4>File Activity</h4>
-            <h4 class='center-align'>Success!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was removed from the database!</b></h5>
-            </div>
-            <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-        error(status, error) {
-          // $.each(xhr, (key, value) => {
-          //   alert(key + ": " + value);
-          // });
-          $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
-            <h4>File Activity</h4>
-            <h4 class='center-align'>Error!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was NOT removed from the database!</b></h5>
-            <h5 class='center-align'><b>**${status}: Something Broke-->${error}** </b></h5>
-            </div>
-            <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-      })
-        .then((res) => {
-          console.log('Success res: ', res);
-        });
-    } catch (err) {
-      console.log(`Something went wrong ${err}`);
-      $('#err-msg').empty('').text('**images not Deleted.**');
-    }
-    $(`#resp-${deleteindex}`).remove();
-    $('.displayUserArt').click();
-  });
+// Message Display Functions
+function showErrorMessage(message) {
+  const errorMsg = document.getElementById('upload-err-msg');
+  if (errorMsg) errorMsg.textContent = message;
+}
 
-  // --------------------- Render files in upload directories --------------------- //
-  // const divimg = document.getElementById('image');
-  $('.displayUserArt').one('click', (event) => {
-    $('.modal').modal();
-    console.log('line 232 event: ', event);
-    const items = [];
-    try {
-      $.ajax({
-        type: 'get',
-        url: '/get-imgs',
-        data: items,
-      })
-        .then((res) => {
-          let count = 0;
-          // eslint-disable-next-line no-loop-func
-          $.each(res, (i) => {
-            let respdiv = $('<div>')
-              .addClass('responsive');
-            let picrow = $('<div>')
-              .addClass('gallery');
-            let divcol = $('<div/>')
-              .addClass('gallery')
-              .attr('style', 'overflow-wrap: normal');
-            const apprBut = $('<a class="btn btn-small teal darken-4 waves-effect waves-light hoverable approve value="Approve"><i class="material-icons right">done</i>Approve</a>');
-            const delBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable remove" value="Delete"><i class="material-icons right">delete</i>Delete</a>');
-            if (!res[i].artId || res[i].artId === undefined) {
-              respdiv = $('<div>')
-                .addClass('responsive')
-                .attr('id', `resp-${res[count - 1].artId}`)
-                .prependTo('#startGal');
-              picrow = $('<div>')
-                .addClass('gallery')
-                .attr('id', `#row${count}`)
-                .prependTo(respdiv);
-              divcol = $('<div/>')
-                .addClass('gallery')
-                .attr('id', `ulimage${count}`)
-                .prependTo(picrow);
-              $(divcol);
-            } else {
-              console.log('=====================>>>>>trying to add Name Div to <img>: ', res[count].artistFirstName);
-              console.log(`<img${count + 1}>`);
-            }
-            console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
-            if (count % 4 !== 0) {
-              console.log('added: ', divcol);
-              console.log(`res[${i}.artId] ${res[i].artId}`);
-              const img = $('<img>')
-                .addClass('materialboxed')
-                .addClass('responsive-img')
-                .attr('id', `img${count}`)
-                .attr('src', res[count])
-                .prependTo(picrow);
-              $(`<div><b>Title:</b> ${res[count - 1].artName}</div>`).appendTo(picrow);
-              $(`<div><b>Artist:</b> ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
-              $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
-              $(`<div><b>Price: $</b> ${res[count - 1].artPrice}</div>`).appendTo(picrow);
-              $(`<div><b>Height:</b> ${res[count - 1].artHeight} <b>in Width:</b> ${res[count - 1].artWidth} <b>in</b></div>`).appendTo(picrow);
-              if (res[count - 1].artDepth > 0) {
-                $(`<div><b>Depth:</b> ${res[count - 1].artDepth}<b>in</div>`).appendTo(picrow);
-              }
-              $(`<div><b>Approved:</b> ${res[count - 1].artApproved}</div>`).appendTo(picrow);
-              if (res[count - 1].artReviewer === 'admin' && res[count - 1].artApproved === false) {
-                $(apprBut).attr('id', `approv-${res[count - 1].artId}`);
-                $(picrow).append(apprBut);
-              }
-              $(delBut).attr('id', `del-${res[count - 1].artId}`);
-              $(picrow).append(delBut);
-              console.log(`res[${count}]._id`);
-            } else {
-              const img = $('<img>')
-                .addClass('materialboxed')
-                .addClass('responsive-img')
-                .attr('id', `img${count}`)
-                .attr('src', res[count])
-                .prependTo(picrow);
-              // $(`<div>Title: ${res[count].artName}</div>`).append(picrow);
-              $('<div>' + '<br>' + '</div>')
-                .addClass('row')
-                .attr('id', `ulDisplay${count}`)
-                .appendTo(respdiv);
-            // count = 0;
-            }
-            // eslint-disable-next-line no-plusplus
-            count++;
-            console.log('in if then divcol: ', divcol);
-            $('.materialboxed').materialbox();
-          });
-        });
-    } catch (err) {
-      console.log(`Something went wrong ${err}`);
-      $('#err-msg').empty('').text('** No Images found. **');
-    }
-  });
-});
+function showSuccessModal(artworkName) {
+  showModal(getSuccessModalContent(artworkName));
+}
+
+function showErrorModal(message) {
+  showModal(getErrorModalContent(message));
+}
+
+function showFormErrorModal() {
+  showModal(getErrorModalContent('Please fill out the Whole form to upload a file.'));
+  showErrorMessage('**Please fill out entire form!!**');
+}

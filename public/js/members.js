@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const users = await response.json();
-            console.log('Line 203 $$$$$$$$$$$$$$$$$$$$$$$ users: ', users);
+            console.log('Line 253 $$$$$$$$$$$$$$$$$$$$$$$ users: ', users);
 
             // Create table using modern DOM manipulation
             const table = document.createElement('table');

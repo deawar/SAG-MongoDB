@@ -78,7 +78,7 @@ router.get('/profile', checkAuthenticated, (req, res) => {
 });
 
 // ROUTER TO DELETE ACCOUNT
-router.delete('/user/:account_id/:email', async (req, res) => {
+router.delete('/user/:account_id/:email', checkAuthenticated, async (req, res) => {
   try {
     console.log(`_id: ${req.params.account_id}`);
     console.log(`email: ${req.params.email}`);
@@ -99,7 +99,7 @@ router.delete('/user/:account_id/:email', async (req, res) => {
 });
 
 // ROUTER TO UPDATE ACCOUNT
-router.put('/user/:account_id', async (req, res) => {
+router.put('/user/:account_id', checkAuthenticated, async (req, res) => {
   try {
     console.log('req.body: ', req.body);
     const updateDoc = {
@@ -136,7 +136,7 @@ router.put('/user/:account_id', async (req, res) => {
 });
 
 // PROFILE SEARCH BY ADMIN
-router.get('/searchuser/:email', async (req, res) => {
+router.get('/searchuser/:email', checkAuthenticated, async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;

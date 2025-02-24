@@ -289,28 +289,55 @@
         <!-- Auction timers and Bids -->
         <div id="Auction" class="tabcontent">
             <div class="hero-image"></div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Current Auctions</span>
+                            <div id="auction-list">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                            </div>
+                            <button type="submit" data-target="delete-auction-row-modal" class="btn btn-default red darken-4 modal-trigger hoverable" id="deleteRowsButton">DELETE Selected Rows</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                     <h3>Auction Settings</h3>
                     <p>Specifically for {{school}} sponsored by {{first_name}} {{last_name}}</p>
                         <input disabled id="account_id" type="text" value="{{id}}">
                         <label class="active" for="id">Account ID</label>
                     <p>Set Auction ID's and timers here.</p>
+                    <div class="input-field col s6">
+                    <p>
+                        <label>
+                            <input class="with-gap" name="chooseSchool" type="radio" value="{{school}}" checked required/>
+                            <span>Only {{school}}</span>
+                        </label>
+                        <label>
+                            <input class="with-gap" name="chooseSchool" type="radio" value="any" required/>
+                            <span>Any School</span>
+                        </label>
+                    </p>
+                    </div>
                 
                   <div class="row">
                     <form class="auctionData col s12">
                     <div class="row">
                         <div class="input-field col s6">
-                        <input placeholder="Auction Identifier" id="auctionId" name="auctionId" type="text" class="validate">
+                        <input type="text" placeholder="Auction Identifier" id="auctionId" name="auctionId" class="validate" required>
                         <label for="auctionId">Auction Identifier</label>
                         </div>
                         <div class="input-field col s6">
-                        <input type="text" id="charityName" name="charityName" class="validate">
+                        <input type="text" id="charityName" name="charityName" class="validate" required>
                         <label for="charity_name">Charity Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                        <input type="text" value="Date of Auction start" id="dateAuctionStart" name="dateAuctionStart" class="datepicker">
+                        <input type="text" id="dateAuctionStart" name="dateAuctionStart" class="datepicker" placeholder="Date of Auction start">
                         <label for="dateAuctionStart">Date/Time of Auction Start</label>
                         </div>
                         <div class="input-field col s6">
@@ -336,13 +363,30 @@
                         </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default teal darken-4 hoverable" id="auctionBtn" value="Create Auction">Submit Auction Info</button> 
+                    <button type="submit" 
+                            class="btn btn-default teal darken-4 hoverable" 
+                            id="auctionBtn" value="Create Auction">Submit Auction Info</button> 
                     </form>
                 </div>
             </div>
         </div>
+        <!-- Delete Auction Modal Structure -->
+        <div id="delete-auction-modal" class="modal">
+            <div class="modal-content">
+                <h4>Delete Auctions</h4>
+                <div class="modal-header">
+                    <h6>Are you sure you want to delete the selected auctions?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn red darken-4 waves-effect waves-light" id="confirm-delete-auctions">Delete</button>
+                    <button type="button" class="btn green darken-4 waves-effect waves-light modal-close">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+
         <script type="text/javascript" src="/js/auctionData.js"></script>
-                <!-- list students by school -->
+        <!-- list students by school -->
         <div id="allStudents" class="tabcontent">
             <div class="hero-image">
             </div>
@@ -355,6 +399,19 @@
                     <button type="submit" data-target="delete-account-row-modal" class="btn btn-default red darken-4 modal-trigger hoverable" id="deleteRowsButton">DELETE Selected Rows</button>
                 </div>
         </div>
+                <!-- list students by school -->
+        <div id="allAuctions" class="tabcontent">
+            <div class="hero-image">
+            </div>
+                <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
+                    <h3 style="text-align: center">Auction Lists for</h3><h3 style="text-align: center">{{school}}</h3>
+                    <input disabled id="auctionId" type="text" value="{{school}}">
+                    <div class="row" id="auctionTable">
+                        
+                    </div>
+                    <button type="submit" data-target="delete-auction-row-modal" class="btn btn-default red darken-4 modal-trigger hoverable" id="deleteRowsButton">DELETE Selected Rows</button>
+                </div>
+        </div>
     </div>
 </div>
 
@@ -364,6 +421,26 @@
         display: flex;
         flex-wrap: wrap;
         padding: 0 10px;
+    }
+    
+    /* Styling for Auctions List */
+        .badge {
+    min-width: 80px;
+    text-align: center;
+    }
+
+    #auction-list table {
+    margin-top: 20px;
+    }
+
+    #auction-list .badge {
+    border-radius: 2px;
+    padding: 5px 12px;
+    color: white;
+    }
+
+    .progress {
+    margin: 20px 0;
     }
 
     /* Create two equal columns that sits next to each other */
@@ -444,16 +521,30 @@
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
 
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
+        $(document).ready(function () {
+            // Initialize datepicker with specific format
+            $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
                 autoClose: true,
                 showClearBtn: true,
+                defaultDate: new Date(),
+                setDefaultDate: false
             });
-        $('.timepicker').timepicker({
-            twelveHour: false,
-            showClearBtn: true,
-        });
+
+            // Initialize timepicker
+            $('.timepicker').timepicker({
+                twelveHour: false,
+                showClearBtn: true,
+                defaultTime: 'now',
+                autoClose: true,
+                onSelect: function(hour, minute) {
+                    // Ensure two digits for hour and minute
+                    const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                    this.el.value = formattedTime;
+                    // Trigger change event to recalculate duration
+                    $(this.el).trigger('change');
+                }
+            });
         // Calculate the total time for an auction based on start and end date/time inputs
         $("#dateAuctionStart, #timeAuctionStart, #dateAuctionStop, #timeAuctionStop").on("change", function() {
                 // Get the input values
@@ -462,55 +553,79 @@
                 const dateAuctionStop = $("#dateAuctionStop").val();
                 const timeAuctionStop = $("#timeAuctionStop").val();
 
-                console.log("Date Auction Start:", dateAuctionStart);
-                console.log("Time Auction Start:", timeAuctionStart);
-                console.log("Date Auction Stop:", dateAuctionStop);
-                console.log("Time Auction Stop:", timeAuctionStop);
+                console.log("Raw inputs:", {
+                        dateAuctionStart,
+                        timeAuctionStart,
+                        dateAuctionStop,
+                        timeAuctionStop
+                    });
 
-                const startDate = dateAuctionStart + "T" + timeAuctionStart;
-                const endDate = dateAuctionStop + "T" + timeAuctionStop;
-                
-                console.log("Parsed Start Date:", startDate);
-                console.log("Parsed End Date:", endDate);
-                dtStartDate = new Date(startDate);
-                console.log("Start Date in dt:", dtStartDate);
-                dtEndDate = new Date(endDate);
-                console.log("End Date in dt:", dtEndDate);
-                msStartDate = dtStartDate.getTime()
-                msEndDate = dtEndDate.getTime()
-                console.log("Start Date in ms:", msStartDate);
-                console.log("End Date in ms:", msEndDate);
+                    // Ensure all inputs are filled
+                    if (!dateAuctionStart || !timeAuctionStart || !dateAuctionStop || !timeAuctionStop) {
+                        $("#auction_total_time").text("Please fill in all date and time fields.");
+                        return;
+                    }
 
-                // Ensure all inputs are filled
-                if (!dateAuctionStart || !timeAuctionStart || !dateAuctionStop || !timeAuctionStop) {
-                    $("#auction_total_time").text("Please fill in all date and time fields.");
-                    return;
-                }
+                    try {
+                         // Convert 12-hour times to 24-hour format
+                        function convertTo24Hour(time12h) {
+                            const [time, modifier] = time12h.split(' ');
+                            let [hours, minutes] = time.split(':');
+                            
+                            if (hours === '12') {
+                                hours = '00';
+                            }
+                            
+                            if (modifier === 'PM') {
+                                hours = parseInt(hours, 10) + 12;
+                            }
+                            
+                            return `${hours.toString().padStart(2, '0')}:${minutes}`;
+                        }
 
-                // Validate parsed dates
-                if (isNaN(dtStartDate.getTime()) || isNaN(dtEndDate.getTime())) {
-                    $("#auction_total_time").text("Invalid date/time input.");
-                    return;
-                }
+                        // Parse dates properly
+                        function parseDate(dateStr, timeStr) {
+                            const [month, day, year] = dateStr.split(' ');
+                            const time24 = convertTo24Hour(timeStr);
+                            const monthNum = new Date(`${month} 1, 2000`).getMonth() + 1;
+                            return new Date(`${year}-${monthNum.toString().padStart(2, '0')}-${day.replace(',', '')}T${time24}:00`);
+                        }
 
-                // Calculate the total time in milliseconds
-                const totalTimeMs = dtEndDate - dtStartDate;
+                        const startDateTime = parseDate(dateAuctionStart, timeAuctionStart);
+                        const endDateTime = parseDate(dateAuctionStop, timeAuctionStop);
 
-                // Prevent negative time calculations
-                if (totalTimeMs < 0) {
-                    $("#auction_total_time").text("End time must be after start time.");
-                    return;
-                }
+                        console.log("Parsed dates:", {
+                            startDateTime,
+                            endDateTime
+                        });
 
-                // Convert the total time to days, hours, minutes, and seconds
-                const days = Math.floor(totalTimeMs / (1000 * 60 * 60 * 24));
-                const hours = Math.floor(totalTimeMs / (1000 * 60 * 60));
-                const minutes = Math.floor((totalTimeMs % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((totalTimeMs % (1000 * 60)) / 1000);
+                        // Validate parsed dates
+                        if (isNaN(startDateTime.getTime()) || isNaN(endDateTime.getTime())) {
+                            $("#auction_total_time").text("Invalid date/time input.");
+                            return;
+                        }
 
-                // Display the result
-                $("#auction_total_time").text(`${days} days, ${hours} hours, and ${minutes} minutes`);
-            });
+                        // Calculate difference in milliseconds
+                        const totalTimeMs = endDateTime - startDateTime;
+
+                        // Prevent negative time calculations
+                        if (totalTimeMs < 0) {
+                            $("#auction_total_time").text("End time must be after start time.");
+                            return;
+                        }
+
+                        // Calculate time components
+                        const days = Math.floor(totalTimeMs / (1000 * 60 * 60 * 24));
+                        const remainingHours = Math.floor((totalTimeMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const remainingMinutes = Math.floor((totalTimeMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                        // Display the result with correct time units
+                        $("#auction_total_time").text(`${days} days, ${remainingHours} hours, and ${remainingMinutes} minutes`);
+                    } catch (error) {
+                        console.error("Error calculating time:", error);
+                        $("#auction_total_time").text("Error calculating auction duration");
+                    }
+                });
 
         $('.sidenav').sidenav();
         M.updateTextFields();
