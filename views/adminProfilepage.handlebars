@@ -24,7 +24,7 @@
                             </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input disabled id="account_id" type="text" value="{{id}}">
+                                <input readonly id="account_id" type="text" value="{{id}}">
                                 <label class="active" for="id">Account ID</label>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="email-input" type="text" value="{{email}}">
+                                <input readonly id="email-input" type="text" value="{{email}}">
                                 <label class="active" for="email">Email</label>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <h3 style="font-size: 1.7vw;">School Afilliation</h3>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input disabled id="school-input" type="text" value="{{school}}">
+                                <input readonly id="school-input" type="text" value="{{school}}">
                                 <label class="active" for="school">School</label>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                     <form class="signup col s12 m12 l12">
                         <div class="row">
                             <div class="input-field col s5">
-                                <input disabled id="searchedAccountid" type="text" value="{{searchedId}}">
+                                <input readonly id="searchedAccountid" type="text" value="{{searchedId}}">
                                 <label class="active" for="id">Account ID</label>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                         <div class="row">
                             <div class="input-field col s12">
                         <h3 style="font-size: 1.7vw;">School Affiliation</h3>
-                                <input disabled id="searchedSchoolinput" type="text" value="{{searchedSchool}}">
+                                <input readonly id="searchedSchoolinput" type="text" value="{{searchedSchool}}">
                                 {{!-- <label class="active" for="school">School</label> --}}
                             </div>
                         </div>
@@ -307,38 +307,44 @@
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                     <h3>Auction Settings</h3>
                     <p>Specifically for {{school}} sponsored by {{first_name}} {{last_name}}</p>
-                        <input disabled id="account_id" type="text" value="{{id}}">
+                        <input readonly id="account_id" type="text" value="{{id}}">
                         <label class="active" for="id">Account ID</label>
                     <p>Set Auction ID's and timers here.</p>
                     <div class="input-field col s6">
                     <p>
                         <label>
-                            <input class="with-gap" name="chooseSchool" type="radio" value="{{school}}" checked required/>
+                            <input class="with-gap" name="chooseSchool" id="location" type="radio" value="{{school}}" checked required/>
                             <span>Only {{school}}</span>
                         </label>
                         <label>
-                            <input class="with-gap" name="chooseSchool" type="radio" value="any" required/>
+                            <input class="with-gap" name="chooseSchool" id="location" type="radio" value="any" required/>
                             <span>Any School</span>
                         </label>
                     </p>
                     </div>
                 
                   <div class="row">
-                    <form class="auctionData col s12">
+                    <form class="auctionData col s12" method="post" action="/api/create-auction">
                     <div class="row">
                         <div class="input-field col s6">
-                        <input type="text" placeholder="Auction Identifier" id="auctionId" name="auctionId" class="validate" required>
+                        <input placeholder="Auction Identifier" 
+                                id="enteredAuctionId"
+                                name="auctionId" 
+                                type="text" 
+                                class="validate" 
+                                required 
+                                autocomplete="off">
                         <label for="auctionId">Auction Identifier</label>
                         </div>
                         <div class="input-field col s6">
-                        <input type="text" id="charityName" name="charityName" class="validate" required>
+                        <input type="text"  name="charityName" class="validate" required>
                         <label for="charity_name">Charity Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                         <input type="text" id="dateAuctionStart" name="dateAuctionStart" class="datepicker" placeholder="Date of Auction start">
-                        <label for="dateAuctionStart">Date/Time of Auction Start</label>
+                        <label for="dateAuctionStart"></label>
                         </div>
                         <div class="input-field col s6">
                         <input type="text" placeholder="Start Time" id="timeAuctionStart" name="timeAuctionStart" class="timepicker">
@@ -347,8 +353,8 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                        <input type="text" value="Date of Auction stop" id="dateAuctionStop"name="dateAuctionStop" class="datepicker">
-                        <label for="dateAuctionStop">Date/Time of Auction Stop</label>
+                        <input type="text" value="Date of Auction stop" id="dateAuctionStop" name="dateAuctionStop" class="datepicker">
+                        <label for="dateAuctionStop"></label>
                         </div>
                         <div class="input-field col s6">
                         <label for="time_auction_stop"></label>
@@ -363,6 +369,8 @@
                         </div>
                         </div>
                     </div>
+                <div class="row">
+                </div>
                     <button type="submit" 
                             class="btn btn-default teal darken-4 hoverable" 
                             id="auctionBtn" value="Create Auction">Submit Auction Info</button> 
@@ -370,6 +378,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Delete Auction Modal Structure -->
         <div id="delete-auction-modal" class="modal">
             <div class="modal-content">
@@ -384,15 +393,13 @@
             </div>
         </div>
 
-
-        <script type="text/javascript" src="/js/auctionData.js"></script>
         <!-- list students by school -->
         <div id="allStudents" class="tabcontent">
             <div class="hero-image">
             </div>
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                     <h3 style="text-align: center">User List for</h3><h3 style="text-align: center">{{school}}</h3>
-                    <input disabled id="Schoolinput" type="text" value="{{school}}">
+                    <input readonly id="Schoolinput" type="text" value="{{school}}">
                     <div class="row" id="userTable">
                         
                     </div>
@@ -405,7 +412,7 @@
             </div>
                 <div class="card" id="profilePageAboutMeCard" style="width: 100%;">
                     <h3 style="text-align: center">Auction Lists for</h3><h3 style="text-align: center">{{school}}</h3>
-                    <input disabled id="auctionId" type="text" value="{{school}}">
+                    <input readonly id="schoolForAuctions" type="text" value="{{school}}">
                     <div class="row" id="auctionTable">
                         
                     </div>
@@ -415,6 +422,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="/js/auctionData.js"></script>
 <!-- Container for the image gallery -->
 <style>
     .row {
@@ -493,8 +501,41 @@
     #abcd {
         width: 100%;
     }
+    #auctionId, input[name="auctionId"] {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        background-color: transparent !important;
+    }
 </style>
-
+<script>
+// Add this to your existing JavaScript or create a new script section
+//document.addEventListener('DOMContentLoaded', function() {
+    // Fix for the auction form - ensure the input isn't disabled
+//    const auctionIdInput = document.getElementById('auctionId');
+//    if (auctionIdInput) {
+//        auctionIdInput.disabled = false;
+//        auctionIdInput.readOnly = false;
+//    }
+    
+    // Debug helper to check element properties
+//    console.log('Auction ID input properties:', {
+//        element: auctionIdInput,
+//        disabled: auctionIdInput ? auctionIdInput.disabled : 'not found',
+//        readOnly: auctionIdInput ? auctionIdInput.readOnly : 'not found',
+//        hasAttribute: auctionIdInput ? auctionIdInput.hasAttribute('disabled') : 'not found'
+//    });
+    
+    // Fix for any other issues with the form
+//    const auctionForm = document.querySelector('form.auctionData');
+//    if (auctionForm) {
+//        // Remove any disabled attributes from inputs inside the form
+//        auctionForm.querySelectorAll('input').forEach(input => {
+//           input.disabled = false;
+//            input.readOnly = false;
+//        });
+//    }
+//});
+</script>
 <script>
     //profile card
     function openPage(pageName, elmnt, color) {
@@ -519,115 +560,79 @@
     }
 
     // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+//  document.addEventListener("DOMContentLoaded", function () {
+        // Open default tab
+//      document.getElementById("defaultOpen").click();
 
-        $(document).ready(function () {
-            // Initialize datepicker with specific format
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                autoClose: true,
-                showClearBtn: true,
-                defaultDate: new Date(),
-                setDefaultDate: false
-            });
+        // Date and time picker replacements
+//      function setupDatePicker(id) {
+//          const input = document.getElementById(id);
+//          if (input) {
+//              console.log('Setting up date picker for', id);
+//              input.addEventListener("focus", function () {
+//                  this.type = "date";
+//                  console.log('Date picker activated for', date);//
+//              });
+//          }
+//      }
 
-            // Initialize timepicker
-            $('.timepicker').timepicker({
-                twelveHour: false,
-                showClearBtn: true,
-                defaultTime: 'now',
-                autoClose: true,
-                onSelect: function(hour, minute) {
-                    // Ensure two digits for hour and minute
-                    const formattedTime = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-                    this.el.value = formattedTime;
-                    // Trigger change event to recalculate duration
-                    $(this.el).trigger('change');
-                }
-            });
-        // Calculate the total time for an auction based on start and end date/time inputs
-        $("#dateAuctionStart, #timeAuctionStart, #dateAuctionStop, #timeAuctionStop").on("change", function() {
-                // Get the input values
-                const dateAuctionStart = $("#dateAuctionStart").val();
-                const timeAuctionStart = $("#timeAuctionStart").val();
-                const dateAuctionStop = $("#dateAuctionStop").val();
-                const timeAuctionStop = $("#timeAuctionStop").val();
+//      function setupTimePicker(id) {
+//          const input = document.getElementById(id);
+//          if (input) {
+//              input.addEventListener("focus", function () {
+//                  this.type = "time";
+//                  console.log('Time picker activated for', time);
+//              });
+//          }
+//      }
 
-                console.log("Raw inputs:", {
-                        dateAuctionStart,
-                        timeAuctionStart,
-                        dateAuctionStop,
-                        timeAuctionStop
-                    });
+//      setupDatePicker("dateAuctionStart");
+//      setupDatePicker("dateAuctionStop");
+//      setupTimePicker("timeAuctionStart");
+//      setupTimePicker("timeAuctionStop");
 
-                    // Ensure all inputs are filled
-                    if (!dateAuctionStart || !timeAuctionStart || !dateAuctionStop || !timeAuctionStop) {
-                        $("#auction_total_time").text("Please fill in all date and time fields.");
-                        return;
-                    }
+        // Auction duration calculation
+//      function calculateAuctionDuration() {
+//          const dateStart = document.getElementById("dateAuctionStart").value;
+//          const timeStart = document.getElementById("timeAuctionStart").value;
+//          const dateStop = document.getElementById("dateAuctionStop").value;
+//          const timeStop = document.getElementById("timeAuctionStop").value;
+//          const output = document.getElementById("auction_total_time");
 
-                    try {
-                         // Convert 12-hour times to 24-hour format
-                        function convertTo24Hour(time12h) {
-                            const [time, modifier] = time12h.split(' ');
-                            let [hours, minutes] = time.split(':');
-                            
-                            if (hours === '12') {
-                                hours = '00';
-                            }
-                            
-                            if (modifier === 'PM') {
-                                hours = parseInt(hours, 10) + 12;
-                            }
-                            
-                            return `${hours.toString().padStart(2, '0')}:${minutes}`;
-                        }
+//          if (!dateStart || !timeStart || !dateStop || !timeStop) {
+//              output.textContent = "Please fill in all date and time fields.";
+//              return;
+//          }
 
-                        // Parse dates properly
-                        function parseDate(dateStr, timeStr) {
-                            const [month, day, year] = dateStr.split(' ');
-                            const time24 = convertTo24Hour(timeStr);
-                            const monthNum = new Date(`${month} 1, 2000`).getMonth() + 1;
-                            return new Date(`${year}-${monthNum.toString().padStart(2, '0')}-${day.replace(',', '')}T${time24}:00`);
-                        }
+//          const startDateTime = new Date(`${dateStart}T${timeStart}`);
+//          const endDateTime = new Date(`${dateStop}T${timeStop}`);
 
-                        const startDateTime = parseDate(dateAuctionStart, timeAuctionStart);
-                        const endDateTime = parseDate(dateAuctionStop, timeAuctionStop);
+//          if (endDateTime <= startDateTime) {
+//              output.textContent = "End time must be after start time.";
+//              return;
+//          }
 
-                        console.log("Parsed dates:", {
-                            startDateTime,
-                            endDateTime
-                        });
+//          const diffMs = endDateTime - startDateTime;
+//          const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+//          const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//          const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
 
-                        // Validate parsed dates
-                        if (isNaN(startDateTime.getTime()) || isNaN(endDateTime.getTime())) {
-                            $("#auction_total_time").text("Invalid date/time input.");
-                            return;
-                        }
+//          output.textContent = `${days} days, ${hours} hours, and ${minutes} minutes`;
+//      }
 
-                        // Calculate difference in milliseconds
-                        const totalTimeMs = endDateTime - startDateTime;
+//      ["dateAuctionStart", "timeAuctionStart", "dateAuctionStop", "timeAuctionStop"].forEach(id => {
+//          const input = document.getElementById(id);
+//          if (input) {
+//              input.addEventListener("change", calculateAuctionDuration);
+//          }
+//      });
 
-                        // Prevent negative time calculations
-                        if (totalTimeMs < 0) {
-                            $("#auction_total_time").text("End time must be after start time.");
-                            return;
-                        }
-
-                        // Calculate time components
-                        const days = Math.floor(totalTimeMs / (1000 * 60 * 60 * 24));
-                        const remainingHours = Math.floor((totalTimeMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        const remainingMinutes = Math.floor((totalTimeMs % (1000 * 60 * 60)) / (1000 * 60));
-
-                        // Display the result with correct time units
-                        $("#auction_total_time").text(`${days} days, ${remainingHours} hours, and ${remainingMinutes} minutes`);
-                    } catch (error) {
-                        console.error("Error calculating time:", error);
-                        $("#auction_total_time").text("Error calculating auction duration");
-                    }
-                });
-
-        $('.sidenav').sidenav();
-        M.updateTextFields();
-    });
+        // Tab navigation
+      window.openPage = function (pageName, elmnt, color) {
+          document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
+          document.querySelectorAll(".tablink").forEach(tab => tab.style.backgroundColor = "");
+          document.getElementById(pageName).style.display = "block";
+          elmnt.style.backgroundColor = color;
+      };
+//  });
 </script>

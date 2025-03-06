@@ -46,7 +46,7 @@ const validateAuctionData = (req, res, next) => {
   const errors = [];
   const {
     auctionId, charityName, dateAuctionStart, timeAuctionStart,
-    dateAuctionStop, timeAuctionStop, organizer,
+    dateAuctionStop, timeAuctionStop, organizer, location,
   } = req.body;
 
   // Required field checks
@@ -79,6 +79,7 @@ const validateAuctionData = (req, res, next) => {
 };
 
 router.post('/api/create-auction', validateAuctionData, checkAuthenticated, async (req, res) => {
+  console.log('Received auction data:', req.body);
   try {
     // Sanitize all inputs
     const sanitizedData = {
