@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bidindex = splitId[1];
 
         try {
-          fetch('/add-bid', {
+          fetch('/api/create-bid', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

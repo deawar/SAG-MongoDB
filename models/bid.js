@@ -39,6 +39,4 @@ bidSchema.path('bids').set((num) => (num * 100));
 bidSchema.path('startBid').set((num) => (num * 100));
 
 const Bid = mongoose.model('Bid', bidSchema);
-const bid = new Bid({ type: 'bid ' });
-
-export default mongoose.model('bid', bidSchema);
+export default Bid;

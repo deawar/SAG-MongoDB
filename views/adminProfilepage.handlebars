@@ -507,35 +507,7 @@
         background-color: transparent !important;
     }
 </style>
-<script>
-// Add this to your existing JavaScript or create a new script section
-//document.addEventListener('DOMContentLoaded', function() {
-    // Fix for the auction form - ensure the input isn't disabled
-//    const auctionIdInput = document.getElementById('auctionId');
-//    if (auctionIdInput) {
-//        auctionIdInput.disabled = false;
-//        auctionIdInput.readOnly = false;
-//    }
-    
-    // Debug helper to check element properties
-//    console.log('Auction ID input properties:', {
-//        element: auctionIdInput,
-//        disabled: auctionIdInput ? auctionIdInput.disabled : 'not found',
-//        readOnly: auctionIdInput ? auctionIdInput.readOnly : 'not found',
-//        hasAttribute: auctionIdInput ? auctionIdInput.hasAttribute('disabled') : 'not found'
-//    });
-    
-    // Fix for any other issues with the form
-//    const auctionForm = document.querySelector('form.auctionData');
-//    if (auctionForm) {
-//        // Remove any disabled attributes from inputs inside the form
-//        auctionForm.querySelectorAll('input').forEach(input => {
-//           input.disabled = false;
-//            input.readOnly = false;
-//        });
-//    }
-//});
-</script>
+
 <script>
     //profile card
     function openPage(pageName, elmnt, color) {
@@ -559,73 +531,77 @@
         elmnt.style.backgroundColor = color;
     }
 
+    // Open default tab
+    document.getElementById("defaultOpen").click();
+    
     // Get the element with id="defaultOpen" and click on it
-//  document.addEventListener("DOMContentLoaded", function () {
-        // Open default tab
-//      document.getElementById("defaultOpen").click();
+    document.addEventListener("DOMContentLoaded", function () {
+    
 
-        // Date and time picker replacements
-//      function setupDatePicker(id) {
-//          const input = document.getElementById(id);
-//          if (input) {
-//              console.log('Setting up date picker for', id);
-//              input.addEventListener("focus", function () {
-//                  this.type = "date";
-//                  console.log('Date picker activated for', date);//
-//              });
-//          }
-//      }
 
-//      function setupTimePicker(id) {
-//          const input = document.getElementById(id);
-//          if (input) {
-//              input.addEventListener("focus", function () {
-//                  this.type = "time";
-//                  console.log('Time picker activated for', time);
-//              });
-//          }
-//      }
 
-//      setupDatePicker("dateAuctionStart");
-//      setupDatePicker("dateAuctionStop");
-//      setupTimePicker("timeAuctionStart");
-//      setupTimePicker("timeAuctionStop");
+                    // Date and time picker replacements
+            //      function setupDatePicker(id) {
+            //          const input = document.getElementById(id);
+            //          if (input) {
+            //              console.log('Setting up date picker for', id);
+            //              input.addEventListener("focus", function () {
+            //                  this.type = "date";
+            //                  console.log('Date picker activated for', date);//
+            //              });
+            //          }
+            //      }
 
-        // Auction duration calculation
-//      function calculateAuctionDuration() {
-//          const dateStart = document.getElementById("dateAuctionStart").value;
-//          const timeStart = document.getElementById("timeAuctionStart").value;
-//          const dateStop = document.getElementById("dateAuctionStop").value;
-//          const timeStop = document.getElementById("timeAuctionStop").value;
-//          const output = document.getElementById("auction_total_time");
+            //      function setupTimePicker(id) {
+            //          const input = document.getElementById(id);
+            //          if (input) {
+            //              input.addEventListener("focus", function () {
+            //                  this.type = "time";
+            //                  console.log('Time picker activated for', time);
+            //              });
+            //          }
+            //      }
 
-//          if (!dateStart || !timeStart || !dateStop || !timeStop) {
-//              output.textContent = "Please fill in all date and time fields.";
-//              return;
-//          }
+            //      setupDatePicker("dateAuctionStart");
+            //      setupDatePicker("dateAuctionStop");
+            //      setupTimePicker("timeAuctionStart");
+            //      setupTimePicker("timeAuctionStop");
 
-//          const startDateTime = new Date(`${dateStart}T${timeStart}`);
-//          const endDateTime = new Date(`${dateStop}T${timeStop}`);
+                    // Auction duration calculation
+            //      function calculateAuctionDuration() {
+            //          const dateStart = document.getElementById("dateAuctionStart").value;
+            //          const timeStart = document.getElementById("timeAuctionStart").value;
+            //          const dateStop = document.getElementById("dateAuctionStop").value;
+            //          const timeStop = document.getElementById("timeAuctionStop").value;
+            //          const output = document.getElementById("auction_total_time");
 
-//          if (endDateTime <= startDateTime) {
-//              output.textContent = "End time must be after start time.";
-//              return;
-//          }
+            //          if (!dateStart || !timeStart || !dateStop || !timeStop) {
+            //              output.textContent = "Please fill in all date and time fields.";
+            //              return;
+            //          }
 
-//          const diffMs = endDateTime - startDateTime;
-//          const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-//          const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//          const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+            //          const startDateTime = new Date(`${dateStart}T${timeStart}`);
+            //          const endDateTime = new Date(`${dateStop}T${timeStop}`);
 
-//          output.textContent = `${days} days, ${hours} hours, and ${minutes} minutes`;
-//      }
+            //          if (endDateTime <= startDateTime) {
+            //              output.textContent = "End time must be after start time.";
+            //              return;
+            //          }
 
-//      ["dateAuctionStart", "timeAuctionStart", "dateAuctionStop", "timeAuctionStop"].forEach(id => {
-//          const input = document.getElementById(id);
-//          if (input) {
-//              input.addEventListener("change", calculateAuctionDuration);
-//          }
-//      });
+            //          const diffMs = endDateTime - startDateTime;
+            //          const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            //          const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            //          const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+            //          output.textContent = `${days} days, ${hours} hours, and ${minutes} minutes`;
+            //      }
+
+            //      ["dateAuctionStart", "timeAuctionStart", "dateAuctionStop", "timeAuctionStop"].forEach(id => {
+            //          const input = document.getElementById(id);
+            //          if (input) {
+            //              input.addEventListener("change", calculateAuctionDuration);
+            //          }
+            //      });
 
         // Tab navigation
       window.openPage = function (pageName, elmnt, color) {
@@ -634,5 +610,5 @@
           document.getElementById(pageName).style.display = "block";
           elmnt.style.backgroundColor = color;
       };
-//  });
+    });
 </script>

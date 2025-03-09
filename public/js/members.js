@@ -1,6 +1,7 @@
 // public/js/members.js
 
-let ajaxLoading = false;
+// let ajaxLoading = false;
+// document.getElementById('defaultOpen').click();
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Materialize components
