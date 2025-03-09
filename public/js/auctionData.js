@@ -66,25 +66,42 @@ function calculateAuctionDuration() {
   if (dateAuctionStart && timeAuctionStart && dateAuctionStop && timeAuctionStop
       && dateAuctionStart.value && timeAuctionStart.value && dateAuctionStop.value && timeAuctionStop.value) {
     try {
-      let startTime = timeAuctionStart.value;
-      let endTime = timeAuctionStop.value;
-      const startDateString = dateAuctionStart.value;
-      const endDateString = dateAuctionStop.value;
+      // First, ensure dates are in YYYY-MM-DD format
+      const startDateFormatted = formatDate(dateAuctionStart.value);
+      const endDateFormatted = formatDate(dateAuctionStop.value);
 
-      if (startTime.includes('AM') || startTime.includes('PM')) {
-        startTime = convertTo24Hour(startTime);
+      // Then, ensure times are in 24-hour format (HH:MM)
+      let startTimeFormatted = timeAuctionStart.value;
+      let endTimeFormatted = timeAuctionStop.value;
+
+      if (startTimeFormatted.includes('AM') || startTimeFormatted.includes('PM')) {
+        startTimeFormatted = convertTo24Hour(startTimeFormatted);
       }
-      if (endTime.includes('AM') || endTime.includes('PM')) {
-        endTime = convertTo24Hour(endTime);
+
+      if (endTimeFormatted.includes('AM') || endTimeFormatted.includes('PM')) {
+        endTimeFormatted = convertTo24Hour(endTimeFormatted);
       }
 
-      console.log('Start Date:', startDateString);
-      console.log('Start Time:', startTime);
-      console.log('Stop Date:', endDateString);
-      console.log('Stop Time:', endTime);
+      // Make sure time is in HH:MM format
+      if (!startTimeFormatted.includes(':')) {
+        startTimeFormatted = `${startTimeFormatted}:00`;
+      }
 
-      const startDate = new Date(`${startDateString}T${startTime}`);
-      const endDate = new Date(`${endDateString}T${endTime}`);
+      if (!endTimeFormatted.includes(':')) {
+        endTimeFormatted = `${endTimeFormatted}:00`;
+      }
+
+      console.log('Formatted Start Date:', startDateFormatted);
+      console.log('Formatted Start Time:', startTimeFormatted);
+      console.log('Formatted Stop Date:', endDateFormatted);
+      console.log('Formatted Stop Time:', endTimeFormatted);
+
+      // Create Date objects using ISO format strings
+      const startDate = new Date(`${startDateFormatted}T${startTimeFormatted}:00`);
+      const endDate = new Date(`${endDateFormatted}T${endTimeFormatted}:00`);
+
+      console.log('Parsed Start Date:', startDate);
+      console.log('Parsed End Date:', endDate);
 
       if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
         const durationMs = endDate - startDate;
@@ -106,6 +123,14 @@ function calculateAuctionDuration() {
         }
         totalTimeDisplay.textContent = 'End date must be after start date';
       } else {
+        console.error('Invalid date objects:', {
+          startDateObj: startDate,
+          startDateValid: !isNaN(startDate.getTime()),
+          endDateObj: endDate,
+          endDateValid: !isNaN(endDate.getTime()),
+          startDateStr: `${startDateFormatted}T${startTimeFormatted}:00`,
+          endDateStr: `${endDateFormatted}T${endTimeFormatted}:00`,
+        });
         totalTimeDisplay.textContent = 'Invalid date/time format';
       }
     } catch (error) {
