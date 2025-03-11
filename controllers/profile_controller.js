@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import os from 'os';
 import Auction from '../models/auction.js';
 import User from '../models/user.js';
-import db from '../models/index.js';
+import db, { role } from '../models/index.js';
 import passportConfig from '../config/passport.js';
 import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
 
@@ -74,6 +74,48 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       isloggedin: req.isAuthenticated(),
     };
     res.redirect('/');
+  }
+});
+
+// Get user information for a given user ID
+router.get('/user/:account_id', checkAuthenticated, async (req, res) => {
+  try {
+    console.log('profile_controller req.params.account_id: ', req.params.account_id);
+    const userId = req.params.account_id;
+
+    // Input Validation
+    if (!userId || userId.trim() === '') {
+      return res.status(400).json({
+        success: false,
+        message: 'No User ID provided',
+      });
+    }
+
+    // Find user in the database
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Return only the necessary fields
+    return res.json({
+      success: true,
+      _id: user._id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      role: user.role,
+      active: user.active,
+    });
+  } catch (error) {
+    console.log('Error fetching user:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error fetching user data',
+    });
   }
 });
 

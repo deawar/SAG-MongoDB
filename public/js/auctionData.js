@@ -176,7 +176,90 @@ function toggleLoading(isLoading) {
   }
 }
 
-// Load existing auctions
+// Cache for user data to avoid redundant API calls
+const userCache = new Map();
+
+// Fetch user data from the server
+async function fetchUserData(userId) {
+  // Check if we already have this user in cache
+  if (userCache.has(userId)) {
+    return userCache.get(userId);
+  }
+
+  try {
+    const response = await fetch(`/user/${userId}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch user data');
+    }
+
+    const userData = await response.json();
+    // Store in cache for future use
+    userCache.set(userId, userData);
+    return userData;
+  } catch (error) {
+    console.error(`Error fetching user ${userId}:`, error);
+    return null;
+  }
+}
+
+// // Load existing auctions
+// async function loadAuctions() {
+//   console.log('Loading auctions...');
+//   const auctionList = document.getElementById('auction-list');
+//   if (!auctionList) {
+//     console.log('Auction list container not found');
+//     return;
+//   }
+
+//   try {
+//     const response = await fetch('/api/auctions');
+//     if (!response.ok) throw new Error('Failed to fetch auctions');
+
+//     const result = await response.json();
+//     const auctions = result.data || [];
+
+//     console.log('Loaded auctions:', auctions.length);
+
+//     if (auctions.length === 0) {
+//       auctionList.innerHTML = `
+//         <div class="card-panel blue lighten-4 blue-text text-darken-4">
+//           No auctions found. Create your first auction below.
+//         </div>
+//       `;
+//       return;
+//     }
+
+//     const tableHTML = generateAuctionTable(auctions);
+//     auctionList.innerHTML = tableHTML;
+//     console.log('Auctions table rendered');
+
+//     // Safely initialize Materialize components
+//     try {
+//       // Only initialize specific components we know exist
+//       const selects = auctionList.querySelectorAll('select');
+//       if (selects.length > 0) {
+//         M.FormSelect.init(selects);
+//       }
+//     } catch (error) {
+//       console.warn('Non-critical error initializing Materialize components:', error);
+//     }
+
+//     // Set up checkbox handlers
+//     setupCheckboxHandlers();
+
+//     // Scroll to the auction list
+//     auctionList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+//   } catch (error) {
+//     console.error('Error loading auctions:', error);
+//     auctionList.innerHTML = `
+//       <div class="card-panel red lighten-4 red-text text-darken-4">
+//         Error loading auctions: ${error.message}
+//       </div>
+//     `;
+//   }
+// }
+
+// Modified load auctions function to handle the async table generation
 async function loadAuctions() {
   console.log('Loading auctions...');
   const auctionList = document.getElementById('auction-list');
@@ -186,6 +269,13 @@ async function loadAuctions() {
   }
 
   try {
+    // Show loading indicator
+    auctionList.innerHTML = `
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    `;
+
     const response = await fetch('/api/auctions');
     if (!response.ok) throw new Error('Failed to fetch auctions');
 
@@ -203,7 +293,8 @@ async function loadAuctions() {
       return;
     }
 
-    const tableHTML = generateAuctionTable(auctions);
+    // Generate table with user data lookup
+    const tableHTML = await generateAuctionTable(auctions);
     auctionList.innerHTML = tableHTML;
     console.log('Auctions table rendered');
 
@@ -285,11 +376,10 @@ async function deleteSelectedAuctions() {
   }
 }
 
-// Generate HTML for a single auction row
-function generateAuctionRow(auction) {
+// Modified function to generate a single auction row with user info
+async function generateAuctionRow(auction) {
   // Safe date parsing with fallbacks
-  let startBase; let
-    endBase;
+  let startBase; let endBase;
 
   try {
     startBase = new Date(auction.dateAuctionStart);
@@ -364,6 +454,19 @@ function generateAuctionRow(auction) {
     hour12: true,
   });
 
+  // Get user info for the organizer
+  let organizerName = 'N/A';
+  if (auction.organizer) {
+    const userData = await fetchUserData(auction.organizer);
+    if (userData && userData.first_name && userData.last_name) {
+      organizerName = `${userData.first_name} ${userData.last_name}`;
+    } else if (userData && userData.first_name) {
+      organizerName = userData.first_name;
+    } else {
+      organizerName = auction.organizer; // Fallback to ID if user not found
+    }
+  }
+
   return `
     <tr>
       <td>
@@ -377,12 +480,111 @@ function generateAuctionRow(auction) {
       <td>${formattedStartDate}</td>
       <td>${formattedEndDate}</td>
       <td>${auction.auctionTotalTime || 'N/A'}</td>
-      <td>${auction.organizer || 'N/A'}</td>
+      <td>${organizerName}</td>
       <td>${auction.location || 'N/A'}</td>
       <td>${status}</td>
     </tr>
   `;
 }
+
+// // Generate HTML for a single auction row
+// function generateAuctionRow(auction) {
+//   // Safe date parsing with fallbacks
+//   let startBase; let
+//     endBase;
+
+//   try {
+//     startBase = new Date(auction.dateAuctionStart);
+//     if (isNaN(startBase.getTime())) {
+//       startBase = new Date(); // Fallback to current date
+//     }
+//   } catch (e) {
+//     console.error('Error parsing start date:', e);
+//     startBase = new Date();
+//   }
+
+//   try {
+//     endBase = new Date(auction.dateAuctionStop);
+//     if (isNaN(endBase.getTime())) {
+//       // Fallback to start date + 1 day
+//       endBase = new Date(startBase);
+//       endBase.setDate(endBase.getDate() + 1);
+//     }
+//   } catch (e) {
+//     console.error('Error parsing end date:', e);
+//     endBase = new Date(startBase);
+//     endBase.setDate(endBase.getDate() + 1);
+//   }
+
+//   // Parse and set times safely
+//   try {
+//     if (auction.timeAuctionStart) {
+//       const [startHours, startMinutes] = auction.timeAuctionStart.split(':');
+//       startBase.setHours(parseInt(startHours) || 0, parseInt(startMinutes) || 0, 0);
+//     }
+//   } catch (e) {
+//     console.error('Error setting start time:', e);
+//   }
+
+//   try {
+//     if (auction.timeAuctionStop) {
+//       const [endHours, endMinutes] = auction.timeAuctionStop.split(':');
+//       endBase.setHours(parseInt(endHours) || 0, parseInt(endMinutes) || 0, 0);
+//     }
+//   } catch (e) {
+//     console.error('Error setting end time:', e);
+//   }
+
+//   const now = new Date();
+//   let status;
+
+//   if (now < startBase) {
+//     status = '<span class="new badge blue">Upcoming</span>';
+//   } else if (now > endBase) {
+//     status = '<span class="new badge grey">Ended</span>';
+//   } else {
+//     status = '<span class="new badge green">Active</span>';
+//   }
+
+//   const formattedStartDate = startBase.toLocaleString('en-US', {
+//     weekday: 'short',
+//     year: 'numeric',
+//     month: 'short',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//     hour12: true,
+//   });
+
+//   const formattedEndDate = endBase.toLocaleString('en-US', {
+//     weekday: 'short',
+//     year: 'numeric',
+//     month: 'short',
+//     day: 'numeric',
+//     hour: '2-digit',
+//     minute: '2-digit',
+//     hour12: true,
+//   });
+
+//   return `
+//     <tr>
+//       <td>
+//         <label>
+//           <input type="checkbox" class="filled-in auction-select" data-id="${auction._id || ''}" />
+//           <span></span>
+//         </label>
+//       </td>
+//       <td>${auction.auctionId || 'N/A'}</td>
+//       <td>${auction.charityName || 'N/A'}</td>
+//       <td>${formattedStartDate}</td>
+//       <td>${formattedEndDate}</td>
+//       <td>${auction.auctionTotalTime || 'N/A'}</td>
+//       <td>${auction.organizer || 'N/A'}</td>
+//       <td>${auction.location || 'N/A'}</td>
+//       <td>${status}</td>
+//     </tr>
+//   `;
+// }
 
 // Checkbox and Delete Functions
 function setupCheckboxHandlers() {
@@ -398,7 +600,45 @@ function setupCheckboxHandlers() {
 }
 
 // Generate auction table HTML
-function generateAuctionTable(auctions) {
+// function generateAuctionTable(auctions) {
+//   return `
+//     <table class="striped highlight responsive-table">
+//       <thead>
+//         <tr>
+//           <th>
+//             <label>
+//               <input type="checkbox" class="filled-in" id="selectAll" />
+//               <span></span>
+//             </label>
+//           </th>
+//           <th>Auction ID</th>
+//           <th>Charity Name</th>
+//           <th>Start Date/Time</th>
+//           <th>End Date/Time</th>
+//           <th>Total Time</th>
+//           <th>Organizer</th>
+//           <th>Location</th>
+//           <th>Status</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         ${auctions.map((auction) => generateAuctionRow(auction)).join('')}
+//       </tbody>
+//     </table>
+//   `;
+// }
+
+// Modified function to generate auction table HTML
+async function generateAuctionTable(auctions) {
+  // First, collect all unique organizer IDs
+  const organizerIds = [...new Set(auctions.map((auction) => auction.organizer))];
+
+  // Fetch all user data in parallel
+  await Promise.all(organizerIds.map((id) => fetchUserData(id)));
+
+  // Now generate table rows with the user data from cache
+  const tableRows = await Promise.all(auctions.map((auction) => generateAuctionRow(auction)));
+
   return `
     <table class="striped highlight responsive-table">
       <thead>
@@ -420,7 +660,7 @@ function generateAuctionTable(auctions) {
         </tr>
       </thead>
       <tbody>
-        ${auctions.map((auction) => generateAuctionRow(auction)).join('')}
+        ${tableRows.join('')}
       </tbody>
     </table>
   `;
