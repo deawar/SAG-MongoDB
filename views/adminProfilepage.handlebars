@@ -133,14 +133,14 @@
                     <div class="column">
                     </div>
                 {{> upload }}
-                    <div class="row" id="startGal">
-                    {{else}}
+                {{else}}
                             <p style="text-align: center">Please got to Account Info and validate your account by verifying your email address.</p>
                             <p style="text-align: center"><b>You will find it at the bottom of the Account Info page.</b></p>
                             <button class="btn-small" onclick="openPage('aboutMe', this, 'white')">Account Info</button> 
                             
-                            {{/if}}
-                    </div>
+                {{/if}}
+                <div class="row" id="startGal">
+                </div>
             </div>
         </div>
 <!-- Admin User Account Info -->
@@ -464,9 +464,6 @@
 
     /*the nabar*/
 
-
-
-
     /*About me page style*/
 
     {{!-- .hero-image {
@@ -537,73 +534,7 @@
     // Get the element with id="defaultOpen" and click on it
     document.addEventListener("DOMContentLoaded", function () {
     
-
-
-
-                    // Date and time picker replacements
-            //      function setupDatePicker(id) {
-            //          const input = document.getElementById(id);
-            //          if (input) {
-            //              console.log('Setting up date picker for', id);
-            //              input.addEventListener("focus", function () {
-            //                  this.type = "date";
-            //                  console.log('Date picker activated for', date);//
-            //              });
-            //          }
-            //      }
-
-            //      function setupTimePicker(id) {
-            //          const input = document.getElementById(id);
-            //          if (input) {
-            //              input.addEventListener("focus", function () {
-            //                  this.type = "time";
-            //                  console.log('Time picker activated for', time);
-            //              });
-            //          }
-            //      }
-
-            //      setupDatePicker("dateAuctionStart");
-            //      setupDatePicker("dateAuctionStop");
-            //      setupTimePicker("timeAuctionStart");
-            //      setupTimePicker("timeAuctionStop");
-
-                    // Auction duration calculation
-            //      function calculateAuctionDuration() {
-            //          const dateStart = document.getElementById("dateAuctionStart").value;
-            //          const timeStart = document.getElementById("timeAuctionStart").value;
-            //          const dateStop = document.getElementById("dateAuctionStop").value;
-            //          const timeStop = document.getElementById("timeAuctionStop").value;
-            //          const output = document.getElementById("auction_total_time");
-
-            //          if (!dateStart || !timeStart || !dateStop || !timeStop) {
-            //              output.textContent = "Please fill in all date and time fields.";
-            //              return;
-            //          }
-
-            //          const startDateTime = new Date(`${dateStart}T${timeStart}`);
-            //          const endDateTime = new Date(`${dateStop}T${timeStop}`);
-
-            //          if (endDateTime <= startDateTime) {
-            //              output.textContent = "End time must be after start time.";
-            //              return;
-            //          }
-
-            //          const diffMs = endDateTime - startDateTime;
-            //          const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-            //          const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            //          const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-            //          output.textContent = `${days} days, ${hours} hours, and ${minutes} minutes`;
-            //      }
-
-            //      ["dateAuctionStart", "timeAuctionStart", "dateAuctionStop", "timeAuctionStop"].forEach(id => {
-            //          const input = document.getElementById(id);
-            //          if (input) {
-            //              input.addEventListener("change", calculateAuctionDuration);
-            //          }
-            //      });
-
-        // Tab navigation
+      // Tab navigation
       window.openPage = function (pageName, elmnt, color) {
           document.querySelectorAll(".tabcontent").forEach(tab => tab.style.display = "none");
           document.querySelectorAll(".tablink").forEach(tab => tab.style.backgroundColor = "");

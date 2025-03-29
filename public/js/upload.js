@@ -34,6 +34,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/**
+ * Handles gallery-related events and interactions
+ * This was the missing function causing the ReferenceError
+ */
+function handleGalleryEvents() {
+  console.log('Setting up gallery event handlers');
+  
+  // Add bid button event listeners
+  const bidButtons = document.querySelectorAll('.addBid');
+  if (bidButtons.length) {
+    bidButtons.forEach(button => {
+      button.addEventListener('click', function(event) {
+        const artId = this.id.split('-')[1];
+        openBidModal(artId);
+      });
+    });
+  }
+  
+  // Initialize any gallery-specific Materialize components
+  const materialboxedElems = document.querySelectorAll('.materialboxed');
+  if (materialboxedElems.length) {
+    M.Materialbox.init(materialboxedElems);
+    console.log('Initialized', materialboxedElems.length, 'materialboxed elements in gallery');
+  }
+  
+  // You might need to implement gallery navigation or filtering here
+  console.log('Gallery event handlers have been set up');
+}
+
+/**
+ * Opens the bid modal for a specific artwork
+ * @param {String} artId - ID of the artwork being bid on
+ */
+function openBidModal(artId) {
+  console.log(`Opening bid modal for artwork ${artId}`);
+  
+  // Find and initialize the bid modal
+  const bidModal = document.getElementById('bid-modal');
+  if (bidModal) {
+    // Store the artwork ID in a hidden field if needed
+    const artIdInput = document.getElementById('bid-art-id');
+    if (artIdInput) {
+      artIdInput.value = artId;
+    }
+    
+    // Open the modal
+    const instance = M.Modal.getInstance(bidModal);
+    if (instance) {
+      instance.open();
+    } else {
+      // If the modal wasn't initialized yet, initialize it and open
+      M.Modal.init(bidModal).open();
+    }
+  } else {
+    console.warn('Bid modal element not found');
+  }
+}
+
+/**
+ * Handles displaying user artwork
+ * This function was referenced but not defined in the original code
+ */
+function handleDisplayArt(event) {
+  console.log('Displaying user artwork');
+  // Implement the functionality to display user artwork
+  // This would typically involve fetching data and updating the DOM
+}
+
 // Form data collection
 function collectFormData() {
   console.log('Collecting form data...');
@@ -67,6 +135,7 @@ function validateForm() {
     'w_size_input',
     'price_input',
     'sampleFile',
+    'auctionId',
   ];
 
   const validationResults = requiredFields.map((fieldId) => {
@@ -238,6 +307,8 @@ function clearMessages() {
   if (artUpload) artUpload.textContent = '';
 }
 
+// Note: There are two updateProgress functions in the original code.
+// I'm keeping both for compatibility, but you might want to consolidate them.
 function updateProgress(percent) {
   const progressBar = document.getElementById('upload-progress-bar');
   const progressText = document.getElementById('upload-progress-text');

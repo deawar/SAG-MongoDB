@@ -4,6 +4,7 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import flash from 'express-flash-notification';
 import Auction from '../models/auction.js';
+import Artwork from '../models/artwork.js';
 import db from '../models/index.js';
 import User from '../models/index.js';
 import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
@@ -124,6 +125,79 @@ router.get('/', (req, res) => {
   console.log('Line 50 dashboard get with {{school}}: ', req.res.user);
   const first_name = findFirstName(res);
   res.render('homePage', { title: 'Home', school: 'Make Art, Have Fun!', first_name });
+});
+
+// Get Route to retrieve all artworks from the database
+router.get('/artworks', async (req, res) => {
+  try {
+    // Optional query parameters for filtering
+    const { artistId, auctionId, limit = 50 } = req.query;
+
+    // Build query object
+    const query = {};
+    if (artistId) query.artistId = artistId;
+    if (auctionId) query.auctionId = auctionId;
+
+    // Query the database, sort by newest first, limit results
+    const artworks = await Artwork.find(query)
+      .sort({ createdAt: -1 })
+      .limit(parseInt(limit, 10));
+
+    // Map to include only necessary fields
+    const mappedArtworks = artworks.map((artwork) => ({
+      _id: artwork._id,
+      title: artwork.art_name_input,
+      description: artwork.description_input || '',
+      artist_firstname: artwork.artist_firstname || 'Unknown Artist',
+      artist_lastname: artwork.artist_lastname || '',
+      artistId: artwork.artistId,
+      auctionId: artwork.auctionId,
+      imageUrl: artwork.img.data,
+      startingBid: artwork.startingBid,
+      currentBid: artwork.currentBid,
+      createdAt: artwork.createdAt,
+    }));
+
+    return res.json({
+      success: true,
+      count: mappedArtworks.length,
+      artworks: mappedArtworks,
+    });
+  } catch (error) {
+    console.error('Error fetching artworks:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error fetching artwork data',
+    });
+  }
+});
+
+/**
+ * GET /api/artworks/:id
+ * Retrieves a specific artwork by ID
+ */
+router.get('/artworks/:id', async (req, res) => {
+  try {
+    const artwork = await Artwork.findById(req.params.id);
+
+    if (!artwork) {
+      return res.status(404).json({
+        success: false,
+        message: 'Artwork not found',
+      });
+    }
+
+    return res.json({
+      success: true,
+      artwork,
+    });
+  } catch (error) {
+    console.error('Error fetching artwork:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error fetching artwork data',
+    });
+  }
 });
 
 export default router;

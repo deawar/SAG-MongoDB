@@ -75,11 +75,11 @@ footer {
   border-top: 1px solid black;
 }
 
-.brand-logo{
-  float: left;
-  height: 10%;
-  padding: 1%;
-  position: absolute; 
+.brand-logo.responsive-img{
+  height: 94px; /* Height for desktop - matches Materialize's navbar height */
+  width: auto;
+  padding: 5px;
+  vertical-align: middle;
 }
 
 .hero-image {
@@ -296,8 +296,11 @@ body{
 #headerBg{
   background-image: url("../resources/webpage/71a4q7kseqL._AC_SL1100_.jpg");
   /* background-image: url("https://images-na.ssl-images-amazon.com/images/I/71a4q7kseqL._AC_SL1100_.jpg"); */
-  height: 200px;
-  
+  height: 200px; /* Set a fixed height that accommodates your largest content */
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0;
+  transition: all 0.3s ease;   
   
 }
 
@@ -636,16 +639,17 @@ div.desc {
   width: 24.99999%;
 }
 
-@media only screen and (max-width: 700px) {
-  .responsive {
-    width: 49.99999%;
-    margin: 6px 0;
+/* For medium screens */
+@media only screen and (max-width: 992px) {
+  .brand-logo.responsive-img {
+    height: 56px; /* Slightly smaller for tablets */
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .responsive {
-    width: 100%;
+/* For small screens */
+@media only screen and (max-width: 600px) {
+  .brand-logo.responsive-img {
+    height: 48px; /* Even smaller for mobile */
   }
 }
 

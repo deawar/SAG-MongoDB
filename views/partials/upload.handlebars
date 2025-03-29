@@ -216,6 +216,17 @@
                                             <div class="input-field col s12">
                                                 <input disabled id="auctionId" type="text" value="{{auctionId}}">
                                                 <label for="auctionId">Auction ID</label>
+                                                <div class="input-field col s6">
+                                                <p>
+                                                    <label>
+                                                        <input class="with-gap" name="chooseSchool" id="location" type="radio" value="{{school}}" checked required/>
+                                                        <span>Only {{school}}</span>
+                                                    </label>
+                                                    <label>
+                                                        <input class="with-gap" name="chooseSchool" id="location" type="radio" value="any" required/>
+                                                        <span>Any School</span>
+                                                    </label>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -232,6 +243,5 @@
                         </div>
                     </div>
                 </div>
-
-<script type="text/javascript" src="./js/materialize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script type="text/javascript" src="./js/upload.js"></script>

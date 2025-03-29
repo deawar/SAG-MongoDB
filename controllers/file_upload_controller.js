@@ -255,7 +255,7 @@ router.get('/get-imgs', checkAuthenticated, async (req, res) => {
       pics.push(images);
     }
 
-    console.log('Line 255 file_upload_controller *********> # of images: ', items.length);
+    console.log('Line 258 file_upload_controller *********> # of images: ', items.length);
     return res.status(200).send(pics);
   } catch (error) {
     console.error('Error fetching images:', error);
