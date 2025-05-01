@@ -1,44 +1,45 @@
-/* eslint-disable prefer-const */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-plusplus */
-/* eslint-disable camelcase */
-const express = require('express');
-const flash = require('express-flash-notification');
-const bodyParser = require('body-parser');
-const multer = require('multer');
-const passport = require('passport');
-const fs = require('fs');
-const { ObjectId } = require('bson');
-const Artwork = require('../models/artwork');
-const School = require('../models/school');
-const User = require('../models/user');
-const Bid = require('../models/bid');
+import express from 'express';
+import flash from 'express-flash-notification';
+import bodyParser from 'body-parser';
+import multer from 'multer';
+import passport from 'passport';
+import fs from 'fs';
+import { ObjectId } from 'bson';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Artwork from '../models/artwork.js';
+import School from '../models/school.js';
+import User from '../models/user.js';
+import Bid from '../models/bid.js';
+import helpers from '../config/helpers.js';
+import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
+import asyncMiddleware from '../config/middleware/asyncMiddleware.js';
+import passportConfig from '../config/passport.js';
+
+// const { ObjectId } = pkg; // Removed redundant declaration
 
 const app = express();
-require('../config/passport')(passport);
-const helpers = require('../config/helpers');
-const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
-const asyncMiddleware = require('../config/middleware/asyncMiddleware');
+passportConfig(passport);
 
 const router = express.Router();
-app.use(express.static(`${__dirname}/public`));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Find school Fx
 function findSchoolName(req) {
-  // eslint-disable-next-line prefer-destructuring
   let school;
-  // school = res.req.user.school;
   if (req.user === null || req.user === undefined) {
     school = 'Make Art, Have Fun!';
     return school;
   }
-  // eslint-disable-next-line prefer-destructuring
   school = req.user.school;
   const uploadPath = `./public/upload/${school}/`;
-  console.log('School: ', school);
   if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath);
   }
@@ -47,26 +48,22 @@ function findSchoolName(req) {
 
 // Find Email Fx
 function findEmail(req) {
-  // eslint-disable-next-line prefer-destructuring
   let email;
   if (req.user === null || req.user === undefined) {
     email = 'Not Found';
     return email;
   }
-  // eslint-disable-next-line prefer-destructuring
   email = req.user.email;
   return email;
 }
 
 // Find Role Fx
 function findRole(req) {
-  // eslint-disable-next-line prefer-destructuring
   let role;
   if (req.user === null || req.user === undefined) {
     role = 'Not Found';
     return role;
   }
-  // eslint-disable-next-line prefer-destructuring
   role = req.user.role;
   if (role === 'student') {
     role = 'student';
@@ -82,38 +79,25 @@ function findRole(req) {
 
 // Set Query based on Role Fx
 function setQuery(req) {
-  // eslint-disable-next-line prefer-destructuring
-  let role;
-  let query;
   if (req.user === null || req.user === undefined) {
-    role = 'Not Found';
-    return role;
+    return { error: 'Not Found' };
   }
-  // eslint-disable-next-line prefer-destructuring
-  role = req.user.role;
+  const { role } = req.user;
   if (role === 'student') {
-    query = { artist_email_input: findEmail(req) };
-    return query;
+    return { artist_email_input: findEmail(req) };
+  } if (role === 'admin') {
+    return { school: findSchoolName(req) };
   }
-  if (role === 'admin') {
-    // const query = { school: findSchoolName(req), approved: true };
-    query = { school: findSchoolName(req) };
-    return query;
-  }
-  role = 'bidder';
-  query = { school: findSchoolName(req), approved: true };
-  return query;
+  return { school: findSchoolName(req), approved: true };
 }
 
 // Find first_name Fx
 function findFirstName(req) {
-  // eslint-disable-next-line prefer-destructuring
   let first_name;
   if (req.user === null || req.user === undefined) {
     first_name = 'Your';
     return first_name;
   }
-  // eslint-disable-next-line prefer-destructuring
   first_name = req.user.first_name;
   return first_name;
 }
@@ -124,6 +108,7 @@ function getFileType(file) {
   const getThisType = splitfile[splitfile.length - 1];
   return getThisType;
 }
+
 // Find Id
 function findId(req) {
   let reqvar;
@@ -131,7 +116,6 @@ function findId(req) {
     reqvar = 'Not Available';
     return reqvar;
   }
-  // eslint-disable-next-line no-underscore-dangle
   reqvar = req.user._id;
   return reqvar;
 }
@@ -139,11 +123,8 @@ function findId(req) {
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, `./public/upload/${findSchoolName(req)}`);
-    // cb(null, uploadPath);
   },
-  // By default, multer removes file extensions so let's add them back
   filename(req, file, cb) {
-    // cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
     cb(null, `${findId(req)}-${file.originalname}`);
   },
 });
@@ -154,259 +135,243 @@ const upload = multer({
   fileFilter: helpers.imageFilter,
 }).single('sampleFile');
 
-// router.post('/upload', checkAuthenticated, upload.single('sampleFile'), (req, res) => {
-router.post('/upload', checkAuthenticated, upload, (req, res) => {
-  console.log('====================================');
-  console.log('Line 101---------->price_input sent in req.body.price_input: ', req.body.price_input);
-  console.log('Line 102 ==>file_upload_controller req.body: ', req.body);
-  console.log('Line 103 ===>File_upload_controller File res.files: ', req.files);
-  console.log('Text fields sent with file-req.body: ', req.body);
-  const school = findSchoolName(req);
-  let _id;
-  _id = findId(req);
-  console.log('====================================');
-  console.log('_id: ', _id);
-  console.log('====================================');
-  app.use(express.static(`public/upload/${findSchoolName(req)}`));
-  console.log('line 113-->School: ', school);
-  const uploadPath = `./public/upload/${school}/`;
+// Route to upload files
+router.post('/upload', checkAuthenticated, upload, async (req, res) => {
+  try {
+    console.log('====================================');
+    console.log('Line 142---------->price_input sent in req.body.price_input: ', req.body.price_input);
+    console.log('Line 143 ==>file_upload_controller req.body: ', req.body);
+    console.log('====================================');
 
-  if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath);
-  }
-  const first_name = findFirstName(req);
-  console.log('line 129-->File_name: ', req.file.filename);
-  const fileExt = getFileType(req.file.filename);
-  console.log('line 131------>File Extension: ', fileExt);
+    if (!req.file) {
+      return res.status(400).send('No file uploaded');
+    }
 
-  const displayPath = uploadPath;
-  const newArtwork = new Artwork({
-    artist_firstname_input: req.body.artist_firstname_input,
-    artist_lastname_input: req.body.artist_lastname_input,
-    artist_email_input: req.body.artist_email_input,
-    art_name_input: req.body.art_name_input,
-    depth: req.body.d_size_input,
-    description_input: req.body.description_input,
-    height: req.body.h_size_input,
-    medium_input: req.body.medium_input,
-    price: req.body.price_input,
-    width: req.body.w_size_input,
-    school: req.body.school_input,
-    approved: req.body.approved,
-    img: {
-      // eslint-disable-next-line max-len
-      // data: fs.readFileSync(path.join(`${__dirname}/public/upload/${findSchoolName(req)}/${findId(req)}-${req.file.originalname}`)),
-      data: fs.readFileSync(`./public/upload/${findSchoolName(req)}/${findId(req)}-${req.file.originalname}`),
+    const school = findSchoolName(req);
+    const _id = findId(req);
+    const fileExt = getFileType(req.file.filename);
+
+    // Create new artwork with all fields from the form
+    const newArtwork = new Artwork({
+      artist_firstname_input: req.body.artist_firstname_input,
+      artist_lastname_input: req.body.artist_lastname_input,
+      artist_email_input: req.body.artist_email_input,
+      art_name_input: req.body.art_name_input,
+      description_input: req.body.description_input,
+      medium_input: req.body.medium_input,
+      height: req.body.h_size_input,
+      width: req.body.w_size_input,
+      depth: req.body.d_size_input,
+      price: req.body.price_input,
+      school,
+      auctionId,
+      approved: false,
+      img: {
+        data: fs.readFileSync(path.join('./public/upload', school, req.file.filename)),
+        contentType: `image/${fileExt}`,
+      },
+    });
+    console.log('Saving artwork to database:', {
+      filename: req.file.filename,
       contentType: `image/${fileExt}`,
-    },
-  });
-  // newArtwork.create(newArtwork, (err, item) => {
-  //   if (err) {
-  console.log('+++++++++++++++++++>Line 156 newArtwork: ', newArtwork);
-  const uploadedArtwork = `<img src="${displayPath}" width="200">`;
-
-  newArtwork.save()
-    .then((artwork) => {
-      console.log('Document inserted succussfully!', artwork);
-      // eslint-disable-next-line max-len
-      // res.locals.message = req.flash('success', `Document ${artwork.art_name_input} inserted succussfully!`);
-      res.status(200);
-    })
-    .catch((error) => {
-      console.error('Line 166->in catch error block', error);
-      res.send(400, 'Bad Request');
+      school,
     });
-});
 
-const newArtwork = require('../models/artwork');
+    const savedArtwork = await newArtwork.save();
+    console.log('Artwork saved successfully:', savedArtwork._id);
 
-router.get('/get-imgs', checkAuthenticated, (req, res) => {
-  if (req.isAuthenticated()) {
-    const role = findRole(req);
-    const pics = [];
-    let artInfo = {};
-    const query = setQuery(req);
-    // const query = { artist_email_input: findEmail(req) }; //<--check role here
-    console.log('Email: ', query);
-    newArtwork.find(query, (err, items) => {
-      if (!items || items.length === 0) {
-        console.log(err);
-        return res.status(404).json({
-          err: 'No files exist',
-        });
-      }
-      console.log('*********> # of images: ', items.length);
-      for (let i = 0; i < items.length; ++i) {
-        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
-        const base = Buffer.from(items[i].img.data);
-        const conversion = base.toString('base64');
-        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
-        artInfo = {
-          artId: items[i]._id,
-          artistFirstName: items[i].artist_firstname_input,
-          artistLastName: items[i].artist_lastname_input,
-          artistEmail: items[i].artist_email_input,
-          artName: items[i].art_name_input,
-          artDesc: items[i].description_input,
-          artMedium: items[i].medium_input,
-          artHeight: items[i].height,
-          artWidth: items[i].width,
-          artDepth: items[i].depth,
-          artPrice: items[i].price,
-          artApproved: items[i].approved,
-          artReviewer: role,
-        };
-        pics.push(artInfo);
-        pics.push(images);
-        console.log('------------->artInfo after artInfo push: ', artInfo);
-        console.log('------------->pics after artInfo push: ', pics[i].artId);
-      }
-      return res.status(200).send(pics);
+    // Send back the saved artwork data
+    res.status(200).json({
+      message: 'Upload successful',
+      artwork_name: savedArtwork.art_name_input,
+      id: savedArtwork._id,
+    });
+  } catch (error) {
+    console.error('Error in upload:', error);
+    res.status(400).json({
+      error: error.message || 'Failed to upload artwork',
     });
   }
 });
 
-// Gallery Image download
-router.get('/get-gallery-imgs', checkAuthenticated, (req, res) => {
-  if (req.isAuthenticated()) {
+router.get('/get-imgs', checkAuthenticated, async (req, res) => {
+  try {
+    const role = findRole(req);
+    const query = setQuery(req);
+    console.log('Email: ', query);
+
+    const items = await Artwork.find(query);
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist',
+      });
+    }
+
     const pics = [];
-    let artInfo = {};
-    const galleryschool = { school: findSchoolName(req), approved: true };
-    const query = galleryschool;
-    console.log('Line 247 file_upload_controller school_input: ', query);
-    newArtwork.find(query, (err, items) => {
-      if (!items || items.length === 0) {
-        console.log(err);
-        return res.status(404).json({
-          err: 'No files exist',
-        });
-      }
-      console.log('Line 255 file_upload_controller *********> # of images: ', items.length);
-      for (let i = 0; i < items.length; ++i) {
-        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
-        const base = Buffer.from(items[i].img.data);
-        const conversion = base.toString('base64');
-        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`get/imgs-------------> items[${i}].img.data: `, items[i].img.data);
-        artInfo = {
-          artId: items[i]._id,
-          artistFirstName: items[i].artist_firstname_input,
-          artistLastName: items[i].artist_lastname_input,
-          artistEmail: items[i].artist_email_input,
-          artName: items[i].art_name_input,
-          artDesc: items[i].description_input,
-          artMedium: items[i].medium_input,
-          artHeight: items[i].height,
-          artWidth: items[i].width,
-          artDepth: items[i].depth,
-          artPrice: items[i].price,
-          artApproved: items[i].approved,
-        };
-        pics.push(artInfo);
-        pics.push(images);
-        console.log('Line 278 file_upload_controller------------->artInfo after artInfo push: ', artInfo);
-        console.log('Line 279 file_upload_controller------------->pics after artInfo push: ', pics[i].artId);
-      }
-      return res.status(200).send(pics);
+    for (let i = 0; i < items.length; ++i) {
+      console.log('get/imgs===============> items[i]._id: ', items[i]._id);
+      let base = Buffer.from(items[i].img.data);
+      let conversion = base.toString('base64');
+      let images = `data:${items[i].img.contentType};base64, ${conversion}`;
+
+      let artInfo = {
+        artId: items[i]._id,
+        artistFirstName: items[i].artist_firstname_input,
+        artistLastName: items[i].artist_lastname_input,
+        artistEmail: items[i].artist_email_input,
+        artDesc: items[i].description_input,
+        artMedium: items[i].medium_input,
+        artHeight: items[i].height,
+        artDepth: items[i].depth,
+        artPrice: items[i].price,
+        artApproved: items[i].approved,
+        artAuctionId: items[i].auctionId,
+        artReviewer: role,
+      };
+      pics.push(artInfo);
+
+      // Second push with full info
+      base = Buffer.from(items[i].img.data);
+      conversion = base.toString('base64');
+      images = `data:${items[i].img.contentType};base64, ${conversion}`;
+      artInfo = {
+        artId: items[i]._id,
+        artistFirstName: items[i].artist_firstname_input,
+        artistLastName: items[i].artist_lastname_input,
+        artistEmail: items[i].artist_email_input,
+        artName: items[i].art_name_input,
+        artDesc: items[i].description_input,
+        artMedium: items[i].medium_input,
+        artHeight: items[i].height,
+        artWidth: items[i].width,
+        artDepth: items[i].depth,
+        artPrice: items[i].price,
+        artApproved: items[i].approved,
+        artAuctionId: items[i].auctionId,
+        artReviewer: role,
+      };
+      pics.push(artInfo);
+      pics.push(images);
+    }
+
+    console.log('Line 258 file_upload_controller *********> # of images: ', items.length);
+    return res.status(200).send(pics);
+  } catch (error) {
+    console.error('Error fetching images:', error);
+    return res.status(500).json({
+      err: 'Error fetching images',
     });
   }
 });
 
 // Approval button by _id
-router.post('/approve', checkAuthenticated, (req, res) => {
-  console.log('req.body: ', req.body._id);
-  // const query = { _id: `ObjectId('${req.body._id}')` };
-  const query = `${req.body._id}`;
-  const options = { new: true };
-  console.log('query: ', query);
-  // newArtwork.findByIdAndUpdate((req.params.id, req.body),
-  newArtwork.findByIdAndUpdate(query, { $set: { approved: true } }, options, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.send(400, 'Bad Request');
+router.post('/approve', checkAuthenticated, async (req, res) => {
+  try {
+    console.log('req.body: ', req.body._id);
+    const query = `${req.body._id}`;
+    const options = { new: true };
+    console.log('query: ', query);
+
+    const updatedArtwork = await Artwork.findByIdAndUpdate(
+      query,
+      { $set: { approved: true } },
+      options,
+    );
+
+    if (!updatedArtwork) {
+      return res.status(404).send('Artwork not found');
     }
-    console.log('Artwork approved!', data);
-    res.status(200).send(data);
-  });
+
+    console.log('Artwork approved!', updatedArtwork);
+    res.status(200).send(updatedArtwork);
+  } catch (error) {
+    console.error('Error approving artwork:', error);
+    res.status(400).send('Bad Request');
+  }
 });
 
-// --------------------- Delete artwork by _id --------------------- //
-router.post('/delete/', checkAuthenticated, (req, res) => {
-  console.log('req.body: ', req.body);
-  newArtwork.findByIdAndDelete((req.params.id, req.body),
-    (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('Data Deleted!');
-        res.send(data);
-      }
-    });
+// Delete artwork by _id
+router.post('/delete/', checkAuthenticated, async (req, res) => {
+  try {
+    const deletedArtwork = await Artwork.findByIdAndDelete(req.params.id);
+
+    if (!deletedArtwork) {
+      return res.status(404).send('Artwork not found');
+    }
+
+    console.log('Data Deleted!');
+
+    // Update related bid if exists
+    const currentId = req.body.bid;
+    if (currentId) {
+      const updatedArtwork = await Artwork.findByIdAndUpdate(
+        req.params.id,
+        { currentId },
+        { new: true },
+      );
+      console.log('Updated bid reference:', updatedArtwork);
+    }
+
+    res.status(200).send(deletedArtwork);
+  } catch (error) {
+    console.error('Error deleting artwork:', error);
+    res.status(400).send('Bad Request');
+  }
 });
 
-// https://stackoverflow.com/questions/21194934/how-to-create-a-directory-if-it-doesnt-exist-using-node-js
+router.get('/get-bid-img', checkAuthenticated, async (req, res) => {
+  try {
+    if (!req.isAuthenticated()) {
+      return res.status(401).send('Not authenticated');
+    }
 
-// ----------------------- Bid Button Gallery --------------------- //
-router.post('/add-bid', checkAuthenticated, (req, res) => {
-  console.log('got Bid: ', req.body);
-  const currentbid = req.body.bid;
-  newArtwork.findByIdAndUpdate((req.params.id, req.body), { currentbid },
-    (err, data) => {
-      if (err) {
-        console.log(err);
-        res.send(400, 'Bad Request');
-      } else {
-        console.log('Bid added to Artwork id: ', req.params.id);
-        res.status(200).send(data);
-      }
-    });
-});
-
-router.get('/get-bid-img', checkAuthenticated, (req, res) => {
-  if (req.isAuthenticated()) {
-    // const role = findRole(req);
-    const pics = [];
-    let artInfo = {};
     const query = setQuery(req);
-    // const query = { artist_email_input: findEmail(req) }; //<--check role here
     console.log('Art ID: ', query);
-    newArtwork.find(query, (err, items) => {
-      if (!items || items.length === 0) {
-        console.log(err);
-        return res.status(404).json({
-          err: 'No files exist',
-        });
-      }
-      console.log('*********> # of images: ', items.length);
-      for (let i = 0; i < items.length; ++i) {
-        console.log('get/imgs===============> items[i]._id: ', items[i]._id);
-        const base = Buffer.from(items[i].img.data);
-        const conversion = base.toString('base64');
-        const images = `data:${items[i].img.contentType};base64, ${conversion}`;
-        console.log(`line 387 get/bid-img-------------> items[${i}].img.data: `, items[i].img.data);
-        artInfo = {
-          artId: items[i]._id,
-          artistFirstName: items[i].artist_firstname_input,
-          artistLastName: items[i].artist_lastname_input,
-          artistEmail: items[i].artist_email_input,
-          artName: items[i].art_name_input,
-          artDesc: items[i].description_input,
-          artMedium: items[i].medium_input,
-          artHeight: items[i].height,
-          artWidth: items[i].width,
-          artDepth: items[i].depth,
-          artPrice: items[i].price,
-          artApproved: items[i].approved,
-          // artReviewer: role,
-        };
-        pics.push(artInfo);
-        pics.push(images);
-        console.log('------------->artInfo after artInfo push: ', artInfo);
-        console.log('------------->pics after artInfo push: ', pics[i].artId);
-      }
-      return res.status(200).send(pics);
+
+    const items = await Artwork.find(query);
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist',
+      });
+    }
+
+    const pics = [];
+    console.log('*********> # of images: ', items.length);
+
+    for (let i = 0; i < items.length; ++i) {
+      console.log('get/imgs===============> items[i]._id: ', items[i]._id);
+      const base = Buffer.from(items[i].img.data);
+      const conversion = base.toString('base64');
+      const images = `data:${items[i].img.contentType};base64, ${conversion}`;
+
+      const artInfo = {
+        artId: items[i]._id,
+        artistFirstName: items[i].artist_firstname_input,
+        artistLastName: items[i].artist_lastname_input,
+        artistEmail: items[i].artist_email_input,
+        artDesc: items[i].description_input,
+        artMedium: items[i].medium_input,
+        artHeight: items[i].height,
+        artWidth: items[i].width,
+        artDepth: items[i].depth,
+        artPrice: items[i].price,
+        artApproved: items[i].approved,
+      };
+
+      pics.push(artInfo);
+      pics.push(images);
+      console.log('------------->artInfo after artInfo push: ', artInfo);
+    }
+
+    return res.status(200).send(pics);
+  } catch (error) {
+    console.error('Error fetching bid images:', error);
+    return res.status(500).json({
+      err: 'Error fetching images',
     });
   }
 });
-module.exports = router;
+
+export default router;

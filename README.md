@@ -7,7 +7,7 @@ SilentAuctionGallery using a MongoDB vs MySQL backend.
 This is a fork of the SilentAuctionGallery Project found at [ankmud01/SilentAuctionGallery](https://github.com/ankmud01/SilentAuctionGallery).
 
 ## Authors: 
-Dean Warren and Jonathan Kelley using the above mentioned project as it's base.
+Dean Warren using the above mentioned project as it's base.
 
 ## Table of Contents
 =====================
@@ -91,5 +91,5 @@ Our reasons for creating this project/app:
 
 ## Questions
 <img src="https://avatars1.githubusercontent.com/u/15312495?s=400&u=ca57805f0913479f15a13ed8e5a1577eb95c0926&v=4" alt="ME" width="150" height="150"><br>
-if you have any questions about the repo contact me or deawar directly at deawar@gmail.com thank you.<br>
+if you have any questions about the repo contact deawar directly at silentauctiongallery@gmail.com thank you.<br>
 If you want to see more of my work please click here [deawar/repos](https://api.github.com/users/deawar/repos).
