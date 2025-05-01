@@ -1,195 +1,173 @@
-const express = require('express');
-const session = require('express-session');
-const flash = require('express-flash-notification');
-const process = require('process');
-const exphbs = require('express-handlebars');
-const path = require('path');
-// const bodyParser = require('body-parser');
-// const fileupload = require('express-fileupload');
-const os = require('os');
-const { MongoClient } = require('mongodb');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const chalk = require('chalk');
-// const LocalStrategy = require('passport-local').Strategy;
-// const passportLocalMongoose = require('passport-local-mongoose');
-const morgan = require('morgan'); // logging middleware
+import express, { urlencoded, json, static as serveStatic } from 'express';
+import dotenv from 'dotenv';
+import session from 'express-session';
+import flash from 'express-flash-notification';
+import exphbs from 'express-handlebars';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { hostname as _hostname } from 'os';
+import mongoose from 'mongoose';
+import passport from 'passport';
+import chalk from 'chalk';
+import morgan from 'morgan';
+
+// Import your local modules
+import passportConfig from './config/passport.js';
+import { on, once } from './models/index.js';
+
+// Import routes
+import dashboardRoutes from './controllers/dashboard_controller.js';
+import signupRoutes from './controllers/signup_controller.js';
+import loginRoutes from './controllers/login_controller.js';
+import donateRoutes from './controllers/donate_controller.js';
+import profileRoutes from './controllers/profile_controller.js';
+import chooseSchoolRoutes from './controllers/choose_school_controller.js';
+import fileUpload from './controllers/file_upload_controller.js';
+import auctionRoutes from './controllers/auction_controller.js';
+
+// Destructure mongoose after import
+const { set, connect, connection } = mongoose;
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const initialize = () => passport.initialize();
+const _session = passport.session();
 
 const app = express();
 
-// const { DB_USER } = process.env;
-// const { DB_PASSWORD } = process.env;
-const { DB_HOST } = process.env;
-// const { DB_NAME } = process.env;
-const { MONGODB_URI } = process.env;
-const { LOCALMONGODB_URI } = process.env;
-// const { DBLOCAL_HOST } = process.env;
+const {
+  DB_HOST, MONGODB_URI, LOCALMONGODB_URI, NODE_ENV, PORT: port, SESSION_SECRET,
+} = process.env;
 
-// const models = require('./models/index.js');
-// const User = require('./models/user');
+const { bold } = chalk;
+const connected = bold.cyan;
+const error = bold.yellow;
+const disconnected = bold.red;
+const termination = bold.magenta;
 
-const connected = chalk.bold.cyan;
-const error = chalk.bold.yellow;
-const disconnected = chalk.bold.red;
-const termination = chalk.bold.magenta;
+set('strictQuery', false);
 
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('bufferCommands', false);
-
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
-  // rsconst uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}?retryWrites=true&w=majority`;
-  const uri = MONGODB_URI;
-  console.log('MongoDB Access string: ', uri);
-  const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
-  mongoose.connect(uri, client);
-  mongoose.connection.on('connected', () => {
-    console.log(connected('Mongoose default connection is open to ', uri));
-  });
-  mongoose.connection.on('error', (err) => {
-    console.log(error(`Mongoose default connection has occured ${err} error`));
-  });
-  mongoose.connection.on('disconnected', () => {
-    console.log(disconnected('Mongoose default connection is disconnected'));
-  });
-  client.connect((err) => {
-    if (err) throw err;
-    // const collection = client.db('test').collection('devices');
-    client.db('test').collection('devices');
-    // perform actions on the collection object
-    client.close();
-  });
-  process.on('SIGINT', () => {
-    mongoose.connection.close(() => {
-      console.log(termination('Mongoose default connection is disconnected due to application termination'));
-      process.exit(0);
+const connectToDatabase = async (uri) => {
+  try {
+    await connect(uri, {
+      // Remove deprecated options and use modern connection settings
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      readPreference: 'primary',
     });
-  });
-} else if (process.env.NODE_ENV === 'test') {
-  // const uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DBLOCAL_HOST}${DB_NAME}/test?retryWrites=true&w=majority`;
-  const uri = LOCALMONGODB_URI;
-  console.log('MongoDB Access string: ', uri);
-  const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
-  mongoose.connect(uri, client);
-  mongoose.connection.on('connected', () => {
     console.log(connected('Mongoose default connection is open to ', uri));
-  });
-  mongoose.connection.on('error', (err) => {
-    console.log(error(`Mongoose default connection has occured ${err} error`));
-  });
-  mongoose.connection.on('disconnected', () => {
+  } catch (err) {
+    console.log(error(`Mongoose default connection has occurred ${err} error`));
+  }
+
+  connection.on('disconnected', () => {
     console.log(disconnected('Mongoose default connection is disconnected'));
   });
-  client.connect((err) => {
-    const collection = client.db('test').collection('devices');
-    // perform actions on the collection object
-    client.close();
-  });
-}
 
-// require('dotenv').config(); move to a dev-dependency must run "node -r dotenv/config server.js"
-// or "npm run start"
+  process.on('SIGINT', async () => {
+    await connection.close();
+    console.log(termination('Mongoose default connection is disconnected due to application termination'));
+    process.exit(0);
+  });
+};
+
+const uri = NODE_ENV === 'test' ? LOCALMONGODB_URI : MONGODB_URI;
+connectToDatabase(uri);
 
 const { pid } = process;
-const PORT = process.env.PORT || 3000;
-const { SESSION_SECRET } = process.env;
-const db = require('./models');
 
-db.on('error', console.error.bind(console, 'connection error:'));
+on('error', console.error.bind(console, 'connection error:'));
 
-console.log('Process PID: ', process.pid);
+console.log('Process PID: ', pid);
 
 // Set Handlebars.
 app.engine(
   'handlebars',
   exphbs({
-    // extname: 'handlebars',
     defaultLayout: 'main',
-    // layoutsDir: path.join(__dirname, 'views/layouts'),
-    partialsDir: [
-      //  path to your partials
-      path.join(__dirname, 'views/partials'),
-    ],
+    partialsDir: [join(__dirname, 'views', 'partials')],
   }),
 );
-// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 app.use(morgan('dev'));
 
 // Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(require('express-session')({
-  secret: SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-}));
-
-// We need to use sessions to keep track of our user's login status
+app.use(json());
+app.use(urlencoded({ extended: true }));
 app.use(session({
-  key: 'user_sid',
-  secret: SESSION_SECRET,
-  // httpOnly: true,
-  // need to understand this more
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
-    secure: true,
-    expires: 600000,
+    secure: process.env.NODE_ENV === 'production', // true in production
+    maxAge: 24 * 60 * 60 * 1000,
   },
 }));
-
-// using passport and session
-app.use(passport.initialize());
-app.use(passport.session());
-
-require('./config/passport')(app);
 
 // Using flash for messages
 app.use(flash(app));
 
-// Serve static content for the app from the "public" directory in the application directory.
-// app.use(express.static('public'));
-app.use(express.static(`${__dirname}/public`));
+// using passport and session
+app.use(passport.initialize());
+app.use(passport.session());
+passportConfig(app);
 
-// Import routes and give the server access to them.
-const dashboardRoutes = require('./controllers/dashboard_controller.js');
-const signupRoutes = require('./controllers/signup_controller.js');
-const loginRoutes = require('./controllers/login_controller.js');
-const donateRoutes = require('./controllers/donate_controller.js');
-const profileRoutes = require('./controllers/profile_controller.js');
-const chooseSchoolRoutes = require('./controllers/choose_school_controller.js');
-const fileUpload = require('./controllers/file_upload_controller.js');
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(serveStatic(join(__dirname, 'public')));
 
 app.use(dashboardRoutes);
 app.use(signupRoutes);
 app.use(loginRoutes);
 app.use(donateRoutes);
 app.use(profileRoutes);
-app.use(chooseSchoolRoutes);
+app.use('/api', chooseSchoolRoutes);
 app.use(fileUpload);
+app.use(auctionRoutes);
 
-// Route that creates a flash message using the express-flash module
-// from this github gist https://gist.github.com/brianmacarthur/a4e3e0093d368aa8e423
-// app.all('/express-flash', (req, res) => {
-//   req.flash('success', 'This is a flash message using the express-flash module.');
-//   res.redirect(301, '/');
-// });
-
-const hostname = os.hostname();
-db.once('open', () => {
+const hostname = _hostname();
+once('open', () => {
   console.log('\nConnected to MongoDB @', DB_HOST);
 
-  app.listen(PORT, () => {
+  // Handle 404s
+  app.use((req, res, next) => {
+    if (req.headers['content-type'] === 'application/json') {
+      res.status(404).json({
+        success: false,
+        message: 'Route not found',
+      });
+    } else {
+      next();
+    }
+  });
+
+  // General error handler
+  app.use((err, req, res, next) => {
+    console.error('Global error handler:', err);
+
+    // Don't send error details in production
+    const message = process.env.NODE_ENV === 'production'
+      ? 'Internal Server Error'
+      : err.message;
+
+    if (req.headers['content-type'] === 'application/json') {
+      res.status(err.status || 500).json({
+        success: false,
+        message,
+      });
+    } else {
+      next(err);
+    }
+  });
+  app.listen(port, () => {
     console.log(`PID: ${pid}\n`);
     console.log(
       `==> 🌎  Listening on port %s. Visit http://${hostname}:%s/ in your browser.`,
-      PORT,
-      PORT,
+      port,
+      port,
     );
   });
 });
 
-module.exports = express;
+export default app;
