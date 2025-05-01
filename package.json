@@ -80,6 +80,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
 
+
     "body-parser": "^2.2.0",
     "bson": "^6.10.1",
     "chalk": "^5.4.1",
@@ -87,7 +88,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-fileupload": "^1.5.1",
-
     "express-flash": "^0.0.2",
     "express-flash-notification": "^0.5.0",
     "express-handlebars": "^5.3.1",
