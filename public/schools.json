@@ -1,0 +1,8129 @@
+[{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c5"
+  },
+  "SchoolName": "Abundant Life Christian Academy",
+  "CollegeBoardID": 113099
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c6"
+  },
+  "SchoolName": "Academe of the Oaks",
+  "CollegeBoardID": 111036
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e4"
+  },
+  "SchoolName": "Alternative School At Morgan Road",
+  "CollegeBoardID": 110345
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ee"
+  },
+  "SchoolName": "Appling Christian Academy",
+  "CollegeBoardID": 110364
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a01"
+  },
+  "SchoolName": "Atlanta Classical Academy",
+  "CollegeBoardID": 110304
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a22"
+  },
+  "SchoolName": "Ben Franklin Academy",
+  "CollegeBoardID": 110134
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2a"
+  },
+  "SchoolName": "BEST Academy 6-12",
+  "CollegeBoardID": 110111
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a35"
+  },
+  "SchoolName": "Blessed Trinity Catholic High School",
+  "CollegeBoardID": 112618
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3d"
+  },
+  "SchoolName": "Brandon Hall School",
+  "CollegeBoardID": 111153
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5e"
+  },
+  "SchoolName": "C T Walker Traditional Magnet School",
+  "CollegeBoardID": 119123
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a62"
+  },
+  "SchoolName": "Calhoun High School",
+  "CollegeBoardID": 110550
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a73"
+  },
+  "SchoolName": "Carrollton High School",
+  "CollegeBoardID": 110603
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a88"
+  },
+  "SchoolName": "Central Middle School",
+  "CollegeBoardID": 119023
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a92"
+  },
+  "SchoolName": "Charlton County Christian Academy",
+  "CollegeBoardID": 111302
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa0"
+  },
+  "SchoolName": "Choice Educational Academy",
+  "CollegeBoardID": 111841
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa5"
+  },
+  "SchoolName": "Citizens Christian Academy",
+  "CollegeBoardID": 111099
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab6"
+  },
+  "SchoolName": "Cobb Horizon High School",
+  "CollegeBoardID": 112749
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab9"
+  },
+  "SchoolName": "Coffee Middle School",
+  "CollegeBoardID": 119052
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac1"
+  },
+  "SchoolName": "Columbus High School",
+  "CollegeBoardID": 110825
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aca"
+  },
+  "SchoolName": "Cooper Middle School",
+  "CollegeBoardID": 119159
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5acc"
+  },
+  "SchoolName": "Coram Deo Classical School",
+  "CollegeBoardID": 112363
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad8"
+  },
+  "SchoolName": "Covenant Christian Academy",
+  "CollegeBoardID": 111156
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b18"
+  },
+  "SchoolName": "Dougherty Comprehensive High School",
+  "CollegeBoardID": 110042
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2f"
+  },
+  "SchoolName": "East Gate Christian Academy",
+  "CollegeBoardID": 112672
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b39"
+  },
+  "SchoolName": "Eastside High School",
+  "CollegeBoardID": 110898
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3f"
+  },
+  "SchoolName": "Eddy Middle School",
+  "CollegeBoardID": 119224
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b42"
+  },
+  "SchoolName": "Effingham County High School",
+  "CollegeBoardID": 112791
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b54"
+  },
+  "SchoolName": "Excel Christian Academy",
+  "CollegeBoardID": 110616
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5c"
+  },
+  "SchoolName": "Fayette County High School",
+  "CollegeBoardID": 111275
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b83"
+  },
+  "SchoolName": "Fulton Science Academy Private School",
+  "CollegeBoardID": 110007
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba2"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Augusta",
+  "CollegeBoardID": 110276
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bae"
+  },
+  "SchoolName": "GIVE Center West",
+  "CollegeBoardID": 119264
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d8"
+  },
+  "SchoolName": "Alfred & Adele Davis Academy",
+  "CollegeBoardID": 119189
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f8"
+  },
+  "SchoolName": "Artios Academies of Sugar Hill",
+  "CollegeBoardID": 110100
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f9"
+  },
+  "SchoolName": "Artios Preparatory Academy",
+  "CollegeBoardID": 112756
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a05"
+  },
+  "SchoolName": "Atlanta Jewish Academy",
+  "CollegeBoardID": 110264
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2c"
+  },
+  "SchoolName": "Bethlehem Christian Academy",
+  "CollegeBoardID": 110369
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2d"
+  },
+  "SchoolName": "Bible Baptist Christian Academy",
+  "CollegeBoardID": 112801
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a31"
+  },
+  "SchoolName": "Blackmon Road Middle School",
+  "CollegeBoardID": 119221
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a36"
+  },
+  "SchoolName": "Booker T Washington High School",
+  "CollegeBoardID": 110130
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac2"
+  },
+  "SchoolName": "Commerce High School",
+  "CollegeBoardID": 110845
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5adc"
+  },
+  "SchoolName": "Cowan Road Middle School",
+  "CollegeBoardID": 119311
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aea"
+  },
+  "SchoolName": "Cross Keys High School",
+  "CollegeBoardID": 110148
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af0"
+  },
+  "SchoolName": "Curtis Baptist High School",
+  "CollegeBoardID": 110282
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b01"
+  },
+  "SchoolName": "DeKalb Academy of Technology and Environment",
+  "CollegeBoardID": 119016
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0f"
+  },
+  "SchoolName": "Discovery High School",
+  "CollegeBoardID": 111798
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b10"
+  },
+  "SchoolName": "Dodge County Achievement Center",
+  "CollegeBoardID": 110353
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b43"
+  },
+  "SchoolName": "Effingham County Middle School",
+  "CollegeBoardID": 119028
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b47"
+  },
+  "SchoolName": "Elite Scholars Academy",
+  "CollegeBoardID": 111722
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5e"
+  },
+  "SchoolName": "Fellowship Christian School",
+  "CollegeBoardID": 112627
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5f"
+  },
+  "SchoolName": "Fernbank Science Center",
+  "CollegeBoardID": 110266
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6b"
+  },
+  "SchoolName": "Forest Park High School",
+  "CollegeBoardID": 111305
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7f"
+  },
+  "SchoolName": "Fullington Academy",
+  "CollegeBoardID": 112397
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b81"
+  },
+  "SchoolName": "Fulton Leadership Academy",
+  "CollegeBoardID": 110194
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8a"
+  },
+  "SchoolName": "G P Babb Middle School",
+  "CollegeBoardID": 119057
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8c"
+  },
+  "SchoolName": "Ga School Innovation And Classics",
+  "CollegeBoardID": 110337
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5baa"
+  },
+  "SchoolName": "Gerard Preparatory School",
+  "CollegeBoardID": 111801
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c9"
+  },
+  "SchoolName": "Academy for Classical Education",
+  "CollegeBoardID": 112016
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d3"
+  },
+  "SchoolName": "Albany High School",
+  "CollegeBoardID": 110040
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ea"
+  },
+  "SchoolName": "Answer Center Christian Academy",
+  "CollegeBoardID": 112281
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59fe"
+  },
+  "SchoolName": "Atkinson County Middle School",
+  "CollegeBoardID": 119175
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a14"
+  },
+  "SchoolName": "Baldwin High School",
+  "CollegeBoardID": 112094
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a16"
+  },
+  "CollegeBoardID": 111640
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a27"
+  },
+  "SchoolName": "Berkmar Middle School",
+  "CollegeBoardID": 119267
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a51"
+  },
+  "SchoolName": "Bryan County High School",
+  "CollegeBoardID": 112380
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6d"
+  },
+  "SchoolName": "Campbell Middle School",
+  "CollegeBoardID": 119199
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a78"
+  },
+  "SchoolName": "Carver School of Technology",
+  "CollegeBoardID": 110238
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a83"
+  },
+  "SchoolName": "Central Elementary/High School",
+  "CollegeBoardID": 112920
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8e"
+  },
+  "SchoolName": "Charles Henry Terrell Academy",
+  "CollegeBoardID": 110289
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a93"
+  },
+  "SchoolName": "Charlton County High School",
+  "CollegeBoardID": 111300
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa2"
+  },
+  "SchoolName": "Christian Center Academy",
+  "CollegeBoardID": 112620
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad1"
+  },
+  "SchoolName": "Cornerstone Preparatory Academy",
+  "CollegeBoardID": 111733
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af5"
+  },
+  "SchoolName": "Dade County High School",
+  "CollegeBoardID": 113040
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af6"
+  },
+  "SchoolName": "Dalton High School",
+  "CollegeBoardID": 110970
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b08"
+  },
+  "SchoolName": "DeKalb PATH Academy",
+  "CollegeBoardID": 119298
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b13"
+  },
+  "SchoolName": "Dogwood Christian Academy",
+  "CollegeBoardID": 113053
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b19"
+  },
+  "SchoolName": "Douglas County High School",
+  "CollegeBoardID": 111110
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1c"
+  },
+  "SchoolName": "Dublin High School",
+  "CollegeBoardID": 111124
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b37"
+  },
+  "SchoolName": "Eastminster School",
+  "CollegeBoardID": 110854
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b49"
+  },
+  "SchoolName": "Elkins Pointe Middle School",
+  "CollegeBoardID": 119334
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b59"
+  },
+  "SchoolName": "Faith Christian Academy",
+  "CollegeBoardID": 113230
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5d"
+  },
+  "SchoolName": "Fayette LIFE Academy",
+  "CollegeBoardID": 111272
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7a"
+  },
+  "SchoolName": "Freedom Middle School",
+  "CollegeBoardID": 119182
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b89"
+  },
+  "SchoolName": "G L Edwards Middle School",
+  "CollegeBoardID": 119046
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d6"
+  },
+  "SchoolName": "Alexander High School",
+  "CollegeBoardID": 111104
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c3"
+  },
+  "SchoolName": "ABC Montessori School",
+  "CollegeBoardID": 112035
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59cf"
+  },
+  "SchoolName": "Adamson Middle School",
+  "CollegeBoardID": 119061
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d7"
+  },
+  "SchoolName": "Alexander Preparatory School",
+  "CollegeBoardID": 112619
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e7"
+  },
+  "SchoolName": "Americus Sumter 9th Grade Academy",
+  "CollegeBoardID": 110073
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ef"
+  },
+  "CollegeBoardID": 110365
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a07"
+  },
+  "SchoolName": "Atlanta West Christian Academy",
+  "CollegeBoardID": 112744
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a13"
+  },
+  "SchoolName": "Baker Middle School",
+  "CollegeBoardID": 119220
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a18"
+  },
+  "SchoolName": "Banneker High School",
+  "CollegeBoardID": 110794
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a19"
+  },
+  "CollegeBoardID": 119193
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1d"
+  },
+  "SchoolName": "BaSix Knowledge Academy",
+  "CollegeBoardID": 111054
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a32"
+  },
+  "SchoolName": "Bleckley County High School",
+  "CollegeBoardID": 110755
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a37"
+  },
+  "SchoolName": "Bowdon Elementary School",
+  "CollegeBoardID": 119051
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a39"
+  },
+  "SchoolName": "Bowdon Middle School",
+  "CollegeBoardID": 119070
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4f"
+  },
+  "SchoolName": "Brunswick Christian Academy",
+  "CollegeBoardID": 110472
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a64"
+  },
+  "SchoolName": "Callaway Middle School",
+  "CollegeBoardID": 119001
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a80"
+  },
+  "SchoolName": "Centennial High School",
+  "CollegeBoardID": 112623
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af9"
+  },
+  "SchoolName": "David Emanuel Academy",
+  "CollegeBoardID": 112828
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1f"
+  },
+  "SchoolName": "Dunwoody High School",
+  "CollegeBoardID": 111152
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b35"
+  },
+  "SchoolName": "East Paulding High School",
+  "CollegeBoardID": 110957
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b51"
+  },
+  "SchoolName": "Evans High School",
+  "CollegeBoardID": 111255
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b58"
+  },
+  "SchoolName": "Faith Christian Academy",
+  "CollegeBoardID": 113269
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b73"
+  },
+  "SchoolName": "Fort Valley Middle School",
+  "CollegeBoardID": 119131
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b91"
+  },
+  "SchoolName": "Gateway to College Academy of Georgia Perimeter College",
+  "CollegeBoardID": 110697
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b97"
+  },
+  "SchoolName": "George Walton Academy",
+  "CollegeBoardID": 111455
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b99"
+  },
+  "SchoolName": "Georgia Christian School",
+  "CollegeBoardID": 113075
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb0"
+  },
+  "SchoolName": "Glascock County Consolidated School",
+  "CollegeBoardID": 111435
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59de"
+  },
+  "SchoolName": "Alonzo A Crim Open Campus High School",
+  "CollegeBoardID": 110200
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59df"
+  },
+  "SchoolName": "Alpha Academy",
+  "CollegeBoardID": 110325
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ed"
+  },
+  "SchoolName": "Apostolic Christian Training School",
+  "CollegeBoardID": 111724
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59fc"
+  },
+  "SchoolName": "Athens Christian School",
+  "CollegeBoardID": 110114
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a15"
+  },
+  "SchoolName": "Ballard-Hudson Middle School",
+  "CollegeBoardID": 119343
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a26"
+  },
+  "SchoolName": "Berkmar High School",
+  "CollegeBoardID": 111825
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a30"
+  },
+  "SchoolName": "Black Star Educational Institute",
+  "CollegeBoardID": 110273
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a33"
+  },
+  "SchoolName": "Bleckley County Success Academy",
+  "CollegeBoardID": 110324
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a34"
+  },
+  "SchoolName": "Blessed Sacrament Catholic School",
+  "CollegeBoardID": 119171
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a57"
+  },
+  "SchoolName": "Bulloch Academy",
+  "CollegeBoardID": 112803
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5a"
+  },
+  "SchoolName": "Butler Christian Academy",
+  "CollegeBoardID": 112678
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a95"
+  },
+  "SchoolName": "Chatham Academy at Royce",
+  "CollegeBoardID": 112687
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9f"
+  },
+  "SchoolName": "Choice Academy",
+  "CollegeBoardID": 112864
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa7"
+  },
+  "SchoolName": "Clarke Middle School",
+  "CollegeBoardID": 119139
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af2"
+  },
+  "SchoolName": "Dacula Classical Academy",
+  "CollegeBoardID": 110951
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aff"
+  },
+  "SchoolName": "Decatur High School",
+  "CollegeBoardID": 111045
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0a"
+  },
+  "SchoolName": "DeKalb School of the Arts",
+  "CollegeBoardID": 110201
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1b"
+  },
+  "SchoolName": "Druid Hills Middle School",
+  "CollegeBoardID": 119099
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b22"
+  },
+  "SchoolName": "Dutchtown Middle School",
+  "CollegeBoardID": 119125
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b46"
+  },
+  "SchoolName": "Elbert County Comprehensive High School",
+  "CollegeBoardID": 111210
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b68"
+  },
+  "SchoolName": "Floyd Middle School",
+  "CollegeBoardID": 119196
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b82"
+  },
+  "SchoolName": "Fulton Science Academy Charter Middle School",
+  "CollegeBoardID": 119145
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b93"
+  },
+  "SchoolName": "General Ray Davis Middle School",
+  "CollegeBoardID": 119045
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9c"
+  },
+  "SchoolName": "Georgia Department of Juvenile Justice",
+  "CollegeBoardID": 110187
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c1"
+  },
+  "SchoolName": "A Z Kelsey Academy",
+  "CollegeBoardID": 111510
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e1"
+  },
+  "SchoolName": "Alpharetta High School",
+  "CollegeBoardID": 110058
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e3"
+  },
+  "SchoolName": "Alternative Learning Center",
+  "CollegeBoardID": 110322
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e6"
+  },
+  "SchoolName": "American Experimental School",
+  "CollegeBoardID": 112271
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f0"
+  },
+  "SchoolName": "Appling Middle School",
+  "CollegeBoardID": 119345
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f1"
+  },
+  "SchoolName": "Aquinas High School",
+  "CollegeBoardID": 110277
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f2"
+  },
+  "SchoolName": "Arabia Mountain High School",
+  "CollegeBoardID": 111868
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a06"
+  },
+  "SchoolName": "Atlanta Science Academy",
+  "CollegeBoardID": 110015
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0e"
+  },
+  "SchoolName": "Bacon County High School",
+  "CollegeBoardID": 110055
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2b"
+  },
+  "SchoolName": "Bethesda Academy",
+  "CollegeBoardID": 112689
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3e"
+  },
+  "SchoolName": "Brantley County High School",
+  "CollegeBoardID": 112225
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4e"
+  },
+  "SchoolName": "Brookwood School",
+  "CollegeBoardID": 112970
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5b"
+  },
+  "SchoolName": "Butler High School",
+  "CollegeBoardID": 110280
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a67"
+  },
+  "SchoolName": "Calvary Day School",
+  "CollegeBoardID": 112676
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a69"
+  },
+  "SchoolName": "Camden County High School",
+  "CollegeBoardID": 113285
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a82"
+  },
+  "SchoolName": "Central Christian School",
+  "CollegeBoardID": 111176
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8c"
+  },
+  "SchoolName": "Chapel Hill High School",
+  "CollegeBoardID": 111107
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9a"
+  },
+  "SchoolName": "Cherokee Charter Academy",
+  "CollegeBoardID": 119290
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9e"
+  },
+  "SchoolName": "CHIA Academy",
+  "CollegeBoardID": 110341
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aab"
+  },
+  "SchoolName": "Claxton Middle School",
+  "CollegeBoardID": 119113
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aac"
+  },
+  "SchoolName": "Clay County Middle School",
+  "CollegeBoardID": 119116
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac3"
+  },
+  "SchoolName": "Communities In Schools of Georgia",
+  "CollegeBoardID": 110161
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad7"
+  },
+  "SchoolName": "Covenant Christian Academy",
+  "CollegeBoardID": 111849
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5adb"
+  },
+  "SchoolName": "Covington Academy",
+  "CollegeBoardID": 112432
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae2"
+  },
+  "SchoolName": "Creekside Christian Academy",
+  "CollegeBoardID": 112036
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af8"
+  },
+  "SchoolName": "Darlington Middle Upper School",
+  "CollegeBoardID": 112585
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0c"
+  },
+  "SchoolName": "Denmark High School",
+  "CollegeBoardID": 111000
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b28"
+  },
+  "SchoolName": "Early College Academy of Columbus",
+  "CollegeBoardID": 110814
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2e"
+  },
+  "SchoolName": "East Coweta High School",
+  "CollegeBoardID": 112723
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b45"
+  },
+  "SchoolName": "Elaine Lucas' High School Academy",
+  "CollegeBoardID": 111948
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6d"
+  },
+  "SchoolName": "Forest School - An Acton Academy",
+  "CollegeBoardID": 110323
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7c"
+  },
+  "SchoolName": "Friends School Of Atlanta",
+  "CollegeBoardID": 119183
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b86"
+  },
+  "SchoolName": "Furtah Preparatory School",
+  "CollegeBoardID": 111991
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b88"
+  },
+  "SchoolName": "Fusion Academy - Buckhead",
+  "CollegeBoardID": 110354
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59dc"
+  },
+  "SchoolName": "Alliance Academy for Innovation of Cumming",
+  "CollegeBoardID": 110088
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c0"
+  },
+  "SchoolName": "A R Johnson Health Science and Engineering Magnet High School",
+  "CollegeBoardID": 110281
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c4"
+  },
+  "SchoolName": "Able Christian School",
+  "CollegeBoardID": 110006
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a02"
+  },
+  "SchoolName": "Atlanta Country Day School",
+  "CollegeBoardID": 110221
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a09"
+  },
+  "SchoolName": "Augusta Preparatory Day School",
+  "CollegeBoardID": 110278
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0b"
+  },
+  "SchoolName": "Autrey Mill Middle School",
+  "CollegeBoardID": 119181
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a17"
+  },
+  "SchoolName": "Banks County Middle School",
+  "CollegeBoardID": 119263
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1a"
+  },
+  "SchoolName": "Barrow Arts And Sciences Academy",
+  "CollegeBoardID": 110357
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1e"
+  },
+  "SchoolName": "Battlefield Christian Academy",
+  "CollegeBoardID": 111332
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a20"
+  },
+  "CollegeBoardID": 119318
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a25"
+  },
+  "SchoolName": "Bennetts Mill Middle School",
+  "CollegeBoardID": 119297
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2e"
+  },
+  "SchoolName": "Bible Baptist Christian School",
+  "CollegeBoardID": 112537
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a56"
+  },
+  "SchoolName": "Building Bridges Academy High School",
+  "CollegeBoardID": 110008
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7a"
+  },
+  "SchoolName": "Cass Middle School",
+  "CollegeBoardID": 119323
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7b"
+  },
+  "SchoolName": "Cedar Grove High School",
+  "CollegeBoardID": 111228
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7d"
+  },
+  "SchoolName": "Cedar Shoals High School",
+  "CollegeBoardID": 110116
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a90"
+  },
+  "SchoolName": "Charles R Drew High School",
+  "CollegeBoardID": 112534
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa4"
+  },
+  "SchoolName": "Christian Way Academy",
+  "CollegeBoardID": 111973
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa8"
+  },
+  "SchoolName": "Clarkston High School",
+  "CollegeBoardID": 110695
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab0"
+  },
+  "SchoolName": "Closer Look Christian Academy",
+  "CollegeBoardID": 110104
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac4"
+  },
+  "SchoolName": "Community Christian Academy",
+  "CollegeBoardID": 110288
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad5"
+  },
+  "SchoolName": "Counterpane School",
+  "CollegeBoardID": 111276
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5afc"
+  },
+  "SchoolName": "Dawson County Middle School",
+  "CollegeBoardID": 119158
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2c"
+  },
+  "SchoolName": "East Cobb Middle School",
+  "CollegeBoardID": 119198
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4d"
+  },
+  "SchoolName": "Etowah High School",
+  "CollegeBoardID": 113306
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5b"
+  },
+  "SchoolName": "Fannin County High School",
+  "CollegeBoardID": 110395
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8d"
+  },
+  "SchoolName": "Gainesville High School",
+  "CollegeBoardID": 111385
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8e"
+  },
+  "SchoolName": "Gainesville Middle School",
+  "CollegeBoardID": 119153
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b92"
+  },
+  "SchoolName": "Gatewood Schools Inc",
+  "CollegeBoardID": 111187
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b96"
+  },
+  "SchoolName": "George DeRenne Middle School",
+  "CollegeBoardID": 119135
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d4"
+  },
+  "SchoolName": "Albany Middle School",
+  "CollegeBoardID": 119336
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d9"
+  },
+  "SchoolName": "Alfred Eli Beach High School",
+  "CollegeBoardID": 112670
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59da"
+  },
+  "SchoolName": "Allatoona High School",
+  "CollegeBoardID": 110057
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59eb"
+  },
+  "SchoolName": "Apalachee High School",
+  "CollegeBoardID": 113268
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f3"
+  },
+  "SchoolName": "Archer High School",
+  "CollegeBoardID": 111802
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a03"
+  },
+  "SchoolName": "Atlanta Girls School",
+  "CollegeBoardID": 110133
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a08"
+  },
+  "SchoolName": "Augusta Christian School",
+  "CollegeBoardID": 112022
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0d"
+  },
+  "SchoolName": "Awtrey Middle School",
+  "CollegeBoardID": 119192
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1c"
+  },
+  "SchoolName": "Bartow County College And Career Academy",
+  "CollegeBoardID": 110328
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a23"
+  },
+  "SchoolName": "Benedictine Military School",
+  "CollegeBoardID": 112675
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a24"
+  },
+  "CollegeBoardID": 110235
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a2f"
+  },
+  "SchoolName": "Bishop Hall Charter School",
+  "CollegeBoardID": 112982
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4b"
+  },
+  "SchoolName": "Brookstone School",
+  "CollegeBoardID": 110822
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a50"
+  },
+  "SchoolName": "Brunswick High School",
+  "CollegeBoardID": 110473
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a58"
+  },
+  "SchoolName": "Burke County High School",
+  "CollegeBoardID": 113227
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a59"
+  },
+  "SchoolName": "Burney-Harris-Lyons Middle School",
+  "CollegeBoardID": 119307
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5f"
+  },
+  "SchoolName": "C W Davis Middle School",
+  "CollegeBoardID": 119902
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a61"
+  },
+  "SchoolName": "Calhoun County High School",
+  "CollegeBoardID": 111193
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a63"
+  },
+  "SchoolName": "Callaway High School",
+  "CollegeBoardID": 111630
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a74"
+  },
+  "SchoolName": "Cartersville High School",
+  "CollegeBoardID": 110615
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a87"
+  },
+  "SchoolName": "Central High School",
+  "CollegeBoardID": 110604
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a94"
+  },
+  "SchoolName": "Charter Conservatory for Liberal Arts and Technology",
+  "CollegeBoardID": 112802
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5abb"
+  },
+  "SchoolName": "Collins Hill High School",
+  "CollegeBoardID": 112862
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5abe"
+  },
+  "SchoolName": "Colquitt County High School",
+  "CollegeBoardID": 112190
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad0"
+  },
+  "SchoolName": "Cornerstone Christian School",
+  "CollegeBoardID": 113029
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad6"
+  },
+  "SchoolName": "Covenant Academy",
+  "CollegeBoardID": 111935
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aee"
+  },
+  "SchoolName": "Cumberland Academy of Georgia",
+  "CollegeBoardID": 110274
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b05"
+  },
+  "SchoolName": "DeKalb Early College Academy",
+  "CollegeBoardID": 111053
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0b"
+  },
+  "SchoolName": "Delta Innovative School",
+  "CollegeBoardID": 110156
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0e"
+  },
+  "SchoolName": "Dickerson Middle School",
+  "CollegeBoardID": 119195
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b27"
+  },
+  "SchoolName": "Eagles Nest Eluminatus Newnan",
+  "CollegeBoardID": 112729
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b29"
+  },
+  "SchoolName": "Early County High School",
+  "CollegeBoardID": 110385
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2a"
+  },
+  "SchoolName": "Early County Middle School",
+  "CollegeBoardID": 119071
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b64"
+  },
+  "SchoolName": "Five Forks Middle School",
+  "CollegeBoardID": 119275
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b67"
+  },
+  "SchoolName": "Flowery Branch High School",
+  "CollegeBoardID": 111281
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b70"
+  },
+  "SchoolName": "Forsyth Central High School",
+  "CollegeBoardID": 110920
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b72"
+  },
+  "SchoolName": "Fort Middle School",
+  "CollegeBoardID": 119225
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b87"
+  },
+  "SchoolName": "Fusion Academy - Alpharetta",
+  "CollegeBoardID": 110349
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b98"
+  },
+  "SchoolName": "Georgia Academy for the Blind",
+  "CollegeBoardID": 111940
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9e"
+  },
+  "SchoolName": "Georgia Military College High School",
+  "CollegeBoardID": 112100
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba7"
+  },
+  "SchoolName": "Georgia School For The Deaf",
+  "CollegeBoardID": 110637
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba9"
+  },
+  "SchoolName": "Georgia-Cumberland Academy",
+  "CollegeBoardID": 110551
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bab"
+  },
+  "SchoolName": "Gethsemane Christian Academy",
+  "CollegeBoardID": 112614
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59cd"
+  },
+  "SchoolName": "Adairsville High School",
+  "CollegeBoardID": 110010
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c2"
+  },
+  "SchoolName": "Aaron Cohn Middle School",
+  "CollegeBoardID": 119218
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59dd"
+  },
+  "SchoolName": "Alonzo A Crim Community Evening High School",
+  "CollegeBoardID": 110141
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59cb"
+  },
+  "SchoolName": "Academy of Richmond County",
+  "CollegeBoardID": 110275
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d1"
+  },
+  "SchoolName": "African American Islamic Institute Inc",
+  "CollegeBoardID": 110793
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59db"
+  },
+  "SchoolName": "Alleluia Community School",
+  "CollegeBoardID": 110284
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e0"
+  },
+  "SchoolName": "Alpha Omega Preparatory Academy",
+  "CollegeBoardID": 110908
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59fd"
+  },
+  "SchoolName": "Atkinson County High School",
+  "CollegeBoardID": 112365
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a38"
+  },
+  "SchoolName": "Bowdon High School",
+  "CollegeBoardID": 110415
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a40"
+  },
+  "SchoolName": "Bremen 4th and 5th Grade Academy",
+  "CollegeBoardID": 119285
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a48"
+  },
+  "SchoolName": "Brookhaven Innovation Academy",
+  "CollegeBoardID": 119339
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a77"
+  },
+  "SchoolName": "Carver Road Middle School",
+  "CollegeBoardID": 119315
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab4"
+  },
+  "SchoolName": "Cobb County Adult Education Program",
+  "CollegeBoardID": 111982
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab8"
+  },
+  "SchoolName": "Coffee High School Freshman Campus",
+  "CollegeBoardID": 111119
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae1"
+  },
+  "SchoolName": "Creekland Middle School",
+  "CollegeBoardID": 119165
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae9"
+  },
+  "SchoolName": "Cross Creek High School",
+  "CollegeBoardID": 110286
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5afb"
+  },
+  "SchoolName": "Dawson County High School",
+  "CollegeBoardID": 111035
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b12"
+  },
+  "SchoolName": "Dodgen Middle School",
+  "CollegeBoardID": 119147
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b15"
+  },
+  "SchoolName": "Don C Faith Middle School",
+  "CollegeBoardID": 119091
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b17"
+  },
+  "SchoolName": "Double Churches Middle School",
+  "CollegeBoardID": 119222
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2d"
+  },
+  "SchoolName": "East Columbus Magnet Academy",
+  "CollegeBoardID": 119223
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b38"
+  },
+  "SchoolName": "Eastside Christian School",
+  "CollegeBoardID": 119128
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3b"
+  },
+  "SchoolName": "Eaton Academy",
+  "CollegeBoardID": 112628
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b48"
+  },
+  "SchoolName": "Elizabeth Andrews High School",
+  "CollegeBoardID": 110693
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b56"
+  },
+  "SchoolName": "Faith Academy",
+  "CollegeBoardID": 111848
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b61"
+  },
+  "SchoolName": "First Presbyterian Christian Academy",
+  "CollegeBoardID": 111619
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7e"
+  },
+  "SchoolName": "Fugees Academy",
+  "CollegeBoardID": 110692
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b84"
+  },
+  "SchoolName": "Fulton Science Charter High School",
+  "CollegeBoardID": 110069
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8b"
+  },
+  "SchoolName": "G W Carver High School",
+  "CollegeBoardID": 110418
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b8f"
+  },
+  "SchoolName": "Gardner Newman Middle School",
+  "CollegeBoardID": 119002
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba6"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Sumter",
+  "CollegeBoardID": 110076
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bac"
+  },
+  "SchoolName": "Gilmer High School",
+  "CollegeBoardID": 111230
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c7"
+  },
+  "SchoolName": "Academy At Sylvan Learning Center Of Rome",
+  "CollegeBoardID": 110107
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59c8"
+  },
+  "SchoolName": "Academy For Advanced Studies",
+  "CollegeBoardID": 110332
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59cc"
+  },
+  "SchoolName": "ACE Academy - Alternative Choices in Education",
+  "CollegeBoardID": 111638
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ce"
+  },
+  "SchoolName": "Adairsville Middle School",
+  "CollegeBoardID": 119322
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e5"
+  },
+  "SchoolName": "Alton C Crews Middle School",
+  "CollegeBoardID": 119253
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0c"
+  },
+  "SchoolName": "Avner E Bush Academy",
+  "CollegeBoardID": 110932
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3c"
+  },
+  "SchoolName": "Braelinn Elementary School",
+  "CollegeBoardID": 119284
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a46"
+  },
+  "SchoolName": "Bright Futures Academy",
+  "CollegeBoardID": 110272
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5c"
+  },
+  "SchoolName": "Byne Memorial Baptist School",
+  "CollegeBoardID": 110039
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a89"
+  },
+  "SchoolName": "Chamblee Charter High School",
+  "CollegeBoardID": 110650
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a98"
+  },
+  "SchoolName": "Chattooga High School",
+  "CollegeBoardID": 112860
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac7"
+  },
+  "SchoolName": "Compass Preparatory Academy",
+  "CollegeBoardID": 113302
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aeb"
+  },
+  "SchoolName": "CrossPointe Christian Academy",
+  "CollegeBoardID": 113261
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af4"
+  },
+  "SchoolName": "Dacula Middle School",
+  "CollegeBoardID": 119272
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5afa"
+  },
+  "SchoolName": "Dawson Christian Academy",
+  "CollegeBoardID": 111031
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5afe"
+  },
+  "SchoolName": "Decatur Adventist Junior Academy",
+  "CollegeBoardID": 119319
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b02"
+  },
+  "SchoolName": "Dekalb Academy of Technology and Environment",
+  "CollegeBoardID": 119191
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1d"
+  },
+  "SchoolName": "Duluth High School",
+  "CollegeBoardID": 111150
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b30"
+  },
+  "SchoolName": "East Hall High School",
+  "CollegeBoardID": 111378
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b36"
+  },
+  "SchoolName": "East Paulding Middle School",
+  "CollegeBoardID": 119247
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3c"
+  },
+  "SchoolName": "Ebenezer Middle School",
+  "CollegeBoardID": 119249
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3e"
+  },
+  "SchoolName": "Echols County High School",
+  "CollegeBoardID": 112800
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4a"
+  },
+  "SchoolName": "Emanuel County Institute",
+  "CollegeBoardID": 113060
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b60"
+  },
+  "SchoolName": "Fideles Christian School",
+  "CollegeBoardID": 110928
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b63"
+  },
+  "SchoolName": "Fitzgerald High School",
+  "CollegeBoardID": 111280
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b65"
+  },
+  "SchoolName": "Flat Creek Christian Academy",
+  "CollegeBoardID": 112232
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6e"
+  },
+  "SchoolName": "Forrest Hill Academy",
+  "CollegeBoardID": 110084
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b90"
+  },
+  "SchoolName": "Garrett Middle School",
+  "CollegeBoardID": 119202
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9a"
+  },
+  "SchoolName": "Georgia Connections Academy",
+  "CollegeBoardID": 111141
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba1"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Atlanta",
+  "CollegeBoardID": 110880
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d0"
+  },
+  "SchoolName": "Advance Learning Center",
+  "CollegeBoardID": 111749
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d2"
+  },
+  "SchoolName": "Al-Falah Academy",
+  "CollegeBoardID": 111872
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a29"
+  },
+  "SchoolName": "Berrien High School",
+  "CollegeBoardID": 112230
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a45"
+  },
+  "SchoolName": "Bridgeway Christian Academy",
+  "CollegeBoardID": 110066
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4d"
+  },
+  "SchoolName": "Brookwood High School",
+  "CollegeBoardID": 112754
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a60"
+  },
+  "SchoolName": "Cairo High School",
+  "CollegeBoardID": 110540
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6b"
+  },
+  "SchoolName": "Camp Jewell House",
+  "CollegeBoardID": 110311
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a71"
+  },
+  "SchoolName": "Carpenter's Way Academy",
+  "CollegeBoardID": 110620
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a75"
+  },
+  "SchoolName": "Carver Early College",
+  "CollegeBoardID": 110263
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7f"
+  },
+  "SchoolName": "Centennial Academy",
+  "CollegeBoardID": 119250
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8b"
+  },
+  "SchoolName": "Champion Theme Middle School",
+  "CollegeBoardID": 112847
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8d"
+  },
+  "SchoolName": "Chapel Hill Middle School",
+  "CollegeBoardID": 119003
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8f"
+  },
+  "SchoolName": "Charles R Drew Charter School",
+  "CollegeBoardID": 110271
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9b"
+  },
+  "SchoolName": "Cherokee Christian High School",
+  "CollegeBoardID": 113308
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa1"
+  },
+  "SchoolName": "Christ The King High School",
+  "CollegeBoardID": 119025
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa9"
+  },
+  "SchoolName": "Classic City High School",
+  "CollegeBoardID": 110118
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aae"
+  },
+  "SchoolName": "Clifton Ridge Middle School",
+  "CollegeBoardID": 119119
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac5"
+  },
+  "SchoolName": "Community Christian Academy",
+  "CollegeBoardID": 112781
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5acb"
+  },
+  "SchoolName": "Coosa High School",
+  "CollegeBoardID": 112580
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae5"
+  },
+  "SchoolName": "Crenshaw School Georgia",
+  "CollegeBoardID": 110317
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae7"
+  },
+  "SchoolName": "Crisp County High School",
+  "CollegeBoardID": 110870
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af7"
+  },
+  "SchoolName": "Daniell Middle School",
+  "CollegeBoardID": 119194
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b03"
+  },
+  "SchoolName": "DeKalb Alternative Night School",
+  "CollegeBoardID": 110696
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b06"
+  },
+  "SchoolName": "Dekalb Elementary School Of The Arts",
+  "CollegeBoardID": 119325
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b41"
+  },
+  "SchoolName": "Effingham Christian School",
+  "CollegeBoardID": 112531
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4f"
+  },
+  "SchoolName": "Evangelical Temple Christian Academy",
+  "CollegeBoardID": 112178
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b53"
+  },
+  "SchoolName": "Excel Christian Academy",
+  "CollegeBoardID": 110862
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b75"
+  },
+  "SchoolName": "Frank N Osborne Middle School",
+  "CollegeBoardID": 119179
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b77"
+  },
+  "SchoolName": "Frederica Academy",
+  "CollegeBoardID": 110474
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9b"
+  },
+  "SchoolName": "Georgia Cyber Academy",
+  "CollegeBoardID": 110108
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba0"
+  },
+  "SchoolName": "Georgia Preparatory Academy - Milledgeville",
+  "CollegeBoardID": 112107
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e9"
+  },
+  "SchoolName": "Anointed Word Christian School",
+  "CollegeBoardID": 111226
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ec"
+  },
+  "SchoolName": "Apostolic Christian Training School",
+  "CollegeBoardID": 111976
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59fb"
+  },
+  "SchoolName": "Athens Academy",
+  "CollegeBoardID": 110113
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a00"
+  },
+  "SchoolName": "Atlanta Area School For The Deaf",
+  "CollegeBoardID": 110694
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0a"
+  },
+  "SchoolName": "Austin Road Middle School",
+  "CollegeBoardID": 119140
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a21"
+  },
+  "CollegeBoardID": 119330
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3f"
+  },
+  "SchoolName": "Braselton Christian Academy",
+  "CollegeBoardID": 110429
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a41"
+  },
+  "SchoolName": "Bremen High School",
+  "CollegeBoardID": 110430
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a42"
+  },
+  "SchoolName": "Bremen Middle School",
+  "CollegeBoardID": 119086
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a47"
+  },
+  "SchoolName": "Brighten Academy",
+  "CollegeBoardID": 119308
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4a"
+  },
+  "SchoolName": "Brooks County Middle School",
+  "CollegeBoardID": 119444
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a52"
+  },
+  "SchoolName": "Bryan County Middle School",
+  "CollegeBoardID": 119230
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a68"
+  },
+  "SchoolName": "Cambridge High School",
+  "CollegeBoardID": 112129
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a8a"
+  },
+  "SchoolName": "Chamblee Middle School",
+  "CollegeBoardID": 119075
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa6"
+  },
+  "SchoolName": "Clarke Central High School",
+  "CollegeBoardID": 110115
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aaa"
+  },
+  "SchoolName": "Claxton High School",
+  "CollegeBoardID": 110698
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab2"
+  },
+  "SchoolName": "Coastal Middle School",
+  "CollegeBoardID": 119084
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab7"
+  },
+  "SchoolName": "Coffee High School",
+  "CollegeBoardID": 111100
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5abd"
+  },
+  "SchoolName": "Colquitt County Achievement Center",
+  "CollegeBoardID": 112186
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5acd"
+  },
+  "SchoolName": "Core Community School",
+  "CollegeBoardID": 110371
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5add"
+  },
+  "SchoolName": "Crabapple Middle School",
+  "CollegeBoardID": 119127
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae4"
+  },
+  "SchoolName": "Creekview High School",
+  "CollegeBoardID": 110591
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af1"
+  },
+  "SchoolName": "D M Therrell High School",
+  "CollegeBoardID": 110209
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b07"
+  },
+  "SchoolName": "DeKalb High School of Technology - South",
+  "CollegeBoardID": 111050
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b09"
+  },
+  "SchoolName": "DeKalb Preparatory Academy",
+  "CollegeBoardID": 119302
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b20"
+  },
+  "SchoolName": "Durham Middle School",
+  "CollegeBoardID": 119197
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b23"
+  },
+  "SchoolName": "E T Booth Middle School",
+  "CollegeBoardID": 119079
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b26"
+  },
+  "SchoolName": "Eagle's Landing Middle School",
+  "CollegeBoardID": 119305
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b31"
+  },
+  "SchoolName": "East Jackson Comprehensive High School",
+  "CollegeBoardID": 110846
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3d"
+  },
+  "SchoolName": "Ebla Academy",
+  "CollegeBoardID": 112095
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4b"
+  },
+  "SchoolName": "Episcopal Day School",
+  "CollegeBoardID": 119291
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b52"
+  },
+  "SchoolName": "Excel Academy",
+  "CollegeBoardID": 112831
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b57"
+  },
+  "SchoolName": "Faith Baptist Christian Academy",
+  "CollegeBoardID": 111864
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b5a"
+  },
+  "SchoolName": "Faith Christian Academy",
+  "CollegeBoardID": 110664
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b94"
+  },
+  "SchoolName": "Genesis Innovation Academy For Boys",
+  "CollegeBoardID": 110374
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9f"
+  },
+  "SchoolName": "Georgia National Guard Youth Challenge Academy",
+  "CollegeBoardID": 111334
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba3"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Eastman",
+  "CollegeBoardID": 111161
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba4"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Macon",
+  "CollegeBoardID": 111949
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba5"
+  },
+  "SchoolName": "Georgia Preparatory Academy at Muscogee",
+  "CollegeBoardID": 110881
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f6"
+  },
+  "SchoolName": "Armuchee Middle School",
+  "CollegeBoardID": 119178
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59fa"
+  },
+  "SchoolName": "Ash Tree Learning Center",
+  "CollegeBoardID": 112701
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a10"
+  },
+  "SchoolName": "Bagley Middle School",
+  "CollegeBoardID": 119296
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a12"
+  },
+  "SchoolName": "Baker County High School",
+  "CollegeBoardID": 112269
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3a"
+  },
+  "SchoolName": "Bowens Mill Christian Center",
+  "CollegeBoardID": 111278
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a3b"
+  },
+  "SchoolName": "Bradwell Institute",
+  "CollegeBoardID": 111615
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a49"
+  },
+  "SchoolName": "Brooks County High School",
+  "CollegeBoardID": 112443
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a4c"
+  },
+  "SchoolName": "Brookwood Christian School",
+  "CollegeBoardID": 110077
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a54"
+  },
+  "SchoolName": "Buford High School",
+  "CollegeBoardID": 110505
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a55"
+  },
+  "SchoolName": "Buford Middle School",
+  "CollegeBoardID": 119301
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a65"
+  },
+  "SchoolName": "Calvary Christian School",
+  "CollegeBoardID": 110817
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6a"
+  },
+  "SchoolName": "Camp Creek Middle School",
+  "CollegeBoardID": 119184
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a76"
+  },
+  "SchoolName": "Carver High School",
+  "CollegeBoardID": 110823
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7c"
+  },
+  "SchoolName": "Cedar Grove Middle School",
+  "CollegeBoardID": 119080
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a85"
+  },
+  "SchoolName": "Central Gwinnett High School",
+  "CollegeBoardID": 111805
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a86"
+  },
+  "SchoolName": "Central High School",
+  "CollegeBoardID": 111960
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a91"
+  },
+  "SchoolName": "Charlie Gray Middle School",
+  "CollegeBoardID": 119074
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a96"
+  },
+  "SchoolName": "Chattahoochee County Middle High School",
+  "CollegeBoardID": 110941
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a97"
+  },
+  "SchoolName": "Chattahoochee High School",
+  "CollegeBoardID": 110146
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab3"
+  },
+  "SchoolName": "Coastal Plains Education Charter High School",
+  "CollegeBoardID": 110099
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aba"
+  },
+  "SchoolName": "Coleman Middle School",
+  "CollegeBoardID": 119266
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac6"
+  },
+  "SchoolName": "Community Christian School",
+  "CollegeBoardID": 112842
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad2"
+  },
+  "SchoolName": "Cornerstone Schools, Incorporated",
+  "CollegeBoardID": 110930
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae0"
+  },
+  "SchoolName": "Creekland Middle School",
+  "CollegeBoardID": 119277
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae8"
+  },
+  "SchoolName": "Cristo Rey Atlanta Jesuit High School",
+  "CollegeBoardID": 110232
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aef"
+  },
+  "SchoolName": "Cumberland School",
+  "CollegeBoardID": 112747
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5af3"
+  },
+  "SchoolName": "Dacula High School",
+  "CollegeBoardID": 110950
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5afd"
+  },
+  "SchoolName": "Dawson Street Christian School",
+  "CollegeBoardID": 111756
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b00"
+  },
+  "SchoolName": "Deerfield-Windsor School",
+  "CollegeBoardID": 110043
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b04"
+  },
+  "SchoolName": "Dekalb Alternative School",
+  "CollegeBoardID": 112720
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b0d"
+  },
+  "SchoolName": "Devereux Georgia Treatment Network",
+  "CollegeBoardID": 111732
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1a"
+  },
+  "SchoolName": "Druid Hills High School",
+  "CollegeBoardID": 110162
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b1e"
+  },
+  "SchoolName": "Duluth Middle School",
+  "CollegeBoardID": 119239
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b21"
+  },
+  "SchoolName": "Dutchtown High School",
+  "CollegeBoardID": 111551
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b2b"
+  },
+  "SchoolName": "Earnest Saloom Academy",
+  "CollegeBoardID": 111931
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b34"
+  },
+  "SchoolName": "East Laurens Middle School",
+  "CollegeBoardID": 119233
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4e"
+  },
+  "SchoolName": "Eula Wilborn Ponds Perry Center For Learning",
+  "CollegeBoardID": 111723
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b55"
+  },
+  "SchoolName": "Fairplay Middle School",
+  "CollegeBoardID": 119335
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b80"
+  },
+  "SchoolName": "Fulton County Charter High School of Mathematics And Science",
+  "CollegeBoardID": 119087
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b85"
+  },
+  "SchoolName": "Furlow Charter School",
+  "CollegeBoardID": 110082
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f7"
+  },
+  "SchoolName": "Arnold Magnet Academy",
+  "CollegeBoardID": 119219
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a0f"
+  },
+  "SchoolName": "Baconton Community Charter School",
+  "CollegeBoardID": 110340
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a11"
+  },
+  "SchoolName": "Bainbridge High School",
+  "CollegeBoardID": 110335
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6e"
+  },
+  "SchoolName": "CAN Academy",
+  "CollegeBoardID": 112693
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a79"
+  },
+  "SchoolName": "Cass High School",
+  "CollegeBoardID": 110625
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a7e"
+  },
+  "SchoolName": "Cedartown High School",
+  "CollegeBoardID": 110645
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5abf"
+  },
+  "SchoolName": "Columbia High School",
+  "CollegeBoardID": 111043
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad4"
+  },
+  "SchoolName": "Couch Middle School",
+  "CollegeBoardID": 119168
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b32"
+  },
+  "SchoolName": "East Jackson Middle School",
+  "CollegeBoardID": 119236
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b3a"
+  },
+  "SchoolName": "Eastside Independent Preparatory Academy",
+  "CollegeBoardID": 111857
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b4c"
+  },
+  "SchoolName": "Esther F Garrison School of Visual and Performing Arts",
+  "CollegeBoardID": 119294
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b62"
+  },
+  "SchoolName": "First Presbyterian Day School",
+  "CollegeBoardID": 111937
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b69"
+  },
+  "SchoolName": "Foothills Education Charter High School",
+  "CollegeBoardID": 111006
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6a"
+  },
+  "SchoolName": "Forest Park Christian School",
+  "CollegeBoardID": 111304
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb2"
+  },
+  "SchoolName": "Glenn Hills High School",
+  "CollegeBoardID": 110285
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb3"
+  },
+  "SchoolName": "Glenn Hills Middle School",
+  "CollegeBoardID": 119089
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e8"
+  },
+  "SchoolName": "Americus-Sumter High School South",
+  "CollegeBoardID": 110065
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f5"
+  },
+  "SchoolName": "Armuchee High School",
+  "CollegeBoardID": 110095
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a04"
+  },
+  "SchoolName": "Atlanta International School",
+  "CollegeBoardID": 110132
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1f"
+  },
+  "CollegeBoardID": 119261
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a43"
+  },
+  "SchoolName": "Brentwood School",
+  "CollegeBoardID": 111023
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a66"
+  },
+  "SchoolName": "Calvary Christian School",
+  "CollegeBoardID": 112557
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6c"
+  },
+  "SchoolName": "Campbell High School",
+  "CollegeBoardID": 112745
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a70"
+  },
+  "SchoolName": "Capstone Academy",
+  "CollegeBoardID": 110093
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a81"
+  },
+  "SchoolName": "Center Academy: Smyrna",
+  "CollegeBoardID": 112753
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a99"
+  },
+  "SchoolName": "Cherokee Bluff High School",
+  "CollegeBoardID": 110270
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aaf"
+  },
+  "SchoolName": "Clinch County High School",
+  "CollegeBoardID": 111645
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac9"
+  },
+  "SchoolName": "Cook High School",
+  "CollegeBoardID": 110020
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ace"
+  },
+  "SchoolName": "Coretta Scott King Young Women's Leadership Academy",
+  "CollegeBoardID": 110143
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad9"
+  },
+  "SchoolName": "Covenant Christian Ministries Academy",
+  "CollegeBoardID": 111988
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5adf"
+  },
+  "SchoolName": "Crawford Long Middle School",
+  "CollegeBoardID": 119019
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae3"
+  },
+  "SchoolName": "Creekside High School",
+  "CollegeBoardID": 111265
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ae6"
+  },
+  "SchoolName": "Crisp Academy",
+  "CollegeBoardID": 110869
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aed"
+  },
+  "SchoolName": "Crossroads Second Chance South",
+  "CollegeBoardID": 111178
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b11"
+  },
+  "SchoolName": "Dodge County High School",
+  "CollegeBoardID": 111160
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b14"
+  },
+  "SchoolName": "Dominion Christian School",
+  "CollegeBoardID": 111985
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b16"
+  },
+  "SchoolName": "Dooly County High School",
+  "CollegeBoardID": 113120
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b24"
+  },
+  "SchoolName": "Eagle Landing Christian Academy",
+  "CollegeBoardID": 112046
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b25"
+  },
+  "SchoolName": "Eagle's Landing High School",
+  "CollegeBoardID": 112038
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b33"
+  },
+  "SchoolName": "East Laurens High School",
+  "CollegeBoardID": 111125
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b44"
+  },
+  "SchoolName": "Eighth Street Middle School",
+  "CollegeBoardID": 119299
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b66"
+  },
+  "SchoolName": "Flint River Academy, Inc",
+  "CollegeBoardID": 113295
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6c"
+  },
+  "SchoolName": "Forest Park Middle School",
+  "CollegeBoardID": 119055
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b76"
+  },
+  "SchoolName": "Franklin County High School",
+  "CollegeBoardID": 110595
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b78"
+  },
+  "SchoolName": "Frederick Douglass High School",
+  "CollegeBoardID": 110164
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7b"
+  },
+  "SchoolName": "Freedom Park School",
+  "CollegeBoardID": 119150
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b9d"
+  },
+  "SchoolName": "Georgia Fugees Academy Charter School",
+  "CollegeBoardID": 110381
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ba8"
+  },
+  "SchoolName": "Georgia Virtual School",
+  "CollegeBoardID": 110225
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bad"
+  },
+  "SchoolName": "GIVE Center East Middle School",
+  "CollegeBoardID": 119270
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb1"
+  },
+  "SchoolName": "Glenn C Jones Middle School",
+  "CollegeBoardID": 119276
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59d5"
+  },
+  "SchoolName": "Alcovy High School",
+  "CollegeBoardID": 110897
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59e2"
+  },
+  "SchoolName": "Alpine Christian Academy",
+  "CollegeBoardID": 110363
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59f4"
+  },
+  "SchoolName": "Arlington Christian School",
+  "CollegeBoardID": 110125
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b59ff"
+  },
+  "SchoolName": "Atlanta Adventist Academy",
+  "CollegeBoardID": 110124
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a1b"
+  },
+  "SchoolName": "Barrow County Christian School",
+  "CollegeBoardID": 113274
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a28"
+  },
+  "SchoolName": "Berrien Academy Performance Learning Center",
+  "CollegeBoardID": 112231
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a44"
+  },
+  "SchoolName": "Briarwood Academy",
+  "CollegeBoardID": 112988
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a53"
+  },
+  "SchoolName": "Bryant Elementary School",
+  "CollegeBoardID": 119286
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a5d"
+  },
+  "SchoolName": "Byron Christian Academy",
+  "CollegeBoardID": 110520
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a6f"
+  },
+  "SchoolName": "Canaanland Christian School",
+  "CollegeBoardID": 110659
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a72"
+  },
+  "SchoolName": "Carrie D Kendrick Middle School",
+  "CollegeBoardID": 119059
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a84"
+  },
+  "SchoolName": "Central Fellowship Christian Academy",
+  "CollegeBoardID": 111939
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9c"
+  },
+  "SchoolName": "Cherokee High School",
+  "CollegeBoardID": 110589
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5a9d"
+  },
+  "SchoolName": "Chestatee High School",
+  "CollegeBoardID": 111371
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aa3"
+  },
+  "SchoolName": "Christian Heritage School",
+  "CollegeBoardID": 110982
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aad"
+  },
+  "SchoolName": "Clayton County Alternative School",
+  "CollegeBoardID": 111725
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab1"
+  },
+  "SchoolName": "Coahulla Creek High School",
+  "CollegeBoardID": 110986
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ab5"
+  },
+  "SchoolName": "Cobb County Christian School",
+  "CollegeBoardID": 112008
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5abc"
+  },
+  "SchoolName": "Colquitt Christian Academy",
+  "CollegeBoardID": 110352
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac0"
+  },
+  "SchoolName": "Columbia Middle School",
+  "CollegeBoardID": 119085
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ac8"
+  },
+  "SchoolName": "Conyers Middle School",
+  "CollegeBoardID": 119068
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5acf"
+  },
+  "SchoolName": "Cornerstone Christian School",
+  "CollegeBoardID": 113235
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ad3"
+  },
+  "SchoolName": "Cottage School",
+  "CollegeBoardID": 112624
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ada"
+  },
+  "SchoolName": "Covenant Christian School",
+  "CollegeBoardID": 112740
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ade"
+  },
+  "SchoolName": "Crawford County High School",
+  "CollegeBoardID": 112540
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5aec"
+  },
+  "SchoolName": "Crossroads Christian Academy",
+  "CollegeBoardID": 110587
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b40"
+  },
+  "SchoolName": "Edmund Burke Academy",
+  "CollegeBoardID": 113226
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b50"
+  },
+  "SchoolName": "Evans Christian Academy",
+  "CollegeBoardID": 111254
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b6f"
+  },
+  "SchoolName": "Forsyth Academy",
+  "CollegeBoardID": 110925
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b71"
+  },
+  "SchoolName": "Forsyth Virtual Academy",
+  "CollegeBoardID": 110931
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b74"
+  },
+  "SchoolName": "Frank McClarin High School",
+  "CollegeBoardID": 110802
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b79"
+  },
+  "SchoolName": "Freedom Middle School",
+  "CollegeBoardID": 119106
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b7d"
+  },
+  "SchoolName": "Friendship Christian School",
+  "CollegeBoardID": 112863
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5b95"
+  },
+  "SchoolName": "Genesis Innovation Academy For Girls",
+  "CollegeBoardID": 110372
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5baf"
+  },
+  "SchoolName": "Gladden Middle School",
+  "CollegeBoardID": 119231
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc2"
+  },
+  "SchoolName": "Grace Baptist Christian School",
+  "CollegeBoardID": 111607
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb4"
+  },
+  "SchoolName": "Glennville Elementary School",
+  "CollegeBoardID": 119049
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb8"
+  },
+  "SchoolName": "Gods Foundation Christian Academy",
+  "CollegeBoardID": 110031
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb5"
+  },
+  "SchoolName": "Glenville Middle School",
+  "CollegeBoardID": 119011
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc3"
+  },
+  "SchoolName": "Grace Christian Academy",
+  "CollegeBoardID": 111282
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bde"
+  },
+  "SchoolName": "Habersham 9th Grade Academy",
+  "CollegeBoardID": 119212
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc4"
+  },
+  "SchoolName": "Grace Christian Academy",
+  "CollegeBoardID": 110863
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd2"
+  },
+  "SchoolName": "Greenville High School",
+  "CollegeBoardID": 111505
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd9"
+  },
+  "SchoolName": "Guardian Christian Academy",
+  "CollegeBoardID": 110191
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc1"
+  },
+  "SchoolName": "Grace Baptist Christian School",
+  "CollegeBoardID": 113002
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bdc"
+  },
+  "SchoolName": "Gwinnett School of Mathematics Science and Technology",
+  "CollegeBoardID": 111140
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be2"
+  },
+  "SchoolName": "Hahira Middle School",
+  "CollegeBoardID": 119282
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bed"
+  },
+  "SchoolName": "Harlem Middle School",
+  "CollegeBoardID": 119188
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf1"
+  },
+  "SchoolName": "Hart County High School",
+  "CollegeBoardID": 111580
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c15"
+  },
+  "SchoolName": "Holy Spirit Preparatory School",
+  "CollegeBoardID": 110151
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4c"
+  },
+  "SchoolName": "John S Davidson Fine Arts Magnet School",
+  "CollegeBoardID": 110294
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c76"
+  },
+  "SchoolName": "Lamar County Comprehensive High School",
+  "CollegeBoardID": 110343
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb7"
+  },
+  "SchoolName": "Mableton Christian Academy",
+  "CollegeBoardID": 111921
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc8"
+  },
+  "SchoolName": "Martha Ellen Stilwell School of The Arts",
+  "CollegeBoardID": 111743
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce5"
+  },
+  "SchoolName": "Mill Creek High School",
+  "CollegeBoardID": 111653
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf3"
+  },
+  "SchoolName": "Montessori School of Rome",
+  "CollegeBoardID": 110097
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf7"
+  },
+  "SchoolName": "Morgan County High School",
+  "CollegeBoardID": 111965
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d02"
+  },
+  "SchoolName": "Mount Zion High School",
+  "CollegeBoardID": 112013
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d15"
+  },
+  "SchoolName": "Mountain Education Charter High School - White",
+  "CollegeBoardID": 110019
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1e"
+  },
+  "SchoolName": "National High School",
+  "CollegeBoardID": 110254
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2f"
+  },
+  "SchoolName": "Newnan High School",
+  "CollegeBoardID": 112250
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d43"
+  },
+  "SchoolName": "North Paulding High School",
+  "CollegeBoardID": 110965
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d47"
+  },
+  "SchoolName": "Northbrook Middle School",
+  "CollegeBoardID": 119265
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7f"
+  },
+  "SchoolName": "Pentecostal Church of God Christian Academy",
+  "CollegeBoardID": 112256
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d89"
+  },
+  "SchoolName": "Pickens High School",
+  "CollegeBoardID": 111695
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d90"
+  },
+  "SchoolName": "Pike County Middle School",
+  "CollegeBoardID": 119034
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d97"
+  },
+  "SchoolName": "Pointe South Middle School",
+  "CollegeBoardID": 119062
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb9"
+  },
+  "SchoolName": "Golden Isles Career Academy",
+  "CollegeBoardID": 110477
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be3"
+  },
+  "SchoolName": "Hallie Turner Private School",
+  "CollegeBoardID": 110833
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be6"
+  },
+  "SchoolName": "Hancock Central High School",
+  "CollegeBoardID": 112780
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be8"
+  },
+  "SchoolName": "Hapeville Charter Middle School",
+  "CollegeBoardID": 119017
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c05"
+  },
+  "SchoolName": "Heritage High School",
+  "CollegeBoardID": 110857
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0f"
+  },
+  "SchoolName": "Hilsman Middle School",
+  "CollegeBoardID": 119235
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c29"
+  },
+  "SchoolName": "In His Image Christian Academy",
+  "CollegeBoardID": 112002
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2b"
+  },
+  "SchoolName": "Independent Study Academy",
+  "CollegeBoardID": 110054
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c32"
+  },
+  "SchoolName": "Ivy Manor Preparatory Academy",
+  "CollegeBoardID": 112283
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c53"
+  },
+  "SchoolName": "Jordan Middle School",
+  "CollegeBoardID": 119241
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7e"
+  },
+  "SchoolName": "Lanier County High School",
+  "CollegeBoardID": 111785
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c80"
+  },
+  "SchoolName": "Lanier Middle School",
+  "CollegeBoardID": 119259
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c91"
+  },
+  "SchoolName": "Life Christian Academy at Palmyra",
+  "CollegeBoardID": 110052
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9c"
+  },
+  "SchoolName": "Lions Academy",
+  "CollegeBoardID": 110376
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cab"
+  },
+  "SchoolName": "Lovejoy Middle School",
+  "CollegeBoardID": 119056
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb0"
+  },
+  "SchoolName": "Lucy Craft Laney High School",
+  "CollegeBoardID": 110295
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb1"
+  },
+  "SchoolName": "Luella High School",
+  "CollegeBoardID": 111854
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb9"
+  },
+  "SchoolName": "Maceo Horne Learning Center",
+  "CollegeBoardID": 113088
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cbe"
+  },
+  "SchoolName": "Madison County High School",
+  "CollegeBoardID": 111005
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc4"
+  },
+  "SchoolName": "Marietta High School",
+  "CollegeBoardID": 111990
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ccd"
+  },
+  "SchoolName": "Master's Academic Partners",
+  "CollegeBoardID": 113189
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cce"
+  },
+  "SchoolName": "Maxwell High School Of Technical",
+  "CollegeBoardID": 111807
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cee"
+  },
+  "SchoolName": "Monroe Area High School",
+  "CollegeBoardID": 112140
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf8"
+  },
+  "SchoolName": "Morris Innovative High School",
+  "CollegeBoardID": 110991
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d00"
+  },
+  "SchoolName": "Mount Zion Christian Academy",
+  "CollegeBoardID": 111731
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0d"
+  },
+  "SchoolName": "Mountain Education Charter High School - Hall",
+  "CollegeBoardID": 110085
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d26"
+  },
+  "SchoolName": "New Horizons New Directions Academy",
+  "CollegeBoardID": 111509
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d28"
+  },
+  "SchoolName": "New Life Christian Academy",
+  "CollegeBoardID": 111518
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d32"
+  },
+  "SchoolName": "Norcross High School",
+  "CollegeBoardID": 112280
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d44"
+  },
+  "SchoolName": "North Point Christian Academy",
+  "CollegeBoardID": 110609
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d46"
+  },
+  "SchoolName": "North Tattnall Middle School",
+  "CollegeBoardID": 119033
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d66"
+  },
+  "SchoolName": "Open Campus School",
+  "CollegeBoardID": 110106
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8c"
+  },
+  "SchoolName": "Piedmont School Of Atlanta",
+  "CollegeBoardID": 110386
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb6"
+  },
+  "SchoolName": "Glynn Academy",
+  "CollegeBoardID": 110475
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c13"
+  },
+  "SchoolName": "Holy Innocents Episcopal School",
+  "CollegeBoardID": 110177
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c23"
+  },
+  "SchoolName": "Huntington Learning Center",
+  "CollegeBoardID": 111981
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c30"
+  },
+  "SchoolName": "Irwin County High School",
+  "CollegeBoardID": 112305
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c55"
+  },
+  "SchoolName": "Josey High School",
+  "CollegeBoardID": 110300
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5f"
+  },
+  "SchoolName": "King of Kings Christian School",
+  "CollegeBoardID": 110002
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c63"
+  },
+  "SchoolName": "Kings Ridge Christian School",
+  "CollegeBoardID": 110059
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6a"
+  },
+  "SchoolName": "L R Tippens Education Center",
+  "CollegeBoardID": 110344
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c74"
+  },
+  "SchoolName": "Lakeview Middle School",
+  "CollegeBoardID": 119032
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c75"
+  },
+  "SchoolName": "Lakeview-Fort Oglethorpe High School",
+  "CollegeBoardID": 112612
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7d"
+  },
+  "SchoolName": "Lanier Christian Academy",
+  "CollegeBoardID": 110013
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c84"
+  },
+  "SchoolName": "Leadership Preparatory Academy",
+  "CollegeBoardID": 119280
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c90"
+  },
+  "SchoolName": "LIFE Christian Academy and Tutoring Center",
+  "CollegeBoardID": 110092
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c96"
+  },
+  "SchoolName": "Lighthouse Christian Ministry",
+  "CollegeBoardID": 113084
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb5"
+  },
+  "SchoolName": "Lyndon Academy",
+  "CollegeBoardID": 113312
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cbc"
+  },
+  "SchoolName": "Macon County High School",
+  "CollegeBoardID": 112155
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd9"
+  },
+  "SchoolName": "Meadowcreek High School",
+  "CollegeBoardID": 112279
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce0"
+  },
+  "SchoolName": "Metter Middle School",
+  "CollegeBoardID": 119098
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cef"
+  },
+  "SchoolName": "Monroe Comprehensive High School",
+  "CollegeBoardID": 110045
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf1"
+  },
+  "SchoolName": "Monsignor Donovan Catholic High School",
+  "CollegeBoardID": 110138
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0a"
+  },
+  "SchoolName": "Mountain Education Charter High School - Forsyth",
+  "CollegeBoardID": 110022
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d17"
+  },
+  "SchoolName": "Mt Bethel Christian Academy",
+  "CollegeBoardID": 110086
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1d"
+  },
+  "SchoolName": "Nathanael Greene Academy",
+  "CollegeBoardID": 112742
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1f"
+  },
+  "SchoolName": "Needwood Middle School",
+  "CollegeBoardID": 119144
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d34"
+  },
+  "SchoolName": "North Clayton High School",
+  "CollegeBoardID": 110800
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3f"
+  },
+  "SchoolName": "North Henry Academy",
+  "CollegeBoardID": 110316
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d42"
+  },
+  "SchoolName": "North Oconee High School",
+  "CollegeBoardID": 110401
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4e"
+  },
+  "SchoolName": "Northside High School",
+  "CollegeBoardID": 113159
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d50"
+  },
+  "SchoolName": "Northwest Whitfield High School",
+  "CollegeBoardID": 112575
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d53"
+  },
+  "SchoolName": "Oak Hill Classical School",
+  "CollegeBoardID": 111873
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5b"
+  },
+  "SchoolName": "Ola High School",
+  "CollegeBoardID": 112048
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d63"
+  },
+  "SchoolName": "Open Bible Christian School",
+  "CollegeBoardID": 113089
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d64"
+  },
+  "SchoolName": "Open Campus High School",
+  "CollegeBoardID": 113051
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d70"
+  },
+  "SchoolName": "Parkview High School",
+  "CollegeBoardID": 111826
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d75"
+  },
+  "SchoolName": "Paul Duke Stem High School",
+  "CollegeBoardID": 110338
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d82"
+  },
+  "SchoolName": "Performance Learning Center",
+  "CollegeBoardID": 110306
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d88"
+  },
+  "SchoolName": "Phoenix High School",
+  "CollegeBoardID": 110985
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8e"
+  },
+  "SchoolName": "Pierce County Middle School",
+  "CollegeBoardID": 119115
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d94"
+  },
+  "SchoolName": "Pinecrest Academy",
+  "CollegeBoardID": 110926
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc6"
+  },
+  "SchoolName": "Grace Christian School",
+  "CollegeBoardID": 111232
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bca"
+  },
+  "SchoolName": "Grayson High School",
+  "CollegeBoardID": 111852
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be9"
+  },
+  "SchoolName": "Haralson County High School",
+  "CollegeBoardID": 112925
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1b"
+  },
+  "SchoolName": "Horizon Christian Academy",
+  "CollegeBoardID": 113311
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3f"
+  },
+  "SchoolName": "Jasper Middle School",
+  "CollegeBoardID": 119092
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c52"
+  },
+  "SchoolName": "Jonesboro Middle School",
+  "CollegeBoardID": 119058
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c66"
+  },
+  "SchoolName": "KIPP WAYS Academy",
+  "CollegeBoardID": 119088
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7a"
+  },
+  "SchoolName": "Langston Chapel Middle School",
+  "CollegeBoardID": 119006
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c88"
+  },
+  "SchoolName": "Lee Middle School",
+  "CollegeBoardID": 119156
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca5"
+  },
+  "SchoolName": "Loganville High School",
+  "CollegeBoardID": 111850
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cbb"
+  },
+  "SchoolName": "Macon Academy",
+  "CollegeBoardID": 111954
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cbf"
+  },
+  "SchoolName": "Madras Middle School",
+  "CollegeBoardID": 119130
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf4"
+  },
+  "SchoolName": "Montgomery County High School",
+  "CollegeBoardID": 112200
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d09"
+  },
+  "SchoolName": "Mountain Education Charter High School - Fannin",
+  "CollegeBoardID": 110018
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4f"
+  },
+  "SchoolName": "Northview High School",
+  "CollegeBoardID": 111148
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d59"
+  },
+  "SchoolName": "Oglethorpe Charter School",
+  "CollegeBoardID": 119340
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d60"
+  },
+  "SchoolName": "Omega Private Academy",
+  "CollegeBoardID": 111741
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6e"
+  },
+  "SchoolName": "Palmer Middle School",
+  "CollegeBoardID": 119154
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d84"
+  },
+  "SchoolName": "Philadelphia Christian School",
+  "CollegeBoardID": 110859
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d87"
+  },
+  "SchoolName": "Phoenix High School",
+  "CollegeBoardID": 112277
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bcb"
+  },
+  "SchoolName": "Greater Atlanta Adventist Academy",
+  "CollegeBoardID": 110136
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd1"
+  },
+  "SchoolName": "Greenforest Christian Academy",
+  "CollegeBoardID": 111038
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bdd"
+  },
+  "SchoolName": "H G Weaver Middle School",
+  "CollegeBoardID": 119342
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c03"
+  },
+  "SchoolName": "Heritage Christian Academy",
+  "CollegeBoardID": 110476
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c06"
+  },
+  "SchoolName": "Heritage High School",
+  "CollegeBoardID": 112536
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1a"
+  },
+  "SchoolName": "Hopewell Christian Academy",
+  "CollegeBoardID": 112275
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1f"
+  },
+  "SchoolName": "Houston County High School",
+  "CollegeBoardID": 113151
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c24"
+  },
+  "SchoolName": "Hutto Middle School",
+  "CollegeBoardID": 119027
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2d"
+  },
+  "SchoolName": "Integrity Christian Academy",
+  "CollegeBoardID": 111862
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c34"
+  },
+  "SchoolName": "Ivy Preparatory Young Mens Leadership Academy",
+  "CollegeBoardID": 110153
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c36"
+  },
+  "SchoolName": "J C Booth Middle School",
+  "CollegeBoardID": 119216
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7f"
+  },
+  "SchoolName": "Lanier High School",
+  "CollegeBoardID": 112859
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8b"
+  },
+  "SchoolName": "Lena Mae Moses Middle School",
+  "CollegeBoardID": 119260
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8f"
+  },
+  "SchoolName": "Liberty Independent Private School",
+  "CollegeBoardID": 113224
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c93"
+  },
+  "SchoolName": "Light of the World Christian Academy of Atlanta",
+  "CollegeBoardID": 110150
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c95"
+  },
+  "SchoolName": "Lighthouse Christian Academy",
+  "CollegeBoardID": 110837
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca8"
+  },
+  "SchoolName": "Lost Mountain Middle School",
+  "CollegeBoardID": 119204
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc2"
+  },
+  "SchoolName": "Manchester Middle School",
+  "CollegeBoardID": 119050
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd0"
+  },
+  "SchoolName": "McCleskey Middle School",
+  "CollegeBoardID": 119185
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd2"
+  },
+  "SchoolName": "McClure Middle School",
+  "CollegeBoardID": 119172
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd5"
+  },
+  "SchoolName": "McEachern High School",
+  "CollegeBoardID": 112435
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cdf"
+  },
+  "SchoolName": "Metter High School",
+  "CollegeBoardID": 112080
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf2"
+  },
+  "SchoolName": "Montessori Of Macon",
+  "CollegeBoardID": 111977
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf5"
+  },
+  "SchoolName": "Moore Middle School",
+  "CollegeBoardID": 119242
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d22"
+  },
+  "SchoolName": "New Generation Academy",
+  "CollegeBoardID": 111289
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3d"
+  },
+  "SchoolName": "North Habersham Middle School",
+  "CollegeBoardID": 119209
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d54"
+  },
+  "SchoolName": "Oak Mountain Academy",
+  "CollegeBoardID": 110607
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d57"
+  },
+  "SchoolName": "Ocmulgee Christian Academy",
+  "CollegeBoardID": 111884
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d65"
+  },
+  "SchoolName": "Open Campus High School",
+  "CollegeBoardID": 110611
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6c"
+  },
+  "SchoolName": "Pace Academy",
+  "CollegeBoardID": 110217
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d96"
+  },
+  "SchoolName": "Pleasant Valley Innovative School",
+  "CollegeBoardID": 110662
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da5"
+  },
+  "SchoolName": "Rabun Gap-Nacoochee School",
+  "CollegeBoardID": 112460
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da6"
+  },
+  "SchoolName": "Radium Springs Middle Magnet School of the Arts",
+  "CollegeBoardID": 119337
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc7"
+  },
+  "SchoolName": "Grace Christian School",
+  "CollegeBoardID": 110836
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc9"
+  },
+  "SchoolName": "Grace Snell Middle School",
+  "CollegeBoardID": 119160
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd0"
+  },
+  "SchoolName": "Greene County High School",
+  "CollegeBoardID": 111495
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bda"
+  },
+  "SchoolName": "Gwinnett Christian Academy",
+  "CollegeBoardID": 112759
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c02"
+  },
+  "SchoolName": "Herchel V Jenkins High School",
+  "CollegeBoardID": 112682
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c07"
+  },
+  "SchoolName": "Heritage Middle School",
+  "CollegeBoardID": 119217
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c25"
+  },
+  "SchoolName": "Hybrid Education in Greater Atlanta",
+  "CollegeBoardID": 113047
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c38"
+  },
+  "SchoolName": "J lNewbern Middle School",
+  "CollegeBoardID": 119213
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3a"
+  },
+  "SchoolName": "Jackson County Comprehensive High School",
+  "CollegeBoardID": 110425
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c47"
+  },
+  "SchoolName": "Jesus Christ Our Hope Academy",
+  "CollegeBoardID": 112037
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4f"
+  },
+  "SchoolName": "Johnson Ferry Christian Academy",
+  "CollegeBoardID": 112201
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c50"
+  },
+  "SchoolName": "Jones County High School",
+  "CollegeBoardID": 111475
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c64"
+  },
+  "SchoolName": "Kings Way Christian School",
+  "CollegeBoardID": 111112
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6b"
+  },
+  "SchoolName": "Lafayette Christian School",
+  "CollegeBoardID": 111774
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c70"
+  },
+  "SchoolName": "Lakeside Academy",
+  "CollegeBoardID": 111310
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c77"
+  },
+  "SchoolName": "Lambert High School",
+  "CollegeBoardID": 110927
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c81"
+  },
+  "SchoolName": "Lasseter Academy At Education & Guidance Services",
+  "CollegeBoardID": 110818
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c86"
+  },
+  "SchoolName": "Lee County High School",
+  "CollegeBoardID": 111810
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c99"
+  },
+  "SchoolName": "Lilburn Middle School",
+  "CollegeBoardID": 119257
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cdc"
+  },
+  "SchoolName": "Merry Acres Middle School",
+  "CollegeBoardID": 119190
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce1"
+  },
+  "SchoolName": "Michael R Hollis Innovation Academy",
+  "CollegeBoardID": 119347
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce6"
+  },
+  "SchoolName": "Mill Springs Academy",
+  "CollegeBoardID": 110203
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf6"
+  },
+  "SchoolName": "Moore Street School",
+  "CollegeBoardID": 110103
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cfc"
+  },
+  "SchoolName": "Mount Desales Academy",
+  "CollegeBoardID": 111955
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cfd"
+  },
+  "SchoolName": "Mount Paran Christian School",
+  "CollegeBoardID": 111996
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1c"
+  },
+  "SchoolName": "Murray County High School",
+  "CollegeBoardID": 110660
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2a"
+  },
+  "SchoolName": "New Quitman County High School",
+  "CollegeBoardID": 111425
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d36"
+  },
+  "SchoolName": "North Cobb Christian School",
+  "CollegeBoardID": 111737
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3a"
+  },
+  "SchoolName": "North Georgia Christian Academy",
+  "CollegeBoardID": 111237
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4b"
+  },
+  "SchoolName": "Northgate High School",
+  "CollegeBoardID": 112252
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d51"
+  },
+  "SchoolName": "Northwestern Middle School",
+  "CollegeBoardID": 119163
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d80"
+  },
+  "SchoolName": "Peoples Baptist Academy",
+  "CollegeBoardID": 112182
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9b"
+  },
+  "SchoolName": "Portal Middle-High School",
+  "CollegeBoardID": 112430
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da3"
+  },
+  "SchoolName": "Putnam County Middle School",
+  "CollegeBoardID": 119167
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc5"
+  },
+  "SchoolName": "Grace Christian Academy",
+  "CollegeBoardID": 110336
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc8"
+  },
+  "SchoolName": "Grace Christian School",
+  "CollegeBoardID": 110584
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c12"
+  },
+  "SchoolName": "Holy Ground Baptist Academy",
+  "CollegeBoardID": 112621
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c14"
+  },
+  "SchoolName": "Holy Redeemer Catholic School",
+  "CollegeBoardID": 119161
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3d"
+  },
+  "SchoolName": "James Madison High School",
+  "CollegeBoardID": 112276
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c40"
+  },
+  "SchoolName": "Jean C Young Middle School",
+  "CollegeBoardID": 119037
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c48"
+  },
+  "SchoolName": "John Hancock Academy",
+  "CollegeBoardID": 112782
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c68"
+  },
+  "SchoolName": "Koinonia Accredited Center for Independent Study",
+  "CollegeBoardID": 111108
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c69"
+  },
+  "SchoolName": "Konos Academy",
+  "CollegeBoardID": 111283
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc7"
+  },
+  "SchoolName": "Marshpoint Elementary School",
+  "CollegeBoardID": 119287
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ceb"
+  },
+  "SchoolName": "Milton High School",
+  "CollegeBoardID": 110060
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ced"
+  },
+  "SchoolName": "Model High School",
+  "CollegeBoardID": 112725
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0b"
+  },
+  "SchoolName": "Mountain Education Charter High School - Gilmer",
+  "CollegeBoardID": 110017
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d10"
+  },
+  "SchoolName": "Mountain Education Charter High School - Murray",
+  "CollegeBoardID": 110312
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d13"
+  },
+  "SchoolName": "Mountain Education Charter High School - Stephens",
+  "CollegeBoardID": 110033
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d27"
+  },
+  "SchoolName": "New Life Academy of Excellence",
+  "CollegeBoardID": 119281
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d45"
+  },
+  "SchoolName": "North Springs High School",
+  "CollegeBoardID": 111154
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6d"
+  },
+  "SchoolName": "Paideia School",
+  "CollegeBoardID": 110214
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d79"
+  },
+  "SchoolName": "Peachtree Baptist Academy",
+  "CollegeBoardID": 110803
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8f"
+  },
+  "SchoolName": "Pike County High School",
+  "CollegeBoardID": 113335
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d91"
+  },
+  "SchoolName": "Pinckneyville Middle School",
+  "CollegeBoardID": 119268
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da0"
+  },
+  "SchoolName": "Providence Christian School",
+  "CollegeBoardID": 112688
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da7"
+  },
+  "SchoolName": "Rainey-McCullers School Of the Arts",
+  "CollegeBoardID": 110172
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bbe"
+  },
+  "SchoolName": "Grace Academy",
+  "CollegeBoardID": 112077
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bbd"
+  },
+  "SchoolName": "Grace Academy",
+  "CollegeBoardID": 111514
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd3"
+  },
+  "SchoolName": "Greenville Middle School",
+  "CollegeBoardID": 119022
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd6"
+  },
+  "SchoolName": "Griffin Middle School",
+  "CollegeBoardID": 119201
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bdb"
+  },
+  "SchoolName": "Gwinnett Online Campus",
+  "CollegeBoardID": 112284
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be1"
+  },
+  "SchoolName": "Habersham Success Academy",
+  "CollegeBoardID": 110014
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c10"
+  },
+  "SchoolName": "Hiram High School",
+  "CollegeBoardID": 111608
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c27"
+  },
+  "SchoolName": "Immaculate Conception Catholic School",
+  "CollegeBoardID": 110331
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2c"
+  },
+  "SchoolName": "Inner Harbour School",
+  "CollegeBoardID": 111109
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2e"
+  },
+  "SchoolName": "International Academy of Smyrna",
+  "CollegeBoardID": 119208
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c51"
+  },
+  "SchoolName": "Jonesboro High School",
+  "CollegeBoardID": 111730
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5a"
+  },
+  "SchoolName": "Kennedy Road Middle School",
+  "CollegeBoardID": 119313
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6e"
+  },
+  "SchoolName": "LaGrange High School",
+  "CollegeBoardID": 111765
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c72"
+  },
+  "SchoolName": "Lakeside High School",
+  "CollegeBoardID": 111257
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc0"
+  },
+  "SchoolName": "Main Street Academy",
+  "CollegeBoardID": 119279
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc1"
+  },
+  "SchoolName": "Manchester High School",
+  "CollegeBoardID": 111975
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc3"
+  },
+  "SchoolName": "Maranatha Christian Academy",
+  "CollegeBoardID": 111391
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ccf"
+  },
+  "SchoolName": "Maynard Jackson High School",
+  "CollegeBoardID": 110180
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce4"
+  },
+  "SchoolName": "Midway Middle School",
+  "CollegeBoardID": 119306
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cec"
+  },
+  "SchoolName": "Mitchell County High School",
+  "CollegeBoardID": 110585
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d07"
+  },
+  "SchoolName": "Mountain Education Charter High School - Cherokee",
+  "CollegeBoardID": 110384
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1b"
+  },
+  "SchoolName": "Murphey Middle School",
+  "CollegeBoardID": 119107
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d20"
+  },
+  "SchoolName": "New Alliance School",
+  "CollegeBoardID": 110257
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d29"
+  },
+  "SchoolName": "New Manchester High School",
+  "CollegeBoardID": 111116
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d30"
+  },
+  "SchoolName": "Newton High School",
+  "CollegeBoardID": 110905
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d33"
+  },
+  "SchoolName": "North Atlanta High School",
+  "CollegeBoardID": 110205
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3c"
+  },
+  "SchoolName": "North Gwinnett Middle School",
+  "CollegeBoardID": 119255
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d56"
+  },
+  "SchoolName": "Oakwood Christian Academy",
+  "CollegeBoardID": 110668
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5d"
+  },
+  "SchoolName": "Omega Learning Center",
+  "CollegeBoardID": 110021
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6b"
+  },
+  "SchoolName": "P B Ritch Middle School",
+  "CollegeBoardID": 119245
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7c"
+  },
+  "SchoolName": "Pearl Academy Math and Science Institute",
+  "CollegeBoardID": 110290
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9d"
+  },
+  "SchoolName": "Price Middle School",
+  "CollegeBoardID": 119020
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da2"
+  },
+  "SchoolName": "Putnam County High School",
+  "CollegeBoardID": 111190
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bbb"
+  },
+  "SchoolName": "Gordon Central High School",
+  "CollegeBoardID": 110553
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bba"
+  },
+  "SchoolName": "Goldmine Christian Academy",
+  "CollegeBoardID": 110851
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bcc"
+  },
+  "SchoolName": "Greater Atlanta Christian School",
+  "CollegeBoardID": 112278
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bcf"
+  },
+  "SchoolName": "Greenbrier High School",
+  "CollegeBoardID": 111258
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be4"
+  },
+  "SchoolName": "Hampton High School",
+  "CollegeBoardID": 111553
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be5"
+  },
+  "SchoolName": "Hampton Middle School",
+  "CollegeBoardID": 119164
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be7"
+  },
+  "SchoolName": "Hapeville Charter Career Academy",
+  "CollegeBoardID": 113068
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bea"
+  },
+  "SchoolName": "Harbour Oaks Montessori School",
+  "CollegeBoardID": 110362
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bee"
+  },
+  "SchoolName": "Harper-Archer Middle School",
+  "CollegeBoardID": 119173
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bef"
+  },
+  "SchoolName": "Harris County High School",
+  "CollegeBoardID": 111545
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf2"
+  },
+  "SchoolName": "Harvest Baptist School",
+  "CollegeBoardID": 110003
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bfa"
+  },
+  "SchoolName": "Heard County Middle School",
+  "CollegeBoardID": 119101
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bff"
+  },
+  "SchoolName": "Henry W Grady High School",
+  "CollegeBoardID": 110170
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c18"
+  },
+  "SchoolName": "Hope Christian Academy",
+  "CollegeBoardID": 111728
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c31"
+  },
+  "SchoolName": "Islands High School",
+  "CollegeBoardID": 112690
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c57"
+  },
+  "SchoolName": "Junior Academies Incorporated",
+  "CollegeBoardID": 111856
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5d"
+  },
+  "SchoolName": "Killian Hill Christian School",
+  "CollegeBoardID": 111829
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c71"
+  },
+  "SchoolName": "Lakeside High School",
+  "CollegeBoardID": 110184
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8c"
+  },
+  "SchoolName": "Liberty Christian Academy",
+  "CollegeBoardID": 110346
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c92"
+  },
+  "SchoolName": "Lifespring Christian Academy",
+  "CollegeBoardID": 110393
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca4"
+  },
+  "SchoolName": "Loganville Christian Academy",
+  "CollegeBoardID": 111853
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca9"
+  },
+  "SchoolName": "Louise Radloff Middle School",
+  "CollegeBoardID": 119262
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb6"
+  },
+  "SchoolName": "M D Roberts Middle School",
+  "CollegeBoardID": 119066
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc5"
+  },
+  "SchoolName": "Marion County Middle/High School",
+  "CollegeBoardID": 110495
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd1"
+  },
+  "SchoolName": "McClure Health Science High School",
+  "CollegeBoardID": 110326
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce8"
+  },
+  "SchoolName": "Miller Grove High School",
+  "CollegeBoardID": 111855
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cfa"
+  },
+  "SchoolName": "Morrow Middle School",
+  "CollegeBoardID": 119053
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cff"
+  },
+  "SchoolName": "Mount Vernon Presbyterian School",
+  "CollegeBoardID": 110189
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0c"
+  },
+  "SchoolName": "Mountain Education Charter High School - Habersham",
+  "CollegeBoardID": 110023
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0f"
+  },
+  "SchoolName": "Mountain Education Charter High School - Lumpkin",
+  "CollegeBoardID": 110026
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d1a"
+  },
+  "SchoolName": "Murphey Middle School",
+  "CollegeBoardID": 119064
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d21"
+  },
+  "SchoolName": "New Creation Christian Academy",
+  "CollegeBoardID": 112042
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d31"
+  },
+  "SchoolName": "Noah Webster Center",
+  "CollegeBoardID": 111994
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d38"
+  },
+  "SchoolName": "North Forsyth High School",
+  "CollegeBoardID": 110921
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3b"
+  },
+  "SchoolName": "North Gwinnett High School",
+  "CollegeBoardID": 110508
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5f"
+  },
+  "SchoolName": "Omega Private Academy",
+  "CollegeBoardID": 112011
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d62"
+  },
+  "SchoolName": "Omega Private Academy-Suwanee",
+  "CollegeBoardID": 112865
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d74"
+  },
+  "SchoolName": "Paul D West Middle School",
+  "CollegeBoardID": 119095
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d76"
+  },
+  "SchoolName": "Paulding County High School",
+  "CollegeBoardID": 110960
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8d"
+  },
+  "SchoolName": "Pierce County High School",
+  "CollegeBoardID": 110370
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d98"
+  },
+  "SchoolName": "Polaris Evening High School",
+  "CollegeBoardID": 110588
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5beb"
+  },
+  "SchoolName": "Hardaway High School",
+  "CollegeBoardID": 110828
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf7"
+  },
+  "SchoolName": "Hawkinsville High School",
+  "CollegeBoardID": 111585
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf8"
+  },
+  "SchoolName": "Haynes Bridge Middle School",
+  "CollegeBoardID": 119039
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bfb"
+  },
+  "SchoolName": "Hebron Christian Academy Middle High School",
+  "CollegeBoardID": 111808
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bfd"
+  },
+  "SchoolName": "Henderson Middle School",
+  "CollegeBoardID": 119024
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c35"
+  },
+  "SchoolName": "J A Dobbins Middle School",
+  "CollegeBoardID": 119901
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c37"
+  },
+  "SchoolName": "J E Brown Middle School",
+  "CollegeBoardID": 119077
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c39"
+  },
+  "SchoolName": "J P McConnell Middle School",
+  "CollegeBoardID": 119254
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c43"
+  },
+  "SchoolName": "Jefferson County High School",
+  "CollegeBoardID": 111860
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c61"
+  },
+  "SchoolName": "Kings Academy",
+  "CollegeBoardID": 111993
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c73"
+  },
+  "SchoolName": "Lakeview Academy",
+  "CollegeBoardID": 111388
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9d"
+  },
+  "SchoolName": "Lithia Christian Academy",
+  "CollegeBoardID": 111837
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca6"
+  },
+  "SchoolName": "Long Cane Middle School",
+  "CollegeBoardID": 119072
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5caf"
+  },
+  "SchoolName": "Lowndes High School",
+  "CollegeBoardID": 113080
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd6"
+  },
+  "SchoolName": "McIntosh County Academy",
+  "CollegeBoardID": 111015
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd8"
+  },
+  "SchoolName": "McNair High School",
+  "CollegeBoardID": 110247
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cda"
+  },
+  "SchoolName": "Memorial Day School",
+  "CollegeBoardID": 112683
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cea"
+  },
+  "SchoolName": "Millers Military Academy",
+  "CollegeBoardID": 111861
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d08"
+  },
+  "SchoolName": "Mountain Education Charter High School - Dawson",
+  "CollegeBoardID": 110094
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d19"
+  },
+  "SchoolName": "Mundy's Mill Middle School",
+  "CollegeBoardID": 119040
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d23"
+  },
+  "SchoolName": "New Hampstead High School",
+  "CollegeBoardID": 110399
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2b"
+  },
+  "SchoolName": "New School",
+  "CollegeBoardID": 110292
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d39"
+  },
+  "SchoolName": "North Forsyth Middle School",
+  "CollegeBoardID": 119186
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d40"
+  },
+  "SchoolName": "North Metro Academy of Performing Arts",
+  "CollegeBoardID": 119292
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d48"
+  },
+  "SchoolName": "Northeast Campus Tift County",
+  "CollegeBoardID": 119243
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5a"
+  },
+  "SchoolName": "Oglethorpe County High School",
+  "CollegeBoardID": 111823
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5c"
+  },
+  "SchoolName": "Old Suwannee Christian School",
+  "CollegeBoardID": 110509
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d81"
+  },
+  "SchoolName": "Pepperell High School",
+  "CollegeBoardID": 111835
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d92"
+  },
+  "SchoolName": "Pine Hill Middle School",
+  "CollegeBoardID": 119331
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9a"
+  },
+  "SchoolName": "Pope High School",
+  "CollegeBoardID": 111998
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bbc"
+  },
+  "SchoolName": "Gordon Lee Memorial High School",
+  "CollegeBoardID": 110675
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bbf"
+  },
+  "SchoolName": "Grace Academy Cartersville",
+  "CollegeBoardID": 110208
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd4"
+  },
+  "SchoolName": "Griffin Christian High School",
+  "CollegeBoardID": 111511
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bec"
+  },
+  "SchoolName": "Harlem High School",
+  "CollegeBoardID": 111565
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c08"
+  },
+  "SchoolName": "Herschel Jones Middle School",
+  "CollegeBoardID": 119246
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2a"
+  },
+  "SchoolName": "Independence High School",
+  "CollegeBoardID": 110061
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c42"
+  },
+  "SchoolName": "Jeff Davis Middle School",
+  "CollegeBoardID": 119289
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c46"
+  },
+  "SchoolName": "Jersey Christian Academy",
+  "CollegeBoardID": 111714
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c49"
+  },
+  "SchoolName": "John Lewis Invictus Academy",
+  "CollegeBoardID": 119346
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4b"
+  },
+  "SchoolName": "John Milledge Academy",
+  "CollegeBoardID": 112101
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4e"
+  },
+  "SchoolName": "Johnson County High School",
+  "CollegeBoardID": 113320
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5b"
+  },
+  "SchoolName": "Kennesaw Mountain High School",
+  "CollegeBoardID": 111739
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5c"
+  },
+  "SchoolName": "Kids Peace School Of Georgia",
+  "CollegeBoardID": 110416
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6d"
+  },
+  "SchoolName": "LaGrange Academy",
+  "CollegeBoardID": 111763
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c79"
+  },
+  "SchoolName": "Langford Middle School",
+  "CollegeBoardID": 119118
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8a"
+  },
+  "SchoolName": "Legacy Home School Academy",
+  "CollegeBoardID": 111639
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c97"
+  },
+  "SchoolName": "Lighthouse Christian School",
+  "CollegeBoardID": 110377
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca2"
+  },
+  "SchoolName": "Locust Grove High School",
+  "CollegeBoardID": 111869
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb4"
+  },
+  "SchoolName": "Lumpkin County Middle School",
+  "CollegeBoardID": 119067
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc6"
+  },
+  "SchoolName": "Marist School",
+  "CollegeBoardID": 110195
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ccb"
+  },
+  "SchoolName": "Mary Persons High School",
+  "CollegeBoardID": 111320
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cde"
+  },
+  "SchoolName": "Metter Career Academy",
+  "CollegeBoardID": 110351
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d05"
+  },
+  "SchoolName": "Mountain Education Charter High School - Bartow",
+  "CollegeBoardID": 110096
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d06"
+  },
+  "SchoolName": "Mountain Education Charter High School - Bowman",
+  "CollegeBoardID": 110016
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d14"
+  },
+  "SchoolName": "Mountain Education Charter High School - Union",
+  "CollegeBoardID": 110378
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d3e"
+  },
+  "SchoolName": "North Hall High School",
+  "CollegeBoardID": 111395
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d61"
+  },
+  "SchoolName": "Omega Private Academy- Douglasville",
+  "CollegeBoardID": 111111
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d73"
+  },
+  "SchoolName": "Paul Anderson High School",
+  "CollegeBoardID": 113103
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7b"
+  },
+  "SchoolName": "Peachtree Ridge High School",
+  "CollegeBoardID": 112866
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7e"
+  },
+  "SchoolName": "Pelham High School",
+  "CollegeBoardID": 112370
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9c"
+  },
+  "SchoolName": "Praise Academy",
+  "CollegeBoardID": 112434
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf5"
+  },
+  "SchoolName": "HAVEN Academy at Sky View",
+  "CollegeBoardID": 119237
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bb7"
+  },
+  "SchoolName": "Glynn Middle School",
+  "CollegeBoardID": 119142
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd5"
+  },
+  "SchoolName": "Griffin High School",
+  "CollegeBoardID": 111515
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c04"
+  },
+  "SchoolName": "Heritage Classical Study Center",
+  "CollegeBoardID": 111824
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0b"
+  },
+  "SchoolName": "Hightower Trail Middle School",
+  "CollegeBoardID": 119200
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1d"
+  },
+  "SchoolName": "Houston County Career Academy",
+  "CollegeBoardID": 113155
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c28"
+  },
+  "SchoolName": "Immaculate Heart Of Mary Catholic School",
+  "CollegeBoardID": 119341
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c58"
+  },
+  "SchoolName": "Kell High School",
+  "CollegeBoardID": 111992
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c59"
+  },
+  "SchoolName": "Kendrick High School",
+  "CollegeBoardID": 110831
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6c"
+  },
+  "SchoolName": "LaFayette High School",
+  "CollegeBoardID": 111755
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c6f"
+  },
+  "SchoolName": "Lake Oconee Academy",
+  "CollegeBoardID": 111496
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c78"
+  },
+  "SchoolName": "Landmark Christian School",
+  "CollegeBoardID": 111273
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8e"
+  },
+  "SchoolName": "Liberty Faith Christian Academy",
+  "CollegeBoardID": 112192
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c94"
+  },
+  "SchoolName": "Lighthouse Christian Academy",
+  "CollegeBoardID": 111122
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9f"
+  },
+  "SchoolName": "Lithonia High School",
+  "CollegeBoardID": 111845
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cad"
+  },
+  "SchoolName": "Lovinggood Middle School",
+  "CollegeBoardID": 119903
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cbd"
+  },
+  "SchoolName": "Macon County Middle School",
+  "CollegeBoardID": 119143
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cc9"
+  },
+  "SchoolName": "Martin Luther King Junior High School",
+  "CollegeBoardID": 111843
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd4"
+  },
+  "SchoolName": "McDonough Middle School",
+  "CollegeBoardID": 119329
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd7"
+  },
+  "SchoolName": "McIntosh High School",
+  "CollegeBoardID": 112360
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d03"
+  },
+  "SchoolName": "Mount Zion Middle School",
+  "CollegeBoardID": 119304
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d24"
+  },
+  "SchoolName": "New Hope Christian Academy",
+  "CollegeBoardID": 112644
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2d"
+  },
+  "SchoolName": "New Testament Christian Academy",
+  "CollegeBoardID": 112843
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4a"
+  },
+  "SchoolName": "Northeast Independent Preparatory Academy",
+  "CollegeBoardID": 112845
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d5e"
+  },
+  "SchoolName": "Omega Learning Center - South Forsyth",
+  "CollegeBoardID": 110222
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d67"
+  },
+  "SchoolName": "Orchard Hills Academy",
+  "CollegeBoardID": 112246
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d71"
+  },
+  "SchoolName": "Parkwood Christian Academy",
+  "CollegeBoardID": 111840
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d78"
+  },
+  "SchoolName": "Peachtree Academy",
+  "CollegeBoardID": 110853
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da1"
+  },
+  "SchoolName": "Providence Christian School",
+  "CollegeBoardID": 112320
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bc0"
+  },
+  "SchoolName": "Grace Ashtin Christian School for Girls",
+  "CollegeBoardID": 112691
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd8"
+  },
+  "SchoolName": "Grovetown High School",
+  "CollegeBoardID": 111528
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf0"
+  },
+  "SchoolName": "Harrison High School",
+  "CollegeBoardID": 111734
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bfe"
+  },
+  "SchoolName": "Henderson Middle School",
+  "CollegeBoardID": 119093
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c01"
+  },
+  "SchoolName": "Hephzibah Middle School",
+  "CollegeBoardID": 119063
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0d"
+  },
+  "SchoolName": "Hilliard A Wilbanks Middle School",
+  "CollegeBoardID": 119211
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0e"
+  },
+  "SchoolName": "Hillside Conant School",
+  "CollegeBoardID": 110230
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c16"
+  },
+  "SchoolName": "HOPE Academy",
+  "CollegeBoardID": 111726
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c20"
+  },
+  "SchoolName": "Howard High School",
+  "CollegeBoardID": 111974
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c2f"
+  },
+  "SchoolName": "Irma C Austin Middle School",
+  "CollegeBoardID": 119248
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c33"
+  },
+  "SchoolName": "Ivy Preparatory Academy at Kirkwood for Girls",
+  "CollegeBoardID": 110154
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c67"
+  },
+  "SchoolName": "KIPP: South Fulton Academy",
+  "CollegeBoardID": 119148
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7b"
+  },
+  "SchoolName": "Langston Hughes High School",
+  "CollegeBoardID": 111268
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c83"
+  },
+  "SchoolName": "Laurel Heights Academy",
+  "CollegeBoardID": 110186
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c8d"
+  },
+  "SchoolName": "Liberty County High School",
+  "CollegeBoardID": 111616
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9a"
+  },
+  "SchoolName": "Lincoln County High School",
+  "CollegeBoardID": 111830
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5caa"
+  },
+  "SchoolName": "Lovejoy High School",
+  "CollegeBoardID": 111552
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb2"
+  },
+  "SchoolName": "Luella Middle School",
+  "CollegeBoardID": 119133
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb3"
+  },
+  "SchoolName": "Lumpkin County High School",
+  "CollegeBoardID": 110955
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cca"
+  },
+  "SchoolName": "Mary McLeod Bethune Middle School",
+  "CollegeBoardID": 119104
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cdd"
+  },
+  "SchoolName": "Metropolitan Christian School",
+  "CollegeBoardID": 110252
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf0"
+  },
+  "SchoolName": "Monroe Country Day School",
+  "CollegeBoardID": 110356
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d11"
+  },
+  "SchoolName": "Mountain Education Charter High School - Pickens",
+  "CollegeBoardID": 110028
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d25"
+  },
+  "SchoolName": "New Hope Middle School",
+  "CollegeBoardID": 119326
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2e"
+  },
+  "SchoolName": "Newnan Christian School",
+  "CollegeBoardID": 112248
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d37"
+  },
+  "SchoolName": "North Cobb High School",
+  "CollegeBoardID": 110005
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4d"
+  },
+  "SchoolName": "Northside High School",
+  "CollegeBoardID": 110838
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d55"
+  },
+  "SchoolName": "Oakside Christian School",
+  "CollegeBoardID": 111775
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6a"
+  },
+  "SchoolName": "Our Lady of the Assumption Catholic School",
+  "CollegeBoardID": 119295
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d77"
+  },
+  "SchoolName": "Peach County High School",
+  "CollegeBoardID": 111333
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7d"
+  },
+  "SchoolName": "Pebblebrook High School",
+  "CollegeBoardID": 111925
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d93"
+  },
+  "SchoolName": "Pine Mountain Middle School",
+  "CollegeBoardID": 119138
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d95"
+  },
+  "SchoolName": "Pinewood Christian Academy",
+  "CollegeBoardID": 110367
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9e"
+  },
+  "SchoolName": "Prince Avenue Christian School",
+  "CollegeBoardID": 110119
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da4"
+  },
+  "SchoolName": "Rabun County High School",
+  "CollegeBoardID": 110710
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bd7"
+  },
+  "SchoolName": "Griffin Region College And Career Academy",
+  "CollegeBoardID": 110314
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5be0"
+  },
+  "SchoolName": "Habersham School",
+  "CollegeBoardID": 112694
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf3"
+  },
+  "SchoolName": "Harvester Christian Academy",
+  "CollegeBoardID": 111103
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf4"
+  },
+  "SchoolName": "Haven Academy",
+  "CollegeBoardID": 110358
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf6"
+  },
+  "SchoolName": "HAVEN Academy: Hawthorne School",
+  "CollegeBoardID": 112738
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bfc"
+  },
+  "SchoolName": "Heirway Christian Academy",
+  "CollegeBoardID": 111118
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c09"
+  },
+  "SchoolName": "High Meadows School",
+  "CollegeBoardID": 119129
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0a"
+  },
+  "SchoolName": "Highland Christian Academy",
+  "CollegeBoardID": 113082
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1e"
+  },
+  "SchoolName": "Houston County Crossroads Center",
+  "CollegeBoardID": 113150
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c45"
+  },
+  "SchoolName": "Jenkins County High School",
+  "CollegeBoardID": 112115
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c54"
+  },
+  "SchoolName": "Jordan Vocational High School",
+  "CollegeBoardID": 110830
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c60"
+  },
+  "SchoolName": "Kingdom Christian Academy and Preparatory School",
+  "CollegeBoardID": 110841
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c62"
+  },
+  "SchoolName": "Kings Academy",
+  "CollegeBoardID": 110070
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c85"
+  },
+  "SchoolName": "Learning Company High School Academy",
+  "CollegeBoardID": 111859
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c87"
+  },
+  "SchoolName": "Lee County Middle School West",
+  "CollegeBoardID": 119082
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca1"
+  },
+  "SchoolName": "Living Way Christian Academy",
+  "CollegeBoardID": 110012
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cb8"
+  },
+  "SchoolName": "Mabry Middle School",
+  "CollegeBoardID": 119205
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cba"
+  },
+  "SchoolName": "MacIntyre Park Middle School",
+  "CollegeBoardID": 119166
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce2"
+  },
+  "SchoolName": "Midland Middle School",
+  "CollegeBoardID": 119081
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce3"
+  },
+  "SchoolName": "Midtown International School",
+  "CollegeBoardID": 110308
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce9"
+  },
+  "SchoolName": "Miller Grove Middle School",
+  "CollegeBoardID": 119100
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cfe"
+  },
+  "SchoolName": "Mount Pisgah Christian School",
+  "CollegeBoardID": 110062
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d2c"
+  },
+  "SchoolName": "New Testament Christian Academy",
+  "CollegeBoardID": 113062
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d6f"
+  },
+  "SchoolName": "Paragon Cooperative Learning Academy",
+  "CollegeBoardID": 110901
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d85"
+  },
+  "SchoolName": "Philadelphia Christian School",
+  "CollegeBoardID": 110562
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8a"
+  },
+  "SchoolName": "Pickens Junior High School",
+  "CollegeBoardID": 119065
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d8b"
+  },
+  "SchoolName": "Piedmont Academy",
+  "CollegeBoardID": 112168
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d99"
+  },
+  "SchoolName": "Polestar School",
+  "CollegeBoardID": 110213
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bf9"
+  },
+  "SchoolName": "Heard County High School",
+  "CollegeBoardID": 111350
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c00"
+  },
+  "SchoolName": "Hephzibah Comprehensive High School",
+  "CollegeBoardID": 111600
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c0c"
+  },
+  "SchoolName": "Hillgrove High School",
+  "CollegeBoardID": 112431
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c11"
+  },
+  "SchoolName": "His Academy Christian School of Excellence",
+  "CollegeBoardID": 112844
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c1c"
+  },
+  "SchoolName": "Horizons School",
+  "CollegeBoardID": 110181
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c21"
+  },
+  "SchoolName": "Howard Scholars Academy",
+  "CollegeBoardID": 110090
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c22"
+  },
+  "SchoolName": "Howard School",
+  "CollegeBoardID": 110179
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c26"
+  },
+  "SchoolName": "IJT Development Center",
+  "CollegeBoardID": 111999
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3b"
+  },
+  "SchoolName": "Jackson High School",
+  "CollegeBoardID": 111675
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3c"
+  },
+  "SchoolName": "Jacobs Ladder",
+  "CollegeBoardID": 110382
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c3e"
+  },
+  "SchoolName": "Jasper County High School",
+  "CollegeBoardID": 112160
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c44"
+  },
+  "SchoolName": "Jefferson High School",
+  "CollegeBoardID": 111700
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4a"
+  },
+  "SchoolName": "John M Tutt Middle School",
+  "CollegeBoardID": 119124
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c4d"
+  },
+  "SchoolName": "Johns Creek High School",
+  "CollegeBoardID": 111866
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c7c"
+  },
+  "SchoolName": "Lanier Career Academy",
+  "CollegeBoardID": 111386
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c82"
+  },
+  "SchoolName": "Lassiter High School",
+  "CollegeBoardID": 111983
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9e"
+  },
+  "SchoolName": "Lithia Springs High School",
+  "CollegeBoardID": 111836
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca0"
+  },
+  "SchoolName": "Lithonia Middle School",
+  "CollegeBoardID": 119103
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca3"
+  },
+  "SchoolName": "Locust Grove Middle School",
+  "CollegeBoardID": 119269
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ca7"
+  },
+  "SchoolName": "Long County High School",
+  "CollegeBoardID": 111865
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ccc"
+  },
+  "SchoolName": "Masada Day And Preparatory School",
+  "CollegeBoardID": 112760
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cdb"
+  },
+  "SchoolName": "Memorial Middle School",
+  "CollegeBoardID": 119078
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cf9"
+  },
+  "SchoolName": "Morrow High School",
+  "CollegeBoardID": 112177
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cfb"
+  },
+  "SchoolName": "Mount Bethel Christian Academy",
+  "CollegeBoardID": 119155
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d04"
+  },
+  "SchoolName": "Mountain Area Christian Academy",
+  "CollegeBoardID": 112174
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d0e"
+  },
+  "SchoolName": "Mountain Education Charter High School - Hill Center",
+  "CollegeBoardID": 110024
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d18"
+  },
+  "SchoolName": "Mundy's Mill High School",
+  "CollegeBoardID": 111729
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d35"
+  },
+  "SchoolName": "North Clayton Middle School",
+  "CollegeBoardID": 119054
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d41"
+  },
+  "SchoolName": "North Murray High School",
+  "CollegeBoardID": 110663
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d52"
+  },
+  "SchoolName": "Notre Dame Academy",
+  "CollegeBoardID": 111142
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d72"
+  },
+  "SchoolName": "Pataula Charter Academy",
+  "CollegeBoardID": 111195
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bcd"
+  },
+  "SchoolName": "Greater Fellowship Christian Academy",
+  "CollegeBoardID": 110174
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bce"
+  },
+  "SchoolName": "Green Pastures Christian",
+  "CollegeBoardID": 111042
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5bdf"
+  },
+  "SchoolName": "Habersham Central High School",
+  "CollegeBoardID": 110895
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c17"
+  },
+  "SchoolName": "Hope Christian Academy",
+  "CollegeBoardID": 113271
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c19"
+  },
+  "SchoolName": "Hopewell Academy",
+  "CollegeBoardID": 111863
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c41"
+  },
+  "SchoolName": "Jeff Davis High School",
+  "CollegeBoardID": 111595
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c56"
+  },
+  "SchoolName": "Jubilee Christian Academy",
+  "CollegeBoardID": 111393
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c5e"
+  },
+  "SchoolName": "King Middle School",
+  "CollegeBoardID": 119012
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c65"
+  },
+  "SchoolName": "KIPP Atlanta Collegiate High School",
+  "CollegeBoardID": 110152
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c89"
+  },
+  "SchoolName": "Legacy Community Academy",
+  "CollegeBoardID": 110080
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c98"
+  },
+  "SchoolName": "Lighthouse Classical Academy",
+  "CollegeBoardID": 110610
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5c9b"
+  },
+  "SchoolName": "Lindley Middle School",
+  "CollegeBoardID": 119203
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cac"
+  },
+  "SchoolName": "Lovett School",
+  "CollegeBoardID": 110185
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cae"
+  },
+  "SchoolName": "Lowndes Correctional Institute",
+  "CollegeBoardID": 113086
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5cd3"
+  },
+  "SchoolName": "McDonough High School",
+  "CollegeBoardID": 112040
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5ce7"
+  },
+  "SchoolName": "Miller County High School",
+  "CollegeBoardID": 110815
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d01"
+  },
+  "SchoolName": "Mount Zion High School",
+  "CollegeBoardID": 112215
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d12"
+  },
+  "SchoolName": "Mountain Education Charter High School - Rabun",
+  "CollegeBoardID": 110029
+},{
+  "_id": {
+    "$oid": "601dea0a8d340c499c3b5d16"
+  },
+  "SchoolName": "Mountain View High School",
+  "CollegeBoardID": 111800
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d49"
+  },
+  "SchoolName": "Northeast Health Science High School",
+  "CollegeBoardID": 111945
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d4c"
+  },
+  "SchoolName": "Northside Christian Academy",
+  "CollegeBoardID": 110056
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d58"
+  },
+  "SchoolName": "Oconee County High School",
+  "CollegeBoardID": 113190
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d68"
+  },
+  "SchoolName": "Osborne High School",
+  "CollegeBoardID": 112000
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d69"
+  },
+  "SchoolName": "Our Lady of Mercy Catholic High School",
+  "CollegeBoardID": 111269
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d7a"
+  },
+  "SchoolName": "Peachtree Charter Middle School",
+  "CollegeBoardID": 119029
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d83"
+  },
+  "SchoolName": "Perry High School",
+  "CollegeBoardID": 112390
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d86"
+  },
+  "SchoolName": "Philmore Academy",
+  "CollegeBoardID": 110375
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5d9f"
+  },
+  "SchoolName": "Providence Christian Academy",
+  "CollegeBoardID": 111832
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dae"
+  },
+  "SchoolName": "Redan Middle School",
+  "CollegeBoardID": 119102
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dbc"
+  },
+  "SchoolName": "Richmond Hill High School",
+  "CollegeBoardID": 112525
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc1"
+  },
+  "SchoolName": "Riley Learning Center",
+  "CollegeBoardID": 112685
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dce"
+  },
+  "SchoolName": "Robert A Cross Middle Magnet School",
+  "CollegeBoardID": 119338
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db9"
+  },
+  "SchoolName": "Richards Middle School",
+  "CollegeBoardID": 119226
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da8"
+  },
+  "SchoolName": "Ralph Bunche Middle School",
+  "CollegeBoardID": 119007
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5da9"
+  },
+  "SchoolName": "Rambam Day School",
+  "CollegeBoardID": 110360
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dbd"
+  },
+  "SchoolName": "Richmond Hill K-8 School",
+  "CollegeBoardID": 119036
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd5"
+  },
+  "SchoolName": "Rockmart High School",
+  "CollegeBoardID": 112570
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd7"
+  },
+  "SchoolName": "Rome Middle School",
+  "CollegeBoardID": 119169
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ded"
+  },
+  "SchoolName": "Sammy McClure Middle School",
+  "CollegeBoardID": 119251
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dee"
+  },
+  "SchoolName": "Samuel M Inman Middle School",
+  "CollegeBoardID": 119004
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df0"
+  },
+  "SchoolName": "Savannah Arts Academy",
+  "CollegeBoardID": 112696
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0c"
+  },
+  "SchoolName": "Skyview High School",
+  "CollegeBoardID": 110083
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e12"
+  },
+  "SchoolName": "Sol C Johnson High School",
+  "CollegeBoardID": 112714
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e17"
+  },
+  "SchoolName": "Sophia Academy",
+  "CollegeBoardID": 110291
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1e"
+  },
+  "SchoolName": "South Forsyth High School",
+  "CollegeBoardID": 110922
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2d"
+  },
+  "SchoolName": "Southwest Georgia Academy",
+  "CollegeBoardID": 111001
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3e"
+  },
+  "SchoolName": "Stephens County High School",
+  "CollegeBoardID": 111155
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e43"
+  },
+  "SchoolName": "Stone Mountain Christian School",
+  "CollegeBoardID": 112837
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e52"
+  },
+  "SchoolName": "Tabor Junior High School",
+  "CollegeBoardID": 119015
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7d"
+  },
+  "SchoolName": "Thrive Christian Academy",
+  "CollegeBoardID": 110321
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8a"
+  },
+  "SchoolName": "Trinity Center for Independent Study",
+  "CollegeBoardID": 112439
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8b"
+  },
+  "SchoolName": "Trinity Chapel Academy",
+  "CollegeBoardID": 112449
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9a"
+  },
+  "SchoolName": "Twiggs County Comprehensive Middle-High School",
+  "CollegeBoardID": 111710
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb0"
+  },
+  "SchoolName": "Veritas Academy",
+  "CollegeBoardID": 112713
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb6"
+  },
+  "SchoolName": "Veterans High School",
+  "CollegeBoardID": 111742
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb7"
+  },
+  "SchoolName": "Veterans Memorial Middle School",
+  "CollegeBoardID": 119170
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed0"
+  },
+  "SchoolName": "Webster County Charter High School",
+  "CollegeBoardID": 112437
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee1"
+  },
+  "SchoolName": "Westside High School",
+  "CollegeBoardID": 111967
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f01"
+  },
+  "SchoolName": "Woodville Tompkins Technical And Career High School",
+  "CollegeBoardID": 112692
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd4"
+  },
+  "SchoolName": "Rockdale County High School",
+  "CollegeBoardID": 110860
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de1"
+  },
+  "SchoolName": "Saint Francis High School",
+  "CollegeBoardID": 112629
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de2"
+  },
+  "SchoolName": "Saint Georges Episcopal School",
+  "CollegeBoardID": 110034
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de3"
+  },
+  "SchoolName": "Saint John Bosco Academy",
+  "CollegeBoardID": 112868
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df4"
+  },
+  "SchoolName": "Savannah Early College",
+  "CollegeBoardID": 111409
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e06"
+  },
+  "SchoolName": "Shiloh Hills Christian School",
+  "CollegeBoardID": 111738
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e15"
+  },
+  "SchoolName": "Solid Rock Baptist School",
+  "CollegeBoardID": 112032
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1b"
+  },
+  "SchoolName": "South Cobb High School",
+  "CollegeBoardID": 110305
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2f"
+  },
+  "SchoolName": "Southwest Middle School",
+  "CollegeBoardID": 119008
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e33"
+  },
+  "SchoolName": "Spirit Creek Middle School",
+  "CollegeBoardID": 119090
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3d"
+  },
+  "SchoolName": "STEM Academy at Bartlett",
+  "CollegeBoardID": 119229
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4b"
+  },
+  "SchoolName": "Summerour Middle School",
+  "CollegeBoardID": 119256
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e62"
+  },
+  "SchoolName": "Terrell Academy",
+  "CollegeBoardID": 111028
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6a"
+  },
+  "SchoolName": "The Dinoff School",
+  "CollegeBoardID": 111288
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e70"
+  },
+  "SchoolName": "The Learning Exchange: Christian Academy",
+  "CollegeBoardID": 112006
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e75"
+  },
+  "SchoolName": "The Valwood School",
+  "CollegeBoardID": 113096
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e86"
+  },
+  "SchoolName": "Towns County High School",
+  "CollegeBoardID": 111605
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e91"
+  },
+  "SchoolName": "Trinity Prep School",
+  "CollegeBoardID": 111870
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e98"
+  },
+  "SchoolName": "Turner Middle School",
+  "CollegeBoardID": 119038
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e99"
+  },
+  "SchoolName": "Twiggs Academy",
+  "CollegeBoardID": 111708
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea1"
+  },
+  "SchoolName": "Union Middle School",
+  "CollegeBoardID": 119031
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea5"
+  },
+  "SchoolName": "University School of World Changers",
+  "CollegeBoardID": 110805
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb2"
+  },
+  "SchoolName": "Veritas Classical Schools",
+  "CollegeBoardID": 110068
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed3"
+  },
+  "SchoolName": "West Forsyth High School",
+  "CollegeBoardID": 110929
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef9"
+  },
+  "SchoolName": "Wiregrass Regional College and Career Academy",
+  "CollegeBoardID": 111121
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f0a"
+  },
+  "SchoolName": "Young Americans Christian School",
+  "CollegeBoardID": 110866
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc6"
+  },
+  "SchoolName": "River Trail Middle School",
+  "CollegeBoardID": 119162
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dcc"
+  },
+  "SchoolName": "Riverwatch Middle School",
+  "CollegeBoardID": 119177
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dcd"
+  },
+  "SchoolName": "Riverwood International High School",
+  "CollegeBoardID": 110216
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd2"
+  },
+  "SchoolName": "Rock Springs Christian Academy",
+  "CollegeBoardID": 112126
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e04"
+  },
+  "SchoolName": "Shiloh Christian Academy",
+  "CollegeBoardID": 112249
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e09"
+  },
+  "SchoolName": "Simpson Middle School",
+  "CollegeBoardID": 119207
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e11"
+  },
+  "SchoolName": "Social Circle High School",
+  "CollegeBoardID": 112765
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e27"
+  },
+  "SchoolName": "Southeast Whitfield County High School",
+  "CollegeBoardID": 110990
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e31"
+  },
+  "SchoolName": "Spalding Junior High School",
+  "CollegeBoardID": 119013
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e36"
+  },
+  "SchoolName": "St Joseph Catholic School",
+  "CollegeBoardID": 119317
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e44"
+  },
+  "SchoolName": "Stone Mountain High School",
+  "CollegeBoardID": 112835
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4a"
+  },
+  "SchoolName": "Sugar Hill Christian Academy",
+  "CollegeBoardID": 110098
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e58"
+  },
+  "SchoolName": "Tapp Middle School",
+  "CollegeBoardID": 119206
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e60"
+  },
+  "SchoolName": "Temple High School",
+  "CollegeBoardID": 112955
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e66"
+  },
+  "SchoolName": "The Bridge Academy",
+  "CollegeBoardID": 111307
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7c"
+  },
+  "SchoolName": "Thomson High School",
+  "CollegeBoardID": 112995
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e81"
+  },
+  "SchoolName": "Tiftarea Academy",
+  "CollegeBoardID": 110680
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e85"
+  },
+  "SchoolName": "Towers High School",
+  "CollegeBoardID": 111049
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8c"
+  },
+  "SchoolName": "Trinity Christian Academy",
+  "CollegeBoardID": 111621
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e95"
+  },
+  "SchoolName": "Tucker High School",
+  "CollegeBoardID": 113050
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9c"
+  },
+  "SchoolName": "Unidos Dual Language Charter School",
+  "CollegeBoardID": 119278
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ebe"
+  },
+  "SchoolName": "Vidalia Heritage Academy",
+  "CollegeBoardID": 113106
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec0"
+  },
+  "SchoolName": "Walker School",
+  "CollegeBoardID": 111986
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec2"
+  },
+  "SchoolName": "Walton High School",
+  "CollegeBoardID": 111987
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec3"
+  },
+  "SchoolName": "War Hill Christian Academy",
+  "CollegeBoardID": 111033
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef1"
+  },
+  "SchoolName": "William & Reed Academy",
+  "CollegeBoardID": 111744
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5daa"
+  },
+  "SchoolName": "Randolph Southern School",
+  "CollegeBoardID": 112733
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db1"
+  },
+  "SchoolName": "Renaissance Center for Academic and Career Development",
+  "CollegeBoardID": 112989
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc3"
+  },
+  "SchoolName": "Rising Starr Middle School",
+  "CollegeBoardID": 119283
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd9"
+  },
+  "SchoolName": "Roswell High School",
+  "CollegeBoardID": 112625
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de0"
+  },
+  "SchoolName": "Saint Anne Pacelli Catholic School",
+  "CollegeBoardID": 110832
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df2"
+  },
+  "SchoolName": "Savannah Classical Academy",
+  "CollegeBoardID": 110198
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dfe"
+  },
+  "SchoolName": "Sequoyah Middle School",
+  "CollegeBoardID": 119109
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0a"
+  },
+  "SchoolName": "Sinclair Christian Academy",
+  "CollegeBoardID": 112108
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e19"
+  },
+  "SchoolName": "Sound Doctrine Christian Academy",
+  "CollegeBoardID": 111767
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e47"
+  },
+  "SchoolName": "Stratford Academy",
+  "CollegeBoardID": 111961
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e84"
+  },
+  "SchoolName": "Torch and Sword Christian Academy",
+  "CollegeBoardID": 112288
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e93"
+  },
+  "SchoolName": "Troup County High School",
+  "CollegeBoardID": 111777
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eaf"
+  },
+  "SchoolName": "Vantage Point Education",
+  "CollegeBoardID": 111147
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec4"
+  },
+  "SchoolName": "Ware County High School",
+  "CollegeBoardID": 113220
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed8"
+  },
+  "SchoolName": "West Laurens High School",
+  "CollegeBoardID": 110535
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef0"
+  },
+  "SchoolName": "Wilkinson County Middle School",
+  "CollegeBoardID": 119005
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f08"
+  },
+  "SchoolName": "Wynfield Christian Academy",
+  "CollegeBoardID": 111972
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f0b"
+  },
+  "SchoolName": "Youth Challenge Academy - Fort Gordon",
+  "CollegeBoardID": 111329
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db6"
+  },
+  "SchoolName": "Richard Hull Middle School",
+  "CollegeBoardID": 119137
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dba"
+  },
+  "SchoolName": "Richmond County Technical Career Magnet School",
+  "CollegeBoardID": 110051
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de7"
+  },
+  "SchoolName": "Saint Paul Academy",
+  "CollegeBoardID": 112716
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dca"
+  },
+  "SchoolName": "Riverside Military Academy",
+  "CollegeBoardID": 111405
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0f"
+  },
+  "SchoolName": "SOAR Academy",
+  "CollegeBoardID": 110071
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dcb"
+  },
+  "SchoolName": "Riverstone Montessori Academy",
+  "CollegeBoardID": 119293
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e20"
+  },
+  "SchoolName": "South Gwinnett High School",
+  "CollegeBoardID": 112755
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd8"
+  },
+  "SchoolName": "Ronald McNair Senior Middle School",
+  "CollegeBoardID": 119097
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e28"
+  },
+  "SchoolName": "Southland Academy",
+  "CollegeBoardID": 110072
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df8"
+  },
+  "SchoolName": "Scholars Guild Academy",
+  "CollegeBoardID": 112730
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3b"
+  },
+  "SchoolName": "Statesboro High School",
+  "CollegeBoardID": 112805
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e10"
+  },
+  "SchoolName": "Soaring Eagles",
+  "CollegeBoardID": 111284
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3f"
+  },
+  "SchoolName": "Stephenson High School",
+  "CollegeBoardID": 112834
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e53"
+  },
+  "SchoolName": "Taliaferro County School",
+  "CollegeBoardID": 110915
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e30"
+  },
+  "SchoolName": "Spalding High School",
+  "CollegeBoardID": 111513
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e59"
+  },
+  "SchoolName": "Tattnall County High School",
+  "CollegeBoardID": 112480
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3c"
+  },
+  "SchoolName": "Stellaris Academy",
+  "CollegeBoardID": 110592
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e71"
+  },
+  "SchoolName": "The Life School",
+  "CollegeBoardID": 110309
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4e"
+  },
+  "SchoolName": "Swainsboro High School",
+  "CollegeBoardID": 112885
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e96"
+  },
+  "SchoolName": "Tucker Middle School",
+  "CollegeBoardID": 119112
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5a"
+  },
+  "SchoolName": "Tattnall Square Academy",
+  "CollegeBoardID": 111962
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea2"
+  },
+  "SchoolName": "Unity Christian School",
+  "CollegeBoardID": 112581
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6d"
+  },
+  "SchoolName": "The Galloway School",
+  "CollegeBoardID": 110167
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ead"
+  },
+  "SchoolName": "Valdosta High School",
+  "CollegeBoardID": 113095
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e72"
+  },
+  "SchoolName": "The Lighthouse Program",
+  "CollegeBoardID": 111267
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb3"
+  },
+  "SchoolName": "Veritas Classical Schools",
+  "CollegeBoardID": 113161
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e74"
+  },
+  "SchoolName": "The SAE School",
+  "CollegeBoardID": 110313
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb4"
+  },
+  "SchoolName": "Veritas Classical Schools - West Cobb Campus",
+  "CollegeBoardID": 111735
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7e"
+  },
+  "SchoolName": "Thrive Heart To Home Learning Inc",
+  "CollegeBoardID": 110101
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ebf"
+  },
+  "SchoolName": "Villa Rica High School",
+  "CollegeBoardID": 113130
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e87"
+  },
+  "SchoolName": "Treutlen High School",
+  "CollegeBoardID": 112770
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eac"
+  },
+  "SchoolName": "Valdosta Early College Academy",
+  "CollegeBoardID": 113093
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb5"
+  },
+  "SchoolName": "Veritas Classical Schools Douglasville",
+  "CollegeBoardID": 111127
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed6"
+  },
+  "SchoolName": "West Hall Middle School",
+  "CollegeBoardID": 119303
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ece"
+  },
+  "SchoolName": "Wayne County High School",
+  "CollegeBoardID": 111720
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed1"
+  },
+  "SchoolName": "Webster County Elementary School",
+  "CollegeBoardID": 119073
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed4"
+  },
+  "SchoolName": "West Georgia Christian Academy",
+  "CollegeBoardID": 111757
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed7"
+  },
+  "SchoolName": "West Jackson Middle School",
+  "CollegeBoardID": 119180
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ede"
+  },
+  "SchoolName": "Westover Comprehensive High School",
+  "CollegeBoardID": 110048
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eed"
+  },
+  "SchoolName": "Whitfield County Career Academy",
+  "CollegeBoardID": 110971
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee0"
+  },
+  "SchoolName": "Westside Atlanta Charter School",
+  "CollegeBoardID": 119332
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef7"
+  },
+  "SchoolName": "Windsor Academy",
+  "CollegeBoardID": 111964
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee2"
+  },
+  "SchoolName": "Westside High School",
+  "CollegeBoardID": 110303
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5efe"
+  },
+  "SchoolName": "Woodland Middle School",
+  "CollegeBoardID": 119035
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eff"
+  },
+  "SchoolName": "Woodland Middle School",
+  "CollegeBoardID": 119174
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee6"
+  },
+  "SchoolName": "Wheeler County Middle/High School",
+  "CollegeBoardID": 110027
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f07"
+  },
+  "SchoolName": "WS Hornsby Middle School",
+  "CollegeBoardID": 119333
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dec"
+  },
+  "SchoolName": "Salem Middle School",
+  "CollegeBoardID": 119108
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df6"
+  },
+  "SchoolName": "Savannah-Chatham E-Learning Academy",
+  "CollegeBoardID": 110361
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df9"
+  },
+  "SchoolName": "Scoggins Middle School",
+  "CollegeBoardID": 119252
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0e"
+  },
+  "SchoolName": "Snellville Middle School",
+  "CollegeBoardID": 119274
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1a"
+  },
+  "SchoolName": "South Atlanta High School",
+  "CollegeBoardID": 110237
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e22"
+  },
+  "SchoolName": "South Metro Psycheduc Program111309"
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e3a"
+  },
+  "SchoolName": "Starr's Mill High School",
+  "CollegeBoardID": 111277
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e41"
+  },
+  "SchoolName": "Stewart County High School",
+  "CollegeBoardID": 111895
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e65"
+  },
+  "SchoolName": "The Barnes Academy",
+  "CollegeBoardID": 111581
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e83"
+  },
+  "SchoolName": "Toombs County High School",
+  "CollegeBoardID": 111915
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e92"
+  },
+  "SchoolName": "Trion High School",
+  "CollegeBoardID": 113045
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e94"
+  },
+  "SchoolName": "True Partnership Christian Academy",
+  "CollegeBoardID": 112761
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9f"
+  },
+  "SchoolName": "Union Grove High School",
+  "CollegeBoardID": 112043
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea3"
+  },
+  "SchoolName": "Universal Faith Kingdom Academy",
+  "CollegeBoardID": 111117
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea4"
+  },
+  "SchoolName": "University Community Academy",
+  "CollegeBoardID": 119121
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eca"
+  },
+  "SchoolName": "Washington Middle School",
+  "CollegeBoardID": 119309
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ecb"
+  },
+  "SchoolName": "Washington-Wilkes Comprehensive High School",
+  "CollegeBoardID": 113185
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed9"
+  },
+  "SchoolName": "West Laurens Middle School",
+  "CollegeBoardID": 119232
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee5"
+  },
+  "SchoolName": "Westwood School",
+  "CollegeBoardID": 110578
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eea"
+  },
+  "SchoolName": "Whitefield Academy",
+  "CollegeBoardID": 110169
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f04"
+  },
+  "SchoolName": "World Harvest School",
+  "CollegeBoardID": 110320
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db3"
+  },
+  "SchoolName": "Renaissance Middle School",
+  "CollegeBoardID": 119327
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db4"
+  },
+  "SchoolName": "Revival Center Christian School",
+  "CollegeBoardID": 110478
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc2"
+  },
+  "SchoolName": "Ringgold High School",
+  "CollegeBoardID": 112535
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc8"
+  },
+  "SchoolName": "Riverdale Middle School",
+  "CollegeBoardID": 119060
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de6"
+  },
+  "SchoolName": "Saint Nicholas Orthodox Academy",
+  "CollegeBoardID": 110229
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df7"
+  },
+  "SchoolName": "Schley Middle High School",
+  "CollegeBoardID": 111227
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e13"
+  },
+  "SchoolName": "Solid Foundation Christian Academy",
+  "CollegeBoardID": 112851
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e16"
+  },
+  "SchoolName": "Sonoraville High School",
+  "CollegeBoardID": 110561
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e26"
+  },
+  "SchoolName": "Southeast Bulloch County High School",
+  "CollegeBoardID": 110460
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e34"
+  },
+  "SchoolName": "Sprayberry High School",
+  "CollegeBoardID": 112005
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4d"
+  },
+  "SchoolName": "Sutton Middle School",
+  "CollegeBoardID": 119009
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e78"
+  },
+  "SchoolName": "Thomas County Central High School",
+  "CollegeBoardID": 112973
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea0"
+  },
+  "SchoolName": "Union Grove Middle School",
+  "CollegeBoardID": 119105
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb9"
+  },
+  "SchoolName": "Victory Baptist School",
+  "CollegeBoardID": 111871
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eba"
+  },
+  "SchoolName": "Victory Christian Academy",
+  "CollegeBoardID": 110967
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec6"
+  },
+  "SchoolName": "Warner Robins Christian Academy",
+  "CollegeBoardID": 113157
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec7"
+  },
+  "SchoolName": "Warner Robins High School",
+  "CollegeBoardID": 113160
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee7"
+  },
+  "SchoolName": "Wheeler High School",
+  "CollegeBoardID": 112010
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dcf"
+  },
+  "SchoolName": "Robert Toombs Christian Academy",
+  "CollegeBoardID": 111919
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ddf"
+  },
+  "SchoolName": "Saint Andrews on the Marsh",
+  "CollegeBoardID": 112681
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dea"
+  },
+  "SchoolName": "Saint Thomas More Catholic School",
+  "CollegeBoardID": 119136
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df1"
+  },
+  "SchoolName": "Savannah Christian Preparatory School",
+  "CollegeBoardID": 112698
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e00"
+  },
+  "SchoolName": "Shaw High School",
+  "CollegeBoardID": 110834
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e05"
+  },
+  "SchoolName": "Shiloh High School",
+  "CollegeBoardID": 111846
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e08"
+  },
+  "SchoolName": "Shorter University",
+  "CollegeBoardID": 110087
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0b"
+  },
+  "SchoolName": "Skipstone Academy",
+  "CollegeBoardID": 111519
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2a"
+  },
+  "SchoolName": "Southside Christian School",
+  "CollegeBoardID": 113209
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e55"
+  },
+  "SchoolName": "Tamu Sana Kanyama Preparatory Academy Of Creative Arts And Media Technology",
+  "CollegeBoardID": 110379
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e57"
+  },
+  "SchoolName": "Tapestry Public Charter School",
+  "CollegeBoardID": 110009
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5c"
+  },
+  "SchoolName": "Taylor Road Middle School",
+  "CollegeBoardID": 119132
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e69"
+  },
+  "SchoolName": "The Community School",
+  "CollegeBoardID": 111060
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6e"
+  },
+  "SchoolName": "The GLOBE Academy",
+  "CollegeBoardID": 119316
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e76"
+  },
+  "SchoolName": "The Weber School",
+  "CollegeBoardID": 110196
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e82"
+  },
+  "SchoolName": "TLE Christian Academy at Gospel Outreach",
+  "CollegeBoardID": 110334
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ecc"
+  },
+  "SchoolName": "Waverly Hall Christian Academy",
+  "CollegeBoardID": 113200
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee3"
+  },
+  "SchoolName": "Westwood Academy",
+  "CollegeBoardID": 110806
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef2"
+  },
+  "SchoolName": "William H Spencer High School",
+  "CollegeBoardID": 110835
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef4"
+  },
+  "SchoolName": "William S Hutchings Career Center",
+  "CollegeBoardID": 111970
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f05"
+  },
+  "SchoolName": "World Language Academy Middle School",
+  "CollegeBoardID": 119328
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dab"
+  },
+  "SchoolName": "Randolph-Clay High School",
+  "CollegeBoardID": 110940
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db8"
+  },
+  "SchoolName": "Richards Middle School",
+  "CollegeBoardID": 119134
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dbb"
+  },
+  "SchoolName": "Richmond Hill Christian Academy",
+  "CollegeBoardID": 112524
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dad"
+  },
+  "SchoolName": "Redan High School",
+  "CollegeBoardID": 112836
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dac"
+  },
+  "SchoolName": "Red Top Middle School",
+  "CollegeBoardID": 119324
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc4"
+  },
+  "SchoolName": "Risley Middle School",
+  "CollegeBoardID": 119187
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5def"
+  },
+  "SchoolName": "Sandy Creek High School",
+  "CollegeBoardID": 113052
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df3"
+  },
+  "SchoolName": "Savannah Country Day School",
+  "CollegeBoardID": 112700
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dfa"
+  },
+  "SchoolName": "Scott Learning Center",
+  "CollegeBoardID": 112671
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e14"
+  },
+  "SchoolName": "Solid Rock Academy",
+  "CollegeBoardID": 112539
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e18"
+  },
+  "SchoolName": "Sora Schools",
+  "CollegeBoardID": 110355
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e23"
+  },
+  "SchoolName": "South Paulding High School",
+  "CollegeBoardID": 111115
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e32"
+  },
+  "SchoolName": "Sparks Christian Academy",
+  "CollegeBoardID": 111842
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e42"
+  },
+  "SchoolName": "Stockbridge High School",
+  "CollegeBoardID": 112830
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4c"
+  },
+  "SchoolName": "Sumter County Middle School",
+  "CollegeBoardID": 119149
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5b"
+  },
+  "SchoolName": "Taylor County High School",
+  "CollegeBoardID": 110510
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e64"
+  },
+  "SchoolName": "The Advanced Academy of Georgia",
+  "CollegeBoardID": 110600
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6f"
+  },
+  "SchoolName": "The Heritage School",
+  "CollegeBoardID": 112243
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7b"
+  },
+  "SchoolName": "Thomasville High School",
+  "CollegeBoardID": 112980
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8d"
+  },
+  "SchoolName": "Trinity Christian School",
+  "CollegeBoardID": 111136
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eab"
+  },
+  "SchoolName": "Utopian Academy for the Arts",
+  "CollegeBoardID": 119234
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eae"
+  },
+  "SchoolName": "Valdosta Middle School",
+  "CollegeBoardID": 119214
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef5"
+  },
+  "SchoolName": "Wilson Academy",
+  "CollegeBoardID": 111055
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef6"
+  },
+  "SchoolName": "Winder-Barrow High School",
+  "CollegeBoardID": 113275
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db5"
+  },
+  "SchoolName": "Rex Mill Middle School",
+  "CollegeBoardID": 119018
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db7"
+  },
+  "SchoolName": "Richards Christian Academy",
+  "CollegeBoardID": 112004
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc5"
+  },
+  "SchoolName": "River Ridge High School",
+  "CollegeBoardID": 113303
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dff"
+  },
+  "SchoolName": "Sequoyah Middle School",
+  "CollegeBoardID": 119120
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1c"
+  },
+  "SchoolName": "South Effingham High School",
+  "CollegeBoardID": 111444
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1f"
+  },
+  "SchoolName": "South Georgia Preparatory Academy",
+  "CollegeBoardID": 113202
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e24"
+  },
+  "SchoolName": "South Paulding Middle School",
+  "CollegeBoardID": 119244
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2e"
+  },
+  "SchoolName": "Southwest High School",
+  "CollegeBoardID": 111952
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e40"
+  },
+  "SchoolName": "Stephenson Middle School",
+  "CollegeBoardID": 119110
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e4f"
+  },
+  "SchoolName": "Sweetwater Middle School",
+  "CollegeBoardID": 119271
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5e"
+  },
+  "SchoolName": "Telfair County High School",
+  "CollegeBoardID": 112050
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5f"
+  },
+  "SchoolName": "Temima High School for Girls",
+  "CollegeBoardID": 110243
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e63"
+  },
+  "SchoolName": "Terrell Middle High School",
+  "CollegeBoardID": 111030
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e68"
+  },
+  "SchoolName": "The Campus Academy",
+  "CollegeBoardID": 110231
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e73"
+  },
+  "SchoolName": "The Museum School",
+  "CollegeBoardID": 119300
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8f"
+  },
+  "SchoolName": "Trinity Christian School",
+  "CollegeBoardID": 112721
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e90"
+  },
+  "SchoolName": "Trinity Classical School Inc",
+  "CollegeBoardID": 110669
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9b"
+  },
+  "SchoolName": "Twin Rivers Middle School",
+  "CollegeBoardID": 119258
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9e"
+  },
+  "SchoolName": "Union County High School",
+  "CollegeBoardID": 110380
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ebc"
+  },
+  "SchoolName": "Vidalia Academy",
+  "CollegeBoardID": 113107
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed5"
+  },
+  "SchoolName": "West Hall High School",
+  "CollegeBoardID": 112300
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f02"
+  },
+  "SchoolName": "Woodward Academy",
+  "CollegeBoardID": 110797
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f03"
+  },
+  "SchoolName": "Woody Gap School",
+  "CollegeBoardID": 112840
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc0"
+  },
+  "SchoolName": "Ridgeview Charter School",
+  "CollegeBoardID": 119314
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc9"
+  },
+  "SchoolName": "Rivers Academy",
+  "CollegeBoardID": 110081
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd0"
+  },
+  "SchoolName": "Robert W Groves High School",
+  "CollegeBoardID": 112680
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd3"
+  },
+  "SchoolName": "Rockdale Career Academy",
+  "CollegeBoardID": 110864
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5deb"
+  },
+  "SchoolName": "Salem High School",
+  "CollegeBoardID": 110861
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e02"
+  },
+  "SchoolName": "Shepherds' Ridge Academy",
+  "CollegeBoardID": 112848
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e35"
+  },
+  "SchoolName": "Springmont School",
+  "CollegeBoardID": 119320
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e37"
+  },
+  "SchoolName": "St Luke School",
+  "CollegeBoardID": 119288
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e54"
+  },
+  "SchoolName": "Tallulah Falls School",
+  "CollegeBoardID": 112930
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e97"
+  },
+  "SchoolName": "Turner County High School",
+  "CollegeBoardID": 110110
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec1"
+  },
+  "SchoolName": "Walnut Grove High School",
+  "CollegeBoardID": 111867
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ecd"
+  },
+  "SchoolName": "Way of Holiness New Hope Academy",
+  "CollegeBoardID": 110839
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5edd"
+  },
+  "SchoolName": "Westminster Schools of Augusta",
+  "CollegeBoardID": 110302
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5efc"
+  },
+  "SchoolName": "Woodland High School",
+  "CollegeBoardID": 110619
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f06"
+  },
+  "SchoolName": "Worth County High School",
+  "CollegeBoardID": 112910
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db0"
+  },
+  "SchoolName": "Rehoboth Road Middle School",
+  "CollegeBoardID": 119312
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dbe"
+  },
+  "SchoolName": "Richmond Hill Middle School",
+  "CollegeBoardID": 119043
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd6"
+  },
+  "SchoolName": "Rome High School",
+  "CollegeBoardID": 112608
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dda"
+  },
+  "SchoolName": "Rothschild Middle School",
+  "CollegeBoardID": 119227
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ddd"
+  },
+  "SchoolName": "Rutland Middle School",
+  "CollegeBoardID": 119114
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de5"
+  },
+  "SchoolName": "Saint Marys Middle School",
+  "CollegeBoardID": 119176
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dfb"
+  },
+  "SchoolName": "Screven County High School",
+  "CollegeBoardID": 112903
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dfd"
+  },
+  "SchoolName": "Sequoyah High School",
+  "CollegeBoardID": 110590
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e25"
+  },
+  "SchoolName": "South Tattnall Middle School",
+  "CollegeBoardID": 119076
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e39"
+  },
+  "SchoolName": "St Vincent's Academy",
+  "CollegeBoardID": 112695
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e5d"
+  },
+  "SchoolName": "Teen Challenge Prayer Mountain Boys Academy",
+  "CollegeBoardID": 111529
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6c"
+  },
+  "SchoolName": "The Foundry School",
+  "CollegeBoardID": 110327
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e9d"
+  },
+  "SchoolName": "Union Christian Academy",
+  "CollegeBoardID": 110849
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea8"
+  },
+  "SchoolName": "Upson-Lee Middle School",
+  "CollegeBoardID": 119157
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eaa"
+  },
+  "SchoolName": "US Penitentiary - Atlanta",
+  "CollegeBoardID": 110251
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb1"
+  },
+  "SchoolName": "Veritas Classical School Of Southwest Georgia",
+  "CollegeBoardID": 110079
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ebd"
+  },
+  "SchoolName": "Vidalia Comprehensive High School",
+  "CollegeBoardID": 113105
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec5"
+  },
+  "SchoolName": "Warith Deen Mohammed High School",
+  "CollegeBoardID": 110249
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee4"
+  },
+  "SchoolName": "Westwood Christian Academy",
+  "CollegeBoardID": 112974
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee8"
+  },
+  "SchoolName": "White County High School",
+  "CollegeBoardID": 110720
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eee"
+  },
+  "SchoolName": "Wilcox County High School",
+  "CollegeBoardID": 112555
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef3"
+  },
+  "SchoolName": "William James Middle School",
+  "CollegeBoardID": 119021
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5efa"
+  },
+  "SchoolName": "Woodfield Academy",
+  "CollegeBoardID": 111969
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5efb"
+  },
+  "SchoolName": "Woodland High School",
+  "CollegeBoardID": 112827
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f0c"
+  },
+  "SchoolName": "Zebulon High School",
+  "CollegeBoardID": 110102
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5db2"
+  },
+  "SchoolName": "Renaissance Christian Academy",
+  "CollegeBoardID": 112034
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dc7"
+  },
+  "SchoolName": "Riverdale High School",
+  "CollegeBoardID": 112538
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ddb"
+  },
+  "SchoolName": "Rutland Academy",
+  "CollegeBoardID": 110109
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ddc"
+  },
+  "SchoolName": "Rutland High School",
+  "CollegeBoardID": 111956
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dde"
+  },
+  "SchoolName": "SAIL: School for Arts Infused Learning",
+  "CollegeBoardID": 119310
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de9"
+  },
+  "SchoolName": "Saint Teresa's Catholic School",
+  "CollegeBoardID": 110206
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5df5"
+  },
+  "SchoolName": "Savannah High School",
+  "CollegeBoardID": 112710
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e01"
+  },
+  "SchoolName": "Shepherd's Hill Academy",
+  "CollegeBoardID": 112021
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e0d"
+  },
+  "SchoolName": "Smitha Middle School",
+  "CollegeBoardID": 119069
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e51"
+  },
+  "SchoolName": "Tabernacle Praise Christian Academy",
+  "CollegeBoardID": 112085
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e67"
+  },
+  "SchoolName": "The Campus",
+  "CollegeBoardID": 112361
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e77"
+  },
+  "SchoolName": "The Westminster Schools",
+  "CollegeBoardID": 110256
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e89"
+  },
+  "SchoolName": "Trickum Middle School",
+  "CollegeBoardID": 119273
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e8e"
+  },
+  "SchoolName": "Trinity Christian School",
+  "CollegeBoardID": 112806
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea6"
+  },
+  "SchoolName": "Upson Christian Academy",
+  "CollegeBoardID": 112971
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eec"
+  },
+  "SchoolName": "Whitewater Middle School",
+  "CollegeBoardID": 119141
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5efd"
+  },
+  "SchoolName": "Woodland Middle at Euharlee",
+  "CollegeBoardID": 119321
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dd1"
+  },
+  "SchoolName": "Robert W Johnson High School",
+  "CollegeBoardID": 111412
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de8"
+  },
+  "SchoolName": "Saint Pius X Catholic High School",
+  "CollegeBoardID": 110226
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e03"
+  },
+  "SchoolName": "Sherwood Christian Academy",
+  "CollegeBoardID": 110047
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e07"
+  },
+  "SchoolName": "Shiloh Middle School",
+  "CollegeBoardID": 119240
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e1d"
+  },
+  "SchoolName": "South Effingham Middle School",
+  "CollegeBoardID": 119042
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e21"
+  },
+  "SchoolName": "South Habersham Middle School",
+  "CollegeBoardID": 119210
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e29"
+  },
+  "SchoolName": "Southside Baptist Academy",
+  "CollegeBoardID": 112884
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2c"
+  },
+  "SchoolName": "Southwest Dekalb High School",
+  "CollegeBoardID": 111048
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e48"
+  },
+  "SchoolName": "Strong Rock Christian School",
+  "CollegeBoardID": 112041
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e50"
+  },
+  "SchoolName": "Sylvan Hills Middle School",
+  "CollegeBoardID": 119041
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e56"
+  },
+  "SchoolName": "TandemEDU High School Alliances",
+  "CollegeBoardID": 110383
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e61"
+  },
+  "SchoolName": "Temple Middle School",
+  "CollegeBoardID": 119344
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e80"
+  },
+  "SchoolName": "Tift County High School",
+  "CollegeBoardID": 113005
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ebb"
+  },
+  "SchoolName": "Victory Christian School",
+  "CollegeBoardID": 113098
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec9"
+  },
+  "SchoolName": "Washington County High School",
+  "CollegeBoardID": 112653
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ecf"
+  },
+  "SchoolName": "Waynesboro Mennonite School",
+  "CollegeBoardID": 110139
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ed2"
+  },
+  "SchoolName": "Wesleyan School",
+  "CollegeBoardID": 110261
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5edb"
+  },
+  "SchoolName": "Westlake High School",
+  "CollegeBoardID": 110258
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eeb"
+  },
+  "SchoolName": "Whitewater High School",
+  "CollegeBoardID": 111279
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eef"
+  },
+  "SchoolName": "Wilkinson County High School",
+  "CollegeBoardID": 111660
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f09"
+  },
+  "SchoolName": "Yeshiva Ohr Yisrael",
+  "CollegeBoardID": 110265
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5daf"
+  },
+  "SchoolName": "Regina Caeli Academy",
+  "CollegeBoardID": 110599
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dbf"
+  },
+  "SchoolName": "Ridgeland High School",
+  "CollegeBoardID": 112615
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5de4"
+  },
+  "SchoolName": "Saint John Neumann Regional Catholic School",
+  "CollegeBoardID": 119238
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5dfc"
+  },
+  "SchoolName": "Seminole County Middle-High School",
+  "CollegeBoardID": 111090
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e2b"
+  },
+  "SchoolName": "Southwest Atlanta Christian Academy",
+  "CollegeBoardID": 110241
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e38"
+  },
+  "SchoolName": "St Martin Episcopal School",
+  "CollegeBoardID": 119083
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e45"
+  },
+  "SchoolName": "Stone Mountain Middle School",
+  "CollegeBoardID": 119111
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e46"
+  },
+  "SchoolName": "Stonehaven School",
+  "CollegeBoardID": 112739
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e49"
+  },
+  "SchoolName": "Strong Wall Academy",
+  "CollegeBoardID": 111799
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e6b"
+  },
+  "SchoolName": "The Eclectic Preparatory Academy of Learning",
+  "CollegeBoardID": 110091
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e79"
+  },
+  "SchoolName": "Thomas County Middle School",
+  "CollegeBoardID": 119215
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7a"
+  },
+  "SchoolName": "Thomas Jefferson Academy",
+  "CollegeBoardID": 110350
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e7f"
+  },
+  "SchoolName": "Thurgood Marshall Middle School",
+  "CollegeBoardID": 119010
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5e88"
+  },
+  "SchoolName": "Tri-Cities High School",
+  "CollegeBoardID": 111175
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea7"
+  },
+  "SchoolName": "Upson-Lee High School",
+  "CollegeBoardID": 112967
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ea9"
+  },
+  "SchoolName": "Urban Christian Academy",
+  "CollegeBoardID": 112717
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eb8"
+  },
+  "SchoolName": "Veterans Memorial Middle School",
+  "CollegeBoardID": 119228
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ec8"
+  },
+  "SchoolName": "Warren County High School",
+  "CollegeBoardID": 113170
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5eda"
+  },
+  "SchoolName": "Westfield School",
+  "CollegeBoardID": 112389
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5edc"
+  },
+  "SchoolName": "Westminster Christian Academy",
+  "CollegeBoardID": 113196
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5edf"
+  },
+  "SchoolName": "Westridge Christian Academy",
+  "CollegeBoardID": 112003
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ee9"
+  },
+  "SchoolName": "White Creek Christian Academy",
+  "CollegeBoardID": 110721
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5ef8"
+  },
+  "SchoolName": "Windsor Forest High School",
+  "CollegeBoardID": 112718
+},{
+  "_id": {
+    "$oid": "601dea0b8d340c499c3b5f00"
+  },
+  "SchoolName": "Woodstock High School",
+  "CollegeBoardID": 113309
+}]

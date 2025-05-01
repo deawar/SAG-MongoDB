@@ -1,44 +1,38 @@
-/* eslint-disable global-require */
-/* eslint-disable-next-line import/no-dynamic-require */
-/* eslint-disable prefer-arrow-callback */
-const fs = require('fs');
-const path = require('path');
-const mongoose = require('mongoose');
-exports.User = require('./user');
-// exports.School = require('./school');
+import fs from 'fs';
+import path from 'path';
+import mongoose from 'mongoose';
+import { fileURLToPath } from 'url';
+import config from '../config/config.js';
 
-const basename = path.basename(__filename);
+// Explicit model imports
+import user from './user.js';
+import school from './school.js';
+import role from './role.js';
+import bid from './bid.js';
+import artwork from './artwork.js';
+import auction from './auction.js';
 
-// eslint-disable-next-line prefer-destructuring
-const Schema = mongoose.Schema;
+// Create proper directory path for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const env = process.env.NODE_ENV || 'development';
-// eslint-disable-next-line import/no-dynamic-require
-const config = require(`${__dirname}/../config/config.js`)[env];
-
+// Get database connection
 const db = mongoose.connection;
 
-const modelsPath = path.resolve(__dirname);
-console.log('FilePath: ', modelsPath);
-fs.readdirSync(modelsPath).forEach((file) => {
-  require(`${modelsPath}/${file}`);
-});
-require('./user');
-require('./school');
-require('./role');
-require('./bid');
-require('./artwork');
-// Object.keys(db).forEach((modelName) => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+// Bind database event handlers
+const on = db.on.bind(db);
+const once = db.once.bind(db);
 
-module.exports = {
-  user: require('./user'),
-  school: require('./school'),
-  role: require('./role'),
-  artwork: require('./artwork'),
-  bid: require('./bid'),
+// Export everything we need
+export {
+  user,
+  school,
+  role,
+  artwork,
+  bid,
+  auction,
+  on,
+  once,
 };
-module.exports = db;
+
+export default db;

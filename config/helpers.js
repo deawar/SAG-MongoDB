@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 const imageFilter = function (req, file, cb) {
   // Accept images only
@@ -15,4 +15,5 @@ const imageFilter = function (req, file, cb) {
   cb('Only image files are allowed!');
   return cb(new Error('Only image files are allowed!'), false);
 };
-exports.imageFilter = imageFilter;
+
+export default imageFilter;

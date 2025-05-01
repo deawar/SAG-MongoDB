@@ -4,4 +4,4 @@ const asyncUtil = (fn) => function asyncUtilWrap(...args) {
   return Promise.resolve(fnReturn).catch(next);
 };
 
-module.exports = asyncUtil;
+export default asyncUtil;
