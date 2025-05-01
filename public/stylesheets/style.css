@@ -308,7 +308,10 @@ body{
 .headerText{
   color: white;
   text-align: center;
-  font-size: 4.5vw;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  /* font-size: 4.5vw; */
+  font-weight: bold;
+  margin: 0;
   text-shadow: 1.5px 1px black
 }
 
@@ -356,6 +359,7 @@ body{
   height: 100%;
   margin-top: 2%;
   margin-bottom: 2%;
+  margin-left: 9%
   
 }
 #profilePageCardMain, #bidCardMain{
