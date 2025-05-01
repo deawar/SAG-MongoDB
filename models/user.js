@@ -1,60 +1,51 @@
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable no-useless-escape */
-/* eslint-disable func-names */
-/* Requiring bcryptjs for password hashing */
-const mongoose = require('mongoose');
-// const passportLocalMongoose = require('passport-local-mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
-// const mongooseTypePhone = require('mongoose-type-phone');
-// Get the Schema constructor
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
+import bcrypt from 'bcryptjs';
+import crypto from 'crypto'; // New import to replace randomstring
+
 const { Schema } = mongoose;
-// eslint-disable-next-line prefer-destructuring
-const randomstring = require('randomstring');
-const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10;
-// Email Validator fx
+
+// Email validation function remains unchanged
 const validateEmail = function (email) {
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
 };
 
-// Phone number Validator Fx
+// Phone validation function remains unchanged
 const validatePhone = function (phone) {
   const re = /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
   return re.test(phone);
 };
 
-// secretToken Generator
-const secretTokenGen = function () {
-  const secretToken = randomstring.generate({ length: 64, charset: 'alphanumeric' }, this.secretToken);
-  return secretToken;
-};
+// Token generation using Promise
+const generateSecureToken = () => new Promise((resolve, reject) => {
+  crypto.randomBytes(64, (err, buffer) => {
+    if (err) {
+      reject(new Error(`Token generation failed: ${err.message}`));
+      return;
+    }
 
-// subAddress Document
-// const subAddress = new Schema({
-//   type: { type: String },
-//   address1: String,
-//   address2: String,
-//   city: String,
-//   state: String,
-//   zip: {
-//     type: String,
-//     required: true,
-//     min: 5,
-//   },
-// });
+    try {
+      const token = buffer.toString('base64')
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .slice(0, 64);
 
-// subRole Document
-// const subRole = new mongoose.Schema({
-//   type: { type: String },
-//   role: String,
-// });
+      if (token.length !== 64) {
+        throw new Error('Generated token length is incorrect');
+      }
 
-// Creating our User Schema
+      resolve(token);
+    } catch (error) {
+      reject(new Error(`Token formatting failed: ${error.message}`));
+    }
+  });
+});
+
+// User Schema definition - most fields remain the same
 const userSchema = new Schema({
   updated: { type: Date, default: Date.now },
-  // unique_id: { type: Number, index: true },
   first_name: {
     type: String,
     trim: true,
@@ -70,9 +61,7 @@ const userSchema = new Schema({
     trim: true,
     required: 'Please enter a Phone number.',
     validate: [validatePhone, 'Please fill in a valid phone number.'],
-    // match: [/^\(([2-9])(?!\1\1)\d\d\) [2-9]\d\d-\d{4}$/, 'Please fill in a valid phone number.'],
   },
-  // address: [subAddress],
   address1: {
     type: String,
     trim: true,
@@ -117,104 +106,97 @@ const userSchema = new Schema({
     min: 8,
   },
   passwordConf: String,
+  // Modified secretToken field definition
   secretToken: {
     type: String,
-    validate: [secretTokenGen],
+    default: undefined,
   },
   role: {
     type: String,
     required: true,
     default: 'student',
-  // [subRole],
-  // role: {
-  //   type: Schema.Types.ObjectId, // Might need to replace 'Schema.Types' with mongoose
-  //   ref: 'role',
   },
   active: Boolean,
 });
 
-// eslint-disable-next-line consistent-return
-userSchema.pre('save', function (next) {
+// Modified pre-save middleware to handle both token generation and password hashing
+userSchema.pre('save', async function (next) {
   const user = this;
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
+  try {
+    // Only generate token for new users
+    if (user.isNew) {
+      user.secretToken = await generateSecureToken();
+      console.log('Generated new token for new user:', {
+        email: user.email,
+        token: user.secretToken,
+      });
+    }
 
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-    if (err) return next(err);
+    // Handle password hashing
+    if (user.isModified('password')) {
+      const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+      user.password = await bcrypt.hash(user.password, salt);
+    }
 
-    // hash the password using our new salt
-    // eslint-disable-next-line prefer-arrow-callback
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-      // override the cleartext password with the hashed one
-      user.password = hash;
-      next();
-    });
-  });
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
-userSchema.methods.comparePassword = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
-};
-const User = mongoose.model('User', userSchema);
-const user = new User({ type: 'user' });
+// Password comparison
+userSchema.methods = {
+  // Compare password using Promise
+  async comparePassword(candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password);
+  },
 
-module.exports.getUserById = function (id, callback) {
-  User.findById(id, callback);
-};
-
-module.exports.getUserByEmail = function (email, callback) {
-  const query = { email };
-  User.findOne(query, callback);
+  // Validate password using async/await
+  async validPassword(password) {
+    return bcrypt.compare(password, this.password);
+  },
 };
 
-module.exports.getUserBysecretToken = function (secretToken, callback) {
-  const query = { secretToken };
-  User.findOne(query, callback);
+// User model static methods remain unchanged
+userSchema.statics = {
+  // Get user by ID
+  async getUserById(id) {
+    return this.findById(id);
+  },
+
+  // Get user by email
+  async getUserByEmail(email) {
+    return this.findOne({ email });
+  },
+
+  // Get user by secret token
+  async getUserBySecretToken(secretToken) {
+    return this.findOne({ secretToken });
+  },
+
+  // Authenticate user
+  async authenticate(email, password) {
+    const user = await this.findOne({ email });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      throw new Error('Invalid password');
+    }
+
+    return user;
+  },
 };
 
-// // hash the password
-// userSchema.methods.generateHash = function (password) {
-//   return bcrypt.hashSync(password, bcrypt.genSaltSync(SALT_WORK_FACTOR), null);
-// };
-
-// checking if password is valid
-userSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-};
-
-// authenticate input against database
-userSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email })
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err);
-      // eslint-disable-next-line no-else-return
-      } else if (!user) {
-        const err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      // eslint-disable-next-line prefer-arrow-callback
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (result === true) {
-          return callback(null, user);
-        // eslint-disable-next-line no-else-return
-        } else {
-          return callback();
-        }
-      });
-    });
-};
-
-// Apply the uniqueValidator plugin to userDataSchema.
+// Unique validator plugin
 userSchema.plugin(uniqueValidator, {
   message: 'Sorry, {PATH} needs to be unique',
 });
 
-module.exports = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
+export default User;

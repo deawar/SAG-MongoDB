@@ -1,18 +1,18 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
-const express = require('express');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const os = require('os');
-const User = require('../models/user');
-const db = require('../models/index');
+import express from 'express';
+import passport from 'passport';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import os from 'os';
+import Auction from '../models/auction.js';
+import User from '../models/user.js';
+import db, { role } from '../models/index.js';
+import passportConfig from '../config/passport.js';
+import { checkAuthenticated } from '../config/middleware/isAuthenticated.js';
 
-require('../config/passport')(passport);
-const { checkAuthenticated } = require('../config/middleware/isAuthenticated');
+passportConfig(passport);
 
 const router = express.Router();
+
 // Find First Name and add 's
 function findFirstName(res) {
   let first_name;
@@ -24,26 +24,23 @@ function findFirstName(res) {
   first_name = (`${first_name}'s`);
   return first_name;
 }
+
 // Find School
 function findSchoolName(req) {
-  // eslint-disable-next-line prefer-destructuring
   let school;
-  // school = res.req.user.school;
   if (req.user === null || req.user === undefined) {
     school = 'Make Art, Have Fun!';
     return school;
   }
-  // eslint-disable-next-line prefer-destructuring
   school = req.user.school;
   return school;
 }
+
 // ROUTE TO GET USER DETAILS OF SIGNED IN USER
 router.get('/profile', checkAuthenticated, (req, res) => {
   if (req.isAuthenticated()) {
-    // try {
     console.log('Profile_controller req: ', req.session.passport.user);
     console.log('Profile req.session: ', req.session);
-    // eslint-disable-next-line no-underscore-dangle
     const school = findSchoolName(req);
     const first_name = findFirstName(res);
     console.log('req.user: ', req.user);
@@ -64,10 +61,6 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       active: req.user.active,
       isloggedin: req.isAuthenticated(),
     };
-    // const { school } = userInfo;
-    // if (userInfo.active === false) {
-    //   res.render('verifytoken', userInfo);
-    // }
     if (userInfo.role === 'student') {
       res.render('userProfilepage', userInfo);
     } else if (userInfo.role === 'admin') {
@@ -76,7 +69,6 @@ router.get('/profile', checkAuthenticated, (req, res) => {
       res.render('bidderProfilepage', userInfo);
     }
   } else {
-  // eslint-disable-next-line no-unused-vars
     const userInfo = {
       id: null,
       isloggedin: req.isAuthenticated(),
@@ -85,34 +77,71 @@ router.get('/profile', checkAuthenticated, (req, res) => {
   }
 });
 
+// Get user information for a given user ID
+router.get('/user/:account_id', checkAuthenticated, async (req, res) => {
+  try {
+    console.log('profile_controller req.params.account_id: ', req.params.account_id);
+    const userId = req.params.account_id;
+
+    // Input Validation
+    if (!userId || userId.trim() === '') {
+      return res.status(400).json({
+        success: false,
+        message: 'No User ID provided',
+      });
+    }
+
+    // Find user in the database
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Return only the necessary fields
+    return res.json({
+      success: true,
+      _id: user._id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      role: user.role,
+      active: user.active,
+    });
+  } catch (error) {
+    console.log('Error fetching user:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error fetching user data',
+    });
+  }
+});
+
 // ROUTER TO DELETE ACCOUNT
-router.delete('/user/:account_id/:email', (req, res) => {
+router.delete('/user/:account_id/:email', checkAuthenticated, async (req, res) => {
   try {
     console.log(`_id: ${req.params.account_id}`);
     console.log(`email: ${req.params.email}`);
 
     const filter = { _id: req.params.account_id, email: req.params.email };
+    const deletedUser = await User.findOneAndDelete(filter);
 
-    User.findOneAndDelete(filter, function (err, delDoc) {
-      if (err) {
-        console.log(err);
-        res.status(404);
-        return res.send('No User Deleted.');
-      }
-      console.log('Successfully Deleted: ', delDoc);
-      res.status(200);
-      res.json(delDoc);
-      res.render('adminProfilepage', delDoc);
-    });
+    if (!deletedUser) {
+      return res.status(404).send('No User Deleted.');
+    }
+
+    console.log('Successfully Deleted: ', deletedUser);
+    res.status(200).json(deletedUser);
   } catch (error) {
     console.log('Catch ERROR: ', error);
-    res.status(404);
-    return res.send('No Profiles Deleted');
+    return res.status(404).send('No Profiles Deleted');
   }
 });
 
 // ROUTER TO UPDATE ACCOUNT
-router.put('/user/:account_id', async (req, res) => {
+router.put('/user/:account_id', checkAuthenticated, async (req, res) => {
   try {
     console.log('req.body: ', req.body);
     const updateDoc = {
@@ -130,114 +159,82 @@ router.put('/user/:account_id', async (req, res) => {
     };
     const filter = { _id: req.params.account_id };
     const opts = { new: true };
-    await User.findOneAndUpdate(filter, { $set: req.body }, opts, function (err, dbuser) {
-      if (err) {
-        console.log(err);
-        res.status(404);
-        return res.send('No User found to Update.');
-      }
-      console.log('Profile Updates going in:', updateDoc);
-      res.status(200);
-      res.json(updateDoc);
-      res.render('adminProfilepage', updateDoc);
-    });
+    const updatedUser = await User.findOneAndUpdate(
+      filter,
+      { $set: req.body },
+      opts,
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send('No User found to Update.');
+    }
+
+    console.log('Profile Updates going in:', updateDoc);
+    res.status(200).json(updateDoc);
   } catch (error) {
     console.log('Catch ERROR: ', error);
-    res.status(404);
-    return res.send('No Updates Performed');
+    return res.status(404).send('No Updates Performed');
   }
 });
 
 // PROFILE SEARCH BY ADMIN
-function sendSearch(req, res, foundDoc) {
-  router.get('/searchuser/:result', function(req, res) {
-    return res.render('partials/manageUser', foundDoc);
-  });
-//   return res.render('adminProfilepage', foundDoc);
-}
-router.get('/searchuser/:email', async (req, res) => {
+router.get('/searchuser/:email', checkAuthenticated, async (req, res) => {
   try {
     console.log('profile_controller req.params.email: ', req.params.email);
     const searchEmail = req.params.email;
-    // const query = User.find({ email: searchEmail }, { email: 1 });
     const school = findSchoolName(req);
-    await User.findOne({ email: searchEmail, school }, function (err, doc) {
-      if (!doc) {
-        console.log('In Error branch - err: ', err);
-        res.status(404);
-        return res.send(`No User associated with ${searchEmail}!`);
-      }
-      console.log('---> doc: ', doc);
-      const returnDoc = {
-        searchedId: doc.id,
-        searchedEmail: doc.email,
-        searchedFirst_name: doc.first_name,
-        searchedLast_name: doc.last_name,
-        searchedAddress1: doc.address1,
-        searchedAddress2: doc.address2,
-        searchedCity: doc.city,
-        searchedState: doc.state,
-        searchedZip: doc.zip,
-        searchedSchool: doc.school,
-        searchedPhone: doc.phone,
-        searchedRole: doc.role,
-        searchedIsloggedin: req.isAuthenticated(),
-      };
-      console.log('2nd ---> returnDoc: ', returnDoc);
-      res.status(200);
-      res.json(returnDoc);
-      sendSearch(req, res, returnDoc);
-    });
-    // .then((returnDoc) => {
-    //   res.render('adminProfilepage', returnDoc).end();
-    //   console.log(dbUser);
-    //   if (!dbUser) {
-    //     res.status(404);
-    //     return res.send('No Email User Found');
-    //   }
-    //   console.log('---> dbUser: ', dbUser);
-    //   const newSearch = {
-    //     searchedUser: dbUser[0],
-    //     id: dbUser[0].id,
-    //     email: req.params.email,
-    //     first_name: dbUser.first_name,
-    //     role: dbUser[0].role,
-    //     isloggedin: req.isAuthenticated(),
-    //   };
-    //   console.log('Profile_controller newSearch: ', newSearch);
-    //   res.status(200);
-    //   res.json(newSearch);
-    //   // res.render('partials/manageUser', newSearch);
-    // });
+
+    const doc = await User.findOne({ email: searchEmail, school });
+
+    if (!doc) {
+      return res.status(404).send(`No User associated with ${searchEmail}!`);
+    }
+
+    console.log('---> doc: ', doc);
+    const returnDoc = {
+      searchedId: doc.id,
+      searchedEmail: doc.email,
+      searchedFirst_name: doc.first_name,
+      searchedLast_name: doc.last_name,
+      searchedAddress1: doc.address1,
+      searchedAddress2: doc.address2,
+      searchedCity: doc.city,
+      searchedState: doc.state,
+      searchedZip: doc.zip,
+      searchedSchool: doc.school,
+      searchedPhone: doc.phone,
+      searchedRole: doc.role,
+      searchedIsloggedin: req.isAuthenticated(),
+    };
+
+    console.log('2nd ---> returnDoc: ', returnDoc);
+    res.status(200).json(returnDoc);
   } catch (error) {
-    res.status(404);
-    return res.send('No User Found');
+    console.log('Search error:', error);
+    return res.status(404).send('No User Found');
   }
 });
 
 // All Students Search
 router.get('/listusers/:school', checkAuthenticated, async (req, res) => {
   try {
-    let students = [];
     const targetschool = req.params.school;
-    // const school = findSchoolName(req);
     console.log('profile_controller req.params: ', req.params);
     const query = { school: targetschool };
     console.log('query string: ', query);
-    await User.find(query, function (err, doc) {
-      if (!doc) {
-        console.log('In Error branch - err: ', err);
-        res.status(404);
-        return res.send(`No User associated with ${targetschool}!`);
-      }
-      students = doc;
-      console.log('Line 234 ---> Students: ', students);
-      return res.status(200).send(students);
-    });
+
+    const students = await User.find(query);
+
+    if (!students || students.length === 0) {
+      return res.status(404).send(`No Users associated with ${targetschool}!`);
+    }
+
+    console.log('Line 234 ---> Students: ', students);
+    return res.status(200).json(students);
   } catch (error) {
-    res.status(404);
-    return res.send('No User Found');
+    console.log('List users error:', error);
+    return res.status(404).send('No Users Found');
   }
 });
 
-module.exports = router;
+export default router;

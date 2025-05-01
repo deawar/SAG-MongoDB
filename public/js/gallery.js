@@ -18,215 +18,195 @@ function addFile(form, sampleFile, name) {
   return newBid;
 }
 
-$(document).ready(() => {
-  $('.sidenav').sidenav();
-  $('.materialboxed').materialbox();
+/**
+ * Loads artwork items from the server and populates the gallery
+ */
+function loadGalleryItems() {
+  console.log('Loading gallery items');
 
-  // Populate Gallery with approved artwork
-  console.log('line 6 In gallery.js');
-  const items = [];
-  try {
-    $.ajax({
-      type: 'get',
-      url: '/get-gallery-imgs',
-      data: items,
+  fetch('/get-imgs')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
     })
-      .then((res) => {
-        let count = 0;
-        // eslint-disable-next-line no-loop-func
-        $.each(res, (i) => {
-          let respdiv = $('<div>')
-            .addClass('responsive');
-          let picrow = $('<div>')
-            .addClass('gallery');
-          let divcol = $('<div/>')
-            .addClass('gallery')
-            .attr('style', 'overflow-wrap: normal');
-          const bidBut = $('<a class="btn btn-small red darken-4 waves-effect waves-light hoverable addBid" value="Bid"><i class="material-icons right">gavel</i>Bid</a>');
-          if (!res[i].artId || res[i].artId === undefined) {
-            respdiv = $('<div>')
-              .addClass('responsive')
-              .attr('id', `resp-${res[count - 1].artId}`)
-              .prependTo('#displayUserArt');
-            picrow = $('<div>')
-              .addClass('gallery')
-              .attr('id', `#row${count}`)
-              .prependTo(respdiv);
-            divcol = $('<div/>')
-              .addClass('gallery')
-              .attr('id', `ulimage${count}`)
-              .prependTo(picrow);
-            $(divcol);
-          } else {
-            console.log('=====================>>>>>trying to add Name Div to <img>: ', res[count].artistFirstName);
-            console.log(`<img${count + 1}>`);
-          }
-          console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
-          if (count % 4 !== 0) {
-            console.log('added: ', divcol);
-            console.log(`res[${i}.artId] ${res[i].artId}`);
-            const img = $('<img>')
-              .addClass('materialboxed')
-              .addClass('responsive-img')
-              .attr('id', `img${count}`)
-              .attr('src', res[count])
-              .prependTo(picrow);
-            $(`<div><b>Title:</b> ${res[count - 1].artName}</div>`).appendTo(picrow);
-            $(`<div><b>Artist:</b> ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}</div>`).appendTo(picrow);
-            $(`<div> ${res[count - 1].artDesc}</div>`).appendTo(picrow);
-            $(`<div><b>Height:</b> ${res[count - 1].artHeight} <b>in Width:</b> ${res[count - 1].artWidth} <b>in</b></div>`).appendTo(picrow);
-            $(`<div><b>Price: $</b> ${res[count - 1].artPrice}</div>`).appendTo(picrow);
-            if (res[count - 1].artDepth > 0) {
-              $(`<div><b>Depth:</b> ${res[count - 1].artDepth}<b>in</b></div>`).appendTo(picrow);
-            }
-            $(bidBut).attr('id', `bid-${res[count - 1].artId}`);
-            $(picrow).append(bidBut);
-            console.log(`res[${count}]._id`);
-          } else {
-            const img = $('<img>')
-              .addClass('materialboxed')
-              .addClass('responsive-img')
-              .attr('id', `img${count}`)
-              .attr('src', res[count])
-              .prependTo(picrow);
-            // $(`<div>Title: ${res[count].artName}</div>`).append(picrow);
-            $('<div>' + '<br>' + '</div>')
-              .addClass('row')
-              .attr('id', `ulDisplay${count}`)
-              .appendTo(respdiv);
-          // count = 0;
-          }
-          // eslint-disable-next-line no-plusplus
-          count++;
-          console.log('in if then divcol: ', divcol);
-          $('.materialboxed').materialbox();
-        });
-      });
-  } catch (err) {
-    console.log(`Something went wrong ${err}`);
-    $('#err-msg').empty('').text('** No Images found. **');
-  }
+    .then((res) => {
+      populateGallery(res);
+      initializeMaterialbox();
+    })
+    .catch((err) => {
+      console.error(`Error loading gallery: ${err}`);
+      displayError('** No Images found. **');
+    });
+}
 
-  // ------------------------------ get_id_fx ---------------------------------- //
-  function getId(idIn) {
-    console.log('got id from button click idIn: ', idIn);
-    const splitId = idIn.split('-');
-    const idOut = splitId[1];
-    return (idOut);
-  }
-
-  // Bid Button
-  $('#displayUserArt').on('click', '.addBid', function () {
-    console.log('Bid Clicked!');
-    console.log('id to copy to user Bid page: ', this.id);
-    try {
-      $.ajax({
-        type: 'get',
-        url: '/get-gallery-imgs',
-        data: items,
-      })
-        .then((res) => {
-          console.log('Info from button click res: ', res);
-          console.log('Line 130--->>>This: ', this.id);
-          const bidId = getId(this.id);
-          console.log('Line---132 this.artName: ', this.artName);
-          try {
-            $.ajax({
-              type: 'get',
-              url: '/get-bid-img',
-              data: bidId,
-            })
-              .then((resp) => {
-                console.log('resp: ', resp);
-                const bidArtname = resp.artName;
-              });
-          } catch (err) {
-            console.log(`Something went wrong ${err}`);
-            $('#err-msg').empty('').text('** No Images found. **');
-          }
-          $('#BidAction-modal').modal('open').html(`
-          <div class='modal-content'>
-            <h4>Enter Your Bid</h4>
-            <h4 class='center-align'>How much are you Bidding?</h4>
-            <form action="#">
-            <p class="range-field">
-              <input type="range" id="newBid" min="0" max="1000" />
-            </p>
-          </form>
-            <h5 class='center-align'><b>Your bid on ${bidArtname} was copied to the bid collection!</b></h5>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-default red darken-4" id="confirm-bid">YES</button>
-            <button type="submit" class="btn btn-default green darken-4 modal-close" id="cancel-bid">CANCEL</button>
-          </div>
-          </div>
-        `);
-        });
-    }
-    catch (err) {
-      $('#BidAction-modal').modal('open').html(`
-          <div class='modal-content'>
-            <h4>Error Entering Your Bid</h4>
-            <h4 class='center-align'>There was an issue with your Bid.</h4>
-            <h5 class='center-align'><b>Your bid did not go through!</b></h5>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-default green darken-4 modal-close" id="cancel-bid">CANCEL</button>
-          </div>
-          </div>
-        `);
-    }
-    const { id } = this;
-    const splitId = id.split('-');
-    const bidindex = splitId[1];
-    try {
-      $.ajax({
-        type: 'post',
-        url: '/add-bid',
-        data: { _id: bidindex },
-        success(status, res) {
-          console.log('Line 158--->status: ', status.art_name_input);
-          $('#upload-err-msg').empty('').text(`** Success! ${status.art_name_input} copied to bid collection! **`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
-            <h4>File Activity</h4>
-            <h4 class='center-align'>Success!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was copied to the bid collection!</b></h5>
-            </div>
-            <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-        error(status, error) {
-          // $.each(xhr, (key, value) => {
-          //   alert(key + ": " + value);
-          // });
-          $('#upload-err-msg').empty('').text(`**${status}: Something Broke-->${error}**`);
-          $('#FileAction-modal').modal('open').html(
-            `<div class='modal-content'>
-            <h4>File Activity</h4>
-            <h4 class='center-align'>Error!</h4>
-            <h5 class='center-align'><b>The File ${status.art_name_input} was NOT added to the bid collection!</b></h5>
-            <h5 class='center-align'><b>**${status}: Something Broke-->${error}** </b></h5>
-            </div>
-            <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-small">Close</a>
-            </div>
-            </div>`,
-          );
-        },
-      })
-        .then((res) => {
-        });
-    } catch (err) {
-      console.log(`Something went wrong ${err}`);
-      $('#err-msg').empty('').text('**images not added to the bid collection.**');
-    }
-    // the following line would remove the gallery block by index bidindex
-    // $(`#resp-${bidindex}`).remove();
-
-    $('.displayUserArt').click();
-  });
+// Client-side JavaScript for gallery page
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Gallery page initialized');
+  loadGalleryItems();
 });
+
+/**
+ * Populates the gallery with artwork items
+ * @param {Array} res - Array of artwork objects
+ */
+function populateGallery(res) {
+  const displayUserArt = document.getElementById('displayUserArt');
+
+  if (!res || res.length === 0) {
+    displayError('** No Images found. **');
+    return;
+  }
+
+  let count = 0;
+
+  res.forEach((item, i) => {
+    // Create container elements
+    let respdiv = createElement('div', ['responsive']);
+    let picrow = createElement('div', ['gallery']);
+    let divcol = createElement('div', ['gallery'], { style: 'overflow-wrap: normal' });
+
+    // Create bid button
+    const bidBut = createElement('a', ['btn', 'btn-small', 'red', 'darken-4', 'waves-effect', 'waves-light', 'hoverable', 'addBid'], { value: 'Bid' });
+    bidBut.innerHTML = 'Bid <i class="material-icons right">gavel</i>';
+
+    // Handle items without artId (similar to original logic)
+    if (!res[i].artId || res[i].artId === undefined) {
+      if (count > 0) { // Make sure we don't go out of bounds
+        respdiv = createElement('div', ['responsive'], { id: `resp-${res[count - 1].artId}` });
+        displayUserArt.prepend(respdiv);
+
+        picrow = createElement('div', ['gallery'], { id: `#row${count}` });
+        respdiv.prepend(picrow);
+
+        divcol = createElement('div', ['gallery'], { id: `ulimage${count}` });
+        picrow.prepend(divcol);
+      }
+    } else {
+      console.log('=====================>>>>>trying to add Name Div to <img>: ', res[count].artistFirstName);
+      console.log(`<img${count + 1}>`);
+    }
+
+    console.log('XXXXXXXXXXXXXXXXXXX count : ', count);
+
+    // Add content based on count (similar to original logic)
+    if (count % 4 !== 0) {
+      console.log('added: ', divcol);
+      console.log(`res[${i}.artId] ${res[i].artId}`);
+
+      // Create and add image
+      const img = createElement('img', ['materialboxed', 'responsive-img'], {
+        id: `img${count}`,
+      });
+
+      // Handle base64 image data
+      if (typeof res[count] === 'string' && res[count].includes(',')) {
+        img.src = res[count];
+      } else if (typeof res[count] === 'string') {
+        img.src = `data:image/jpeg;base64,${res[count]}`;
+      } else {
+        img.src = res[count].src || '';
+      }
+      picrow.prepend(img);
+
+      // Add artwork details
+      if (count > 0) { // Make sure we don't go out of bounds
+        const titleDiv = createElement('div');
+        titleDiv.innerHTML = `<b>Title:</b> ${res[count - 1].artName}`;
+        picrow.appendChild(titleDiv);
+
+        const artistDiv = createElement('div');
+        artistDiv.innerHTML = `<b>Artist:</b> ${res[count - 1].artistFirstName} ${res[count - 1].artistLastName}`;
+        picrow.appendChild(artistDiv);
+
+        const descDiv = createElement('div');
+        descDiv.innerHTML = `${res[count - 1].artDesc}`;
+        picrow.appendChild(descDiv);
+
+        const dimensionsDiv = createElement('div');
+        dimensionsDiv.innerHTML = `<b>Height:</b> ${res[count - 1].artHeight} <b>in Width:</b> ${res[count - 1].artWidth} <b>in</b>`;
+        picrow.appendChild(dimensionsDiv);
+
+        const priceDiv = createElement('div');
+        priceDiv.innerHTML = `<b>Price: $</b> ${res[count - 1].artPrice}`;
+        picrow.appendChild(priceDiv);
+
+        if (res[count - 1].artDepth > 0) {
+          const depthDiv = createElement('div');
+          depthDiv.innerHTML = `<b>Depth:</b> ${res[count - 1].artDepth}<b>in</b>`;
+          picrow.appendChild(depthDiv);
+        }
+
+        bidBut.id = `bid-${res[count - 1].artId}`;
+        picrow.appendChild(bidBut);
+        console.log(`res[${count}]._id`);
+      }
+    } else {
+      // Handle every 4th item
+      const img = createElement('img', ['materialboxed', 'responsive-img'], {
+        id: `img${count}`,
+      });
+
+      // Handle base64 image data
+      if (typeof res[count] === 'string' && res[count].includes(',')) {
+        img.src = res[count];
+      } else if (typeof res[count] === 'string') {
+        img.src = `data:image/jpeg;base64,${res[count]}`;
+      } else {
+        img.src = res[count].src || '';
+      }
+      picrow.prepend(img);
+
+      const spacerDiv = createElement('div', ['row'], { id: `ulDisplay${count}` });
+      spacerDiv.innerHTML = '<br>';
+      respdiv.appendChild(spacerDiv);
+    }
+
+    displayUserArt.appendChild(respdiv);
+    count++;
+    console.log('in if then divcol: ', divcol);
+  });
+}
+
+/**
+ * Helper function to create DOM elements
+ * @param {String} tag - HTML tag name
+ * @param {Array} classes - CSS classes to add
+ * @param {Object} attributes - HTML attributes to add
+ * @returns {HTMLElement} - Created element
+ */
+function createElement(tag, classes = [], attributes = {}) {
+  const element = document.createElement(tag);
+
+  if (classes && classes.length) {
+    element.classList.add(...classes);
+  }
+
+  Object.entries(attributes).forEach(([key, value]) => {
+    element.setAttribute(key, value);
+  });
+
+  return element;
+}
+
+/**
+ * Initializes Materialize components
+ */
+function initializeMaterialbox() {
+  const materialboxed = document.querySelectorAll('.materialboxed');
+  M.Materialbox.init(materialboxed);
+}
+
+/**
+ * Displays an error message
+ * @param {String} message - Error message
+ */
+function displayError(message) {
+  const errMsg = document.getElementById('err-msg');
+  if (errMsg) {
+    errMsg.textContent = message;
+  } else {
+    console.error(message);
+  }
+}
