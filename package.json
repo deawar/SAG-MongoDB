@@ -81,7 +81,7 @@
     "bcryptjs": "^2.4.3",
 
 
-    "body-parser": "^2.2.0",
+    "body-parser": "^2.2.1",
     "bson": "^6.10.1",
     "chalk": "^5.4.1",
     "cloudinary": "^2.6.0",
